@@ -1,0 +1,46 @@
+import './globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import EmergencyFloat from '@/components/EmergencyFloat';
+
+export const metadata = {
+  metadataBase: new URL('https://gahyo.com'),
+  title: {
+    default: '가효상조 | 슬픔을 위로하는 기술, 투명한 장례 파트너',
+    template: '%s | 가효상조',
+  },
+  description: 'AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.',
+  keywords: ['가효상조', '장례', '장례식장', '장례 견적', 'AI 장례', '수목장', '봉안당', '장례 가이드'],
+  openGraph: {
+    title: '가효상조 | AI 기반 투명한 장례 서비스',
+    description: 'AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.',
+    url: 'https://gahyo.com',
+    siteName: '가효상조',
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  alternates: {
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
+  },
+  robots: { index: true, follow: true },
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ko">
+      <head>
+        <link rel="stylesheet" as="style" crossOrigin="true" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" fetchPriority="high" />
+      </head>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Header />
+        <main style={{ flex: 1 }}>
+          {children}
+        </main>
+        <Footer />
+        <EmergencyFloat />
+      </body>
+    </html>
+  );
+}
