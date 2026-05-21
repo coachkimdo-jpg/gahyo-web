@@ -375,14 +375,14 @@ export default function EstimatePage() {
                   </div>
                 </div>
 
-                <div style={{ padding: '1rem 1.25rem', background: 'var(--gray-bg)', fontWeight: '700', color: 'var(--navy)', fontSize: '1.05rem', borderTop: '2px solid var(--border-color)', borderBottom: '2px solid var(--border-color)' }}>
-                  제단 꽃 장식 및 제사 상차림비
-                  <span style={{ float: 'right', color: 'var(--gold-dark)' }}>{Math.round(result.details.floralMin / 10000).toLocaleString()}만원 ~ {Math.round(result.details.floralMax / 10000).toLocaleString()}만원</span>
+                <div style={{ padding: '1rem 1.25rem', background: 'var(--gray-bg)', fontWeight: '700', color: 'var(--navy)', fontSize: '1.05rem', borderTop: '2px solid var(--border-color)', borderBottom: '2px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ wordBreak: 'keep-all' }}>제단 꽃 장식 및 제사 상차림비</span>
+                  <span style={{ color: 'var(--gold-dark)', whiteSpace: 'nowrap', flexShrink: 0 }}>{Math.round(result.details.floralMin / 10000).toLocaleString()}만원 ~ {Math.round(result.details.floralMax / 10000).toLocaleString()}만원</span>
                 </div>
                 <div style={{ padding: '0.5rem 0', background: 'white' }}>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '0.25rem', padding: '0.5rem 1.25rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                    <span style={{ wordBreak: 'keep-all' }}>└ 제단 장식 및 제사상 (선택 변동 가능)</span>
-                    <span style={{ fontWeight: '600', color: 'var(--navy)', textAlign: 'right', flex: '1 1 auto' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', padding: '0.5rem 1.25rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                    <span style={{ wordBreak: 'keep-all', flex: 1 }}>└ 제단 장식 및 제사상 (선택 변동 가능)</span>
+                    <span style={{ fontWeight: '600', color: 'var(--navy)', textAlign: 'right', whiteSpace: 'nowrap', flexShrink: 0 }}>
                       {Math.round(result.details.floralMin / 10000).toLocaleString()}만원 ~ {Math.round(result.details.floralMax / 10000).toLocaleString()}만원
                     </span>
                   </div>
