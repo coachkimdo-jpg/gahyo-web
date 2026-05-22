@@ -57,7 +57,8 @@ export async function POST(req) {
 
 [🖼️ 이미지 프롬프트 규칙]
 글의 핵심 주제를 가장 잘 표현하는 고품질 이미지를 생성하기 위해 아래 태그를 반드시 작성하세요.
-1. <image_prompt>: 이미지 생성 AI에게 전달할 영어 프롬프트 (photorealistic, warm lighting, respectful atmosphere 등 포함)
+1. <image_prompt>: 이미지 생성 AI에게 전달할 영어 프롬프트 (photorealistic, 8k, warm lighting, respectful atmosphere 등 포함)
+   - 🚨 [중요 규칙]: 만약 이미지에 '사람(인물)'이 포함되어야 한다면, 반드시 "현대적인 2026년 대한민국의 평범한 남녀 모습(Modern Korean men and women in 2026, authentic Korean appearance, contemporary attire)"으로 구체적으로 묘사하여 서양인이나 어색한 인물이 나오지 않도록 프롬프트를 강제하세요.
 2. <image_alt>: 이미지의 alt 속성값 (한국어, 구체적인 문장형)
 3. <image_filename>: 영어 소문자와 하이픈(-)만 사용한 파일명 (확장자 제외)
 
