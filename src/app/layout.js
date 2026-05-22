@@ -64,7 +64,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <EmergencyFloat />
       </body>
-      <GoogleAnalytics gaId="G-4QYQ5GFTLY" />
+      <GoogleAnalytics gaId="G-4QVQ5GFTLV" />
     </html>
   );
 }
