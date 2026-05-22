@@ -87,6 +87,9 @@ export async function POST(req) {
     const response = await result.response;
     let text = response.text();
     
+    // Remove <reasoning> block completely so pseudo-tags inside it don't break extraction
+    const textWithoutReasoning = text.replace(/<reasoning>[\s\S]*?<\/reasoning>/gi, '');
+
     // Extract XML tags robustly
     const extractTag = (tag, str) => {
       const regex = new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`, 'i');
@@ -94,9 +97,9 @@ export async function POST(req) {
       return match ? match[1].trim() : '';
     };
 
-    let extractedContent = extractTag('content', text);
+    let extractedContent = extractTag('content', textWithoutReasoning);
     if (!extractedContent) {
-      const contentMatch = text.match(/<content>([\s\S]*)/i);
+      const contentMatch = textWithoutReasoning.match(/<content>([\s\S]*)/i);
       if (contentMatch) {
         extractedContent = contentMatch[1].replace(/<\/blog_post>/i, '').trim();
       }
@@ -106,9 +109,9 @@ export async function POST(req) {
       return (str || '').replace(/<0xC2><0xA0>/g, ' ').replace(/\u00A0/g, ' ');
     };
 
-    const imagePrompt = extractTag('image_prompt', text);
-    const imageAlt = extractTag('image_alt', text) || `${keyword} 관련 장례 가이드 이미지`;
-    const imageFilename = extractTag('image_filename', text) || `ai-post-${Date.now()}`;
+    const imagePrompt = extractTag('image_prompt', textWithoutReasoning);
+    const imageAlt = extractTag('image_alt', textWithoutReasoning) || `${keyword} 관련 장례 가이드 이미지`;
+    const imageFilename = extractTag('image_filename', textWithoutReasoning) || `ai-post-${Date.now()}`;
 
     // ── Step 2: Generate image with Imagen & upload to Firebase Storage ──
     let finalImageUrl = null;
@@ -173,10 +176,10 @@ export async function POST(req) {
     }
 
     const data = {
-      title: cleanString(extractTag('title', text)) || `가효상조 - 투명한 장례 서비스: ${keyword}`,
-      summary: cleanString(extractTag('summary', text)) || '가효상조 후불제 상조 안내입니다.',
-      category: cleanString(extractTag('category', text)) || '장례상식',
-      readTime: cleanString(extractTag('readTime', text)) || '5분',
+      title: cleanString(extractTag('title', textWithoutReasoning)) || `가효상조 - 투명한 장례 서비스: ${keyword}`,
+      summary: cleanString(extractTag('summary', textWithoutReasoning)) || '가효상조 후불제 상조 안내입니다.',
+      category: cleanString(extractTag('category', textWithoutReasoning)) || '장례상식',
+      readTime: cleanString(extractTag('readTime', textWithoutReasoning)) || '5분',
       content: finalContent,
     };
 
