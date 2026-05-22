@@ -40,6 +40,13 @@ export async function GET() {
       <description>가효상조에서 제공하는 유익한 장례 정보 및 가이드입니다.</description>
       <language>ko-KR</language>
       <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml" />
+      <item>
+        <title><![CDATA[가효상조 | AI 기반 투명한 장례 서비스]]></title>
+        <link>${baseUrl}/</link>
+        <guid>${baseUrl}/</guid>
+        <pubDate>${new Date().toUTCString()}</pubDate>
+        <description><![CDATA[AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.]]></description>
+      </item>
       ${rssItemsXml}
     </channel>
   </rss>`;
