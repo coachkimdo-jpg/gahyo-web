@@ -3,6 +3,8 @@ import { db } from '@/lib/firebase';
 import { collection, getDocs, addDoc, query, orderBy, where } from 'firebase/firestore';
 import { revalidatePath } from 'next/cache';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const q = query(collection(db, 'articles'), orderBy('id', 'desc'));

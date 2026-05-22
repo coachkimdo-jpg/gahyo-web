@@ -166,16 +166,23 @@ export default function AdminPage() {
 
   const handleSaveArticle = async () => {
     try {
-      // POST 요청으로 새 게시물 저장
-      const res = await fetch('/api/articles', {
-        method: 'POST',
+      const isEditing = !!editingArticle.id;
+      const url = isEditing ? `/api/articles/${editingArticle.id}` : '/api/articles';
+      const method = isEditing ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editingArticle)
       });
       
       if (res.ok) {
         const savedArticle = await res.json();
-        setArticles([savedArticle, ...articles]);
+        if (isEditing) {
+          setArticles(articles.map(a => a.id === savedArticle.id ? savedArticle : a));
+        } else {
+          setArticles([savedArticle, ...articles]);
+        }
         setIsArticleModalOpen(false);
         handleSave(`'${savedArticle.title}' 게시물이 저장되었습니다.`);
         router.refresh();
@@ -397,7 +404,21 @@ export default function AdminPage() {
                   </div>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <button id={`edit-guide-${article.id}`} onClick={() => { setEditingArticle(article); setIsArticleModalOpen(true); }} style={{ padding: '0.375rem 0.875rem', background: 'var(--navy-light)', color: 'var(--navy)', border: 'none', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer', fontFamily: 'inherit' }}>수정</button>
-                    <button id={`delete-guide-${article.id}`} onClick={() => { if(confirm(`'${article.title}' 게시물을 정말 삭제하시겠습니까?`)) { setArticles(articles.filter(a => a.id !== article.id)); handleSave(`'${article.title}' 삭제 처리되었습니다.`); } }} style={{ padding: '0.375rem 0.875rem', background: '#fee2e2', color: '#991b1b', border: 'none', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer', fontFamily: 'inherit' }}>삭제</button>
+                    <button id={`delete-guide-${article.id}`} onClick={async () => { 
+                      if(confirm(`'${article.title}' 게시물을 정말 삭제하시겠습니까?`)) { 
+                        try {
+                          const res = await fetch(`/api/articles/${article.id}`, { method: 'DELETE' });
+                          if (res.ok) {
+                            setArticles(articles.filter(a => a.id !== article.id)); 
+                            handleSave(`'${article.title}' 삭제 처리되었습니다.`); 
+                          } else {
+                            alert('삭제에 실패했습니다.');
+                          }
+                        } catch (e) {
+                          alert('삭제 중 오류가 발생했습니다.');
+                        }
+                      } 
+                    }} style={{ padding: '0.375rem 0.875rem', background: '#fee2e2', color: '#991b1b', border: 'none', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer', fontFamily: 'inherit' }}>삭제</button>
                   </div>
                 </div>
               ))}
@@ -484,9 +505,8 @@ export default function AdminPage() {
               {editingArticle.id ? '게시물 수정' : '새 게시물 작성'}
             </h3>
             
-            {!editingArticle.id && (
-              <div style={{ marginBottom: '1.5rem', padding: '1.25rem', background: 'var(--navy-light)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,26,58,0.1)' }}>
-                <label className="form-label" style={{ color: 'var(--navy)' }}>✨ AI 자동 작성 (SEO 최적화)</label>
+            <div style={{ marginBottom: '1.5rem', padding: '1.25rem', background: 'var(--navy-light)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,26,58,0.1)' }}>
+              <label className="form-label" style={{ color: 'var(--navy)' }}>✨ AI 자동 작성 (SEO 최적화)</label>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   <input type="text" className="form-input" value={aiKeyword} onChange={e => setAiKeyword(e.target.value)} placeholder="검색 상위 노출을 원하는 키워드를 입력하세요 (예: 장례식장 비용)" disabled={isGenerating} />
                   
@@ -550,7 +570,7 @@ export default function AdminPage() {
                   </button>
                 </div>
               </div>
-            )}
+            </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
               <div>
@@ -577,7 +597,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <label className="form-label">본문 내용 (HTML/마크다운)</label>
-                <textarea className="form-input" value={editingArticle.content || ''} onChange={e => setEditingArticle({...editingArticle, content: e.target.value})} placeholder="본문 내용이 여기에 표시됩니다." style={{ minHeight: '300px', resize: 'vertical', fontFamily: 'monospace', fontSize: '0.9rem' }} />
+                <textarea className="form-input" value={typeof editingArticle.content === 'object' && editingArticle.content !== null ? JSON.stringify(editingArticle.content, null, 2) : (editingArticle.content || '')} onChange={e => setEditingArticle({...editingArticle, content: e.target.value})} placeholder="본문 내용이 여기에 표시됩니다." style={{ minHeight: '300px', resize: 'vertical', fontFamily: 'monospace', fontSize: '0.9rem' }} />
               </div>
             </div>
 

@@ -1,40 +1,31 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-
-const dbPath = path.join(process.cwd(), 'src', 'lib', 'qna.json');
-
-function getQnaData() {
-  try {
-    const data = fs.readFileSync(dbPath, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    return [];
-  }
-}
-
-function saveQnaData(data) {
-  fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf8');
-}
+import { db } from '@/lib/firebase';
+import { collection, query, where, getDocs, updateDoc, deleteDoc } from 'firebase/firestore';
+import { revalidatePath } from 'next/cache';
 
 export async function PUT(request, { params }) {
   try {
     const { id } = await params;
     const body = await request.json();
-    let posts = getQnaData();
     
-    const postIndex = posts.findIndex(p => p.id === parseInt(id));
+    const q = query(collection(db, 'qna'), where('id', '==', parseInt(id)));
+    const snapshot = await getDocs(q);
     
-    if (postIndex === -1) {
+    if (snapshot.empty) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
     
-    // Update the post with new data (e.g., adding a reply)
-    posts[postIndex] = { ...posts[postIndex], ...body };
-    saveQnaData(posts);
+    const docRef = snapshot.docs[0].ref;
+    const updatedData = { ...snapshot.docs[0].data(), ...body };
     
-    return NextResponse.json(posts[postIndex]);
+    await updateDoc(docRef, updatedData);
+    
+    revalidatePath('/qna');
+    revalidatePath('/admin');
+    
+    return NextResponse.json(updatedData);
   } catch (error) {
+    console.error('Error updating qna:', error);
     return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });
   }
 }
@@ -42,13 +33,20 @@ export async function PUT(request, { params }) {
 export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
-    let posts = getQnaData();
     
-    posts = posts.filter(p => p.id !== parseInt(id));
-    saveQnaData(posts);
+    const q = query(collection(db, 'qna'), where('id', '==', parseInt(id)));
+    const snapshot = await getDocs(q);
+    
+    if (!snapshot.empty) {
+      await deleteDoc(snapshot.docs[0].ref);
+    }
+    
+    revalidatePath('/qna');
+    revalidatePath('/admin');
     
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error('Error deleting qna:', error);
     return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });
   }
 }
