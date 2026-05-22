@@ -33,6 +33,11 @@ export const metadata = {
     },
   },
   robots: { index: true, follow: true },
+  verification: {
+    other: {
+      'naver-site-verification': '74a731071fccb2f8a7e9ca1ac21f6ed2ac8645f5',
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
