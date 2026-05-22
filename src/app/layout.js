@@ -4,7 +4,12 @@ import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
 
 export const metadata = {
-  metadataBase: new URL('https://gahyo.com'),
+  metadataBase: new URL('https://gahyo.co.kr'),
+  icons: {
+    icon: 'https://gahyo.co.kr/favicon.ico',
+    shortcut: 'https://gahyo.co.kr/favicon.ico',
+    apple: 'https://gahyo.co.kr/favicon.ico',
+  },
   title: {
     default: '가효상조 | 슬픔을 위로하는 기술, 투명한 장례 파트너',
     template: '%s | 가효상조',
