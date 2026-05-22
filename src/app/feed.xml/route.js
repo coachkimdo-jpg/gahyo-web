@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export async function GET() {
-  const baseUrl = 'https://gahyo.com';
+  const baseUrl = 'https://gahyo.co.kr';
   
   let articles = [];
   try {

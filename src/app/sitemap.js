@@ -7,7 +7,7 @@ import graveyards from '@/lib/graveyards.json';
 export const dynamic = 'force-dynamic'; // 항상 최신 데이터를 반영하도록 설정
 
 export default async function sitemap() {
-  const baseUrl = 'https://gahyo.com';
+  const baseUrl = 'https://gahyo.co.kr';
 
   // 정적 페이지 목록
   const staticPages = [
