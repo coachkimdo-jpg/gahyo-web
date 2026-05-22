@@ -35,7 +35,10 @@ const getThumbnailUrl = (content) => {
   return match ? match[1] : null;
 };
 
-export default async function GuidePage() {
+export default async function GuidePage(props) {
+  const searchParams = await props.searchParams;
+  const selectedCategory = searchParams?.category || null;
+
   let guideArticles = [];
   try {
     const q = query(collection(db, 'articles'), orderBy('id', 'desc'));
@@ -43,6 +46,10 @@ export default async function GuidePage() {
     guideArticles = snapshot.docs.map(doc => doc.data());
   } catch (err) {
     console.error('Failed to read articles from Firebase:', err);
+  }
+
+  if (selectedCategory) {
+    guideArticles = guideArticles.filter(a => a.category === selectedCategory);
   }
 
   const today = new Date().toISOString().split('T')[0];
@@ -138,12 +145,20 @@ export default async function GuidePage() {
       <div className="container" style={{ padding: '3rem 1.25rem 5rem' }}>
         {/* 카테고리 빠른 이동 */}
         <div style={{ display: 'flex', gap: '0.625rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+          <Link href="/guide" style={{ textDecoration: 'none' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 1rem', borderRadius: '999px', fontSize: '0.875rem', fontWeight: '600', background: !selectedCategory ? 'var(--navy)' : '#f1f5f9', color: !selectedCategory ? 'white' : '#64748b', cursor: 'pointer', transition: 'all 0.2s' }}>
+              전체 보기
+            </span>
+          </Link>
           {Object.entries(CATEGORY_ICONS).map(([cat, icon]) => {
             const style = CATEGORY_COLORS[cat];
+            const isSelected = selectedCategory === cat;
             return (
-              <span key={cat} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 1rem', borderRadius: '999px', fontSize: '0.875rem', fontWeight: '600', background: style.bg, color: style.color, cursor: 'pointer' }}>
-                {icon} {cat}
-              </span>
+              <Link key={cat} href={`/guide?category=${encodeURIComponent(cat)}`} style={{ textDecoration: 'none' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 1rem', borderRadius: '999px', fontSize: '0.875rem', fontWeight: '600', background: isSelected ? style.bg : '#f1f5f9', color: isSelected ? style.color : '#64748b', cursor: 'pointer', border: isSelected ? `1px solid ${style.color}` : '1px solid transparent', opacity: selectedCategory && !isSelected ? 0.6 : 1, transition: 'all 0.2s' }}>
+                  {icon} {cat}
+                </span>
+              </Link>
             );
           })}
         </div>
