@@ -35,7 +35,7 @@ export const metadata = {
   robots: { index: true, follow: true },
   verification: {
     other: {
-      'naver-site-verification': '74a731071fccb2f8a7e9ca1ac21f6ed2ac8645f5',
+      'naver-site-verification': '0e63c406b4c061891409f2ec1c6ba6b642f521b2',
     },
   },
 };
