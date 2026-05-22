@@ -137,7 +137,8 @@ export default function HomePage() {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       'name': '가효상조',
-      'url': 'https://gahyo.com',
+      'alternateName': ['가효상조 장례식장', 'gahyo.co.kr'],
+      'url': 'https://gahyo.co.kr/',
       'description': '100% 후불제 상조 및 투명한 장례 서비스'
     },
     {
