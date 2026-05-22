@@ -96,8 +96,24 @@ export default function QnaPage() {
               </button>
             </div>
 
+            <style>{`
+              .qna-grid { display: grid; grid-template-columns: 60px 1fr 100px 100px; padding: 1rem 0; align-items: center; }
+              .qna-header { border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #4b5563; text-align: center; }
+              .qna-row { border-bottom: 1px solid #e5e7eb; text-align: center; cursor: pointer; transition: background 0.2s; }
+              .qna-row:hover { background: #f9fafb; }
+              .qna-title { text-align: left; padding-left: 1rem; font-weight: 600; color: #1a1a2e; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+              .qna-mobile-meta { display: none; }
+              @media (max-width: 600px) {
+                .qna-grid { grid-template-columns: 1fr; padding: 1rem 0.5rem; gap: 0.5rem; text-align: left; }
+                .qna-header { display: none; }
+                .qna-id { display: none; }
+                .qna-desktop-meta { display: none; }
+                .qna-mobile-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: #6b7280; margin-top: 0.25rem; }
+                .qna-title { padding-left: 0; font-size: 1.05rem; }
+              }
+            `}</style>
             <div style={{ borderTop: '2px solid var(--navy)', borderBottom: '1px solid #e5e7eb' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr 100px 100px', padding: '1rem 0', fontWeight: '700', color: '#4b5563', borderBottom: '1px solid #e5e7eb', textAlign: 'center' }}>
+              <div className="qna-grid qna-header">
                 <div>번호</div>
                 <div>제목</div>
                 <div>작성자</div>
@@ -108,24 +124,19 @@ export default function QnaPage() {
                 <div style={{ padding: '3rem', textAlign: 'center', color: '#6b7280' }}>등록된 문의글이 없습니다.</div>
               ) : (
                 posts.map((post) => (
-                  <div 
-                    key={post.id} 
-                    onClick={() => handlePostClick(post)}
-                    style={{ 
-                      display: 'grid', gridTemplateColumns: '60px 1fr 100px 100px', padding: '1rem 0', 
-                      borderBottom: '1px solid #e5e7eb', textAlign: 'center', cursor: 'pointer', transition: 'background 0.2s' 
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.background = '#f9fafb'}
-                    onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
-                  >
-                    <div style={{ color: '#6b7280' }}>{post.id}</div>
-                    <div style={{ textAlign: 'left', paddingLeft: '1rem', fontWeight: '600', color: '#1a1a2e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      {post.title}
+                  <div key={post.id} onClick={() => handlePostClick(post)} className="qna-grid qna-row">
+                    <div className="qna-id" style={{ color: '#6b7280' }}>{post.id}</div>
+                    <div className="qna-title">
+                      <span style={{ wordBreak: 'break-word' }}>{post.title}</span>
                       {post.isSecret && <span style={{ fontSize: '0.8rem' }}>🔒</span>}
-                      {post.reply && <span style={{ fontSize: '0.75rem', background: '#dcfce7', color: '#14532d', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: '700' }}>답변완료</span>}
+                      {post.reply && <span style={{ fontSize: '0.75rem', background: '#dcfce7', color: '#14532d', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: '700', whiteSpace: 'nowrap' }}>답변완료</span>}
+                      <div className="qna-mobile-meta">
+                        <span>{maskName(post.author)}</span>
+                        <span>{post.date}</span>
+                      </div>
                     </div>
-                    <div style={{ color: '#4b5563' }}>{maskName(post.author)}</div>
-                    <div style={{ color: '#9ca3af', fontSize: '0.9rem' }}>{post.date}</div>
+                    <div className="qna-desktop-meta" style={{ color: '#4b5563' }}>{maskName(post.author)}</div>
+                    <div className="qna-desktop-meta" style={{ color: '#9ca3af', fontSize: '0.9rem' }}>{post.date}</div>
                   </div>
                 ))
               )}
