@@ -119,8 +119,8 @@ export default function HomePage() {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       'name': '가효상조',
-      'url': 'https://gahyo.com',
-      'logo': 'https://gahyo.com/logo.png',
+      'url': 'https://gahyo.co.kr',
+      'logo': 'https://gahyo.co.kr/logo.png',
       'contactPoint': {
         '@type': 'ContactPoint',
         'telephone': '1551-5718',
