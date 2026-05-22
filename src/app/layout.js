@@ -2,6 +2,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
   metadataBase: new URL('https://gahyo.co.kr'),
@@ -63,6 +64,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <EmergencyFloat />
       </body>
+      <GoogleAnalytics gaId="G-4QYQ5GFTLY" />
     </html>
   );
 }
