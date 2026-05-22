@@ -570,7 +570,6 @@ export default function AdminPage() {
                   </button>
                 </div>
               </div>
-            </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
               <div>
