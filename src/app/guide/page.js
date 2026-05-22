@@ -50,6 +50,14 @@ export default async function GuidePage() {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'item': { '@id': 'https://gahyo.co.kr/', 'name': '홈' } },
+        { '@type': 'ListItem', 'position': 2, 'item': { '@id': 'https://gahyo.co.kr/guide', 'name': '장례 가이드' } }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       'headline': '장례 가이드 및 정보',
       'description': '장례 절차부터 행정 서류, 비용 안내까지 꼭 필요한 정보를 제공합니다.',

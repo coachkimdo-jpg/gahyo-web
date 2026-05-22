@@ -11,6 +11,14 @@ export default function AboutPage() {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'item': { '@id': 'https://gahyo.co.kr/', 'name': '홈' } },
+        { '@type': 'ListItem', 'position': 2, 'item': { '@id': 'https://gahyo.co.kr/about', 'name': '회사 소개' } }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'Article',
       'headline': '가효상조 소개 - 추가금 없는 100% 후불제 상조',
       'author': {

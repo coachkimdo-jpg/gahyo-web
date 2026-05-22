@@ -87,6 +87,14 @@ export default function ProductsPage() {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'item': { '@id': 'https://gahyo.co.kr/', 'name': '홈' } },
+        { '@type': 'ListItem', 'position': 2, 'item': { '@id': 'https://gahyo.co.kr/products', 'name': '장례 상품 안내' } }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'Article',
       'headline': '거품 없는 100% 후불제상조상품 비교 가이드',
       'author': {

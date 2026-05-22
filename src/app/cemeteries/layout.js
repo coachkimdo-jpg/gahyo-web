@@ -13,6 +13,14 @@ export default function CemeteriesLayout({ children }) {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'item': { '@id': 'https://gahyo.co.kr/', 'name': '홈' } },
+        { '@type': 'ListItem', 'position': 2, 'item': { '@id': 'https://gahyo.co.kr/cemeteries', 'name': '장지 안내' } }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'Article',
       'headline': '전국 자연장지·봉안당·묘지 찾기 — 지역별 장지 정보 안내',
       'author': {

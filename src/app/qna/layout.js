@@ -8,5 +8,19 @@ export const metadata = {
 };
 
 export default function QnaLayout({ children }) {
-  return <>{children}</>;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'item': { '@id': 'https://gahyo.co.kr/', 'name': '홈' } },
+      { '@type': 'ListItem', 'position': 2, 'item': { '@id': 'https://gahyo.co.kr/qna', 'name': '고객 문의/상담' } }
+    ]
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {children}
+    </>
+  );
 }

@@ -13,6 +13,14 @@ export default function EstimateLayout({ children }) {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'item': { '@id': 'https://gahyo.co.kr/', 'name': '홈' } },
+        { '@type': 'ListItem', 'position': 2, 'item': { '@id': 'https://gahyo.co.kr/estimate', 'name': '무료 장례 견적' } }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'WebApplication',
       'name': '가효상조 AI 장례 견적 계산기',
       'url': 'https://gahyo.com/estimate',
