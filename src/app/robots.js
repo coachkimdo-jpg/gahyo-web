@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: ['/admin/', '/api/'],
     },
-    sitemap: 'https://gahyo.com/sitemap.xml',
+    sitemap: 'https://gahyo.co.kr/sitemap.xml',
   }
 }
