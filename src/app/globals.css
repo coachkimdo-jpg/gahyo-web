@@ -55,8 +55,10 @@ html {
 }
 
 body {
-  font-family: var(--font-pretendard), 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
-    'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', sans-serif;
+  /* 시스템 폰트 스택 — 외부 폰트 요청 0건, 즉각 렌더링 */
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕',
+    -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Noto Sans CJK KR',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--white);
   color: var(--text-primary);
   line-height: 1.7;

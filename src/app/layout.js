@@ -3,16 +3,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
 import Script from 'next/script';
-import { Noto_Sans_KR } from 'next/font/google';
-
-const pretendard = Noto_Sans_KR({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  display: 'swap',
-  variable: '--font-pretendard',
-  preload: false,
-  adjustFontFallback: false,
-});
 
 export const metadata = {
   metadataBase: new URL('https://gahyo.co.kr'),
@@ -48,8 +38,8 @@ export const metadata = {
       'application/rss+xml': '/feed.xml',
     },
   },
-  robots: { 
-    index: true, 
+  robots: {
+    index: true,
     follow: true,
     imagePreview: 'large',
   },
@@ -66,8 +56,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko" className={pretendard.variable}>
+    <html lang="ko">
       <head>
+        {/* 
+          폰트 관련 모든 외부 요청 제거 - 시스템 폰트 사용으로 완전 전환
+          Google Analytics는 afterInteractive 전략으로 렌더링 완료 후 로드 
+        */}
       </head>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Header />
@@ -76,17 +70,18 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <EmergencyFloat />
-        {/* Google Analytics — afterInteractive: 페이지 렌더링 완료 후 로드, LCP/FCP 점수에 영향 없음 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-4QVQ5GFTLV"
-          strategy="afterInteractive"
-        />
+        {/* Google Analytics - 렌더링 완전 완료 후 실행 */}
         <Script id="ga-init" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+            j.src='https://www.googletagmanager.com/gtag/js?id='+i;
+            f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','G-4QVQ5GFTLV');
+            window.dataLayer=window.dataLayer||[];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-4QVQ5GFTLV', { page_path: window.location.pathname });
+            gtag('js',new Date());
+            gtag('config','G-4QVQ5GFTLV',{page_path:window.location.pathname});
           `}
         </Script>
       </body>
