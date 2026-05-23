@@ -78,7 +78,7 @@ html {
 }
 
 body {
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+  font-family: var(--font-pretendard), 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
     'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', sans-serif;
   background-color: var(--white);
   color: var(--text-primary);

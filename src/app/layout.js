@@ -3,6 +3,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import localFont from 'next/font/local';
+
+const pretendard = localFont({
+  src: './fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-pretendard',
+});
 
 export const metadata = {
   metadataBase: new URL('https://gahyo.co.kr'),
@@ -56,9 +64,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={pretendard.variable}>
       <head>
-        <link rel="stylesheet" as="style" crossOrigin="true" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" fetchPriority="high" />
       </head>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Header />
