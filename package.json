@@ -27,6 +27,10 @@
     "tailwindcss": "^4"
   },
   "browserslist": [
-    "baseline widely available"
+    "Chrome >= 95",
+    "Safari >= 16",
+    "iOS >= 16",
+    "Firefox >= 100",
+    "Edge >= 95"
   ]
 }
