@@ -164,6 +164,24 @@ export default function EstimatePage() {
   if (step === 2) canNext = !!selectedHall;
   if (step === 3) canNext = !!guestCategory;
 
+  const handleShare = async () => {
+    const shareData = {
+      title: '가효상조 장례 견적',
+      text: '나에게 맞는 맞춤형 장례 견적 결과를 확인해보세요.',
+      url: window.location.href,
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (e) {
+        console.log('공유하기가 취소되었거나 실패했습니다.', e);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('견적 결과 링크가 클립보드에 복사되었습니다.');
+    }
+  };
+
   const today = new Date().toISOString().split('T')[0];
 
   return (
@@ -456,8 +474,9 @@ export default function EstimatePage() {
                 );
               })()}
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.8rem' }}>
                 <a href="tel:1551-5718" className="btn-primary" style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.1rem' }}>📞 전문 장례지도사 1:1 무료 상담</a>
+                <button onClick={handleShare} className="btn-secondary" style={{ padding: '1.25rem', fontSize: '1.1rem', background: '#f8f9fa', borderColor: '#d1d5db', color: '#374151' }}>🔗 견적 결과 공유하기</button>
                 <button onClick={handleReset} className="btn-secondary" style={{ padding: '1.25rem', fontSize: '1.1rem' }}>처음부터 다시하기</button>
               </div>
             </div>
