@@ -1,37 +1,9 @@
-@import "tailwindcss";
-
 /* ===========================
    가효상조 디자인 시스템
    Design Tokens & Global CSS
    =========================== */
 
-@theme inline {
-  /* Color Palette */
-  --color-navy-950: #001a3a;
-  --color-navy-900: #002C5F;
-  --color-navy-800: #003a7a;
-  --color-navy-700: #004a9a;
-  --color-navy-600: #005bb5;
-  --color-navy-100: #e6eef8;
-  --color-navy-50: #f0f5fb;
 
-  --color-gold-700: #a07830;
-  --color-gold-600: #b8892e;
-  --color-gold-500: #C9A84C;
-  --color-gold-400: #d4b570;
-  --color-gold-300: #e0c98a;
-  --color-gold-100: #f7f1e0;
-  --color-gold-50: #fdf9ef;
-
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-700: #374151;
-  --color-gray-900: #111827;
-}
 
 /* CSS Custom Properties */
 :root {
@@ -61,6 +33,11 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  /* 색상 변수 (article-html-content 등에서 사용) */
+  --color-navy-600: #005bb5;
+  --color-navy-800: #003a7a;
+  --color-navy-100: #e6eef8;
+  --gray-50: #f9fafb;
 }
 
 /* Reset & Base */

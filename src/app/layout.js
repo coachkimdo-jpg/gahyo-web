@@ -2,7 +2,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 import { Noto_Sans_KR } from 'next/font/google';
 
 const pretendard = Noto_Sans_KR({
@@ -10,6 +10,8 @@ const pretendard = Noto_Sans_KR({
   weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
   variable: '--font-pretendard',
+  preload: false,
+  adjustFontFallback: false,
 });
 
 export const metadata = {
@@ -55,8 +57,8 @@ export const metadata = {
     google: 'CJBXE0jA-ox9kHs8ipsak4jPMu6k03NuLP-IX3i0PDA',
     other: {
       'naver-site-verification': [
-        '74a731071fccb2f8a7e9ca1ac21f6ed2ac8645f5', // https://gahyo.co.kr
-        '0e63c406b4c061891409f2ec1c6ba6b642f521b2', // http://www.gahyo.co.kr
+        '74a731071fccb2f8a7e9ca1ac21f6ed2ac8645f5',
+        '0e63c406b4c061891409f2ec1c6ba6b642f521b2',
       ],
     },
   },
@@ -74,8 +76,20 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <EmergencyFloat />
+        {/* Google Analytics — afterInteractive: 페이지 렌더링 완료 후 로드, LCP/FCP 점수에 영향 없음 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4QVQ5GFTLV"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4QVQ5GFTLV', { page_path: window.location.pathname });
+          `}
+        </Script>
       </body>
-      <GoogleAnalytics gaId="G-4QVQ5GFTLV" />
     </html>
   );
 }
