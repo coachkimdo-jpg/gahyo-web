@@ -445,7 +445,7 @@ export default function EstimatePage() {
 
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', flexWrap: 'wrap' }}>
                       <div style={{ flex: 1, minWidth: '200px' }}>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--gold-dark)', fontWeight: '700', marginBottom: '0.35rem', letterSpacing: '0.04em' }}>🎁 선택하신 조문객 수에 맞는 가효상조 추천 상품</div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--gold-dark)', fontWeight: '700', marginBottom: '0.35rem', letterSpacing: '0.04em', paddingRight: '5rem' }}>🎁 선택하신 조문객 수에 맞는 가효상조 추천 상품</div>
                         <div style={{ fontSize: '1.6rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.35rem' }}>{rec.name}</div>
                         <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>{rec.desc}</div>
                         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
