@@ -2,7 +2,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
-import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
   metadataBase: new URL('https://gahyo.co.kr'),
@@ -71,19 +71,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <EmergencyFloat />
         {/* Google Analytics - 브라우저 유휴 시간에 지연 로드 (성능 최적화) */}
-        <Script id="ga-init" strategy="lazyOnload">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-            j.src='https://www.googletagmanager.com/gtag/js?id='+i;
-            f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','G-4QVQ5GFTLV');
-            window.dataLayer=window.dataLayer||[];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js',new Date());
-            gtag('config','G-4QVQ5GFTLV',{page_path:window.location.pathname});
-          `}
-        </Script>
+        <GoogleAnalytics gaId="G-4QVQ5GFTLV" />
       </body>
     </html>
   );
