@@ -546,18 +546,18 @@ export default function HomePage() {
             지금 바로 전화 한 통으로<br />모든 것이 시작됩니다
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1rem', marginBottom: '2rem' }}>24시간 연중무휴 · 전국 출동 가능 · 선불 없음</p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', maxWidth: '600px', margin: '0 auto' }}>
             <a href="tel:1551-5718" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
-              padding: '1.1rem 2.25rem', background: 'linear-gradient(135deg,#c0392b,#96281b)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
+              padding: '1.1rem 1rem', background: 'linear-gradient(135deg,#c0392b,#96281b)',
               color: 'white', borderRadius: 'var(--radius-sm)', fontWeight: '800',
               fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 20px rgba(192,57,43,0.45)',
             }}>
               📞 1551-5718 · 지금 전화하기
             </a>
             <Link href="/estimate" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              padding: '1.1rem 2rem', background: 'rgba(255,255,255,0.1)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+              padding: '1.1rem 1rem', background: 'rgba(255,255,255,0.1)',
               color: 'white', border: '2px solid rgba(255,255,255,0.3)',
               borderRadius: 'var(--radius-sm)', fontWeight: '700', fontSize: '1rem', textDecoration: 'none',
             }}>
