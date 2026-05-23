@@ -456,7 +456,7 @@ export default function EstimatePage() {
                           ))}
                         </ul>
                       </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', minWidth: '160px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', minWidth: '160px', paddingTop: '1.5rem' }}>
                         <div style={{ textAlign: 'center' }}>
                           <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>상품 가격</div>
                           <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--gold-dark)' }}>{rec.price}<span style={{ fontSize: '1rem', color: 'var(--text-primary)' }}>원</span></div>
