@@ -3,14 +3,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import localFont from 'next/font/local';
+import { Noto_Sans_KR } from 'next/font/google';
 
-const pretendard = localFont({
-  src: './fonts/PretendardVariable.woff2',
+const pretendard = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
-  weight: '45 920',
   variable: '--font-pretendard',
-  preload: false,
 });
 
 export const metadata = {
