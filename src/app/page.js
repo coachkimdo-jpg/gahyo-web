@@ -33,7 +33,7 @@ const PRODUCTS = [
       '궁중 한지대렴(국화)'
     ],
     excludes: ['장례도우미', '고인전용 리무진'],
-    color: '#6b7280',
+    color: '#4b5563',
     colorLight: '#f3f4f6',
   },
   {
@@ -74,7 +74,7 @@ const PRODUCTS = [
       '궁중 한지대렴(국화)'
     ],
     excludes: [],
-    color: '#a07830',
+    color: '#826221',
     colorLight: '#f7f1e0',
     popular: true,
   },
@@ -345,7 +345,7 @@ export default function HomePage() {
                   </ul>
                   {p.excludes.length > 0 && (
                     <>
-                      <div style={{ fontWeight: '700', fontSize: '0.85rem', color: '#6b7280', marginBottom: '0.5rem', letterSpacing: '0.04em' }}>➖ 미포함</div>
+                      <div style={{ fontWeight: '700', fontSize: '0.85rem', color: '#4b5563', marginBottom: '0.5rem', letterSpacing: '0.04em' }}>➖ 미포함</div>
                       <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.3rem', marginBottom: '1.5rem' }}>
                         {p.excludes.map(item => (
                            <li key={item} style={{ fontSize: '0.88rem', color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>

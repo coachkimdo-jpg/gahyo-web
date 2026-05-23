@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const REGION_DATA = {
@@ -321,6 +321,7 @@ export default function EstimatePage() {
                   <button 
                     key={cat.id} 
                     onClick={() => { setGuestCategory(cat.id); setTimeout(() => handleNext(cat.id), 300); }} 
+                    disabled={loadingEstimate}
                     style={{
                       padding: '1.5rem', borderRadius: 'var(--radius-md)', fontFamily: 'inherit',
                       fontWeight: '700', fontSize: '1.1rem', cursor: 'pointer', transition: 'all 0.2s',
@@ -466,7 +467,7 @@ export default function EstimatePage() {
           {step < 4 && (
             <div style={{ display: 'flex', gap: '1rem', marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)' }}>
               {step > 0 && <button onClick={handleBack} className="btn-secondary" style={{ flex: 1, padding: '1rem' }}>← 이전 단계</button>}
-              <button onClick={() => handleNext()} disabled={!canNext || loadingEstimate} className="btn-primary" style={{ flex: step > 0 ? 2 : 1, padding: '1rem', opacity: canNext ? 1 : 0.5, cursor: canNext ? 'pointer' : 'not-allowed', transition: 'all 0.2s' }}>
+              <button onClick={() => handleNext()} disabled={!canNext || loadingEstimate} className="btn-primary" style={{ flex: step > 0 ? 2 : 1, padding: '1rem', opacity: canNext && !loadingEstimate ? 1 : 0.5, cursor: canNext && !loadingEstimate ? 'pointer' : 'not-allowed', transition: 'all 0.2s' }}>
                 {loadingEstimate ? '계산 중...' : step === 3 ? '🧮 견적 산출하기' : '다음 단계 →'}
               </button>
             </div>

@@ -2,53 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { regions } from '@/lib/mockDb';
-import ossuariesRaw from '@/lib/ossuaries.json';
-import naturalBurialsRaw from '@/lib/naturalBurials.json';
-import graveyardsRaw from '@/lib/graveyards.json';
 
-// 봉안시설 - ossuaries.json (684건, type='봉안당' 고정)
-const ossuariesData = ossuariesRaw.map(o => ({
-  id: o.id,
-  type: '봉안당',
-  typeLabel: '🏛️ 봉안시설',
-  name: o.name,
-  address: o.address,
-  description: o.intro || '상세 정보는 페이지를 확인하세요.',
-  priceRange: o.priceRange || '전화 문의',
-  benefits: ['할인 혜택', '전문 상담', '장례지도사 동행'],
-  photos: o.photos,
-  isOssuary: true
-}));
-
-// 자연장지 - naturalBurials.json (260건, type='수목장' 고정)
-const naturalBurialsData = naturalBurialsRaw.map(n => ({
-  id: n.id,
-  type: '수목장',
-  typeLabel: '🌲 자연장지',
-  name: n.name,
-  address: n.address,
-  description: n.intro || '상세 정보는 페이지를 확인하세요.',
-  priceRange: n.priceRange || '전화 문의',
-  benefits: ['할인 혜택', '방문 상담', '장례지도사 동행'],
-  photos: n.photos,
-  isNatural: true
-}));
-
-// 묘지 - graveyards.json (신규)
-const graveyardsData = graveyardsRaw.map(g => ({
-  id: g.id,
-  type: '묘지',
-  typeLabel: '🪦 묘지',
-  name: g.name,
-  address: g.address,
-  description: g.intro || '상세 정보는 페이지를 확인하세요.',
-  priceRange: g.priceRange || '전화 문의',
-  benefits: ['할인 혜택', '방문 상담', '장례지도사 동행'],
-  photos: g.photos,
-  isGraveyard: true
-}));
-
-const combinedData = [...ossuariesData, ...naturalBurialsData, ...graveyardsData];
 
 const TYPES = [
   { code: '', label: '전체' },
@@ -129,6 +83,8 @@ export default function CemeteriesPage() {
   const [search, setSearch] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [isMounted, setIsMounted] = useState(false);
+  const [filtered, setFiltered] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const savedSido = sessionStorage.getItem('cem_sido');
@@ -159,27 +115,24 @@ export default function CemeteriesPage() {
     setSigungu('전체');
   };
 
-  const filtered = combinedData.filter((c) => {
-    // Type Filtering
-    const matchType = !selectedType || c.type === selectedType;
-    
-    // Region Filtering (Sido & Sigungu)
-    let matchSido = false;
-    if (sido === '전체') {
-      matchSido = true;
-    } else {
-      const variations = SIDO_VARIATIONS[sido] || [sido];
-      const addr = (c.address || '').trim();
-      matchSido = variations.some(v => addr.startsWith(v) || addr.startsWith(sido));
+  useEffect(() => {
+    const fetchCemeteries = async () => {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams({ type: selectedType, search, sido, sigungu });
+        const res = await fetch(`/api/cemeteries?${params}`);
+        const json = await res.json();
+        setFiltered(json.data);
+      } catch (error) {
+        console.error('Failed to fetch cemeteries:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (isMounted) {
+      fetchCemeteries();
     }
-    
-    const matchSigungu = !sigungu || sigungu === '전체' || (c.address && c.address.includes(sigungu));
-    
-    // Search Filtering
-    const matchSearch = !search || c.name.includes(search) || (c.address && c.address.includes(search));
-    
-    return matchType && matchSido && matchSigungu && matchSearch;
-  });
+  }, [sido, sigungu, search, selectedType, isMounted]);
 
   return (
     <>
@@ -260,9 +213,11 @@ export default function CemeteriesPage() {
           </div>
         </div>
 
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>총 <strong style={{ color: 'var(--navy)' }}>{filtered.length}곳</strong>의 장지가 검색되었습니다.</p>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
+          총 <strong style={{ color: 'var(--navy)' }}>{filtered.length}곳</strong>의 장지가 검색되었습니다. {loading && '(검색 중...)'}
+        </p>
         
-        {filtered.length === 0 ? (
+        {!loading && filtered.length === 0 ? (
           <div className="empty-state"><p style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>🌿</p><p style={{ fontWeight: '600', color: 'var(--navy)' }}>검색 결과가 없습니다</p></div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>

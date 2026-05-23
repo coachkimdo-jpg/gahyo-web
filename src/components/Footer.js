@@ -50,7 +50,7 @@ export default function Footer() {
 
           {/* 서비스 링크 */}
           <div>
-            <h4 style={{ color: 'var(--gold)', fontWeight: '700', fontSize: '0.875rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>서비스</h4>
+            <div style={{ color: 'var(--gold)', fontWeight: '700', fontSize: '0.875rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>서비스</div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
               {[
                 { href: '/estimate', label: 'AI 장례 견적' },
@@ -75,7 +75,7 @@ export default function Footer() {
 
           {/* 회사 링크 */}
           <div>
-            <h4 style={{ color: 'var(--gold)', fontWeight: '700', fontSize: '0.875rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>회사 정보</h4>
+            <div style={{ color: 'var(--gold)', fontWeight: '700', fontSize: '0.875rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>회사 정보</div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
               {[
                 { label: '회사 소개', href: '/about' },
@@ -94,7 +94,7 @@ export default function Footer() {
 
           {/* 연락처 */}
           <div>
-            <h4 style={{ color: 'var(--gold)', fontWeight: '700', fontSize: '0.875rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>24시간 상담</h4>
+            <div style={{ color: 'var(--gold)', fontWeight: '700', fontSize: '0.875rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>24시간 상담</div>
             <a href="tel:1551-5718" style={{
               display: 'block',
               color: 'white',

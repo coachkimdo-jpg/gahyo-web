@@ -21,7 +21,7 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -201,39 +201,6 @@ export default function Header() {
       {/* 헤더 공간 보상용 스페이서 */}
       <div className="header-spacer" />
 
-      <style>{`
-        /* 모바일에서는 1단 숨기고 2단(76px) 높이만 유지 */
-        .header-spacer {
-          height: 76px;
-        }
-        .top-bar {
-          display: none !important;
-        }
-        
-        @media (min-width: 1024px) {
-          /* 데스크탑 뷰 */
-          .top-bar {
-            display: block !important;
-          }
-          .header-spacer {
-            height: 112px; /* 36px + 76px */
-          }
-          .desktop-nav {
-            display: flex !important;
-            gap: clamp(1rem, 2.5vw, 2.5rem); /* 모니터 크기에 맞춰 간격 유연하게 조절 */
-            margin: 0 auto;
-            justify-content: center;
-            flex: 1;
-            padding: 0 2rem;
-          }
-          #mobile-menu-toggle {
-            display: none !important;
-          }
-          .desktop-cta {
-            display: inline-flex !important;
-          }
-        }
-      `}</style>
     </>
   );
 }

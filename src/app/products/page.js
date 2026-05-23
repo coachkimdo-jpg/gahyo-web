@@ -218,7 +218,7 @@ export default function ProductsPage() {
                   <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.9rem', marginTop: '0.3rem' }}>{p.desc}</p>
                 </div>
                 <div style={{ background: p.accentLight, padding: '1.25rem 1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${p.borderColor}40` }}>
-                  <span style={{ fontSize: '0.9rem', color: '#6b7280', fontWeight: '600' }}>상품 확정가</span>
+                  <span style={{ fontSize: '0.9rem', color: '#4b5563', fontWeight: '600' }}>상품 확정가</span>
                   <span style={{ fontSize: '1.85rem', fontWeight: '900', color: p.accent }}>{p.price}<span style={{ fontSize: '1rem', fontWeight: '700', marginLeft: '0.2rem' }}>원</span></span>
                 </div>
                 <div style={{ padding: '0.5rem 0' }}>

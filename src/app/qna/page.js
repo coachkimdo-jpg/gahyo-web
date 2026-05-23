@@ -80,7 +80,7 @@ export default function QnaPage() {
         
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <h1 style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--navy)' }}>고객 문의/상담</h1>
-          <p style={{ marginTop: '0.5rem', color: '#6b7280' }}>가효상조에 궁금한 점을 남겨주시면 성심성의껏 답변해 드립니다.</p>
+          <p style={{ marginTop: '0.5rem', color: '#4b5563' }}>가효상조에 궁금한 점을 남겨주시면 성심성의껏 답변해 드립니다.</p>
         </div>
 
         {view === 'list' && (
@@ -108,7 +108,7 @@ export default function QnaPage() {
                 .qna-header { display: none; }
                 .qna-id { display: none; }
                 .qna-desktop-meta { display: none; }
-                .qna-mobile-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: #6b7280; margin-top: 0.25rem; }
+                .qna-mobile-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: #4b5563; margin-top: 0.25rem; }
                 .qna-title { padding-left: 0; font-size: 1.05rem; }
               }
             `}</style>
@@ -121,11 +121,11 @@ export default function QnaPage() {
               </div>
               
               {posts.length === 0 ? (
-                <div style={{ padding: '3rem', textAlign: 'center', color: '#6b7280' }}>등록된 문의글이 없습니다.</div>
+                <div style={{ padding: '3rem', textAlign: 'center', color: '#4b5563' }}>등록된 문의글이 없습니다.</div>
               ) : (
                 posts.map((post) => (
                   <div key={post.id} onClick={() => handlePostClick(post)} className="qna-grid qna-row">
-                    <div className="qna-id" style={{ color: '#6b7280' }}>{post.id}</div>
+                    <div className="qna-id" style={{ color: '#4b5563' }}>{post.id}</div>
                     <div className="qna-title">
                       <span style={{ wordBreak: 'break-word' }}>{post.title}</span>
                       {post.isSecret && <span style={{ fontSize: '0.8rem' }}>🔒</span>}
@@ -196,7 +196,7 @@ export default function QnaPage() {
               {selectedPost.title}
               {selectedPost.reply && <span style={{ fontSize: '0.9rem', background: '#dcfce7', color: '#14532d', padding: '0.25rem 0.6rem', borderRadius: '4px', fontWeight: '700', marginLeft: '0.5rem' }}>답변완료</span>}
             </h2>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#6b7280', marginBottom: '2rem', paddingBottom: '1rem', borderBottom: '1px solid #e5e7eb' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#4b5563', marginBottom: '2rem', paddingBottom: '1rem', borderBottom: '1px solid #e5e7eb' }}>
               <div><span style={{ fontWeight: '700', color: '#4b5563', marginRight: '0.5rem' }}>작성자:</span> {maskName(selectedPost.author)}</div>
               <div><span style={{ fontWeight: '700', color: '#4b5563', marginRight: '0.5rem' }}>등록일:</span> {selectedPost.date}</div>
             </div>

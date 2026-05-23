@@ -70,8 +70,8 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <EmergencyFloat />
-        {/* Google Analytics - 렌더링 완전 완료 후 실행 */}
-        <Script id="ga-init" strategy="afterInteractive">
+        {/* Google Analytics - 브라우저 유휴 시간에 지연 로드 (성능 최적화) */}
+        <Script id="ga-init" strategy="lazyOnload">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
