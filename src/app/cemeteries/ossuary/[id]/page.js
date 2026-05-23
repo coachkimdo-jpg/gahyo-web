@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ossuariesData from '@/lib/ossuaries.json';
+import { getSlug } from '@/lib/utils';
+
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const ossuary = ossuariesData.find(o => o.id === id);
+  const decodedSlug = decodeURIComponent(id);
+  const ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
   if (!ossuary) return { title: 'Not Found' };
   return {
     title: `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`,
@@ -14,7 +17,8 @@ export async function generateMetadata({ params }) {
 
 export default async function OssuaryPage({ params }) {
   const { id } = await params;
-  const ossuary = ossuariesData.find(o => o.id === id);
+  const decodedSlug = decodeURIComponent(id);
+  const ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
   if (!ossuary) notFound();
 
   // 가격 아이템을 location(구역)별로 그룹핑

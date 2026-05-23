@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import naturalBurialsData from '@/lib/naturalBurials.json';
+import { getSlug } from '@/lib/utils';
+
 
 export async function generateMetadata({ params }) {
-  const p = await params;
-  const id = p.id;
-  const facility = naturalBurialsData.find(o => o.id === id);
+  const { id } = await params;
+  const decodedSlug = decodeURIComponent(id);
+  const facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
   
   if (!facility) return { title: 'Not Found' };
   
@@ -16,9 +18,9 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function NaturalBurialPage({ params }) {
-  const p = await params;
-  const id = p.id;
-  const facility = naturalBurialsData.find(o => o.id === id);
+  const { id } = await params;
+  const decodedSlug = decodeURIComponent(id);
+  const facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
   
   if (!facility) notFound();
 

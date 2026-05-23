@@ -3,12 +3,14 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import funeralHalls from '@/lib/realData.json';
 import { regions } from '@/lib/mockDb';
+import { getSlug } from '@/lib/utils';
 
 
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const hall = funeralHalls.find((h) => h.id === id);
+  const decodedSlug = decodeURIComponent(id);
+  const hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
   if (!hall) return { title: '장례식장을 찾을 수 없습니다' };
   return {
     title: `${hall.name} | 가효상조 장례식장 안내`,
@@ -22,7 +24,8 @@ export async function generateMetadata({ params }) {
 
 export default async function HallDetailPage({ params }) {
   const { id } = await params;
-  const hall = funeralHalls.find((h) => h.id === id);
+  const decodedSlug = decodeURIComponent(id);
+  const hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
   if (!hall) notFound();
 
   const regionLabel = regions.find((r) => r.code === hall.regionCode)?.label || '기타';

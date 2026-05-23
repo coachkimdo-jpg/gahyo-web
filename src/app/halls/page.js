@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getSlug } from '@/lib/utils';
 
 const REGION_DATA = {
   "전체": [],
@@ -132,7 +133,7 @@ export default function HallsPage() {
             style={{ display: 'flex', gap: '1rem', overflowX: 'auto', padding: '1rem 0', scrollSnapType: 'x mandatory', width: '100%', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
           >
             {halls.map((hall, idx) => (
-              <Link key={hall.id} href={`/halls/${hall.id}`} style={{ textDecoration: 'none' }}>
+              <Link key={hall.id} href={`/halls/${getSlug(hall.address, hall.name)}`} style={{ textDecoration: 'none' }}>
                 <div style={{ minWidth: '260px', height: '300px', background: 'white', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', position: 'relative', scrollSnapAlign: 'start', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ position: 'relative', height: '180px', width: '100%', background: '#f7fafc', flexShrink: 0 }}>
                     {hall.photo ? (

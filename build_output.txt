@@ -1,0 +1,59 @@
+
+> gahyo@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.3s
+  Running TypeScript ...
+  Finished TypeScript in 110ms ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/21) ...
+  Generating static pages using 15 workers (5/21) 
+  Generating static pages using 15 workers (10/21) 
+  Generating static pages using 15 workers (15/21) 
+✓ Generating static pages using 15 workers (21/21) in 753ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /admin
+├ ○ /admin/login
+├ ƒ /api/articles
+├ ƒ /api/articles/[id]
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/estimate
+├ ƒ /api/generate-post
+├ ƒ /api/halls
+├ ƒ /api/qna
+├ ƒ /api/qna/[id]
+├ ○ /cemeteries
+├ ƒ /cemeteries/[id]
+├ ƒ /cemeteries/graveyard/[id]
+├ ƒ /cemeteries/natural/[id]
+├ ƒ /cemeteries/ossuary/[id]
+├ ○ /estimate
+├ ƒ /feed.xml
+├ ƒ /guide
+├ ƒ /guide/[id]
+├ ○ /halls
+├ ƒ /halls/[id]
+├ ○ /privacy
+├ ○ /products
+├ ○ /qna
+├ ○ /robots.txt
+├ ƒ /sitemap.xml
+└ ○ /terms
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

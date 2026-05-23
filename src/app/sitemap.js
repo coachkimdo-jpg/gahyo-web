@@ -3,6 +3,7 @@ import path from 'path';
 import ossuaries from '@/lib/ossuaries.json';
 import naturalBurials from '@/lib/naturalBurials.json';
 import graveyards from '@/lib/graveyards.json';
+import { getSlug } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic'; // 항상 최신 데이터를 반영하도록 설정
 
@@ -46,7 +47,7 @@ export default async function sitemap() {
 
   // 동적 페이지: 봉안당 목록
   const ossuaryUrls = ossuaries.map((facility) => ({
-    url: `${baseUrl}/cemeteries/ossuary/${facility.id}`,
+    url: `${baseUrl}/cemeteries/ossuary/${getSlug(facility.address, facility.name)}`,
     lastModified: facility.updatedAt || new Date().toISOString(),
     changeFrequency: 'weekly',
     priority: 0.7,
@@ -54,7 +55,7 @@ export default async function sitemap() {
 
   // 동적 페이지: 자연장지 목록
   const naturalBurialUrls = naturalBurials.map((facility) => ({
-    url: `${baseUrl}/cemeteries/natural/${facility.id}`,
+    url: `${baseUrl}/cemeteries/natural/${getSlug(facility.address, facility.name)}`,
     lastModified: facility.updatedAt || new Date().toISOString(),
     changeFrequency: 'weekly',
     priority: 0.7,
@@ -62,7 +63,7 @@ export default async function sitemap() {
 
   // 동적 페이지: 묘지 목록
   const graveyardUrls = graveyards.map((facility) => ({
-    url: `${baseUrl}/cemeteries/graveyard/${facility.id}`,
+    url: `${baseUrl}/cemeteries/graveyard/${getSlug(facility.address, facility.name)}`,
     lastModified: facility.updatedAt || new Date().toISOString(),
     changeFrequency: 'weekly',
     priority: 0.7,
@@ -94,7 +95,7 @@ export default async function sitemap() {
       const hallsContent = fs.readFileSync(hallsPath, 'utf8');
       const halls = JSON.parse(hallsContent);
       hallUrls = halls.map(hall => ({
-        url: `${baseUrl}/halls/${hall.id}`,
+        url: `${baseUrl}/halls/${getSlug(hall.address, hall.name)}`,
         lastModified: new Date().toISOString(),
         changeFrequency: 'monthly',
         priority: 0.7,
