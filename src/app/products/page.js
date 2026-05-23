@@ -387,16 +387,18 @@ export default function ProductsPage() {
         {/* Info Banner (결론/CTA) */}
         <section style={{ background: 'var(--navy)', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1rem', color: 'white', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}>
           <div style={{ fontSize: '2.5rem' }}>✨</div>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0 }}>안심하고 맡길 수 있는 가효상조</h2>
-          <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: 1.75, maxWidth: '600px', margin: 0 }}>
-            가효상조는 사전 결제를 유도하지 않는 <strong style={{ color: 'var(--gold)' }}>100% 후불제 상조</strong>입니다.<br />
-            모든 상품에는 입관 수시용품과 장례편의용품 1BOX가 기본 제공됩니다.
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0, wordBreak: 'keep-all' }}>안심하고 맡길 수 있는<br />가효상조</h2>
+          <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: 1.75, maxWidth: '600px', margin: 0, wordBreak: 'keep-all' }}>
+            가효상조는 사전 결제를 유도하지 않는<br />
+            <strong style={{ color: 'var(--gold)' }}>100% 후불제 상조</strong>입니다.<br />
+            모든 상품에는 입관 수시용품과 장례편의용품<br />
+            1BOX가 기본 제공됩니다.
           </p>
           <a href="tel:1551-5718" style={{
             display: 'inline-block', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
             color: '#0f172a', padding: '1rem 2.5rem', borderRadius: '999px',
             fontWeight: '900', fontSize: '1.15rem', textDecoration: 'none',
-            boxShadow: '0 4px 20px rgba(201,168,76,0.4)', marginTop: '0.5rem'
+            boxShadow: '0 4px 20px rgba(201,168,76,0.4)', marginTop: '0.5rem', wordBreak: 'keep-all'
           }}>
             📞 1551-5718 무료 상세 상담받기
           </a>
