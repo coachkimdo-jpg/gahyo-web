@@ -111,12 +111,13 @@ export default function EstimatePage() {
     return matchSido && matchSigungu;
   });
 
-  function handleNext() {
+  function handleNext(overrideCategory) {
+    const activeCategory = typeof overrideCategory === 'string' ? overrideCategory : guestCategory;
     if (step === 3) {
       // Calculate Estimate from JSON data
       const hallEstimates = estimateData[selectedHall.name];
-      if (hallEstimates && hallEstimates[guestCategory]) {
-        const est = hallEstimates[guestCategory];
+      if (hallEstimates && hallEstimates[activeCategory]) {
+        const est = hallEstimates[activeCategory];
         setResult(est);
       } else {
         // Fallback if no data found for this hall/category
@@ -225,7 +226,7 @@ export default function EstimatePage() {
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '2rem' }}>해당 시/도를 선택해 주세요.</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.75rem' }}>
                 {SIDO_OPTIONS.map((s) => (
-                  <button key={s} onClick={() => { setSido(s); setSigungu(''); setSelectedHall(null); }} style={{
+                  <button key={s} onClick={() => { setSido(s); setSigungu(''); setSelectedHall(null); setTimeout(() => setStep(1), 300); }} style={{
                     padding: '1rem 0.5rem', borderRadius: 'var(--radius-md)', fontFamily: 'inherit',
                     fontWeight: '600', fontSize: '1rem', cursor: 'pointer', transition: 'all 0.2s',
                     background: sido === s ? 'var(--navy)' : 'white',
@@ -246,7 +247,7 @@ export default function EstimatePage() {
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '2rem' }}>해당 시/군/구를 선택해 주세요.</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '0.75rem' }}>
                 {sigunguOptions.map((s) => (
-                  <button key={s} onClick={() => { setSigungu(s); setSelectedHall(null); }} style={{
+                  <button key={s} onClick={() => { setSigungu(s); setSelectedHall(null); setTimeout(() => setStep(2), 300); }} style={{
                     padding: '0.875rem 0.5rem', borderRadius: 'var(--radius-md)', fontFamily: 'inherit',
                     fontWeight: '600', fontSize: '0.95rem', cursor: 'pointer', transition: 'all 0.2s',
                     background: sigungu === s ? 'var(--navy)' : 'white',
@@ -277,7 +278,7 @@ export default function EstimatePage() {
                   {availableHalls.map((hall) => (
                     <div 
                       key={hall.id} 
-                      onClick={() => setSelectedHall(hall)}
+                      onClick={() => { setSelectedHall(hall); setTimeout(() => setStep(3), 300); }}
                       style={{
                         padding: '1.25rem', borderRadius: 'var(--radius-md)', cursor: 'pointer', transition: 'all 0.2s',
                         background: selectedHall?.id === hall.id ? 'var(--navy-light)' : 'white',
@@ -307,7 +308,7 @@ export default function EstimatePage() {
                 {GUEST_CATEGORIES.map((cat) => (
                   <button 
                     key={cat.id} 
-                    onClick={() => setGuestCategory(cat.id)} 
+                    onClick={() => { setGuestCategory(cat.id); setTimeout(() => handleNext(cat.id), 300); }} 
                     style={{
                       padding: '1.5rem', borderRadius: 'var(--radius-md)', fontFamily: 'inherit',
                       fontWeight: '700', fontSize: '1.1rem', cursor: 'pointer', transition: 'all 0.2s',
