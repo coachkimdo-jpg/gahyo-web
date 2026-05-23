@@ -102,6 +102,41 @@ export default function EstimatePage() {
   const [loadingEstimate, setLoadingEstimate] = useState(false);
   const [availableHalls, setAvailableHalls] = useState([]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const pSido = params.get('sido');
+      const pSigungu = params.get('sigungu');
+      const pHall = params.get('hall');
+      const pCategory = params.get('category');
+
+      if (pSido && pSigungu && pHall && pCategory) {
+        setSido(pSido);
+        setSigungu(pSigungu);
+        setSelectedHall({ name: pHall });
+        setGuestCategory(pCategory);
+        setStep(4);
+        
+        setLoadingEstimate(true);
+        fetch(`/api/estimate?hall=${encodeURIComponent(pHall)}&category=${encodeURIComponent(pCategory)}`)
+          .then(res => res.json())
+          .then(est => {
+            setResult(est);
+            setLoadingEstimate(false);
+          })
+          .catch(e => {
+            console.error(e);
+            setResult({
+              min: 0,
+              max: 0,
+              details: { anchi: 0, ipgwan: 0, susi: 0, binso: 0, binsoName: '', gwanri: 0, chungso: 0, meal: 0, floralMin: 0, floralMax: 0 }
+            });
+            setLoadingEstimate(false);
+          });
+      }
+    }
+  }, []);
+
   const sigunguOptions = sido ? REGION_DATA[sido] : [];
 
   async function handleSigunguSelect(s) {
@@ -165,10 +200,17 @@ export default function EstimatePage() {
   if (step === 3) canNext = !!guestCategory;
 
   const handleShare = async () => {
+    const url = new URL(window.location.href);
+    if (sido) url.searchParams.set('sido', sido);
+    if (sigungu) url.searchParams.set('sigungu', sigungu);
+    if (selectedHall) url.searchParams.set('hall', selectedHall.name);
+    if (guestCategory) url.searchParams.set('category', guestCategory);
+
+    const shareUrl = url.toString();
     const shareData = {
       title: '가효상조 장례 견적',
       text: '나에게 맞는 맞춤형 장례 견적 결과를 확인해보세요.',
-      url: window.location.href,
+      url: shareUrl,
     };
     if (navigator.share) {
       try {
@@ -177,7 +219,7 @@ export default function EstimatePage() {
         console.log('공유하기가 취소되었거나 실패했습니다.', e);
       }
     } else {
-      navigator.clipboard.writeText(window.location.href);
+      navigator.clipboard.writeText(shareUrl);
       alert('견적 결과 링크가 클립보드에 복사되었습니다.');
     }
   };
