@@ -43,6 +43,12 @@ export const metadata = {
     follow: true,
     imagePreview: 'large',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: '가효상조 | AI 기반 투명한 장례 서비스',
+    description: 'AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.',
+    images: ['https://gahyo.co.kr/og-image.png'],
+  },
   verification: {
     google: 'CJBXE0jA-ox9kHs8ipsak4jPMu6k03NuLP-IX3i0PDA',
     other: {

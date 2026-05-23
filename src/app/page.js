@@ -2,15 +2,29 @@ import Link from 'next/link';
 
 export const metadata = {
   title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
-  description: '전화 한 통으로 즉시 24시간 장례 접수. 선불금 없는 100% 후불제 상조. 전국 500여 개 장례식장 제휴 및 무빈소장부터 VIP 프리미엄 장례까지.',
+  description: '24시간 즉시 출동하는 100% 후불제 가효상조입니다. 무빈소부터 VIP 장례까지 전국 500여 개 제휴 장례식장에서 정성을 다해 모시겠습니다.',
   keywords: ['가효상조', '후불제상조', '장례식장', '장례', '상조회사', '장례비용', '24시간상조'],
   openGraph: {
     title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
-    description: '전화 한 통으로 즉시 장례 접수. 무빈소 170만원부터 일반 430만원까지. 추가비 없는 후불제 상조.',
-    url: 'https://gahyo.com',
+    description: '24시간 즉시 출동하는 100% 후불제 가효상조입니다. 무빈소부터 VIP 장례까지 전국 500여 개 제휴 장례식장에서 정성을 다해 모시겠습니다.',
+    url: 'https://gahyo.co.kr',
     siteName: '가효상조',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: '가효상조 프리미엄 장례 서비스',
+      },
+    ],
     locale: 'ko_KR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
+    description: '24시간 즉시 출동하는 100% 후불제 가효상조입니다. 무빈소부터 VIP 장례까지 전국 500여 개 제휴 장례식장에서 정성을 다해 모시겠습니다.',
+    images: ['https://gahyo.co.kr/og-image.png'],
   },
 };
 
