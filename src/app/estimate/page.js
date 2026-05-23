@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import funeralHalls from '@/lib/realData.json';
-import estimateData from '@/lib/estimateData.json';
 
 const REGION_DATA = {
   "전체": [],
@@ -100,34 +98,46 @@ export default function EstimatePage() {
   const [guestCategory, setGuestCategory] = useState('');
   const [result, setResult] = useState(null);
 
+  const [loadingHalls, setLoadingHalls] = useState(false);
+  const [loadingEstimate, setLoadingEstimate] = useState(false);
+  const [availableHalls, setAvailableHalls] = useState([]);
+
   const sigunguOptions = sido ? REGION_DATA[sido] : [];
 
-  const availableHalls = funeralHalls.filter(h => {
-    if (!sido || !sigungu) return false;
-    const addr = (h.address || '').trim();
-    const variations = SIDO_VARIATIONS[sido] || [sido];
-    const matchSido = variations.some(v => addr.startsWith(v) || addr.startsWith(sido));
-    const matchSigungu = addr.includes(sigungu);
-    return matchSido && matchSigungu;
-  });
+  async function handleSigunguSelect(s) {
+    setSigungu(s);
+    setSelectedHall(null);
+    setLoadingHalls(true);
+    setStep(2);
+    try {
+      const res = await fetch(`/api/halls?sido=${encodeURIComponent(sido)}&sigungu=${encodeURIComponent(s)}&limit=100`);
+      const json = await res.json();
+      setAvailableHalls(json.data || []);
+    } catch (e) {
+      console.error(e);
+      setAvailableHalls([]);
+    } finally {
+      setLoadingHalls(false);
+    }
+  }
 
-  function handleNext(overrideCategory) {
+  async function handleNext(overrideCategory) {
     const activeCategory = typeof overrideCategory === 'string' ? overrideCategory : guestCategory;
     if (step === 3) {
-      // Calculate Estimate from JSON data
-      const hallEstimates = estimateData[selectedHall.name];
-      if (hallEstimates && hallEstimates[activeCategory]) {
-        const est = hallEstimates[activeCategory];
+      setLoadingEstimate(true);
+      try {
+        const res = await fetch(`/api/estimate?hall=${encodeURIComponent(selectedHall.name)}&category=${encodeURIComponent(activeCategory)}`);
+        const est = await res.json();
         setResult(est);
-      } else {
-        // Fallback if no data found for this hall/category
+      } catch (e) {
+        console.error(e);
         setResult({
           min: 0,
           max: 0,
-          details: {
-            anchi: 0, ipgwan: 0, susi: 0, binso: 0, binsoName: '', gwanri: 0, chungso: 0, meal: 0, floralMin: 0, floralMax: 0
-          }
+          details: { anchi: 0, ipgwan: 0, susi: 0, binso: 0, binsoName: '', gwanri: 0, chungso: 0, meal: 0, floralMin: 0, floralMax: 0 }
         });
+      } finally {
+        setLoadingEstimate(false);
       }
       setStep(4);
     } else {
@@ -247,7 +257,7 @@ export default function EstimatePage() {
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '2rem' }}>해당 시/군/구를 선택해 주세요.</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '0.75rem' }}>
                 {sigunguOptions.map((s) => (
-                  <button key={s} onClick={() => { setSigungu(s); setSelectedHall(null); setTimeout(() => setStep(2), 300); }} style={{
+                  <button key={s} onClick={() => handleSigunguSelect(s)} style={{
                     padding: '0.875rem 0.5rem', borderRadius: 'var(--radius-md)', fontFamily: 'inherit',
                     fontWeight: '600', fontSize: '0.95rem', cursor: 'pointer', transition: 'all 0.2s',
                     background: sigungu === s ? 'var(--navy)' : 'white',
@@ -265,15 +275,11 @@ export default function EstimatePage() {
           {step === 2 && (
             <div>
               <h2 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1.5rem', marginBottom: '0.75rem' }}>장례식장을 선택해 주세요</h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '2rem' }}>{sido} {sigungu}에 위치한 장례식장 목록입니다.</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '2rem' }}>{sido} {sigungu} 지역의 제휴 장례식장입니다.</p>
               
-              {availableHalls.length === 0 ? (
-                <div className="empty-state" style={{ padding: '3rem 1rem' }}>
-                  <p style={{ fontSize: '2rem', marginBottom: '1rem' }}>🏢</p>
-                  <p style={{ fontWeight: '600', color: 'var(--navy)' }}>해당 지역에 등록된 장례식장이 없습니다.</p>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.5rem' }}>이전 단계로 돌아가 다른 지역을 선택해 보세요.</p>
-                </div>
-              ) : (
+              {loadingHalls ? (
+                <div style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>장례식장 목록을 불러오는 중...</div>
+              ) : availableHalls.length > 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxHeight: '400px', overflowY: 'auto', paddingRight: '0.5rem' }}>
                   {availableHalls.map((hall) => (
                     <div 
@@ -293,6 +299,12 @@ export default function EstimatePage() {
                       <div style={{ width: '24px', height: '24px', borderRadius: '50%', border: selectedHall?.id === hall.id ? '6px solid var(--navy)' : '2px solid var(--border-color)' }}></div>
                     </div>
                   ))}
+                </div>
+              ) : (
+                <div className="empty-state" style={{ padding: '3rem 1rem' }}>
+                  <p style={{ fontSize: '2rem', marginBottom: '1rem' }}>🏢</p>
+                  <p style={{ fontWeight: '600', color: 'var(--navy)' }}>해당 지역에 등록된 장례식장이 없습니다.</p>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.5rem' }}>이전 단계로 돌아가 다른 지역을 선택해 보세요.</p>
                 </div>
               )}
             </div>
@@ -326,7 +338,7 @@ export default function EstimatePage() {
           )}
 
           {/* Step 4: 결과 */}
-          {step === 4 && result && selectedHall && (
+          {step === 4 && result && selectedHall && !loadingEstimate && (
             <div>
               <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>🧾</div>
@@ -454,8 +466,8 @@ export default function EstimatePage() {
           {step < 4 && (
             <div style={{ display: 'flex', gap: '1rem', marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)' }}>
               {step > 0 && <button onClick={handleBack} className="btn-secondary" style={{ flex: 1, padding: '1rem' }}>← 이전 단계</button>}
-              <button onClick={handleNext} disabled={!canNext} className="btn-primary" style={{ flex: step > 0 ? 2 : 1, padding: '1rem', opacity: canNext ? 1 : 0.5, cursor: canNext ? 'pointer' : 'not-allowed', transition: 'all 0.2s' }}>
-                {step === 3 ? '🧮 견적 산출하기' : '다음 단계 →'}
+              <button onClick={() => handleNext()} disabled={!canNext || loadingEstimate} className="btn-primary" style={{ flex: step > 0 ? 2 : 1, padding: '1rem', opacity: canNext ? 1 : 0.5, cursor: canNext ? 'pointer' : 'not-allowed', transition: 'all 0.2s' }}>
+                {loadingEstimate ? '계산 중...' : step === 3 ? '🧮 견적 산출하기' : '다음 단계 →'}
               </button>
             </div>
           )}
