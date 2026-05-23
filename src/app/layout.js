@@ -21,7 +21,7 @@ export const metadata = {
     title: '가효상조 | AI 기반 투명한 장례 서비스',
     description: 'AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.',
     url: 'https://gahyo.co.kr',
-    siteName: '가효상조',
+    siteName: '후불제상조 가효상조',
     images: [
       {
         url: '/og-image.png',
