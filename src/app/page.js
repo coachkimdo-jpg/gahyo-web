@@ -348,7 +348,7 @@ export default function HomePage() {
                       <div style={{ fontWeight: '700', fontSize: '0.85rem', color: '#4b5563', marginBottom: '0.5rem', letterSpacing: '0.04em' }}>➖ 미포함</div>
                       <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.3rem', marginBottom: '1.5rem' }}>
                         {p.excludes.map(item => (
-                           <li key={item} style={{ fontSize: '0.88rem', color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                           <li key={item} style={{ fontSize: '0.88rem', color: '#6b7280', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                              <span>✕</span> {item}
                            </li>
                         ))}

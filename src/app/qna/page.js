@@ -136,7 +136,7 @@ export default function QnaPage() {
                       </div>
                     </div>
                     <div className="qna-desktop-meta" style={{ color: '#4b5563' }}>{maskName(post.author)}</div>
-                    <div className="qna-desktop-meta" style={{ color: '#9ca3af', fontSize: '0.9rem' }}>{post.date}</div>
+                    <div className="qna-desktop-meta" style={{ color: '#6b7280', fontSize: '0.9rem' }}>{post.date}</div>
                   </div>
                 ))
               )}

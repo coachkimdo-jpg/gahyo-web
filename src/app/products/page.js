@@ -226,7 +226,7 @@ export default function ProductsPage() {
                     <div key={row.label} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '0.95rem 1.75rem', borderBottom: idx < p.rows.length - 1 ? '1px solid #f0f0f0' : 'none' }}>
                       <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: p.accentLight, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.15rem', flexShrink: 0 }}>{row.icon}</div>
                       <div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#9ca3af', marginBottom: '0.2rem' }}>{row.label}</div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#6b7280', marginBottom: '0.2rem' }}>{row.label}</div>
                         <div style={{ fontSize: '0.95rem', color: '#1a1a2e', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{row.value}</div>
                       </div>
                     </div>
