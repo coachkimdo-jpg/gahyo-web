@@ -210,9 +210,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.7rem)', fontWeight: '800', color: 'white', lineHeight: 1.25, marginBottom: '1.25rem', letterSpacing: '-0.02em' }}>
-            가효상조 — 100% 후불제 상조 및<br />
-            <span style={{ color: 'var(--gold)' }}>투명한 장례 서비스</span>
+          <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.7rem)', fontWeight: '800', color: 'white', lineHeight: 1.25, marginBottom: '1.25rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
+            가효상조 — 100% 후불제 상조<br />
+            및 <span style={{ color: 'var(--gold)' }}>투명한 장례 서비스</span>
           </h1>
           
           {/* BLUF(핵심 요약) 영역 */}
