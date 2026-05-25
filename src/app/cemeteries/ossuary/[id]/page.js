@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import ossuariesData from '@/lib/ossuaries.json';
 import { getSlug } from '@/lib/utils';
 
@@ -7,8 +7,15 @@ import { getSlug } from '@/lib/utils';
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
-  if (!ossuary) return { title: 'Not Found' };
+  let ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
+  
+  if (!ossuary) {
+    if (/^\d+$/.test(id)) {
+      const legacyOssuary = ossuariesData.find((o) => o.id === id);
+      if (legacyOssuary) return { title: `가효상조 - ${legacyOssuary.name} 100% 후불제 상조 및 투명한 장례 서비스` };
+    }
+    return { title: 'Not Found' };
+  }
   return {
     title: `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`,
     description: `${ossuary.address}에 위치한 ${ossuary.name}. 가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. 안치 비용 ${ossuary.priceRange} 안내.`,
@@ -18,8 +25,17 @@ export async function generateMetadata({ params }) {
 export default async function OssuaryPage({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
-  if (!ossuary) notFound();
+  let ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
+  
+  if (!ossuary) {
+    if (/^\d+$/.test(id)) {
+      const legacyOssuary = ossuariesData.find((o) => o.id === id);
+      if (legacyOssuary) {
+        permanentRedirect(`/cemeteries/ossuary/${getSlug(legacyOssuary.address, legacyOssuary.name)}`);
+      }
+    }
+    notFound();
+  }
 
   // 가격 아이템을 location(구역)별로 그룹핑
   const groupedPrices = (ossuary.priceItems || []).reduce((acc, item) => {

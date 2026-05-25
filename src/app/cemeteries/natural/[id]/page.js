@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import naturalBurialsData from '@/lib/naturalBurials.json';
 import { getSlug } from '@/lib/utils';
 
@@ -7,9 +7,15 @@ import { getSlug } from '@/lib/utils';
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
+  let facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
   
-  if (!facility) return { title: 'Not Found' };
+  if (!facility) {
+    if (/^\d+$/.test(id)) {
+      const legacyFacility = naturalBurialsData.find((n) => n.id === id);
+      if (legacyFacility) return { title: `가효상조 - ${legacyFacility.name} 100% 후불제 상조 및 투명한 장례 서비스` };
+    }
+    return { title: 'Not Found' };
+  }
   
   return {
     title: `가효상조 - ${facility.name} 100% 후불제 자연장 서비스`,
@@ -20,9 +26,17 @@ export async function generateMetadata({ params }) {
 export default async function NaturalBurialPage({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
+  let facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
   
-  if (!facility) notFound();
+  if (!facility) {
+    if (/^\d+$/.test(id)) {
+      const legacyFacility = naturalBurialsData.find((n) => n.id === id);
+      if (legacyFacility) {
+        permanentRedirect(`/cemeteries/natural/${getSlug(legacyFacility.address, legacyFacility.name)}`);
+      }
+    }
+    notFound();
+  }
 
   const jsonLd = {
     '@context': 'https://schema.org',

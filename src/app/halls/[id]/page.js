@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import funeralHalls from '@/lib/realData.json';
 import { regions } from '@/lib/mockDb';
 import { getSlug } from '@/lib/utils';
@@ -10,8 +10,15 @@ import { getSlug } from '@/lib/utils';
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
-  if (!hall) return { title: '장례식장을 찾을 수 없습니다' };
+  let hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
+  
+  if (!hall) {
+    if (/^\d+$/.test(id)) {
+      const legacyHall = funeralHalls.find((h) => h.id === id);
+      if (legacyHall) return { title: `${legacyHall.name} | 가효상조 장례식장 안내` };
+    }
+    return { title: '장례식장을 찾을 수 없습니다' };
+  }
   return {
     title: `${hall.name} | 가효상조 장례식장 안내`,
     description: `${hall.name}의 빈소 예약, 주차 요금, 시설 정보를 확인하세요. 가효상조 장례지도사가 실제 경험을 바탕으로 투명하고 명확한 정보를 제공합니다.`,
@@ -25,8 +32,17 @@ export async function generateMetadata({ params }) {
 export default async function HallDetailPage({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
-  if (!hall) notFound();
+  let hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
+  
+  if (!hall) {
+    if (/^\d+$/.test(id)) {
+      const legacyHall = funeralHalls.find((h) => h.id === id);
+      if (legacyHall) {
+        permanentRedirect(`/halls/${getSlug(legacyHall.address, legacyHall.name)}`);
+      }
+    }
+    notFound();
+  }
 
   const regionLabel = regions.find((r) => r.code === hall.regionCode)?.label || '기타';
   const { facilityInfo, pricingData, moduleOrder, photos } = hall;

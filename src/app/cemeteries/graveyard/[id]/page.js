@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import graveyardsData from '@/lib/graveyards.json';
 import { getSlug } from '@/lib/utils';
 
@@ -7,8 +7,15 @@ import { getSlug } from '@/lib/utils';
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const graveyard = graveyardsData.find(g => getSlug(g.address, g.name) === decodedSlug);
-  if (!graveyard) return { title: 'Not Found' };
+  let graveyard = graveyardsData.find(g => getSlug(g.address, g.name) === decodedSlug);
+  
+  if (!graveyard) {
+    if (/^\d+$/.test(id)) {
+      const legacyGraveyard = graveyardsData.find((g) => g.id === id);
+      if (legacyGraveyard) return { title: `가효상조 - ${legacyGraveyard.name} 100% 후불제 상조 및 투명한 장례 서비스` };
+    }
+    return { title: 'Not Found' };
+  }
   return {
     title: `가효상조 - ${graveyard.name} 100% 후불제 상조 및 투명한 장례 서비스`,
     description: `${graveyard.address}에 위치한 ${graveyard.name}. 가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. 묘지 사용료 및 관리비 ${graveyard.priceRange} 안내.`,
@@ -18,8 +25,17 @@ export async function generateMetadata({ params }) {
 export default async function GraveyardPage({ params }) {
   const { id } = await params;
   const decodedSlug = decodeURIComponent(id);
-  const graveyard = graveyardsData.find(g => getSlug(g.address, g.name) === decodedSlug);
-  if (!graveyard) notFound();
+  let graveyard = graveyardsData.find(g => getSlug(g.address, g.name) === decodedSlug);
+  
+  if (!graveyard) {
+    if (/^\d+$/.test(id)) {
+      const legacyGraveyard = graveyardsData.find((g) => g.id === id);
+      if (legacyGraveyard) {
+        permanentRedirect(`/cemeteries/graveyard/${getSlug(legacyGraveyard.address, legacyGraveyard.name)}`);
+      }
+    }
+    notFound();
+  }
 
   // 가격 아이템을 location(구역)별로 그룹핑
   const groupedPrices = (graveyard.priceItems || []).reduce((acc, item) => {
