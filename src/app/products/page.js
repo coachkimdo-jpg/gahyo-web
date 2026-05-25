@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata = {
   title: '후불제상조상품 비교 및 가격 안내 | 가효상조',
@@ -178,6 +179,30 @@ export default function ProductsPage() {
 
       <div className="container" style={{ padding: '3rem 1.25rem 4rem' }}>
         
+        {/* 가효상조 강점 부각 이미지 섹션 */}
+        <section style={{ marginBottom: '3.5rem', textAlign: 'center' }}>
+          <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto 2rem', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.12)' }}>
+            <Image 
+              src="/images/products/strength-1.jpg" 
+              alt="가효상조만의 투명한 후불제 상조 강점 1" 
+              width={900} 
+              height={1300} 
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+              priority
+            />
+          </div>
+          <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.12)' }}>
+            <Image 
+              src="/images/products/strength-2.jpg" 
+              alt="가효상조만의 투명한 후불제 상조 강점 2" 
+              width={900} 
+              height={1300} 
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+              priority
+            />
+          </div>
+        </section>
+
         {/* BLUF (핵심 요약) - AI 검색 친화적 문장 배치 */}
         <section style={{ marginBottom: '3rem', padding: '1.75rem', background: '#f8fafc', borderLeft: '4px solid var(--gold)', borderRadius: '0 8px 8px 0' }}>
           <h2 style={{ fontSize: '1.2rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.75rem' }}>
