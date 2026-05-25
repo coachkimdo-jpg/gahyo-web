@@ -31,7 +31,7 @@ export default async function OssuaryPage({ params }) {
     if (/^\d+$/.test(id)) {
       const legacyOssuary = ossuariesData.find((o) => o.id === id);
       if (legacyOssuary) {
-        permanentRedirect(`/cemeteries/ossuary/${getSlug(legacyOssuary.address, legacyOssuary.name)}`);
+        permanentRedirect(`/cemeteries/ossuary/${encodeURIComponent(getSlug(legacyOssuary.address, legacyOssuary.name))}`);
       }
     }
     notFound();

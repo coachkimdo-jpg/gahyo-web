@@ -32,7 +32,7 @@ export default async function NaturalBurialPage({ params }) {
     if (/^\d+$/.test(id)) {
       const legacyFacility = naturalBurialsData.find((n) => n.id === id);
       if (legacyFacility) {
-        permanentRedirect(`/cemeteries/natural/${getSlug(legacyFacility.address, legacyFacility.name)}`);
+        permanentRedirect(`/cemeteries/natural/${encodeURIComponent(getSlug(legacyFacility.address, legacyFacility.name))}`);
       }
     }
     notFound();

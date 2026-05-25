@@ -38,7 +38,7 @@ export default async function HallDetailPage({ params }) {
     if (/^\d+$/.test(id)) {
       const legacyHall = funeralHalls.find((h) => h.id === id);
       if (legacyHall) {
-        permanentRedirect(`/halls/${getSlug(legacyHall.address, legacyHall.name)}`);
+        permanentRedirect(`/halls/${encodeURIComponent(getSlug(legacyHall.address, legacyHall.name))}`);
       }
     }
     notFound();

@@ -31,7 +31,7 @@ export default async function GraveyardPage({ params }) {
     if (/^\d+$/.test(id)) {
       const legacyGraveyard = graveyardsData.find((g) => g.id === id);
       if (legacyGraveyard) {
-        permanentRedirect(`/cemeteries/graveyard/${getSlug(legacyGraveyard.address, legacyGraveyard.name)}`);
+        permanentRedirect(`/cemeteries/graveyard/${encodeURIComponent(getSlug(legacyGraveyard.address, legacyGraveyard.name))}`);
       }
     }
     notFound();
