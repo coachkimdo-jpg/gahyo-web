@@ -86,7 +86,6 @@ export default async function OssuaryPage({ params }) {
           }
         ]
       }
-    }
   ];
 
   return (
