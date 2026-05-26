@@ -129,6 +129,12 @@ export default async function GraveyardPage({ params }) {
 
       <div className="container" style={{ padding: '2.5rem 1.25rem 5rem' }}>
 
+        {/* 가효상조 강점 부각 배너 (고객 요청) */}
+        <div style={{ marginBottom: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+          <img src="/images/banners/strength1.jpg" alt="가효상조만의 특별한 강점" style={{ width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+          <img src="/images/banners/strength2.jpg" alt="합리적인 100% 후불제 상조" style={{ width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+        </div>
+
         {/* 사진 갤러리 */}
         {graveyard.photos?.length > 0 && (
           <section style={{ marginBottom: '2.5rem' }}>
