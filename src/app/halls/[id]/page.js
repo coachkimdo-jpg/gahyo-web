@@ -62,7 +62,7 @@ export default async function HallDetailPage({ params }) {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
-      '@type': 'FuneralHome',
+      '@type': ['LocalBusiness', 'FuneralHome'],
       'name': hall.name,
       'address': {
         '@type': 'PostalAddress',
