@@ -38,40 +38,42 @@ export default async function NaturalBurialPage({ params }) {
     notFound();
   }
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Organization',
-        '@id': 'https://gahyo.com/#organization',
-        'name': '가효상조',
-        'url': 'https://gahyo.com',
-        'description': '100% 후불제 상조 서비스'
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      '@id': 'https://gahyo.com/#organization',
+      name: '가효상조',
+      url: 'https://gahyo.com',
+      telephone: '1551-5718',
+      description: '100% 후불제 상조 서비스'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      '@id': `https://gahyo.com/cemeteries/natural/${id}#business`,
+      'name': facility.name,
+      'image': facility.photos?.[0] ? `https://gahyo.com${facility.photos[0]}` : undefined,
+      'address': {
+        '@type': 'PostalAddress',
+        'streetAddress': facility.address,
+        'addressCountry': 'KR'
       },
-      {
-        '@type': 'LocalBusiness',
-        '@id': `https://gahyo.com/cemeteries/natural/${id}#business`,
-        'name': facility.name,
-        'image': facility.photos?.[0] ? `https://gahyo.com${facility.photos[0]}` : undefined,
-        'address': {
-          '@type': 'PostalAddress',
-          'streetAddress': facility.address,
-          'addressCountry': 'KR'
+      'telephone': facility.phone,
+      'description': facility.intro || `${facility.name} 자연장지 시설 안내`
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          'name': `${facility.name} 자연장지 가격은 얼마인가요?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `${facility.name}의 이용 요금은 구역과 형태에 따라 다릅니다. 가효상조(1551-5718)에 문의하시면 정확한 최신 가격과 할인 혜택을 안내해 드립니다.`
+          }
         },
-        'telephone': facility.phone,
-        'description': facility.intro || `${facility.name} 자연장지 시설 안내`
-      },
-      {
-        '@type': 'FAQPage',
-        'mainEntity': [
-          {
-            '@type': 'Question',
-            'name': `${facility.name} 자연장지 가격은 얼마인가요?`,
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': `${facility.name}의 이용 요금은 구역과 형태에 따라 다릅니다. 가효상조(1551-5718)에 문의하시면 정확한 최신 가격과 할인 혜택을 안내해 드립니다.`
-            }
-          },
           {
             '@type': 'Question',
             'name': `${facility.name}은 어디에 위치해 있나요?`,
@@ -82,8 +84,8 @@ export default async function NaturalBurialPage({ params }) {
           }
         ]
       }
-    ]
-  };
+    }
+  ];
 
   return (
     <>
