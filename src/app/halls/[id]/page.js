@@ -156,7 +156,7 @@ export default async function HallDetailPage({ params }) {
         <header style={{ marginBottom: '2.5rem' }}>
           <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
             <span className="badge badge-navy">{regionLabel}</span>
-            {hall.features.map((f) => <span key={f} className="badge" style={{ background: 'var(--gold-light)', color: 'var(--gold-dark)' }}>{f}</span>)}
+            {(hall.features || []).map((f) => <span key={f} className="badge" style={{ background: 'var(--gold-light)', color: 'var(--gold-dark)' }}>{f}</span>)}
           </div>
           
           <div style={{ marginBottom: '1.25rem' }}>
@@ -223,7 +223,7 @@ export default async function HallDetailPage({ params }) {
             {hall.name}은(는) {hall.address}에 위치한 전문 장례식장으로, 쾌적한 빈소와 우수한 접근성을 제공합니다.
           </p>
           <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#334155', lineHeight: 1.7, fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <li><strong>연락처:</strong> <a href={`tel:${hall.contact.replace(/-/g, '')}`} style={{ color: 'var(--navy)', fontWeight: '700' }}>{hall.contact}</a> (24시간 상담)</li>
+            <li><strong>연락처:</strong> {hall.contact ? <a href={`tel:${hall.contact.replace(/-/g, '')}`} style={{ color: 'var(--navy)', fontWeight: '700' }}>{hall.contact}</a> : <span style={{ color: '#64748b' }}>등록된 번호 없음</span>} (24시간 상담)</li>
             <li><strong>주차 여부:</strong> {facilityInfo.parkingInfo || '시설 내 주차 지원'}</li>
             <li><strong>빈소 규모:</strong> {facilityInfo.structure || `총 ${facilityInfo.hallCount || '다수'}개소 운영 중`}</li>
           </ul>
