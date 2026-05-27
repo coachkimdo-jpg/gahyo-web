@@ -1,4 +1,18 @@
 export const getRegionShortName = (address, name = '') => {
+  if (address) {
+    const prefixes = {
+      '서울': '서울', '부산': '부산', '대구': '대구', '인천': '인천', 
+      '광주': '광주', '대전': '대전', '울산': '울산', '세종': '세종', 
+      '경기': '경기', '강원': '강원', '충북': '충북', '충청북': '충북', 
+      '충남': '충남', '충청남': '충남', '전북': '전북', '전라북': '전북', 
+      '전남': '전남', '전라남': '전남', '경북': '경북', '경상북': '경북', 
+      '경남': '경남', '경상남': '경남', '제주': '제주'
+    };
+    for (let prefix in prefixes) {
+      if (address.trim().startsWith(prefix)) return prefixes[prefix];
+    }
+  }
+
   const matchRegion = (str) => {
     if (!str) return null;
     if (str.includes('서울') || str.includes('은평구') || str.includes('노원구') || str.includes('영등포구') || str.includes('강남구') || str.includes('서초구')) return '서울';
