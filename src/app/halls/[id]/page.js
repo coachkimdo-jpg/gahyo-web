@@ -17,7 +17,12 @@ export async function generateMetadata({ params }) {
       const legacyHall = funeralHalls.find((h) => h.id === id);
       if (legacyHall) return { title: `${legacyHall.name} | 가효상조 장례식장 안내` };
     }
-    return { title: '장례식장을 찾을 수 없습니다' };
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackHall = funeralHalls.find((h) => h.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackHall) hall = fallbackHall;
+    }
+    if (!hall) return { title: '장례식장을 찾을 수 없습니다' };
   }
   return {
     title: `${hall.name} | 가효상조 장례식장 안내`,
@@ -49,6 +54,13 @@ export default async function HallDetailPage({ params }) {
       const legacyHall = funeralHalls.find((h) => h.id === id);
       if (legacyHall) {
         permanentRedirect(`/halls/${encodeURIComponent(getSlug(legacyHall.address, legacyHall.name))}`);
+      }
+    }
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackHall = funeralHalls.find((h) => h.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackHall) {
+        permanentRedirect(`/halls/${encodeURIComponent(getSlug(fallbackHall.address, fallbackHall.name))}`);
       }
     }
     notFound();
