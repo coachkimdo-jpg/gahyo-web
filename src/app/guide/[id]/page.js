@@ -178,6 +178,9 @@ export default async function GuideDetailPage({ params }) {
               >
                 {parse(article.content, {
                   replace: (domNode) => {
+                    if (domNode.name === 'script') {
+                      return <></>; // Prevent duplicate JSON-LD schemas embedded by the API
+                    }
                     if (domNode.name === 'h1') {
                       const props = attributesToProps(domNode.attribs);
                       return (
