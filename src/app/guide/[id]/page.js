@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import Image from 'next/image';
-import parse, { attributesToProps } from 'html-react-parser';
+import parse, { attributesToProps, domToReact } from 'html-react-parser';
 
 export const dynamic = 'force-dynamic';
 
@@ -178,6 +178,14 @@ export default async function GuideDetailPage({ params }) {
               >
                 {parse(article.content, {
                   replace: (domNode) => {
+                    if (domNode.name === 'h1') {
+                      const props = attributesToProps(domNode.attribs);
+                      return (
+                        <h2 {...props} style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--navy)', marginTop: '2rem', marginBottom: '1rem', ...props.style }}>
+                          {domToReact(domNode.children)}
+                        </h2>
+                      );
+                    }
                     if (domNode.name === 'img') {
                       const props = attributesToProps(domNode.attribs);
                       const { src, alt, width, height, 'data-priority': priority } = props;
