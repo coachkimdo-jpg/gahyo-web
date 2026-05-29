@@ -14,7 +14,12 @@ export async function generateMetadata({ params }) {
       const legacyOssuary = ossuariesData.find((o) => o.id === id);
       if (legacyOssuary) return { title: `가효상조 - ${legacyOssuary.name} 100% 후불제 상조 및 투명한 장례 서비스` };
     }
-    return { title: 'Not Found' };
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackOssuary = ossuariesData.find((o) => o.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackOssuary) ossuary = fallbackOssuary;
+    }
+    if (!ossuary) return { title: 'Not Found' };
   }
   return {
     title: `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`,
@@ -32,6 +37,13 @@ export default async function OssuaryPage({ params }) {
       const legacyOssuary = ossuariesData.find((o) => o.id === id);
       if (legacyOssuary) {
         permanentRedirect(`/cemeteries/ossuary/${encodeURIComponent(getSlug(legacyOssuary.address, legacyOssuary.name))}`);
+      }
+    }
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackOssuary = ossuariesData.find((o) => o.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackOssuary) {
+        permanentRedirect(`/cemeteries/ossuary/${encodeURIComponent(getSlug(fallbackOssuary.address, fallbackOssuary.name))}`);
       }
     }
     notFound();

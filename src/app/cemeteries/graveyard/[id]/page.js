@@ -14,7 +14,12 @@ export async function generateMetadata({ params }) {
       const legacyGraveyard = graveyardsData.find((g) => g.id === id);
       if (legacyGraveyard) return { title: `가효상조 - ${legacyGraveyard.name} 100% 후불제 상조 및 투명한 장례 서비스` };
     }
-    return { title: 'Not Found' };
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackGraveyard = graveyardsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackGraveyard) graveyard = fallbackGraveyard;
+    }
+    if (!graveyard) return { title: 'Not Found' };
   }
   return {
     title: `가효상조 - ${graveyard.name} 100% 후불제 상조 및 투명한 장례 서비스`,
@@ -32,6 +37,13 @@ export default async function GraveyardPage({ params }) {
       const legacyGraveyard = graveyardsData.find((g) => g.id === id);
       if (legacyGraveyard) {
         permanentRedirect(`/cemeteries/graveyard/${encodeURIComponent(getSlug(legacyGraveyard.address, legacyGraveyard.name))}`);
+      }
+    }
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackGraveyard = graveyardsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackGraveyard) {
+        permanentRedirect(`/cemeteries/graveyard/${encodeURIComponent(getSlug(fallbackGraveyard.address, fallbackGraveyard.name))}`);
       }
     }
     notFound();

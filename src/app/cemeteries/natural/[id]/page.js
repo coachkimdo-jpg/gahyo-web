@@ -14,7 +14,12 @@ export async function generateMetadata({ params }) {
       const legacyFacility = naturalBurialsData.find((n) => n.id === id);
       if (legacyFacility) return { title: `가효상조 - ${legacyFacility.name} 100% 후불제 상조 및 투명한 장례 서비스` };
     }
-    return { title: 'Not Found' };
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackFacility = naturalBurialsData.find((n) => n.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackFacility) facility = fallbackFacility;
+    }
+    if (!facility) return { title: 'Not Found' };
   }
   
   return {
@@ -33,6 +38,13 @@ export default async function NaturalBurialPage({ params }) {
       const legacyFacility = naturalBurialsData.find((n) => n.id === id);
       if (legacyFacility) {
         permanentRedirect(`/cemeteries/natural/${encodeURIComponent(getSlug(legacyFacility.address, legacyFacility.name))}`);
+      }
+    }
+    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+    if (slugNamePart) {
+      const fallbackFacility = naturalBurialsData.find((n) => n.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
+      if (fallbackFacility) {
+        permanentRedirect(`/cemeteries/natural/${encodeURIComponent(getSlug(fallbackFacility.address, fallbackFacility.name))}`);
       }
     }
     notFound();
