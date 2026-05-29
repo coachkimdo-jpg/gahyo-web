@@ -32,32 +32,6 @@ export default async function CemeteryDetailPage({ params }) {
   const regionLabel = regions.find(r => r.code === cemetery.regionCode)?.label || '전국';
   const today = new Date().toISOString().split('T')[0];
 
-  const asciiSum = cemetery.name.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
-  const reviewType = asciiSum % 3;
-
-  const reviews = [
-    {
-      name: "김*진",
-      date: "2024.03.12",
-      rating: "⭐⭐⭐⭐⭐",
-      text: `가족들과 상의 끝에 ${cemetery.name} 자연장지를 선택했습니다. 생각보다 경관이 너무 아름답고 관리가 잘 되어있어 마음이 놓입니다. 가효상조를 통해 안내받아 할인 혜택도 챙길 수 있었습니다.`
-    },
-    {
-      name: "이*영",
-      date: "2024.02.05",
-      rating: "⭐⭐⭐⭐⭐",
-      text: `어머님을 모실 곳을 찾다 ${cemetery.name}을 방문했는데 주차공간도 넉넉하고 주변 환경이 조용해서 좋았습니다. 가효상조 장례지도사님이 꼼꼼히 동행해주셔서 정말 든든했습니다.`
-    },
-    {
-      name: "박*호",
-      date: "2024.01.20",
-      rating: "⭐⭐⭐⭐⭐",
-      text: `${regionLabel} 지역에서 수목장을 알아보다가 이곳으로 결정했습니다. 안치 절차도 깔끔하고 직원분들도 친절하십니다. 평안하게 모실 수 있게 도와주셔서 감사합니다.`
-    }
-  ];
-
-  const review = reviews[reviewType];
-
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -295,20 +269,7 @@ export default async function CemeteryDetailPage({ params }) {
               </div>
             </section>
 
-            {/* H2: 이용 후기 */}
-            <section className="card" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
-              <h2 style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1.25rem', marginBottom: '1rem', borderBottom: '2px solid var(--border-color)', paddingBottom: '0.75rem' }}>
-                ✍️ 5. 가효상조 이용 후기
-              </h2>
-              <div style={{ background: 'var(--gray-bg)', padding: '1.5rem', borderRadius: 'var(--radius-sm)', borderLeft: '4px solid var(--gold)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  <span style={{ fontWeight: '700', color: 'var(--navy)' }}>{review.name}</span>
-                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{review.date}</span>
-                </div>
-                <div style={{ marginBottom: '0.75rem' }}>{review.rating}</div>
-                <p style={{ lineHeight: 1.7, color: 'var(--text-primary)', margin: 0 }}>{review.text}</p>
-              </div>
-            </section>
+
           </div>
 
           {/* 사이드바 CTA */}

@@ -270,6 +270,24 @@ export default async function GuideDetailPage({ params }) {
           </div>
         </section>
 
+        {/* 장지/장례식장 내부 링크 (SEO 강화) */}
+        <section style={{ marginBottom: '3rem', padding: '2rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+          <h2 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '1rem' }}>
+            가까운 장례 시설 찾아보기
+          </h2>
+          <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+            가효상조는 전국 500여 개 장례식장 및 다양한 자연장지(수목장), 봉안당과 제휴하여 거품 없는 100% 후불제 장례 서비스를 제공합니다.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <Link href="/halls" style={{ display: 'inline-block', padding: '0.75rem 1.5rem', background: 'white', border: '1px solid var(--border-color)', borderRadius: '8px', color: 'var(--navy)', fontWeight: '700', textDecoration: 'none', flex: 1, textAlign: 'center' }}>
+              🏨 전국 장례식장 찾기
+            </Link>
+            <Link href="/cemeteries" style={{ display: 'inline-block', padding: '0.75rem 1.5rem', background: 'white', border: '1px solid var(--border-color)', borderRadius: '8px', color: 'var(--navy)', fontWeight: '700', textDecoration: 'none', flex: 1, textAlign: 'center' }}>
+              🌿 전국 모실곳(장지) 찾기
+            </Link>
+          </div>
+        </section>
+
         {/* CTA */}
         <div style={{ background: 'linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%)', borderRadius: '16px', padding: '2.5rem', textAlign: 'center', color: 'white', boxShadow: '0 10px 30px rgba(0,44,95,0.15)' }}>
           <span style={{ fontSize: '2rem', display: 'block', marginBottom: '1rem' }}>💬</span>

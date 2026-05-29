@@ -72,14 +72,6 @@ export default async function HallDetailPage({ params }) {
   // 오늘 날짜 포맷팅 (최신성 강조용 - E-E-A-T)
   const today = new Date().toISOString().split('T')[0];
 
-  // 리뷰 (1인칭 경험 기반 - Experience)
-  const reviews = [
-    `"최근 가족장으로 소규모 3일장을 계획하며 ${hall.name}을(를) 선택했습니다. 빈소 예약부터 어떻게 해야 할지 막막했는데, 가효상조의 장례지도사님 덕분에 큰 짐을 덜었습니다. 장례용품 강매 없이 정직한 비용으로 안내받았고, 안치부터 입관식까지 예의를 다해 주시는 모습에 상주로서 큰 위로를 받았습니다. 조문객 수가 적어 걱정했지만, 도우미 분들이 가족처럼 따뜻하게 챙겨주셨습니다."`,
-    `"갑작스러운 부고로 ${hall.name}에 빈소를 마련하게 되었습니다. 새벽 시간이었음에도 불구하고 즉각적인 안치와 부고문자 발송 안내 등 장례지도사님의 빠른 대처가 인상적이었습니다. 장례비용의 투명함은 물론이고, 고품질의 장례용품이 제공되어 마음이 놓였습니다. 발인 시 안전하게 운행해 주신 장의차량 기사님, 끝까지 장지 안내를 도와주신 가효상조에 진심으로 감사드립니다."`
-  ];
-  const reviewIndex = Array.from(hall.name).reduce((acc, char) => acc + char.charCodeAt(0), 0) % reviews.length;
-  const selectedReview = reviews[reviewIndex];
-
   // 구조화된 데이터 (JSON-LD) - Article, FAQPage, FuneralHome 강력 연계
   const jsonLd = [
     {
@@ -343,18 +335,7 @@ export default async function HallDetailPage({ params }) {
           </div>
         </section>
 
-        {/* 1인칭 실제 경험담 (E-E-A-T: Experience) */}
-        <section style={{ marginBottom: '3rem' }}>
-          <h2 style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1.4rem', marginBottom: '1.25rem', paddingBottom: '0.5rem', borderBottom: '2px solid var(--gold)' }}>
-            4. 실제 이용 유가족 후기 (경험담)
-          </h2>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderLeft: '4px solid var(--gold)', borderRadius: '8px', padding: '1.75rem', color: '#334155', fontSize: '1rem', lineHeight: 1.8, fontStyle: 'italic' }}>
-            {selectedReview}
-            <div style={{ marginTop: '1rem', fontWeight: '700', fontSize: '0.9rem', color: 'var(--navy)', textAlign: 'right' }}>
-              - 가효상조를 통해 {hall.name}에서 장례를 모신 유가족 -
-            </div>
-          </div>
-        </section>
+
 
         {/* 전환 유도 콜투액션 (CTA) */}
         {facilityInfo.consultEnabled && (
