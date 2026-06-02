@@ -478,7 +478,7 @@ export default function HomePage() {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', textAlign: 'center' }}>
             {[
-              { num: '15,000+', label: '장례 지원 건수', sub: '2010년부터' },
+              { num: '500+', label: '장례 지원 건수', sub: '' },
               { num: '500+', label: '전국 제휴 장례식장', sub: '전국 어디서든' },
               { num: '98%', label: '고객 만족도', sub: '실제 이용 고객 기준' },
               { num: '24/7', label: '긴급 출동 가능', sub: '연중무휴' },
