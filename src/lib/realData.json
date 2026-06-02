@@ -37,7 +37,7 @@
       "consult"
     ],
     "photos": [
-      "https://gahyo.com/default-hall.jpg"
+      "https://placehold.co/800x600/1e293b/FFFFFF/png?text=Preparing+Images..."
     ],
     "pricingData": [
       {
@@ -114,7 +114,9 @@
       "map",
       "consult"
     ],
-    "photos": [],
+    "photos": [
+      "https://placehold.co/800x600/1e293b/FFFFFF/png?text=Preparing+Images..."
+    ],
     "pricingData": [
       {
         "itemType": "빈소사용료",
