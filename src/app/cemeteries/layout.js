@@ -4,7 +4,10 @@ export const metadata = {
   openGraph: {
     title: '전국 자연장지·봉안당·묘지 찾기 | 가효상조',
     description: '가효상조 고객 전용 할인 혜택이 적용되는 전국 장지 정보를 지역별로 검색하세요.',
-  }
+  },
+  alternates: {
+    canonical: '/cemeteries',
+  },
 };
 
 export default function CemeteriesLayout({ children }) {

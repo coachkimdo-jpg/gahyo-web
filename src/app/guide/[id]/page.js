@@ -54,7 +54,10 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${article.title} | 가효상조 장례 가이드`,
       description: article.summary,
-    }
+    },
+    alternates: {
+      canonical: `/guide/${encodeURIComponent(article.slug || article.id)}`,
+    },
   };
 }
 

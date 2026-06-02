@@ -25,6 +25,9 @@ export async function generateMetadata({ params }) {
   return {
     title: `가효상조 - ${facility.name} 100% 후불제 자연장 서비스`,
     description: `가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. ${facility.address}에 위치한 ${facility.name} 이용 시 투명한 비용을 약속드립니다.`,
+    alternates: {
+      canonical: `/cemeteries/natural/${encodeURIComponent(decodedSlug)}`,
+    },
   };
 }
 

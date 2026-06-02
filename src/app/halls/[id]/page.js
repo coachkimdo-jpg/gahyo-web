@@ -41,6 +41,9 @@ export async function generateMetadata({ params }) {
       title: `${hall.name} | 가효상조 장례식장 정보`,
       description: `${hall.name}의 빈소, 비용, 주차 등 모든 정보를 한눈에 요약해 드립니다.`,
     },
+    alternates: {
+      canonical: `/halls/${encodeURIComponent(decodedSlug)}`,
+    },
   };
 }
 

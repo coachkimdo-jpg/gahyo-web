@@ -24,6 +24,9 @@ export async function generateMetadata({ params }) {
   return {
     title: `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`,
     description: `${ossuary.address}에 위치한 ${ossuary.name}. 가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. 안치 비용 ${ossuary.priceRange} 안내.`,
+    alternates: {
+      canonical: `/cemeteries/ossuary/${encodeURIComponent(decodedSlug)}`,
+    },
   };
 }
 
