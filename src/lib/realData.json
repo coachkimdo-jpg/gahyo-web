@@ -1,5 +1,228 @@
 [
   {
+    "id": "stmary-1000000382",
+    "name": "서울성모장례식장",
+    "address": "서울특별시 서초구 반포대로 222 (반포동)",
+    "contact": "02-2258-5940",
+    "regionCode": "seoul",
+    "rating": 4.9,
+    "reviewCount": 432,
+    "features": [
+      "24시간 운영",
+      "주차가능",
+      "대형 장례식장",
+      "프리미엄 시설"
+    ],
+    "facilityInfo": {
+      "sliderEnabled": true,
+      "descriptionEnabled": true,
+      "pricingEnabled": true,
+      "mapEnabled": true,
+      "consultEnabled": true,
+      "description": "가톨릭대학교 서울성모장례식장은 국내 최고 수준의 품격있는 장례 서비스를 제공합니다.",
+      "parkingInfo": "병원 내 대규모 주차장 이용 가능, 조문객 할인권 제공",
+      "visitorsCapacity": "매우 충분함",
+      "hallCount": "14",
+      "structure": "소형 평수부터 대형 VIP실까지 총 14개 빈소 운영",
+      "procedures": "24시간 안치 및 운구 지원, 대학병원 직영 관리 체계",
+      "parkingAccess": "지하철 3, 7, 9호선 고속터미널역 인근 대중교통 매우 우수",
+      "quickPoint": "접근성이 뛰어난 강남권 대형 프리미엄 장례식장",
+      "mortuaryCapacity": 40
+    },
+    "moduleOrder": [
+      "slider",
+      "description",
+      "pricing",
+      "map",
+      "consult"
+    ],
+    "photos": [
+      "https://gahyo.com/default-hall.jpg"
+    ],
+    "pricingData": [
+      {
+        "itemType": "빈소사용료",
+        "itemName": "VIP실 (150평형)",
+        "price": 4500000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "특실 (100평형)",
+        "price": 3200000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "일반실 (50평형)",
+        "price": 1800000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "안치실",
+        "itemName": "안치료",
+        "price": 120000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "입관실",
+        "itemName": "입관실사용료",
+        "price": 500000,
+        "detail": "1회 기준"
+      },
+      {
+        "itemType": "식대",
+        "itemName": "식사 (기본찬+국+밥)",
+        "price": 18000,
+        "detail": "1인당 평균"
+      }
+    ]
+  },
+  {
+    "id": "bokji-1000000381",
+    "name": "복지장례문화원",
+    "address": "서울특별시 영등포구 도림로 142 (대림동)",
+    "contact": "02-831-4444",
+    "regionCode": "seoul",
+    "rating": 4.6,
+    "reviewCount": 115,
+    "features": [
+      "24시간 운영",
+      "주차가능",
+      "대중교통 편의"
+    ],
+    "facilityInfo": {
+      "sliderEnabled": true,
+      "descriptionEnabled": true,
+      "pricingEnabled": true,
+      "mapEnabled": true,
+      "consultEnabled": true,
+      "description": "복지장례문화원은 합리적인 장례 비용과 편안한 시설로 내 가족처럼 정성을 다하여 모십니다.",
+      "parkingInfo": "건물 주차장 이용 및 대중교통 접근성 우수",
+      "visitorsCapacity": "충분함",
+      "hallCount": "6",
+      "structure": "다양한 크기의 6개 빈소 및 조문객 접객실 완비",
+      "procedures": "24시간 안치 및 운구차 대기, 전문 장례지도사 1:1 상담 지원",
+      "parkingAccess": "지하철 2, 7호선 대림역 도보 이동 가능",
+      "quickPoint": "영등포, 대림 지역에서 접근하기 좋은 도심형 장례문화 공간",
+      "mortuaryCapacity": 15
+    },
+    "moduleOrder": [
+      "slider",
+      "description",
+      "pricing",
+      "map",
+      "consult"
+    ],
+    "photos": [],
+    "pricingData": [
+      {
+        "itemType": "빈소사용료",
+        "itemName": "특실 (70평형)",
+        "price": 1800000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "일반실 (40평형)",
+        "price": 900000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "안치실",
+        "itemName": "안치료",
+        "price": 100000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "입관실",
+        "itemName": "입관실사용료",
+        "price": 250000,
+        "detail": "1회 기준"
+      },
+      {
+        "itemType": "식대",
+        "itemName": "식사 (기본찬+국+밥)",
+        "price": 14000,
+        "detail": "1인당 평균"
+      }
+    ]
+  },
+  {
+    "id": "kyowon-seoseoul-7000002416",
+    "name": "교원예움 서서울장례식장",
+    "address": "서울특별시 영등포구 선유로 101 (양평동1가)",
+    "contact": "02-2676-4444",
+    "regionCode": "seoul",
+    "rating": 4.7,
+    "reviewCount": 152,
+    "features": [
+      "24시간 운영",
+      "주차가능",
+      "최근 리모델링",
+      "대중교통 접근성 우수"
+    ],
+    "facilityInfo": {
+      "sliderEnabled": true,
+      "descriptionEnabled": true,
+      "pricingEnabled": true,
+      "mapEnabled": true,
+      "consultEnabled": true,
+      "description": "교원예움 서서울장례식장은 유가족과 조문객의 편의를 최우선으로 생각하는 고품격 장례문화 공간입니다.",
+      "parkingInfo": "동시 400여 대 주차 가능 (상주 및 유가족 무료 주차권 지급)",
+      "visitorsCapacity": "충분함",
+      "hallCount": "12",
+      "structure": "다양한 평형대의 12개 빈소 운영, 넓고 쾌적한 접객실 완비",
+      "procedures": "24시간 안치 및 운구차 지원, 체계적인 장례 상담 지원",
+      "parkingAccess": "지하철 2, 5호선 영등포구청역 인근",
+      "quickPoint": "교원그룹이 운영하여 서비스 품질이 보장되는 프리미엄 장례식장",
+      "mortuaryCapacity": 30
+    },
+    "moduleOrder": [
+      "slider",
+      "description",
+      "pricing",
+      "map",
+      "consult"
+    ],
+    "photos": [
+      "https://15774129.go.kr/BCUser/facilitypic/1685676626396.JPG",
+      "https://15774129.go.kr/BCUser/facilitypic/1685676633066.JPG"
+    ],
+    "pricingData": [
+      {
+        "itemType": "빈소사용료",
+        "itemName": "특실 (100평형)",
+        "price": 2500000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "일반실 (50평형)",
+        "price": 1200000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "안치실",
+        "itemName": "안치료",
+        "price": 100000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "입관실",
+        "itemName": "입관실사용료",
+        "price": 300000,
+        "detail": "1회 기준"
+      },
+      {
+        "itemType": "식대",
+        "itemName": "식사 (기본찬+국+밥)",
+        "price": 15000,
+        "detail": "1인당 평균"
+      }
+    ]
+  },
+  {
     "id": "yeoju-civil-hall",
     "name": "여주시민장례문화원",
     "address": "경기도 여주시 칠산길 28-8 (상동)",
