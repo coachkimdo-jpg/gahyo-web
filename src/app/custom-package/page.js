@@ -25,13 +25,7 @@ const OPTIONS = {
     { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', price: 450000, type: 'checkbox' },
   ],
   staff: [
-    { id: 's_none', title: '선택 안 함', desc: '가족이 직접 조문객 접객을 하실 경우', price: 0, type: 'radio' },
-    { id: 's_1', title: '1명 지원', desc: '10시간 기준', price: 120000, type: 'radio' },
-    { id: 's_2', title: '2명 지원', desc: '10시간/명 기준 (총 20시간)', price: 240000, type: 'radio' },
-    { id: 's_3', title: '3명 지원', desc: '10시간/명 기준 (총 30시간)', price: 360000, type: 'radio' },
-    { id: 's_4', title: '4명 지원', desc: '10시간/명 기준 (총 40시간)', price: 480000, type: 'radio' },
-    { id: 's_5', title: '5명 지원', desc: '10시간/명 기준 (총 50시간)', price: 600000, type: 'radio' },
-    { id: 's_6', title: '6명 지원', desc: '10시간/명 기준 (총 60시간)', price: 720000, type: 'radio' },
+    { id: 's_count', title: '접객 도우미', desc: '1명 추가 시 10시간 지원 기준', price: 120000, type: 'counter' },
   ],
   shroud: [
     { id: 'sh_none', title: '선택 안 함 (개인 준비)', desc: '사전에 준비하신 경우', price: 0, type: 'radio' },
@@ -54,7 +48,7 @@ export default function CustomPackagePage() {
   const [selections, setSelections] = useState({
     clothes: { c_m: 2, c_f: 2 },
     vehicles: ['v_amb'],
-    staff: 's_2',
+    staff: { s_count: 2 },
     shroud: 'sh_cotton',
     urn: 'u_ceramic'
   });
@@ -168,7 +162,7 @@ export default function CustomPackagePage() {
                     const count = selected[id];
                     if (count > 0) {
                       const opt = OPTIONS[step.id].find(o => o.id === id);
-                      if (opt) items.push({ title: `${opt.title} (${count}벌)`, price: opt.price * count });
+                      if (opt) items.push({ title: `${opt.title} (${count}${step.id === 'clothes' ? '벌' : '명'})`, price: opt.price * count });
                     }
                   });
                 }
@@ -269,7 +263,7 @@ export default function CustomPackagePage() {
           </h2>
           <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '2rem' }}>
             {currentStepData.id === 'vehicles' ? '원하시는 차량을 모두 선택해주세요.' : 
-             currentStepData.id === 'clothes' ? '필요한 상복의 수량을 조절해주세요.' : 
+             (currentStepData.id === 'clothes' || currentStepData.id === 'staff') ? '필요하신 수량(인원)을 조절해주세요.' : 
              '원하시는 옵션을 하나 선택해주세요.'}
           </p>
 
