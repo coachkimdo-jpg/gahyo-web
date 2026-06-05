@@ -30,7 +30,7 @@ const OPTIONS = {
     { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', note: '💡 장의버스 자체에 고인 이송 공간이 포함되어 있어, 버스 한 대로 고인과 유족이 함께 정중히 이동하실 수 있습니다. 리무진은 꼭 선택하지 않으셔도 됩니다.', price: 450000, type: 'checkbox' },
   ],
   staff: [
-    { id: 's_count', title: '접객 도우미', desc: '1명당 총 10시간 지원 (2명 추가 시 총 20시간 지원)', note: '💡 무빈소의 경우, 접객 도우미가 필요하지 않습니다.', price: 120000, type: 'counter' },
+    { id: 's_count', title: '접객 도우미', desc: '1명당 총 10시간 지원 (2명 추가 시 총 20시간 지원)', note: '💡 무빈소의 경우, 접객 도우미가 필요하지 않습니다. 일반 장례 시에도 필요 시 현장에서 추가하실 수 있습니다.', price: 120000, type: 'counter' },
   ],
   shroud: [
     { id: 'sh_none', title: '선택 안 함 (개인 준비)', desc: '사전에 준비하신 경우', price: 0, type: 'radio' },
