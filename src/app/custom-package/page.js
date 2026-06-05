@@ -377,7 +377,7 @@ export default function CustomPackagePage() {
       </div>
 
       {/* 하단 고정 가격 표시 바 */}
-      {!isFinished && (
+      {!isFinished && currentStep > 0 && (
         <div style={{ 
           position: 'fixed', bottom: 0, left: 0, right: 0, background: 'white',
           borderTop: '1px solid #e2e8f0', padding: '1rem 1.5rem', zIndex: 100,
