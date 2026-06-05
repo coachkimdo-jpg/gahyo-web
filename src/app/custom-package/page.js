@@ -343,7 +343,7 @@ export default function CustomPackagePage() {
                     </div>
                   </div>
                   <div style={{ fontWeight: '800', color: isSelected ? 'var(--navy)' : '#475569', fontSize: '1.1rem' }}>
-                    {opt.price === 0 ? '추가금 없음' : `+${opt.price.toLocaleString()}원`}
+                    {opt.price > 0 && `+${opt.price.toLocaleString()}원`}
                   </div>
                 </div>
               );
