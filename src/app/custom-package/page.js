@@ -37,7 +37,7 @@ const OPTIONS = {
     { id: 'sh_cotton', title: '면수의', desc: '기본 면 100%', price: 100000, type: 'radio' },
     { id: 'sh_hanji', title: '친환경 전통한지수의', desc: '자연 친화적 소재', price: 300000, type: 'radio' },
     { id: 'sh_jeoma', title: '저마수의', desc: '고급 모시 재질', price: 400000, type: 'radio' },
-    { id: 'sh_daema', title: '대마수의', desc: '최고급 안동 대마', price: 500000, type: 'radio' },
+    { id: 'sh_daema', title: '대마수의', desc: '최고급 대마', price: 500000, type: 'radio' },
     { id: 'sh_hanbok', title: '한복수의', desc: '전통 예절을 다하는 궁중 한복', price: 600000, type: 'radio' },
   ],
   urn: [
