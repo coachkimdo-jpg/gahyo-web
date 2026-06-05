@@ -141,7 +141,7 @@ export default function CustomPackagePage() {
               나만의 상조 상품 구성 완료
             </h1>
             <p style={{ color: '#475569', fontSize: '1.05rem', marginTop: '0.5rem' }}>
-              선택하신 항목들을 바탕으로 산출된 예상 견적입니다.
+              선택한 항목에 따른 확정 견적입니다.
             </p>
           </div>
 
@@ -213,7 +213,7 @@ export default function CustomPackagePage() {
             </div>
 
             <div style={{ marginTop: '2rem', background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#475569' }}>총 예상 금액</span>
+              <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#475569' }}>총 확정 금액</span>
               <span style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--navy)' }}>{finalTotalPrice.toLocaleString()}<span style={{ fontSize: '1.2rem', fontWeight: '700', marginLeft: '2px' }}>원</span></span>
             </div>
             <p style={{ textAlign: 'right', fontSize: '0.85rem', color: '#94a3b8', marginTop: '0.75rem' }}>
