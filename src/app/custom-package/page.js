@@ -142,6 +142,11 @@ export default function CustomPackagePage() {
       alert('상주명과 연락처를 모두 입력해주세요.');
       return;
     }
+    const koreanRegex = /^[가-힣]+$/;
+    if (!koreanRegex.test(consultForm.name.trim().replace(/\s/g, ''))) {
+      alert('상주명(고객명)은 한글로만 입력해주세요.');
+      return;
+    }
     const phoneClean = consultForm.phone.replace(/[^0-9]/g, '');
     if (!phoneClean.startsWith('010') || phoneClean.length < 10) {
       alert('올바른 핸드폰 번호(010으로 시작)를 입력해주세요.');
@@ -332,7 +337,6 @@ export default function CustomPackagePage() {
               </p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#334155' }}>카카오톡 없이 서비스를 계속 이용할 수 있어요</span>
                 <input 
                   type="text" 
                   placeholder="상주명(고객명)을 입력해주세요" 
@@ -406,6 +410,7 @@ export default function CustomPackagePage() {
                       />
                       <span style={{ fontSize: '0.85rem', color: '#475569' }}>[필수] 긴급 상황 시 수신 동의(야간)</span>
                     </label>
+                    <button onClick={() => setActiveTermsModal('night')} style={{ background: 'none', border: 'none', fontSize: '0.8rem', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer' }}>보기</button>
                   </div>
                 </div>
               </div>
@@ -422,7 +427,7 @@ export default function CustomPackagePage() {
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255,255,255,0.98)', borderRadius: '16px', zIndex: 10, padding: '2rem', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b' }}>
-                      {activeTermsModal === 'terms' ? '서비스 이용약관' : '개인정보 수집 및 이용 동의'}
+                      {activeTermsModal === 'terms' ? '서비스 이용약관' : activeTermsModal === 'privacy' ? '개인정보 수집 및 이용 동의' : '긴급 상황 시 수신 동의(야간)'}
                     </h3>
                     <button onClick={() => setActiveTermsModal(null)} style={{ background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#64748b' }}>✕</button>
                   </div>
@@ -434,7 +439,7 @@ export default function CustomPackagePage() {
                         제2조 (서비스의 제공)<br/>
                         회사는 고객에게 장례식장 안내, 빈소 할인 상담, 맞춤형 견적 산출 및 기타 관련 서비스를 제공합니다.
                       </>
-                    ) : (
+                    ) : activeTermsModal === 'privacy' ? (
                       <>
                         1. 수집하는 개인정보 항목<br/>
                         - 필수항목: 이름, 휴대전화번호<br/><br/>
@@ -442,6 +447,15 @@ export default function CustomPackagePage() {
                         - 장례 상담, 견적 안내, 서비스 이용 확인 및 고객 응대<br/><br/>
                         3. 개인정보의 보유 및 이용 기간<br/>
                         - 원칙적으로 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 일정 기간 동안 보존합니다.
+                      </>
+                    ) : (
+                      <>
+                        1. 수신 목적<br/>
+                        - 임종, 장례식장 섭외, 앰뷸런스 배차 등 긴급한 장례 지원 및 상담 진행<br/><br/>
+                        2. 수신 항목 및 시간<br/>
+                        - 연락처 정보, 야간 및 심야 시간대(21:00 ~ 익일 08:00) 연락<br/><br/>
+                        3. 동의 거부 시 불이익<br/>
+                        - 본 동의를 거부하실 수 있으나, 거부 시 야간 긴급 장례 상담 및 즉각적인 조치가 제한될 수 있습니다.
                       </>
                     )}
                   </div>
