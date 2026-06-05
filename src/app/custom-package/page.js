@@ -216,7 +216,7 @@ export default function CustomPackagePage() {
               <span style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--navy)' }}>{finalTotalPrice.toLocaleString()}<span style={{ fontSize: '1.2rem', fontWeight: '700', marginLeft: '2px' }}>원</span></span>
             </div>
             <p style={{ textAlign: 'right', fontSize: '0.85rem', color: '#94a3b8', marginTop: '0.75rem' }}>
-              * 위 금액은 참고용이며, 장례식장 시설 사용료 및 식대는 별도입니다.
+              * 위 금액은 선택하신 내역에 해당하는 고정가격이며 장례식장, 화장, 장지 시설 사용료 및 식대는 별도입니다.
             </p>
           </div>
 
