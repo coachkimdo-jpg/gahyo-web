@@ -6,6 +6,7 @@ import Link from 'next/link';
 const BASE_PRICE = 900000;
 
 const STEPS = [
+  { id: 'altar', label: '빈소' },
   { id: 'clothes', label: '상복' },
   { id: 'vehicles', label: '차량' },
   { id: 'staff', label: '도우미' },
@@ -14,6 +15,10 @@ const STEPS = [
 ];
 
 const OPTIONS = {
+  altar: [
+    { id: 'a_none', title: '빈소 없이 간소하게 (무빈소)', desc: '장례식장 빈소를 대여하지 않고 조용히 모십니다.', price: 0, type: 'radio' },
+    { id: 'a_traditional', title: '빈소를 차려 전통대로', desc: '조문객을 맞이하고 제례를 지낼 빈소를 마련합니다.', price: 0, type: 'radio', recommended: true },
+  ],
   clothes: [
     { id: 'c_m', title: '남자 상복', desc: '1벌 기준 (Y셔츠, 넥타이 포함)', price: 50000, type: 'counter' },
     { id: 'c_f', title: '여자 상복', desc: '1벌 기준', price: 20000, type: 'counter' },
@@ -46,6 +51,7 @@ const OPTIONS = {
 export default function CustomPackagePage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selections, setSelections] = useState({
+    altar: 'a_traditional',
     clothes: { c_m: 2, c_f: 2 },
     vehicles: ['v_amb'],
     staff: { s_count: 2 },
