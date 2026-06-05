@@ -107,7 +107,8 @@ export default function CustomPackagePage() {
   const basePrice = selections.altar === 'a_none' ? 800000 : 1150000;
   
   let optionsPrice = 0;
-  Object.keys(selections).forEach(stepId => {
+  STEPS.slice(0, currentStep + 1).forEach(step => {
+    const stepId = step.id;
     if (stepId === 'altar') return; // 빈소 기본 요금은 추가금에서 제외
     
     const selected = selections[stepId];
