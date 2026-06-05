@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 const mainNavItems = [
   { href: '/about', label: '가효상조 소개' },
   { href: '/estimate', label: 'AI 장례 견적' },
-  { href: '/products', label: '후불제상조상품' },
+  { href: '/products', label: '준비된 상조 상품' },
   { href: '/halls', label: '장례식장 찾기' },
   { href: '/cemeteries', label: '모실곳 찾기' },
   { href: '/guide', label: '장례 가이드' },
