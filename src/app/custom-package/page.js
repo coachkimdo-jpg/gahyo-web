@@ -356,7 +356,7 @@ export default function CustomPackagePage() {
                       )}
                     </div>
                   </div>
-                  <div style={{ fontWeight: '800', color: isSelected ? 'var(--navy)' : '#475569', fontSize: '1.1rem' }}>
+                  <div style={{ fontWeight: '800', color: isSelected ? 'var(--navy)' : '#475569', fontSize: '1.1rem', whiteSpace: 'nowrap', flexShrink: 0 }}>
                     {opt.price > 0 && `+${opt.price.toLocaleString()}원`}
                   </div>
                 </div>
