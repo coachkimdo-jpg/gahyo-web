@@ -297,7 +297,7 @@ export default function CustomPackagePage() {
               className="btn-primary" 
               style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.2rem', borderRadius: '12px', width: '100%', border: 'none', cursor: 'pointer' }}
             >
-              📞 위 구성으로 즉시 상담하기 (1551-5718)
+              위 구성으로 상담 예약하기
             </button>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <button onClick={() => setIsFinished(false)} style={{ flex: 1, padding: '1rem', background: 'white', color: 'var(--navy)', border: '1px solid #cbd5e1', borderRadius: '12px', fontWeight: '700', cursor: 'pointer' }}>
