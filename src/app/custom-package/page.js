@@ -59,6 +59,10 @@ export default function CustomPackagePage() {
     urn: 'u_none'
   });
   const [isFinished, setIsFinished] = useState(false);
+  const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
+  const [consultForm, setConsultForm] = useState({ name: '', phone: '' });
+  const [isConsentChecked, setIsConsentChecked] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -130,6 +134,72 @@ export default function CustomPackagePage() {
   });
 
   const finalTotalPrice = basePrice + optionsPrice;
+
+  const handleConsultSubmit = async () => {
+    if (!consultForm.name.trim() || !consultForm.phone.trim()) {
+      alert('상주명과 연락처를 모두 입력해주세요.');
+      return;
+    }
+    if (!isConsentChecked) {
+      alert('개인정보 수집 및 이용에 동의해주세요.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const stepTitleMap = { clothes: '상복', vehicles: '차량', staff: '도우미', shroud: '수의', urn: '납골함' };
+    
+    const estimateDetails = [
+      { category: '기본 제공 항목', name: selections.altar === 'a_none' ? '무빈소 기준' : '빈소 마련 기준', price: basePrice },
+      ...Object.keys(selections).filter(k => k !== 'altar').flatMap(stepId => {
+        const selected = selections[stepId];
+        const stepOpts = OPTIONS[stepId];
+        if (Array.isArray(selected)) {
+          return selected.map(id => {
+            const opt = stepOpts.find(o => o.id === id);
+            return { category: stepTitleMap[stepId], name: opt?.title, price: opt?.price || 0 };
+          });
+        } else if (typeof selected === 'object') {
+          return Object.keys(selected).filter(key => selected[key] > 0).map(key => {
+            const opt = stepOpts.find(o => o.id === key);
+            return { category: stepTitleMap[stepId], name: `${opt?.title} (${selected[key]}${stepId === 'staff' ? '명' : '벌'})`, price: (opt?.price || 0) * selected[key] };
+          });
+        } else if (selected && selected !== 'sh_none' && selected !== 'u_none' && selected !== 'a_none' && selected !== 'a_traditional') {
+           const opt = stepOpts.find(o => o.id === selected);
+           return { category: stepTitleMap[stepId], name: opt?.title, price: opt?.price || 0 };
+        }
+        if (selected === 'sh_none' || selected === 'u_none') {
+           const opt = stepOpts.find(o => o.id === selected);
+           return { category: stepTitleMap[stepId], name: opt?.title, price: 0 };
+        }
+        return [];
+      })
+    ];
+
+    try {
+      const res = await fetch('/api/consult', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: consultForm.name,
+          phone: consultForm.phone,
+          totalPrice: finalTotalPrice,
+          estimateDetails
+        })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert('상담 신청이 완료되었습니다. 곧 연락드리겠습니다.');
+        setIsConsultModalOpen(false);
+      } else {
+        alert(data.error || '오류가 발생했습니다.');
+      }
+    } catch (e) {
+      alert('전송 중 오류가 발생했습니다.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   if (isFinished) {
     return (
@@ -222,9 +292,13 @@ export default function CustomPackagePage() {
           </div>
 
           <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <a href="tel:1551-5718" className="btn-primary" style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.2rem', borderRadius: '12px', width: '100%' }}>
+            <button 
+              onClick={() => setIsConsultModalOpen(true)}
+              className="btn-primary" 
+              style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.2rem', borderRadius: '12px', width: '100%', border: 'none', cursor: 'pointer' }}
+            >
               📞 위 구성으로 즉시 상담하기 (1551-5718)
-            </a>
+            </button>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <button onClick={() => setIsFinished(false)} style={{ flex: 1, padding: '1rem', background: 'white', color: 'var(--navy)', border: '1px solid #cbd5e1', borderRadius: '12px', fontWeight: '700', cursor: 'pointer' }}>
                 구성 수정하기
@@ -235,6 +309,63 @@ export default function CustomPackagePage() {
             </div>
           </div>
         </div>
+
+        {isConsultModalOpen && (
+          <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
+            <div style={{ background: 'white', borderRadius: '16px', width: '100%', maxWidth: '400px', padding: '2.5rem 2rem', position: 'relative', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}>
+              <button 
+                onClick={() => setIsConsultModalOpen(false)}
+                style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#64748b' }}
+              >
+                ✕
+              </button>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', lineHeight: '1.3' }}>막막한 장례,<br/>한번에 알아보세요.</h2>
+              <p style={{ fontSize: '0.95rem', color: '#64748b', marginBottom: '2.5rem', wordBreak: 'keep-all', lineHeight: '1.5' }}>
+                장례식장 빈소 할인, 장지 상담, 맞춤형 견적까지 전문 장례지도사가 고객님을 도와드립니다.
+              </p>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#334155' }}>카카오톡 없이 서비스를 계속 이용할 수 있어요</span>
+                <input 
+                  type="text" 
+                  placeholder="상주명(고객명)을 입력해주세요" 
+                  value={consultForm.name}
+                  onChange={(e) => setConsultForm({...consultForm, name: e.target.value})}
+                  style={{ padding: '1rem', border: '1px solid #cbd5e1', borderRadius: '8px', fontSize: '1rem', marginTop: '0.5rem', width: '100%', boxSizing: 'border-box' }}
+                />
+                <input 
+                  type="tel" 
+                  placeholder="핸드폰 번호를 입력해주세요 (010-0000-0000)" 
+                  value={consultForm.phone}
+                  onChange={(e) => setConsultForm({...consultForm, phone: e.target.value})}
+                  style={{ padding: '1rem', border: '1px solid #cbd5e1', borderRadius: '8px', fontSize: '1rem', marginTop: '0.5rem', width: '100%', boxSizing: 'border-box' }}
+                />
+                <span style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.2rem' }}>010-0000-0000 형태로 입력해주세요</span>
+              </div>
+
+              <div style={{ marginBottom: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#334155', display: 'block', marginBottom: '1rem' }}>서비스 이용약관 및 동의 항목</span>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                  <input 
+                    type="checkbox" 
+                    checked={isConsentChecked}
+                    onChange={(e) => setIsConsentChecked(e.target.checked)}
+                    style={{ width: '1.25rem', height: '1.25rem', accentColor: '#f97316' }}
+                  />
+                  <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: '700' }}>[필수] 개인정보 수집 및 이용 동의</span>
+                </label>
+              </div>
+
+              <button 
+                onClick={handleConsultSubmit}
+                disabled={isSubmitting}
+                style={{ width: '100%', padding: '1.25rem', background: isSubmitting ? '#cbd5e1' : '#f97316', color: 'white', border: 'none', borderRadius: '8px', fontSize: '1.1rem', fontWeight: '800', cursor: isSubmitting ? 'not-allowed' : 'pointer', transition: 'background 0.2s' }}
+              >
+                {isSubmitting ? '전송 중...' : '시작하기'}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
