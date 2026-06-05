@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const BASE_PRICE = 900000;
+// BASE_PRICE is dynamic based on altar selection
 
 const STEPS = [
   { id: 'altar', label: '빈소' },
@@ -104,7 +104,9 @@ export default function CustomPackagePage() {
 
   const currentStepData = STEPS[currentStep];
   
-  let totalPrice = BASE_PRICE;
+  const basePrice = selections.altar === 'a_none' ? 800000 : 1150000;
+  
+  let totalPrice = basePrice;
   Object.keys(selections).forEach(stepId => {
     const selected = selections[stepId];
     if (typeof selected === 'string') {
@@ -146,10 +148,14 @@ export default function CustomPackagePage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px dashed #cbd5e1' }}>
                 <div>
-                  <div style={{ fontWeight: '700', color: '#1e293b' }}>기본 제공 항목</div>
-                  <div style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '0.2rem' }}>장례지도사 파견, 기본 오동나무 관, 입관/빈소 용품 일체</div>
+                  <div style={{ fontWeight: '700', color: '#1e293b' }}>
+                    {selections.altar === 'a_none' ? '기본 제공 항목 (무빈소 기준)' : '기본 제공 항목 (빈소 마련 기준)'}
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '0.2rem' }}>
+                    장례지도사 파견, 기본 오동나무 관, 입관{selections.altar !== 'a_none' && '/빈소'} 용품 일체
+                  </div>
                 </div>
-                <div style={{ fontWeight: '700', color: '#1e293b' }}>{BASE_PRICE.toLocaleString()}원</div>
+                <div style={{ fontWeight: '700', color: '#1e293b' }}>{basePrice.toLocaleString()}원</div>
               </div>
 
               {STEPS.map((step) => {
@@ -184,6 +190,8 @@ export default function CustomPackagePage() {
                      </div>
                    );
                 }
+
+                if (step.id === 'altar') return null; // 빈소 선택은 기본 항목에서 보여주므로 생략
 
                 return items.map((item, idx) => (
                   <div key={`${step.id}-${idx}`} style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px dashed #cbd5e1' }}>
