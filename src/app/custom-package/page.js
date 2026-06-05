@@ -106,25 +106,29 @@ export default function CustomPackagePage() {
   
   const basePrice = selections.altar === 'a_none' ? 800000 : 1150000;
   
-  let totalPrice = basePrice;
+  let optionsPrice = 0;
   Object.keys(selections).forEach(stepId => {
+    if (stepId === 'altar') return; // 빈소 기본 요금은 추가금에서 제외
+    
     const selected = selections[stepId];
     if (typeof selected === 'string') {
       const opt = OPTIONS[stepId].find(o => o.id === selected);
-      if (opt) totalPrice += opt.price;
+      if (opt && opt.price > 0) optionsPrice += opt.price;
     } else if (Array.isArray(selected)) {
       selected.forEach(id => {
         const opt = OPTIONS[stepId].find(o => o.id === id);
-        if (opt) totalPrice += opt.price;
+        if (opt && opt.price > 0) optionsPrice += opt.price;
       });
     } else if (typeof selected === 'object') {
       Object.keys(selected).forEach(id => {
         const count = selected[id];
         const opt = OPTIONS[stepId].find(o => o.id === id);
-        if (opt && count > 0) totalPrice += opt.price * count;
+        if (opt && count > 0 && opt.price > 0) optionsPrice += opt.price * count;
       });
     }
   });
+
+  const finalTotalPrice = basePrice + optionsPrice;
 
   if (isFinished) {
     return (
@@ -209,7 +213,7 @@ export default function CustomPackagePage() {
 
             <div style={{ marginTop: '2rem', background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#475569' }}>총 예상 금액</span>
-              <span style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--navy)' }}>{totalPrice.toLocaleString()}<span style={{ fontSize: '1.2rem', fontWeight: '700', marginLeft: '2px' }}>원</span></span>
+              <span style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--navy)' }}>{finalTotalPrice.toLocaleString()}<span style={{ fontSize: '1.2rem', fontWeight: '700', marginLeft: '2px' }}>원</span></span>
             </div>
             <p style={{ textAlign: 'right', fontSize: '0.85rem', color: '#94a3b8', marginTop: '0.75rem' }}>
               * 위 금액은 참고용이며, 장례식장 시설 사용료 및 식대는 별도입니다.
@@ -385,9 +389,9 @@ export default function CustomPackagePage() {
         }}>
           <div className="container" style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: '600' }}>현재까지 합산된 견적</div>
+              <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: '600' }}>추가 선택 항목 합계 (기본요금 별도)</div>
               <div style={{ fontSize: '1.5rem', fontWeight: '900', color: 'var(--navy)' }}>
-                {totalPrice.toLocaleString()}<span style={{ fontSize: '1rem', marginLeft: '2px' }}>원</span>
+                {optionsPrice > 0 ? '+' : ''}{optionsPrice.toLocaleString()}<span style={{ fontSize: '1rem', marginLeft: '2px' }}>원</span>
               </div>
             </div>
             <button onClick={handleNext} className="btn-primary" style={{ padding: '0.75rem 2rem', borderRadius: '8px' }}>
