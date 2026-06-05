@@ -52,11 +52,11 @@ export default function CustomPackagePage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selections, setSelections] = useState({
     altar: 'a_traditional',
-    clothes: { c_m: 1, c_f: 1 },
-    vehicles: ['v_amb'],
-    staff: { s_count: 1 },
-    shroud: 'sh_cotton',
-    urn: 'u_ceramic'
+    clothes: { c_m: 0, c_f: 0 },
+    vehicles: [],
+    staff: { s_count: 0 },
+    shroud: 'sh_none',
+    urn: 'u_none'
   });
   const [isFinished, setIsFinished] = useState(false);
 
