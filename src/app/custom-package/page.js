@@ -10,45 +10,53 @@ const STEPS = [
   { id: 'vehicles', label: '차량' },
   { id: 'staff', label: '도우미' },
   { id: 'shroud', label: '수의' },
-  { id: 'urn', label: '유골함' }
+  { id: 'urn', label: '납골함' }
 ];
 
 const OPTIONS = {
   clothes: [
-    { id: 'c_none', title: '선택 안 함', desc: '상복을 직접 준비하시거나 입지 않으실 경우', price: 0 },
-    { id: 'c_basic', title: '기본 세트 (각 2벌)', desc: '남·여 상복 각 2벌 및 상장, 완장 등 소품 일체', price: 100000, recommended: true },
-    { id: 'c_premium', title: '넉넉한 세트 (각 5벌)', desc: '직계 가족이 많으신 경우 추천 (각 5벌)', price: 250000 },
+    { id: 'c_m', title: '남자 상복', desc: '1벌 기준 (Y셔츠, 넥타이 포함)', price: 50000, type: 'counter' },
+    { id: 'c_f', title: '여자 상복', desc: '1벌 기준', price: 20000, type: 'counter' },
   ],
   vehicles: [
-    { id: 'v_amb', title: '앰뷸런스 (기본)', desc: '관내 고인 이송용 앰뷸런스만 이용', price: 0 },
-    { id: 'v_bus', title: '앰뷸런스 + 장의버스', desc: '유족 및 조문객 이동을 위한 45인승 대형 버스 추가', price: 400000, recommended: true },
-    { id: 'v_full', title: '앰뷸런스 + 버스 + 리무진', desc: '최고급 고인 전용 리무진까지 포함된 풀 패키지', price: 800000 },
+    { id: 'v_amb', title: '앰블런스', desc: '관내 고인 이송용', price: 100000, type: 'checkbox' },
+    { id: 'v_sprinter', title: '스프린터(8인승)', desc: '소규모 가족 이동에 적합', price: 300000, type: 'checkbox' },
+    { id: 'v_limo', title: '리무진', desc: '최고급 고인 전용 차량', price: 400000, type: 'checkbox' },
+    { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', price: 450000, type: 'checkbox' },
   ],
   staff: [
-    { id: 's_none', title: '선택 안 함', desc: '가족이 직접 조문객 접객을 하실 경우', price: 0 },
-    { id: 's_two', title: '2명 지원 (20시간)', desc: '소규모 장례나 가족장에 적합한 인원', price: 200000 },
-    { id: 's_four', title: '4명 지원 (40시간)', desc: '일반적인 3일장 기준 권장 접객 인원', price: 400000, recommended: true },
+    { id: 's_none', title: '선택 안 함', desc: '가족이 직접 조문객 접객을 하실 경우', price: 0, type: 'radio' },
+    { id: 's_1', title: '1명 지원', desc: '10시간 기준', price: 120000, type: 'radio' },
+    { id: 's_2', title: '2명 지원', desc: '10시간/명 기준 (총 20시간)', price: 240000, type: 'radio' },
+    { id: 's_3', title: '3명 지원', desc: '10시간/명 기준 (총 30시간)', price: 360000, type: 'radio' },
+    { id: 's_4', title: '4명 지원', desc: '10시간/명 기준 (총 40시간)', price: 480000, type: 'radio' },
+    { id: 's_5', title: '5명 지원', desc: '10시간/명 기준 (총 50시간)', price: 600000, type: 'radio' },
+    { id: 's_6', title: '6명 지원', desc: '10시간/명 기준 (총 60시간)', price: 720000, type: 'radio' },
   ],
   shroud: [
-    { id: 'sh_none', title: '개인 준비', desc: '수의를 사전에 미리 준비해 두신 경우', price: 0 },
-    { id: 'sh_cotton', title: '기본 면 수의', desc: '피부에 닿아도 안전한 깔끔한 100% 면 수의', price: 150000, recommended: true },
-    { id: 'sh_hemp', title: '고급 대마 수의', desc: '예의를 다하는 최고급 안동 대마 100% 수의', price: 350000 },
+    { id: 'sh_none', title: '선택 안 함 (개인 준비)', desc: '사전에 준비하신 경우', price: 0, type: 'radio' },
+    { id: 'sh_cotton', title: '면수의', desc: '기본 면 100%', price: 100000, type: 'radio' },
+    { id: 'sh_hanji', title: '친환경 전통한지수의', desc: '자연 친화적 소재', price: 300000, type: 'radio' },
+    { id: 'sh_jeoma', title: '저마수의', desc: '고급 모시 재질', price: 400000, type: 'radio' },
+    { id: 'sh_daema', title: '대마수의', desc: '최고급 안동 대마', price: 500000, type: 'radio' },
+    { id: 'sh_hanbok', title: '한복수의', desc: '전통 예절을 다하는 궁중 한복', price: 600000, type: 'radio' },
   ],
   urn: [
-    { id: 'u_none', title: '매장 진행 / 개인 준비', desc: '매장하시거나 봉안함을 별도로 준비하신 경우', price: 0 },
-    { id: 'u_ceramic', title: '일반 도자기 봉안함', desc: '습기에 강하고 단아한 기본 도자기함', price: 150000, recommended: true },
-    { id: 'u_vacuum', title: '고급 진공 봉안함', desc: '결로를 막고 장기 보관에 최적화된 이중 진공함', price: 350000 },
+    { id: 'u_none', title: '선택 안 함 (개인 준비 등)', desc: '유골함을 별도 준비하시거나 매장하시는 경우', price: 0, type: 'radio' },
+    { id: 'u_wood', title: '오동나무 목함', desc: '수목장, 자연장에 적합', price: 30000, type: 'radio' },
+    { id: 'u_ceramic', title: '도자기 기본 유골함', desc: '습기에 강한 기본 도자기함', price: 150000, type: 'radio' },
+    { id: 'u_religion', title: '종교별 도자기 유골함', desc: '천주교, 기독교, 불교 맞춤 각인', price: 700000, type: 'radio' },
   ]
 };
 
 export default function CustomPackagePage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selections, setSelections] = useState({
-    clothes: OPTIONS.clothes[1], // 기본 추천값
-    vehicles: OPTIONS.vehicles[1],
-    staff: OPTIONS.staff[2],
-    shroud: OPTIONS.shroud[1],
-    urn: OPTIONS.urn[1]
+    clothes: { c_m: 2, c_f: 2 },
+    vehicles: ['v_amb'],
+    staff: 's_2',
+    shroud: 'sh_cotton',
+    urn: 'u_ceramic'
   });
   const [isFinished, setIsFinished] = useState(false);
 
@@ -56,8 +64,28 @@ export default function CustomPackagePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentStep, isFinished]);
 
-  const handleSelect = (stepId, option) => {
-    setSelections(prev => ({ ...prev, [stepId]: option }));
+  const handleSelect = (stepId, opt) => {
+    if (opt.type === 'radio') {
+      setSelections(prev => ({ ...prev, [stepId]: opt.id }));
+    } else if (opt.type === 'checkbox') {
+      setSelections(prev => {
+        const list = prev[stepId];
+        if (list.includes(opt.id)) {
+          return { ...prev, [stepId]: list.filter(x => x !== opt.id) };
+        } else {
+          return { ...prev, [stepId]: [...list, opt.id] };
+        }
+      });
+    }
+  };
+
+  const handleCounter = (stepId, optId, delta) => {
+    setSelections(prev => {
+      const current = prev[stepId][optId] || 0;
+      const next = current + delta;
+      if (next < 0) return prev;
+      return { ...prev, [stepId]: { ...prev[stepId], [optId]: next } };
+    });
   };
 
   const handleNext = () => {
@@ -76,7 +104,25 @@ export default function CustomPackagePage() {
 
   const currentStepData = STEPS[currentStep];
   
-  const totalPrice = BASE_PRICE + Object.values(selections).reduce((sum, opt) => sum + (opt ? opt.price : 0), 0);
+  let totalPrice = BASE_PRICE;
+  Object.keys(selections).forEach(stepId => {
+    const selected = selections[stepId];
+    if (typeof selected === 'string') {
+      const opt = OPTIONS[stepId].find(o => o.id === selected);
+      if (opt) totalPrice += opt.price;
+    } else if (Array.isArray(selected)) {
+      selected.forEach(id => {
+        const opt = OPTIONS[stepId].find(o => o.id === id);
+        if (opt) totalPrice += opt.price;
+      });
+    } else if (typeof selected === 'object') {
+      Object.keys(selected).forEach(id => {
+        const count = selected[id];
+        const opt = OPTIONS[stepId].find(o => o.id === id);
+        if (opt && count > 0) totalPrice += opt.price * count;
+      });
+    }
+  });
 
   if (isFinished) {
     return (
@@ -107,18 +153,49 @@ export default function CustomPackagePage() {
               </div>
 
               {STEPS.map((step) => {
-                const selectedOpt = selections[step.id];
-                return (
-                  <div key={step.id} style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px dashed #cbd5e1' }}>
+                const selected = selections[step.id];
+                let items = [];
+                if (typeof selected === 'string') {
+                  const opt = OPTIONS[step.id].find(o => o.id === selected);
+                  if (opt && opt.price >= 0 && opt.id !== `${step.id}_none`) items.push({ title: opt.title, price: opt.price });
+                } else if (Array.isArray(selected)) {
+                  selected.forEach(id => {
+                    const opt = OPTIONS[step.id].find(o => o.id === id);
+                    if (opt) items.push({ title: opt.title, price: opt.price });
+                  });
+                } else if (typeof selected === 'object') {
+                  Object.keys(selected).forEach(id => {
+                    const count = selected[id];
+                    if (count > 0) {
+                      const opt = OPTIONS[step.id].find(o => o.id === id);
+                      if (opt) items.push({ title: `${opt.title} (${count}벌)`, price: opt.price * count });
+                    }
+                  });
+                }
+
+                if (items.length === 0) {
+                   return (
+                     <div key={step.id} style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px dashed #cbd5e1' }}>
+                       <div>
+                         <div style={{ fontSize: '0.8rem', color: 'var(--gold-dark)', fontWeight: '700', marginBottom: '0.1rem' }}>{step.label}</div>
+                         <div style={{ fontWeight: '600', color: '#334155' }}>선택 안 함</div>
+                       </div>
+                       <div style={{ fontWeight: '600', color: '#334155', alignSelf: 'flex-end' }}>0원</div>
+                     </div>
+                   );
+                }
+
+                return items.map((item, idx) => (
+                  <div key={`${step.id}-${idx}`} style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px dashed #cbd5e1' }}>
                     <div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--gold-dark)', fontWeight: '700', marginBottom: '0.1rem' }}>{step.label}</div>
-                      <div style={{ fontWeight: '600', color: '#334155' }}>{selectedOpt.title}</div>
+                      {idx === 0 && <div style={{ fontSize: '0.8rem', color: 'var(--gold-dark)', fontWeight: '700', marginBottom: '0.1rem' }}>{step.label}</div>}
+                      <div style={{ fontWeight: '600', color: '#334155' }}>{item.title}</div>
                     </div>
                     <div style={{ fontWeight: '600', color: '#334155', alignSelf: 'flex-end' }}>
-                      {selectedOpt.price > 0 ? `+${selectedOpt.price.toLocaleString()}원` : '0원'}
+                      +{item.price.toLocaleString()}원
                     </div>
                   </div>
-                );
+                ));
               })}
             </div>
 
@@ -191,12 +268,45 @@ export default function CustomPackagePage() {
             {currentStep + 1}단계: {currentStepData.label} 선택
           </h2>
           <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '2rem' }}>
-            원하시는 {currentStepData.label} 옵션을 하나 선택해주세요.
+            {currentStepData.id === 'vehicles' ? '원하시는 차량을 모두 선택해주세요.' : 
+             currentStepData.id === 'clothes' ? '필요한 상복의 수량을 조절해주세요.' : 
+             '원하시는 옵션을 하나 선택해주세요.'}
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {OPTIONS[currentStepData.id].map((opt) => {
-              const isSelected = selections[currentStepData.id]?.id === opt.id;
+              if (opt.type === 'counter') {
+                 const count = selections[currentStepData.id][opt.id] || 0;
+                 const isSelected = count > 0;
+                 return (
+                    <div key={opt.id} style={{ 
+                      border: isSelected ? '2px solid var(--navy)' : '1px solid #cbd5e1',
+                      background: isSelected ? '#f8fafc' : 'white',
+                      borderRadius: '12px', padding: '1.5rem',
+                      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                      transition: 'all 0.2s'
+                    }}>
+                       <div>
+                         <div style={{ fontSize: '1.15rem', fontWeight: '800', color: isSelected ? 'var(--navy)' : '#334155' }}>{opt.title}</div>
+                         <div style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '2px' }}>{opt.desc}</div>
+                         <div style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1rem', marginTop: '6px' }}>+{opt.price.toLocaleString()}원</div>
+                       </div>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#e2e8f0', padding: '6px', borderRadius: '8px' }}>
+                         <button onClick={(e) => { e.stopPropagation(); handleCounter(currentStepData.id, opt.id, -1) }} style={{ width: '32px', height: '32px', border: 'none', background: 'white', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>-</button>
+                         <span style={{ fontWeight: '800', minWidth: '24px', textAlign: 'center', color: '#1e293b' }}>{count}</span>
+                         <button onClick={(e) => { e.stopPropagation(); handleCounter(currentStepData.id, opt.id, 1) }} style={{ width: '32px', height: '32px', border: 'none', background: 'white', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>+</button>
+                       </div>
+                    </div>
+                 );
+              }
+
+              let isSelected = false;
+              if (opt.type === 'radio') {
+                 isSelected = selections[currentStepData.id] === opt.id;
+              } else if (opt.type === 'checkbox') {
+                 isSelected = selections[currentStepData.id].includes(opt.id);
+              }
+
               return (
                 <div 
                   key={opt.id} 
@@ -206,24 +316,26 @@ export default function CustomPackagePage() {
                     background: isSelected ? '#f8fafc' : 'white',
                     borderRadius: '12px', padding: '1.5rem', cursor: 'pointer',
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    transition: 'all 0.2s', position: 'relative', overflow: 'hidden'
+                    transition: 'all 0.2s'
                   }}
                 >
-                  {opt.recommended && (
-                    <div style={{ position: 'absolute', top: 0, right: 0, background: 'var(--gold)', color: 'white', fontSize: '0.7rem', fontWeight: '800', padding: '0.2rem 0.75rem', borderRadius: '0 0 0 8px' }}>
-                      추천
-                    </div>
-                  )}
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                      <span style={{ fontSize: '1.15rem', fontWeight: '800', color: isSelected ? 'var(--navy)' : '#334155' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ 
+                      width: '22px', height: '22px', 
+                      borderRadius: opt.type === 'radio' ? '50%' : '6px', 
+                      border: isSelected ? '6px solid var(--navy)' : '2px solid #cbd5e1', 
+                      background: isSelected ? 'white' : 'transparent',
+                      transition: 'all 0.2s', flexShrink: 0
+                    }} />
+                    <div>
+                      <div style={{ fontSize: '1.15rem', fontWeight: '800', color: isSelected ? 'var(--navy)' : '#334155' }}>
                         {opt.title}
-                      </span>
+                      </div>
+                      {opt.desc && <div style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '2px' }}>{opt.desc}</div>}
                     </div>
-                    <div style={{ fontSize: '0.9rem', color: '#64748b' }}>{opt.desc}</div>
                   </div>
                   <div style={{ fontWeight: '800', color: isSelected ? 'var(--navy)' : '#475569', fontSize: '1.1rem' }}>
-                    {opt.price === 0 ? '기본 포함' : `+${opt.price.toLocaleString()}원`}
+                    {opt.price === 0 ? '추가금 없음' : `+${opt.price.toLocaleString()}원`}
                   </div>
                 </div>
               );
