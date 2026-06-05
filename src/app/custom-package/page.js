@@ -256,7 +256,11 @@ export default function CustomPackagePage() {
             <div style={{ position: 'absolute', top: '50%', left: 0, height: '3px', background: 'var(--gold)', zIndex: 1, transform: 'translateY(-50%)', width: `${(currentStep / (STEPS.length - 1)) * 100}%`, transition: 'width 0.3s ease' }} />
             
             {STEPS.map((step, idx) => (
-              <div key={step.id} style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+              <div 
+                key={step.id} 
+                onClick={() => setCurrentStep(idx)}
+                style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
+              >
                 <div style={{ 
                   width: '32px', height: '32px', borderRadius: '50%', 
                   background: idx <= currentStep ? 'var(--gold)' : '#fff', 
