@@ -27,7 +27,7 @@ const OPTIONS = {
     { id: 'v_amb', title: '앰블런스', desc: '자택이나 요양원, 요양병원처럼 장례식장이 함께 있지 않은 곳에서 임종하신 경우 필요한 서비스입니다. 고인을 장례식장 안치실까지 편안하게 모실 수 있도록 전용 앰뷸런스를 배차해 드립니다.', price: 100000, type: 'checkbox' },
     { id: 'v_sprinter', title: '스프린터(8인승)', desc: '소규모 가족 이동에 적합', price: 300000, type: 'checkbox' },
     { id: 'v_limo', title: '리무진', desc: '최고급 고인 전용 차량', price: 400000, type: 'checkbox' },
-    { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', price: 450000, type: 'checkbox' },
+    { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', note: '💡 장의버스 자체에 고인 이송 공간이 포함되어 있어, 버스 한 대로 고인과 유족이 함께 정중히 이동하실 수 있습니다. 리무진은 꼭 선택하지 않으셔도 됩니다.', price: 450000, type: 'checkbox' },
   ],
   staff: [
     { id: 's_count', title: '접객 도우미', desc: '1명 추가 시 10시간 지원 기준', price: 120000, type: 'counter' },
@@ -349,6 +349,11 @@ export default function CustomPackagePage() {
                         {opt.title}
                       </div>
                       {opt.desc && <div style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '2px' }}>{opt.desc}</div>}
+                      {opt.note && (
+                        <div style={{ fontSize: '0.8rem', color: '#0369a1', background: '#f0f9ff', padding: '0.6rem 0.8rem', borderRadius: '6px', marginTop: '0.6rem', lineHeight: '1.4', wordBreak: 'keep-all' }}>
+                          {opt.note}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div style={{ fontWeight: '800', color: isSelected ? 'var(--navy)' : '#475569', fontSize: '1.1rem' }}>
