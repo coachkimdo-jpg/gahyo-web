@@ -234,7 +234,7 @@ export default function CustomPackagePage() {
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px dashed #cbd5e1' }}>
-                <div>
+                <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: '700', color: '#1e293b' }}>
                     {selections.altar === 'a_none' ? '기본 제공 항목 (무빈소 기준)' : '기본 제공 항목 (빈소 마련 기준)'}
                   </div>
@@ -242,7 +242,7 @@ export default function CustomPackagePage() {
                     {(selections.altar === 'a_none' ? [
                       '장례지도사 1명 (3일 진행)',
                       '입관지도사 2명 (염습, 입관 진행)',
-                      '입관용품 (관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)',
+                      <>입관용품 (관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경,<br/>다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)</>,
                       '장례식장 안치실 예약',
                       '화장장 예약',
                       '장지(모실곳) 할인 및 예약',
@@ -252,7 +252,7 @@ export default function CustomPackagePage() {
                       '장례지도사 1명 (3일 진행)',
                       '입관지도사 2명 (염습, 입관 진행)',
                       '빈소용품 (향, 초, 부의록, 명패, 위패, 운구장갑, 머리핀, 완장)',
-                      '입관용품 (관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)',
+                      <>입관용품 (관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경,<br/>다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)</>,
                       '장례식장 빈소 예약',
                       '모바일 부고 문자',
                       '화장장 예약',
@@ -267,7 +267,7 @@ export default function CustomPackagePage() {
                     ))}
                   </div>
                 </div>
-                <div style={{ fontWeight: '700', color: '#1e293b' }}>{basePrice.toLocaleString()}원</div>
+                <div style={{ fontWeight: '700', color: '#1e293b', whiteSpace: 'nowrap', marginLeft: '1rem' }}>{basePrice.toLocaleString()}원</div>
               </div>
 
               {STEPS.map((step) => {
