@@ -110,7 +110,7 @@ export default function CustomPackagePage() {
 
   const currentStepData = STEPS[currentStep];
   
-  const basePrice = selections.altar === 'a_none' ? 800000 : 1150000;
+  const basePrice = selections.altar === 'a_none' ? 1200000 : 1150000;
   
   let optionsPrice = 0;
   STEPS.slice(0, currentStep + 1).forEach(step => {
@@ -241,8 +241,10 @@ export default function CustomPackagePage() {
                   <div style={{ marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', padding: '1.25rem 1rem', background: '#f8fafc', borderRadius: '8px' }}>
                     {(selections.altar === 'a_none' ? [
                       '장례지도사 1명 (3일 진행)',
-                      '입관지도사 2명 (염습, 입관 진행)',
-                      <>입관용품 (관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경,<br/>다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)</>,
+                      '입관보조 1명 (염습, 입관 진행)',
+                      '장의 차량 1대 제공 (스프린터 또는 8인승 리무진)',
+                      '상주용품 3종 (완장, 리본, 장갑)',
+                      <>입관용품 16종 (0.6 오동관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경,<br/>천주경, 다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)</>,
                       '장례식장 안치실 예약',
                       '화장장 예약',
                       '장지(모실곳) 할인 및 예약',
