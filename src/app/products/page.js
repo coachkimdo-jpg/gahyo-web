@@ -252,7 +252,13 @@ export default function ProductsPage() {
                       <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: p.accentLight, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.15rem', flexShrink: 0 }}>{row.icon}</div>
                       <div>
                         <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#6b7280', marginBottom: '0.2rem' }}>{row.label}</div>
-                        <div style={{ fontSize: '0.95rem', color: '#1a1a2e', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{row.value}</div>
+                        <div style={{ fontSize: '0.95rem', color: '#1a1a2e' }}>
+                          {row.value.split('\n').map((line, i, arr) => (
+                            <div key={i} style={{ padding: '0.6rem 0', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
+                              {line}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -286,18 +292,39 @@ export default function ProductsPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {['인력 지원', '의전 차량', '고인 용품', '입관 용품', '상복 제공', '특화 서비스'].map((label, rowIdx) => (
-                    <tr key={label} style={{ background: rowIdx % 2 === 0 ? 'white' : '#fafafa' }}>
-                      <td style={{ padding: '1.1rem 1.5rem', fontWeight: '700', color: '#374151', fontSize: '0.9rem', borderBottom: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)', verticalAlign: 'middle' }}>
-                        {PRODUCTS[0].rows[rowIdx].icon} {label}
-                      </td>
-                      {PRODUCTS.map(p => (
-                        <td key={`${p.id}-${label}`} style={{ padding: '1.1rem 1.25rem', fontSize: '0.92rem', color: '#1a1a2e', lineHeight: 1.6, borderBottom: '1px solid var(--border-color)', borderLeft: `1px solid ${p.borderColor}30`, whiteSpace: 'pre-line', verticalAlign: 'middle' }}>
-                          {p.rows[rowIdx].value}
+                  {['인력 지원', '의전 차량', '고인 용품', '입관 용품', '상복 제공', '특화 서비스'].map((label, rowIdx) => {
+                    const allSame = PRODUCTS.every(p => p.rows[rowIdx].value === PRODUCTS[0].rows[rowIdx].value);
+                    return (
+                      <tr key={label} style={{ background: rowIdx % 2 === 0 ? 'white' : '#fafafa' }}>
+                        <td style={{ padding: '1.1rem 1.5rem', fontWeight: '700', color: '#374151', fontSize: '0.9rem', borderBottom: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)', verticalAlign: 'middle' }}>
+                          {PRODUCTS[0].rows[rowIdx].icon} {label}
                         </td>
-                      ))}
-                    </tr>
-                  ))}
+                        {allSame ? (
+                          <td colSpan={PRODUCTS.length} style={{ padding: '1.1rem 1.25rem', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', verticalAlign: 'middle', textAlign: 'center', background: '#fdfdfd' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                              {PRODUCTS[0].rows[rowIdx].value.split('\n').map((line, i, arr) => (
+                                <div key={i} style={{ padding: '0.6rem 0', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
+                                  {line}
+                                </div>
+                              ))}
+                            </div>
+                          </td>
+                        ) : (
+                          PRODUCTS.map(p => (
+                            <td key={`${p.id}-${label}`} style={{ padding: '1.1rem 1.25rem', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', borderLeft: `1px solid ${p.borderColor}30`, verticalAlign: 'middle' }}>
+                              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                {p.rows[rowIdx].value.split('\n').map((line, i, arr) => (
+                                  <div key={i} style={{ padding: '0.6rem 0', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
+                                    {line}
+                                  </div>
+                                ))}
+                              </div>
+                            </td>
+                          ))
+                        )}
+                      </tr>
+                    );
+                  })}
                   <tr>
                     <td style={{ padding: '1.25rem 1.5rem', fontWeight: '700', color: '#374151', fontSize: '0.9rem', borderRight: '1px solid var(--border-color)' }}>빠른 상담</td>
                     {PRODUCTS.map(p => (
