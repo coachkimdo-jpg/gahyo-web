@@ -208,6 +208,14 @@ export default function HomePage() {
         </div>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           
+          {/* 상조 상품 직접 구성하기 (모바일 접근성 강화 CTA) */}
+          <div style={{ marginBottom: '2rem' }}>
+            <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', maxWidth: '320px', padding: '1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: '#001a3a', borderRadius: '8px', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)' }}>
+              <span>🛠️ 상조 상품 직접 구성하기</span>
+              <span style={{ fontSize: '1.2rem', marginLeft: 'auto' }}>→</span>
+            </Link>
+          </div>
+
           {/* E-E-A-T 신뢰도 배지 */}
           <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', padding: '0.7rem 1.25rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
