@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const metadata = {
   title: '후불제상조상품 비교 및 가격 안내 | 가효상조',
-  description: '투명하고 정직한 가효상조의 4가지 후불제상조상품(무빈소 120, 가효 270, 가효 330, 가효 430)을 비교해 보세요. 전문가가 검증한 합리적인 장례비용입니다.',
+  description: '투명하고 정직한 가효상조의 4가지 후불제상조상품(무빈소 120, 가효 265, 가효 330, 가효 430)을 비교해 보세요. 전문가가 검증한 합리적인 장례비용입니다.',
 };
 
 const PRODUCTS = [
@@ -26,9 +26,9 @@ const PRODUCTS = [
     ],
   },
   {
-    id: '270',
-    name: '가효 270',
-    price: '2,700,000',
+    id: '265',
+    name: '가효 265',
+    price: '2,650,000',
     badge: '추천 상품',
     desc: '합리적인 비용으로 치르는 표준 3일장',
     accent: '#002C5F',
@@ -334,8 +334,8 @@ export default function ProductsPage() {
                   <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.75rem' }}>매월 납입 의무</div>
                 </div>
                 <div style={{ flex: 1, padding: '1.5rem', textAlign: 'center', background: '#e6eef8' }}>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--navy)', fontWeight: '700', marginBottom: '0.5rem' }}>가효상조 270</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#c0392b' }}>2,700,000원</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--navy)', fontWeight: '700', marginBottom: '0.5rem' }}>가효상조 265</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#c0392b' }}>2,650,000원</div>
                   <div style={{ fontSize: '0.85rem', color: '#c0392b', fontWeight: '800', marginTop: '0.75rem', background: 'white', padding: '0.25rem 0', borderRadius: '4px' }}>90만원 절약</div>
                 </div>
               </div>

@@ -49,10 +49,10 @@ const PRODUCTS = [
     colorLight: '#f3f4f6',
   },
   {
-    id: 'g270',
-    name: '가효 270',
-    price: '2,700,000',
-    priceShort: '270만원',
+    id: 'g265',
+    name: '가효 265',
+    price: '2,650,000',
+    priceShort: '265만원',
     target: '일반적인 3일장을 원하시는 분',
     days: '3일장',
     includes: [
@@ -247,7 +247,7 @@ export default function HomePage() {
           <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
             {[
               { label: '무빈소', price: '120만원' },
-              { label: '일반 3일장', price: '270만원' },
+              { label: '일반 3일장', price: '265만원' },
               { label: '리무진 포함', price: '330만원' },
               { label: 'VIP 프리미엄', price: '430만원' },
             ].map(p => (

@@ -190,9 +190,9 @@ export default function AboutPage() {
                   <div style={{ marginTop: '0.75rem', fontSize: '1.35rem', fontWeight: '900', color: '#ef4444' }}>최종 400만 원+</div>
                 </div>
                 <div style={{ background: 'rgba(201,168,76,0.12)', borderRadius: '8px', padding: '1.25rem', textAlign: 'center', border: '1px solid rgba(201,168,76,0.3)' }}>
-                  <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', marginBottom: '0.5rem' }}>가효상조 270</div>
-                  <div style={{ color: '#86efac', fontSize: '0.9rem', lineHeight: 1.8 }}>확정가 270만 원<br />부당 추가금 0원<br />–<br />–</div>
-                  <div style={{ marginTop: '0.75rem', fontSize: '1.35rem', fontWeight: '900', color: 'var(--gold)' }}>최종 270만 원</div>
+                  <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', marginBottom: '0.5rem' }}>가효상조 265</div>
+                  <div style={{ color: '#86efac', fontSize: '0.9rem', lineHeight: 1.8 }}>확정가 265만 원<br />부당 추가금 0원<br />–<br />–</div>
+                  <div style={{ marginTop: '0.75rem', fontSize: '1.35rem', fontWeight: '900', color: 'var(--gold)' }}>최종 265만 원</div>
                 </div>
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function AboutPage() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem' }}>
                 {[
                   { name: '무빈소 120', price: '120만 원', feature: '가족 소규모 1~2일장', accent: '#4b5563' },
-                  { name: '가효 270', price: '270만 원', feature: '표준 3일장 (추천)', accent: '#002c5f' },
+                  { name: '가효 265', price: '265만 원', feature: '표준 3일장 (추천)', accent: '#002c5f' },
                   { name: '가효 330', price: '330만 원', feature: '리무진 포함 품격장', accent: '#92520a' },
                   { name: '가효 430', price: '430만 원', feature: '장거리 VIP 프리미엄', accent: '#1d4a3a' },
                 ].map(p => (
