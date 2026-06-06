@@ -109,44 +109,56 @@
       "consult"
     ],
     "photos": [
-      "https://placehold.co/800x600/1e293b/FFFFFF/png?text=Preparing+Images..."
+      "/images/halls/stmary-1000000382/hall.png"
     ],
     "pricingData": [
       {
         "itemType": "빈소사용료",
-        "itemName": "VIP실 (150평형)",
-        "price": 4500000,
+        "itemName": "150평형",
+        "price": 4620000,
         "detail": "1일 (24시간) 기준"
       },
       {
         "itemType": "빈소사용료",
-        "itemName": "특실 (100평형)",
-        "price": 3200000,
+        "itemName": "120평형",
+        "price": 3708000,
         "detail": "1일 (24시간) 기준"
       },
       {
         "itemType": "빈소사용료",
-        "itemName": "일반실 (50평형)",
-        "price": 1800000,
+        "itemName": "90평형",
+        "price": 2844000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "80평형",
+        "price": 2328000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "63평형",
+        "price": 1716000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "43평형",
+        "price": 1032000,
         "detail": "1일 (24시간) 기준"
       },
       {
         "itemType": "안치실",
         "itemName": "안치료",
-        "price": 120000,
-        "detail": "1일 (24시간) 기준"
+        "price": 96000,
+        "detail": "1일 기준"
       },
       {
         "itemType": "입관실",
         "itemName": "입관실사용료",
-        "price": 500000,
+        "price": 400000,
         "detail": "1회 기준"
-      },
-      {
-        "itemType": "식대",
-        "itemName": "식사 (기본찬+국+밥)",
-        "price": 18000,
-        "detail": "1인당 평균"
       }
     ]
   },
@@ -187,25 +199,37 @@
       "consult"
     ],
     "photos": [
-      "https://placehold.co/800x600/1e293b/FFFFFF/png?text=Preparing+Images..."
+      "/images/halls/bokji-1000000381/hall.png"
     ],
     "pricingData": [
       {
         "itemType": "빈소사용료",
+        "itemName": "VVIP실 (150평형)",
+        "price": 1512000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
+        "itemName": "VIP실 (80평형)",
+        "price": 1080000,
+        "detail": "1일 (24시간) 기준"
+      },
+      {
+        "itemType": "빈소사용료",
         "itemName": "특실 (70평형)",
-        "price": 1800000,
+        "price": 912000,
         "detail": "1일 (24시간) 기준"
       },
       {
         "itemType": "빈소사용료",
         "itemName": "일반실 (40평형)",
-        "price": 900000,
+        "price": 672000,
         "detail": "1일 (24시간) 기준"
       },
       {
         "itemType": "안치실",
         "itemName": "안치료",
-        "price": 100000,
+        "price": 100800,
         "detail": "1일 (24시간) 기준"
       },
       {
@@ -213,12 +237,6 @@
         "itemName": "입관실사용료",
         "price": 250000,
         "detail": "1회 기준"
-      },
-      {
-        "itemType": "식대",
-        "itemName": "식사 (기본찬+국+밥)",
-        "price": 14000,
-        "detail": "1인당 평균"
       }
     ]
   },

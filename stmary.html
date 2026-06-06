@@ -1,0 +1,1746 @@
+
+
+
+
+
+
+
+	
+		
+	
+	
+	
+	
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, user-scalable=yes, target-density-dpi=medium-dpi" />
+		
+			<link href="/css/portal/common.css?2026051902" rel="stylesheet" type="text/css" />
+			<link href="/css/portal/sub.css?2026051902" rel="stylesheet" type="text/css" />
+			<link href="/css/portal/layout.css?2026051902" rel="stylesheet" type="text/css" />
+			<link href="/css/portal/popup.css?2026051902" rel="stylesheet" type="text/css" />
+		
+		
+		<link href="/css/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+		
+		<script type="text/javascript">
+			var contextPath = "";
+			var menuGroupDomain = "esky";
+		</script>
+		<script type="text/javascript" src="/js/lib/jquery-3.5.1.js"></script>
+		<script type="text/javascript" src="/js/lib/func.js"></script>
+		<script type="text/javascript" src="/js/lib/base64.js"></script>
+		<script type="text/javascript" src="/js/lib/jquery.pmPagination.js?2026051902"></script>
+		<script type="text/javascript" src="/js/lib/jquery.pmAjax.js?2026051902"></script>
+		<script type="text/javascript" src="/js/lib/jquery.pmValidator.js?2026051902"></script>
+		<script type="text/javascript" src="/js/lib/prng4.js"></script>
+		<script type="text/javascript" src="/js/lib/json3.min.js"></script>
+		<script type="text/javascript" src="/js/lib/rsa.js"></script>
+		<script type="text/javascript" src="/js/lib/jsbn.js"></script>
+		<script type="text/javascript" src="/js/lib/rng.js"></script>
+		<script type="text/javascript" src="/js/lib/common.js?2026051902"></script>
+		<script type="text/javascript" src="/js/lib/clipboard.min.js"></script>
+		<script type="text/javascript" src="/js/lib/jquery-ui.js"></script>
+		<script type="text/javascript" src="/js/lib/jquery.simple-dtpicker.js"></script>
+		<script type="text/javascript" src="/js/lib/jquery.cookie.js"></script>
+		<script type="text/javascript" src="/js/lib/jquery.MultiFile.min.js"></script>
+		<script type="text/javascript" src="/js/portal/header.js?2026051902"></script>
+		<script type="text/javascript" src="/js/portal/left_menu.js?2026051902"></script>
+		<script type="text/javascript" src="/js/portal/layout.js?2026051902"></script>
+		<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+		
+		
+		
+		
+		
+		
+		
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<script type="text/javascript" src="/js/portal/fnlfac/fac_view.js?2026051902"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea2156b5e25422acf0238a9dcffbd19e"></script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<title>e하늘장사정보서비스</title>
+	</head>
+	<body>
+		<input type="hidden" id="menuGroupDivCd" value=""/>
+		<input type="hidden" id="menuGroupId" value="MENUGROUP00000000000"/>
+		<div id="wrap">
+			<div class="skipnav"><a href="#sub_container">본문 바로가기</a></div>
+			<div id="mask"></div>
+			<div id="loading"><img src="/img/loading.png" alt="loading"/></div>
+			
+			
+
+
+
+<div class="mobAllmenu">
+	<div class="navTop">
+		<h3><a href="/portal/esky/main/main.do" class="mobile_logo">로고</a></h3>
+		<span class="nav_close"><a href="javascript:void(0);" id="btn_close_mobAllmenu">닫기</a></span>
+	</div>
+	<div id="mob_nav" class="nav">
+		<span class="nav_tit">장사정보서비스</span>
+		<ul>
+			
+				<li >
+					
+					
+						<a href="javascript:void(0);">장사시설</a>
+						<ul>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/fnlfac/fac_list.do?menuId=M0001000100000000" target="_self" >장사시설/장례용품가격</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/fnlfac/funeral_package_list.do?menuId=M0001000300000000" target="_self" >장례예식 패키지 상품</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/fnlfac/funeral_item_list.do?menuId=M0001000200000000" target="_self" >장례용품검색</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+						</ul>
+					
+				</li>
+			
+				<li >
+					
+					
+						<a href="javascript:void(0);">장사정보</a>
+						<ul>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000300000000" target="_self" >지자체지원사항</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000400000000" target="_self" >공지사항</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000500000000" target="_self" >장사관련 소식</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/withoutfamily/list.do?menuId=M0003000600000000" target="_self" >무연고 공고</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/counsel/main/main.do" target="_blank" onclick="menuCount('M0003000700000000');">온라인 사례집(사이트이동)</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000800000000" target="_self" >장사 현황/통계</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000900000000" target="_self" >일반자료실</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+						</ul>
+					
+				</li>
+			
+				<li >
+					
+					
+						<a href="javascript:void(0);">e스카이러닝(교육)</a>
+						<ul>
+							
+								<li class="more">
+									
+										
+											<a href="javascript:void(0);">정보화교육</a>
+										
+										
+									
+									
+										<ul>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000800010000" target="_self" >e하늘 실무/시설운영 교육</a>
+															
+														
+														
+													
+												</li>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000800020000" target="_self" >e하늘 개인정보보호 교육</a>
+															
+														
+														
+													
+												</li>
+											
+										</ul>
+									
+								</li>
+							
+								<li class="more">
+									
+										
+											<a href="javascript:void(0);">장사시설 인력교육</a>
+										
+										
+									
+									
+										<ul>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000900010000" target="_self" >장사시설 종사인력교육</a>
+															
+														
+														
+													
+												</li>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000900020000" target="_self" >장례식장영업자 및 종사자교육</a>
+															
+														
+														
+													
+												</li>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000900030000" target="_self" >재난대비 장례식장 교육</a>
+															
+														
+														
+													
+												</li>
+											
+										</ul>
+									
+								</li>
+							
+								<li class="more">
+									
+										
+											<a href="javascript:void(0);">장례지도사 자격증</a>
+										
+										
+									
+									
+										<ul>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000200010001" target="_self" >자격정보</a>
+															
+														
+														
+													
+												</li>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000200020001" target="_self" >교육기관설치정보</a>
+															
+														
+														
+													
+												</li>
+											
+												<li>
+													
+														
+															
+															
+																<a href="/portal/esky/contents/contents_view.do?menuId=M0002000200040000" target="_self" >관련정보안내</a>
+															
+														
+														
+													
+												</li>
+											
+										</ul>
+									
+								</li>
+							
+						</ul>
+					
+				</li>
+			
+				<li >
+					
+					
+						<a href="javascript:void(0);">e하늘소개</a>
+						<ul>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0004000100000000" target="_self" >주요 제공서비스</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0004000200000000" target="_self" >BI 소개</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0004000300000000" target="_self" >웹(Web)배너소개</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+						</ul>
+					
+				</li>
+			
+				<li >
+					
+					
+						<a href="javascript:void(0);">이용안내</a>
+						<ul>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000100000000" target="_self" >이용안내</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000200000000" target="_self" >사이트맵</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000300000000" target="_self" >이용약관</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+														<a href="https://www.mohw.go.kr/menu.es?mid=a10803010000" target="_blank" onclick="menuCount('M0005000400000000');">개인정보처리방침</a>
+													
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000500000000" target="_self" >저작권정책</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+								<li >
+									
+										
+										
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000600000000" target="_self" >이메일 무단수집거부</a>
+													
+												
+												
+											
+										
+									
+									
+								</li>
+							
+						</ul>
+					
+				</li>
+			
+		</ul>
+	</div>
+	
+		<div class="navLink">
+			<ul>
+				<li class="nav_link1">
+					<a href="https://www.15774129.go.kr/funeral" target="_blank" title="새창열림">
+						<span class="nav_tit">화장예약서비스</span>
+						<span class="nav_txt">전국 화장예약 신청 서비스입니다.</span>
+					</a>
+				</li>
+				<li class="nav_link2">
+					<a href="https://www.15774129.go.kr/platform" target="_blank" title="새창열림">
+						<span class="nav_tit">장례문화 디지털 플랫폼</span>
+						<span class="nav_txt">장례문화 디지털 플랫폼 서비스를 이용하실 수 있습니다.</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	
+	
+</div>
+			<!-- header -->
+			<div id="header">
+				
+
+
+
+<input type="hidden" id="topBannerGroupId" value="" />
+<input type="hidden" id="menuOpenYn" value="" />
+
+<form id="printForm" action="/portal/contents/contents_print.do" method="post" target="print">
+	<input type="hidden" id="cData" name="cData"/>
+	<input type="hidden" id="cLoc" name="cLoc"/>
+	<input type="hidden" id="cMenuGroupDomain" name="cMenuGroupDomain"/>
+</form>
+
+	<div class="top_util">
+		<div class="top_inner">
+			<h1 class="logo"><a href="/portal/esky/main/main.do"><img src="/img/portal/common/logo.gif" alt="e하늘장사정보서비스 로고"></a></h1>
+			
+				<div class="util_wrap">
+						<ul class="util_list">
+							<li><a href="https://113366.com/esky" class="remote" target="_blank" title="새창열림">원격지원요청</a></li>
+							<li><a href="javascript:window.open('https://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do','국가상징','top=10, left=10, width=886, height=725, status=no, menubar=no, toolbar=no, resizable=no'); void(0)" class="flag">국가상징</a></li>
+						</ul>
+						<div class="search_box">
+							<input type="text" id="total_searchKeyword" title="통합검색">
+							<a href="javascript:void(0);" id="btn_total_search" class="btn_search">검색</a>
+						</div>
+				</div>
+				<button type="button" class="mb_search">검색</button>
+			
+			
+			<button type="button" class="mb_totalmenu">전체메뉴</button>
+		</div>
+		
+		<div class="searchM">
+			<div class="search_input">
+				<input type="text" id="total_searchKeyword_m" title="통합검색">
+				<a href="javascript:void(0);" id="btn_total_search_m">검색</a>						
+			</div>
+			<button type="button" id="btn_total_search_close_m" class="search_close">닫기</button>
+		</div>
+	</div>
+	<div class="gnb_wrap">
+		
+			<div class="gnb">
+				<ul>
+					<li><a href="https://www.15774129.go.kr/funeral" target="_blank" title="새창열림"><span>화장예약서비스</span></a>
+						<div class="menu_wrap">
+							<p class="menu_tit">전국 화장예약 신청 서비스입니다.</p>
+							
+							<span class="menu_info">[주요기능]<br> 전국 화장시설 현황, 화장예약, 화장예약 불가자 실명인증신청</span>
+						</div>
+					</li>
+					<li><a href="https://www.15774129.go.kr/platform" target="_blank" title="새창열림"><span>장례문화 디지털 플랫폼</span></a>
+						<div class="menu_wrap">
+							<p class="menu_tit">장례문화 디지털 플랫폼 서비스입니다.</p>
+							<span class="menu_info">[주요기능]<br> 생애 주기별 추억 저장소, 디지털 추모서비스, 장례문화홍보관 등</span>
+						</div>
+					</li>
+					<li><a href="https://www.15774129.go.kr/new/facility/facility_index.do" target="_blank" title="새창열림"><span>장사시설서비스(시설업무용)</span></a>
+						<div class="menu_wrap">
+							<p class="menu_tit">장사시설 관리 서비스입니다.</p>
+							<span class="menu_info">[주요기능]<br> 사망자정보관리, 가격정보관리, 시설정보관리 등</span>
+						</div>
+					</li>
+				</ul>
+				<button type="button" class="total_menu">전체메뉴</button>
+			</div>
+		
+		<div class="gnb_bg"></div>
+		<div class="sub_gnb_wrap">
+			<div class="sub_gnb">
+				<ul class="depth1">
+					
+						<li>
+							<a href="javascript:void(0);" title="닫힘">장사시설</a>
+							
+								<ul class="depth2">
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/fnlfac/fac_list.do?menuId=M0001000100000000" target="_self" >장사시설/장례용품가격</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/fnlfac/funeral_package_list.do?menuId=M0001000300000000" target="_self" >장례예식 패키지 상품</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/fnlfac/funeral_item_list.do?menuId=M0001000200000000" target="_self" >장례용품검색</a>
+													
+												
+												
+											
+											
+										</li>
+									
+								</ul>
+							
+						</li>
+					
+						<li>
+							<a href="javascript:void(0);" title="닫힘">장사정보</a>
+							
+								<ul class="depth2">
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000300000000" target="_self" >지자체지원사항</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000400000000" target="_self" >공지사항</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000500000000" target="_self" >장사관련 소식</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/withoutfamily/list.do?menuId=M0003000600000000" target="_self" >무연고 공고</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/counsel/main/main.do" target="_blank" onclick="menuCount('M0003000700000000');">온라인 사례집(사이트이동)</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000800000000" target="_self" >장사 현황/통계</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/bbs/list.do?menuId=M0003000900000000" target="_self" >일반자료실</a>
+													
+												
+												
+											
+											
+										</li>
+									
+								</ul>
+							
+						</li>
+					
+						<li>
+							<a href="javascript:void(0);" title="닫힘">e스카이러닝(교육)</a>
+							
+								<ul class="depth2">
+									
+										<li class="more">
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0002000800010000" target="_self" title="닫힘">정보화교육</a>
+													
+												
+												
+											
+											
+												<ul class="depth3">
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000800010000" target="_self" >e하늘 실무/시설운영 교육</a>
+																	
+																
+																
+															
+														</li>
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000800020000" target="_self" >e하늘 개인정보보호 교육</a>
+																	
+																
+																
+															
+														</li>
+													
+												</ul>
+											
+										</li>
+									
+										<li class="more">
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0002000900010000" target="_self" title="닫힘">장사시설 인력교육</a>
+													
+												
+												
+											
+											
+												<ul class="depth3">
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000900010000" target="_self" >장사시설 종사인력교육</a>
+																	
+																
+																
+															
+														</li>
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000900020000" target="_self" >장례식장영업자 및 종사자교육</a>
+																	
+																
+																
+															
+														</li>
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000900030000" target="_self" >재난대비 장례식장 교육</a>
+																	
+																
+																
+															
+														</li>
+													
+												</ul>
+											
+										</li>
+									
+										<li class="more">
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0002000200010001" target="_self" title="닫힘">장례지도사 자격증</a>
+													
+												
+												
+											
+											
+												<ul class="depth3">
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000200010001" target="_self" >자격정보</a>
+																	
+																
+																
+															
+														</li>
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000200020001" target="_self" >교육기관설치정보</a>
+																	
+																
+																
+															
+														</li>
+													
+														<li>
+															
+																
+																	
+																	
+																		<a href="/portal/esky/contents/contents_view.do?menuId=M0002000200040000" target="_self" >관련정보안내</a>
+																	
+																
+																
+															
+														</li>
+													
+												</ul>
+											
+										</li>
+									
+								</ul>
+							
+						</li>
+					
+						<li>
+							<a href="javascript:void(0);" title="닫힘">e하늘소개</a>
+							
+								<ul class="depth2">
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0004000100000000" target="_self" >주요 제공서비스</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0004000200000000" target="_self" >BI 소개</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0004000300000000" target="_self" >웹(Web)배너소개</a>
+													
+												
+												
+											
+											
+										</li>
+									
+								</ul>
+							
+						</li>
+					
+						<li>
+							<a href="javascript:void(0);" title="닫힘">이용안내</a>
+							
+								<ul class="depth2">
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000100000000" target="_self" >이용안내</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000200000000" target="_self" >사이트맵</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000300000000" target="_self" >이용약관</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+														<a href="https://www.mohw.go.kr/menu.es?mid=a10803010000" target="_blank" onclick="menuCount('M0005000400000000');">개인정보처리방침</a>
+													
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000500000000" target="_self" >저작권정책</a>
+													
+												
+												
+											
+											
+										</li>
+									
+										<li >
+											
+												
+													
+													
+														<a href="/portal/esky/contents/contents_view.do?menuId=M0005000600000000" target="_self" >이메일 무단수집거부</a>
+													
+												
+												
+											
+											
+										</li>
+									
+								</ul>
+							
+						</li>
+					
+				</ul>
+				<button type="button" id="btn_print" class="btn_print" title="새창열림"><span>프린트</span></button>
+				<button type="button" class="btn_share"><span>공유</span></button>
+				<div class="sns_share">
+					<ul>
+						<li><a href="javascript:sendLinkFacebook();" title="페이스북 새창열기" class="sns_facebook">페이스북</a></li>
+						<li><a href="javascript:sendLinkNaver();" title="네이버 새창열기" class="sns_naver">네이버</a></li>
+						<li><a href="javascript:sendLinkKakao();" title="카카오 새창열기" class="sns_kakao">카카오</a></li>
+						<li><a href="javascript:sendLinkBand();" title="밴드 새창열기" class="sns_band">밴드</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<div id="header_contents" style="display:none;display:inline-block"></div>
+			</div>
+
+			
+				<div id="right_menu" style="z-index:999"><a href="javascript:void(0);" id="btn_chatbot" class="side_open" title="새창열림"><img src="../../../img/portal/chatbot/chatbot.png" alt="하늘e 챗봇상담" /></a></div>
+				<div class="right_menu_over">
+					<a href="javascript:void(0);" id="btn_chatbot_over" title="새창열림"><span>화장예약, 지자체 지원사항 등<br>궁금한게 있으면 "하늘e"를<br> 눌러주세요</span>	</a>
+				</div>
+			
+			<!-- //header -->
+	
+			<!-- container -->
+			
+				<div id="sub_container" class="print_contents">
+					<div class="sub_content">
+						
+
+
+
+
+
+						
+
+
+
+
+
+
+
+<div class="sub_top">
+	
+	<div class="path">
+		<span class="home">홈</span>
+		<span id="depth1"></span>
+		<span id="depth2"></span>		
+		<span id="depth3"></span>	
+	</div>
+	<div class="sub_tit"></div>
+</div>
+						
+
+
+
+
+
+
+
+
+
+
+<input type="hidden" id="facilitycd" value="1000000382"/>
+<input type="hidden" id="facilitygroupcd" value="TBC0700001"/>
+<input type="hidden" id="loc" value="price"/>
+<input type="hidden" id="sanbundiv" value="N"/>
+<div class="board_content">
+	<div class="pop_wrap price" id="popup_package" style="position:fixed; display:none; z-index: 105; top: 15%; left:0;">
+		<div class="pop_pu_Wrap" style="max-width:60rem">
+			<div class="pop_header">
+				<h1>장례예식 패키지 상품 정보</h1>
+				<span class="btn_close">
+					<a href="javascript:void(0)" id="btn_pop_close"><img src="/img/btn_close.png" alt="닫기"></a>
+				</span>
+			</div>
+			<div class="pop_cont_wrap" style="margin-top:1rem">
+				<div class="pop_container">
+					<div class="board_wrap pop_board_wrap" style="max-height:30rem;overflow-y:scroll">
+						<table class="tbl_info" cellspacing="0" summary="상품정보" style="margin-top:0">
+							<caption>장례예식 패키지 상품 정보 - 패키지 상품명, 장례방법, 정가(원), 판매가(원), 장례기간, 식사 포함여부 등</caption>
+							<colgroup>
+								<col width="20%">
+								<col width="30%">
+								<col width="20%">
+								<col width="30%">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>패키지 상품명</th>
+									<td id="packagename" class="txt_left"></td>
+									<th class="bd_left">장례방법</th>
+									<td id="funeralmethodnm" class="txt_left"></td>
+								</tr>
+								<tr>
+									<th>정가(원)</th>
+									<td id="packageamount" class="txt_left"></td>
+									<th class="bd_left">판매가(원)</th>
+									<td id="discountamount" class="txt_left"></td>
+								</tr>
+								<tr>
+									<th>장례기간</th>
+									<td id="funeralperiod" class="txt_left">4일</td>
+									<th class="bd_left">식사 포함여부</th>
+									<td id="foodamountnm" class="txt_left">200명 미만</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="pop_price">
+							<table class="tbl_price" cellspacing="0" summary="상품 가격정보">
+								<caption>상품 가격정보 - 구분, 품목명, 규견, 상품매용, 금액(원) 등</caption>
+								<colgroup>
+									<col width="15%">
+									<col width="25%">
+									<col width="45%">
+									<col width="15%">
+								</colgroup>
+								<thead>
+									<tr>
+										<th>구분</th>
+										<th>품목명</th>
+										<th>규격, 상품내용</th>
+										<th>금액(원)</th>
+									</tr>
+								</thead>
+								<tbody id="tbody_package_list"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="board_view">
+		<div class="facinfo_view">
+			<div id="loc1" class="facinfo_top">
+				<div class="facimg_wrap">
+					<div class="facimg_box"></div>
+					<div class="facimg_list">
+						<ul></ul>
+						<button type="button" class="facimg_prev">이전</button>
+						<button type="button" class="facimg_next">다음</button>
+					</div>
+				</div>
+				<div class="facinfo_wrap"></div>
+			</div>
+			<div class="facinfo_cont">
+				<div class="facinfo_tab">
+					<ul>
+						<li id="info" class="active"><a href="javascript:void(0);">소개</a></li>
+						<li id="price"><a href="javascript:void(0);">가격</a></li>
+						<li id="photo"><a href="javascript:void(0);">사진</a></li>
+						
+						<li id="map"><a href="javascript:void(0);">지도</a></li>
+						<li id="facility"><a href="javascript:void(0);">시설</a></li>
+					</ul>
+				</div>
+				<div class="fac_tab_cont tab_info">
+					<h3 class="tab_title">소개</h3>
+				</div>	
+				<div class="fac_tab_cont tab_price">
+					<h3 class="tab_title">가격</h3>
+					<span class="all_Open"> 
+						<label id="saleDiv"><input type="checkbox" id="chkSaleDiv">미판매 보기</label> 
+						<a href="javascript:void(0);" id="btn_show_all" class="close">전체닫기</a>
+					</span>
+					<div class="price_wrap">
+						<div class="price_item_wrap">
+							<div id="hallRent" class="price_item on">
+								<div class="price_tit">
+									<button type="button" id="btn_hallRent" class="price_close">항목닫기</button>
+									<h3>시설사용료</h3>
+								</div>	
+								<div class="price_cont">
+									<div class="price_header cloneTable">
+										
+											<table class="tbl_price">
+												<caption>시설사용료 목록 -  품종, 품명, 임대내용, 요금(단위:원), 일수, 관내평균가격, 전국평균가격, 판매구분, 선택</caption>
+												<colgroup>
+													<col width="10%" />
+													<col width="20%" />
+													<col width="20%" />
+													<col width="10%" />
+													<col width="8%" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="7%" />
+													<col width="5%" />	
+												</colgroup>
+												<thead>
+													<tr>
+														<th>품종</th>
+														<th>품명</th>
+														<th>임대내용</th>
+														<th>요금<br>(단위:원)</th>
+														<th>일수</th>
+														<th>관내<br>평균가격</th>
+														<th>전국<br>평균가격</th>
+														<th>판매<br>구분</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+											</table>
+										
+										
+									</div>
+									<div class="price_body">
+										<div id="table_hallRent" class="price_body"></div>
+										
+									</div>
+								</div>												
+							</div>
+							<div id="commission" class="price_item on">
+								<div class="price_tit">
+									<button type="button" id="btn_commission" class="price_close">항목닫기</button>
+									<h3>서비스 항목</h3>
+								</div>	
+								<div class="price_cont">
+									<div class="price_header cloneTable">
+										
+											<table class="tbl_price">
+												<caption>서비스 항목 목록 -  품종, 품명, 서비스내용, 요금(단위:원), 관내평균가격, 전국평균가격, 판매구분, 선택</caption>
+												<colgroup>
+													<col width="15%" />
+													<col width="" />
+													<col width="10%" />
+													<col width="12%" />
+													<col width="12%" />
+													<col width="12%" />
+													<col width="7%" />
+													<col width="5%" />
+												</colgroup>
+												<thead>
+													<tr>
+														<th>품종</th>
+														<th>품명</th>
+														<th>서비스내용</th>
+														<th>요금<br />(단위:원)</th>
+														<th>관내<br />평균가격</th>
+														<th>전국<br />평균가격</th>
+														<th>판매<br />구분</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+											</table>
+										
+										
+									</div>
+									<div class="price_body">
+										<div id="table_commission" class="price_body"></div>
+										
+									</div>
+								</div>										
+							</div>
+							<div id="funeralItem" class="price_item on">
+								<div class="price_tit">
+									<button type="button" id="btn_funeralItem" class="price_close">항목닫기</button>
+									<h3>장사용품 분류</h3>
+								</div>	
+								<div class="price_cont">
+									<div class="price_header">
+										
+											<table class="tbl_price">
+												<caption>장사용품 분류 목록 -  품종, 품명, 규격/재질/원산지/생산지/제조방법 등, 요금(단위:원), 관내평균가격, 전국평균가격, 판매구분, 선택</caption>
+												<colgroup>
+													<col width="10%">
+													<col width="15%">
+													<col width="">
+													<col width="12%">
+													<col width="10%">
+													<col width="10%">
+													<col width="8%">
+													<col width="8%">
+												</colgroup>
+												<thead>
+													<tr>
+														<th>품종</th>
+														<th>품명</th>
+														<th>규격/재질/원산지/생산지/제조방법 등</th>
+														<th>요금<br>(단위:원)</th>
+														<th>관내<br>평균가격</th>
+														<th>전국<br>평균가격</th>
+														<th>판매<br>구분</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+											</table>
+										
+										
+									</div>
+									<div class="price_body">
+										<div id="table_funeralItem" class="price_body"></div>
+										
+									</div>
+								</div>												
+							</div>
+						</div>
+						<div class="total_pay_back" style="display: none;"></div>
+						<div class="total_payW" style="display: block;">
+							<div class="total_pay_cnt" style="display:none" tabindex="0">
+								<div class="pay_cnt">
+									
+										<div class="price_item price_hallRent" style="display:none">
+											<div class="price_cont">
+												<div class="price_body">
+													<div class="tbl_price_tab on">
+														<button type="button" onclick="javascript:showTotPrice(this);" class="price_depth2_tit">시설사용료</button>
+														<div class="tbl_price_wrap">
+															<table class="tbl_price">
+																<caption>시설사용료 목록 -  항목, 품종, 품명, 임대내용, 요금(단위:원), 일수, 관내평균가격, 전국평균가격, 판매구분, 삭제</caption>
+																<colgroup>
+																	<col width="8%">
+																	<col width="">
+																	<col width="12%">
+																	<col width="10%">
+																	<col width="10%">
+																	<col width="8%">
+																	<col width="10%">
+																	<col width="10%">
+																	<col width="8%">
+																	<col width="8%">
+																</colgroup>
+																<thead>
+																	<tr>
+																		<th>항목</th>
+																		<th>품종</th>
+																		<th>품명</th>
+																		<th>임대내용</th>
+																		<th>요금<br>(단위:원)</th>
+																		<th>일수</th>
+																		<th>관내<br>평균가격</th>
+																		<th>전국<br>평균가격</th>
+																		<th>판매<br>구분</th>
+																		<th>삭제</th>
+																	</tr>
+																</thead>
+																<tbody id="tot1"></tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="price_item price_commission" style="display:none">
+											<div class="price_cont">
+												<div class="price_body">
+													<div class="tbl_price_tab on">
+														<button type="button" onclick="javascript:showTotPrice(this);" class="price_depth2_tit">서비스 항목</button>
+														<div class="tbl_price_wrap">
+															<table class="tbl_price">
+																<caption>서비스 항목 목록 -  항목, 품종, 품명, 서비스내용, 요금(단위:원), 관내평균가격, 전국평균가격, 판매구분, 삭제</caption>
+																<colgroup>
+																	<col width="8%">
+																	<col width="">
+																	<col width="12%">
+																	<col width="10%">
+																	<col width="10%">
+																	<col width="10%">
+																	<col width="10%">
+																	<col width="8%">
+																	<col width="8%">
+																</colgroup>
+																<thead>
+																	<tr>
+																		<th>항목</th>
+																		<th>품종</th>
+																		<th>품명</th>
+																		<th>서비스내용</th>
+																		<th>요금<br>(단위:원)</th>
+																		<th>관내<br>평균가격</th>
+																		<th>전국<br>평균가격</th>
+																		<th>판매<br>구분</th>
+																		<th>삭제</th>
+																	</tr>
+																</thead>
+																<tbody id="tot2"></tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="price_item price_funeralItem" style="display:none">
+											<div class="price_cont">
+												<div class="price_body">
+													<div class="tbl_price_tab on">
+														<button type="button" onclick="javascript:showTotPrice(this);" class="price_depth2_tit">장사용품 분류</button>
+														<div class="tbl_price_wrap">
+															<table class="tbl_price">
+																<caption>장사용품 분류 목록 - 항목, 품종, 품명, 규격/재질/원산지/생산지/제조방법 등, 요금(단위:원), 관내평균가격, 전국평균가격, 판매구분, 삭제</caption>
+																<colgroup>
+																	<col width="8%">
+																	<col width="10%">
+																	<col width="12%">
+																	<col width="">
+																	<col width="10%">
+																	<col width="10%">
+																	<col width="10%">
+																	<col width="8%">
+																	<col width="8%">
+																</colgroup>
+																<thead>
+																	<tr>
+																		<th>항목</th>
+																		<th>품종</th>
+																		<th>품명</th>
+																		<th>규격/재질/원산지/생산지/제조방법 등</th>
+																		<th>요금<br>(단위:원)</th>
+																		<th>관내<br>평균가격</th>
+																		<th>전국<br>평균가격</th>
+																		<th>판매<br>구분</th>
+																		<th>삭제</th>
+																	</tr>
+																</thead>
+																<tbody id="tot3"></tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									
+									
+								</div>
+							</div>
+							<div class="total_pay_hd">
+								<div class="total_pay_info">
+									<span class="slt_print"><a href="javascript:void(0);" id="btn_pay_print"><img src="/img/portal/sub/btn_print.png" alt="선택한 가격표 출력"></a></span>
+									<h3>사용 요금 합계</h3>
+									<span class="pay">0 원</span>
+								</div>													 
+								<span class="slt_product"><a href="javascript:void(0);" id="totalCnt">선택한 상품 상세보기 (<strong>0</strong>건)</a></span>													
+							</div>
+						</div>
+					</div>										
+				</div>
+				<div class="fac_tab_cont tab_photo">
+					<h3 class="tab_title">사진</h3>
+					<div class="fac_photo_list">
+						<ul></ul>
+					</div>
+				</div>
+				<div id="facility_list" class="fac_tab_cont tab_facility">
+					<h3 class="tab_title">시설</h3>
+				</div>
+				
+				<div class="fac_tab_cont tab_map">
+					<h3 class="tab_title">지도</h3>
+					<div class="find_map_wrap">
+						<div id="map1" class="find_map"></div>
+						<h2 class="txtSubTit">자가교통이용</h2>
+						<p id="navi" class="txt15"></p>
+						<h2 class="txtSubTit">대중교통이용</h2>
+						<p id="transit" class="txt15"></p>											
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+						<div class="sub_ft">
+							<div class="satisfaction">
+								<div class="satis_wrap">
+									<div class="satis_Tit">
+										<h3>만족도조사</h3>
+										<span>이 페이지에서 제공하는 정보에 만족하십니까?</span>
+									</div>
+									<div class="satis_select">
+										<ul>
+											<li><label><input type="radio" name="evalVal" value="5" checked="checked"><span class="icon1">매우만족</span></label></li>
+											<li><label><input type="radio" name="evalVal" value="4"><span class="icon2">만족</span></label></li>
+											<li><label><input type="radio" name="evalVal" value="3"><span class="icon3">보통</span></label></li>
+											<li><label><input type="radio" name="evalVal" value="2"><span class="icon4">불만족</span></label></li>
+											<li><label><input type="radio" name="evalVal" value="1"><span class="icon5">매우불만족</span></label></li>									
+										</ul>
+									</div>
+									<div class="opinion_wrap">
+										<input type="text" id="memo_pc" title="의견등록"> 
+										<a href="javascript:void(0);" id="btn_satisVal_pc">의견등록</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			
+			<div class="footer" style="top:560px;background:#fff;"></div>
+			<!-- footer -->
+			
+
+
+
+
+<div id="footer_contents" style="display:none"></div>
+
+<div id="footer" >
+	
+		<div class="banner_wrap">
+<div class="banner_box">
+<div class="banner_left">
+<h3>배너모음</h3>
+
+<div class="banner_control"><button class="banner_prev" type="button">이전</button><button class="banner_pause" type="button">정지</button><button class="banner_next" type="button">다음</button></div>
+</div>
+
+<div class="banner_right">
+<ul class="banner_list">
+	<li><a href=""><img alt="보건복지부 로고" src="../../../img/portal/common/banner01.jpg" /></a></li>
+	<li><a href=""><img alt="공정거래위원회 로고" src="../../../img/portal/common/banner02.jpg" /></a></li>
+	<li><a href=""><img alt="한국보건사회연구원 로고" src="../../../img/portal/common/banner03.jpg" /></a></li>
+	<li><a href=""><img alt="한국소비자원 로고" src="../../../img/portal/common/banner04.jpg" /></a></li>
+	<li><a href=""><img alt="한국장례협회 로고" src="../../../img/portal/common/banner05.jpg" /></a></li>
+	<li><a href=""><img alt="보건복지부 로고" src="../../../img/portal/common/banner01.jpg" /></a></li>
+	<li><a href=""><img alt="공정거래위원회 로고" src="../../../img/portal/common/banner02.jpg" /></a></li>
+	<li><a href=""><img alt="한국보건사회연구원 로고" src="../../../img/portal/common/banner03.jpg" /></a></li>
+	<li><a href=""><img alt="한국소비자원 로고" src="../../../img/portal/common/banner04.jpg" /></a></li>
+	<li><a href=""><img alt="한국장례협회 로고" src="../../../img/portal/common/banner05.jpg" /></a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="footer_wrap">
+<div class="footer_link">
+<ul>
+	<li><a href="https://www.mohw.go.kr/menu.es?mid=a10803010000" target="_blank" title="새창열림">개인정보처리방침</a></li>
+	<li><a href="/portal/esky/contents/contents_view.do?menuId=M0005000300000000">홈페이지이용약관</a></li>
+	<li><a href="/portal/esky/contents/contents_view.do?menuId=M0005000600000000">이메일무단수집거부</a></li>
+	<li><a href="/portal/esky/contents/contents_view.do?menuId=M0005000500000000">저작권정책</a></li>
+</ul>
+</div>
+
+<div class="footer_cont">
+<div class="ft_logo"><a href="https://www.mohw.go.kr/" target="_blank" title="새창열림"><img alt="보건복지부 로고" src="../../../img/portal/common/ft_logo1.png" /></a> <a href="https://www.kfcpi.or.kr/portal/home/main/main.do" target="_blank" title="새창열림"><img alt="한국장례문화진흥원 로고" src="../../../img/portal/common/ft_logo2.png" /></a></div>
+
+<div class="add_wrap">
+<address><strong>보건복지부</strong> [30113] 세종특별자치시 도움4로 13, 10동 (어진동, 정부세종청사)<br />
+<strong>한국장례문화진흥원</strong> [04552] 서울특별시 중구 수표로 23 인농빌딩 7층, TEL : 1577-4129, FAX : 02-6919-1475<br />
+Copyright MW. All Rights Reserved.</address>
+</div>
+
+<div class="ft_mark">
+<ul><li><img alt="웹접근성마크" src="../../../img/portal/common/ft_mark_wa.png" /></li>
+	<li><img alt="https://15774129.go.kr e하늘 장사정보 QR코드" src="../../../img/portal/common/ft_mark_qr.png" /></li>
+</ul>
+</div>
+</div>
+</div>
+
+		
+</div>
+			<!-- //footer -->
+		</div>
+	</body>
+</html>
