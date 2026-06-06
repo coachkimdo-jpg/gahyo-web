@@ -18,10 +18,10 @@ const PRODUCTS = [
     borderColor: '#d1d5db',
     rows: [
       { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명 (3일 파견)\n입관지도사 | 1명 (염습, 입관 진행)\n장례도우미 | 미지원' },
-      { icon: '🚗', label: '의전 차량', value: '스프린터 리무진(8인승) | 1대 제공\n비고 | 앰뷸런스, 유족전용 버스 등 필요시 선택 가능' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관\n수의/납골함 | 별도 선택 (개인 준비 또는 구매)' },
+      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 필요시 별도 선택\n장의 버스 | 필요시 별도 선택\n전용 리무진 | 스프린터(8인승) 1대 제공\n추가 혜택 | 미지원' },
+      { icon: '⚰️', label: '고인 용품', value: '관 제공 | 오동나무 화장 규격관\n수의/납골함 | 필요시 별도 선택\n궁중 대렴 | 미지원' },
       { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주용품 3종 | 완장, 리본, 장갑 제공\n상복 | 별도 선택 (남상복, 여상복)' },
+      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 필요시 별도 선택' },
       { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
     ],
   },
@@ -36,10 +36,10 @@ const PRODUCTS = [
     borderColor: '#93b3d8',
     rows: [
       { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명 (3일 파견)\n입관지도사 | 1명 (염습, 입관 진행)\n장례도우미 | 3명(총30시간)' },
-      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 관내(요청 시 행정구역 기준) 제공\n유족전용 버스 | 200Km(왕복) 이내 제공 (화장장 기준)' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관+도자기봉안함(화장)\n수의 | 친환경 전통한지수의 및 수의 재질과 동일한 요/이불/염포\n대렴 | 전통 상례에 따른 궁중 한지대렴(국화) 제공' },
+      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 관내(요청 시 행정구역 기준)\n장의 버스 | 200Km(왕복) 이내 제공\n전용 리무진 | 미지원\n추가 혜택 | 미지원' },
+      { icon: '⚰️', label: '고인 용품', value: '관 제공 | 화장 규격관 + 도자기봉안함\n수의/납골함 | 친환경 전통한지수의 (요/이불 포함)\n궁중 대렴 | 전통 상례 궁중 한지대렴(국화)' },
       { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주용품 3종 | 완장, 리본, 장갑 제공\n상복 | 남자상복 2벌(와이셔츠, 넥타이 포함), 여자상복2벌' },
+      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 남상복 2벌, 여자상복 2벌' },
       { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
     ],
   },
@@ -55,10 +55,10 @@ const PRODUCTS = [
     popular: true,
     rows: [
       { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명 (3일 파견)\n입관지도사 | 1명 (염습, 입관 진행)\n장례도우미 | 4명(총40시간)' },
-      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 관내(요청 시 행정구역 기준) 제공\n고인전용 리무진 | 200Km(왕복) 이내 제공 (화장장 기준)\n비고 | * 선두 차량용 종교별 리본 제공\n유족전용 버스 | 200Km(왕복) 이내 제공 (화장장 기준)' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관+도자기봉안함(화장)\n수의 | 저마수의 및 수의 재질과 동일한 요/이불/염포\n대렴 | 전통 상례에 따른 궁중 한지대렴(국화) 제공' },
+      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 관내(요청 시 행정구역 기준)\n장의 버스 | 200Km(왕복) 이내 제공\n전용 리무진 | 200Km(왕복) 이내 제공\n추가 혜택 | 선두 차량용 종교별 리본' },
+      { icon: '⚰️', label: '고인 용품', value: '관 제공 | 화장 규격관 + 도자기봉안함\n수의/납골함 | 저마수의 (요/이불 포함)\n궁중 대렴 | 전통 상례 궁중 한지대렴(국화)' },
       { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주용품 3종 | 완장, 리본, 장갑 제공\n상복 | 남자상복 3벌(와이셔츠, 넥타이 포함), 여자상복 3벌' },
+      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 남상복 3벌, 여자상복 3벌' },
       { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
     ],
   },
@@ -73,10 +73,10 @@ const PRODUCTS = [
     borderColor: '#5a9e80',
     rows: [
       { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명 (3일 파견)\n입관지도사 | 1명 (염습, 입관 진행)\n장례도우미 | 5명(총50시간)' },
-      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 관내(요청 시 행정구역 기준) 제공\n고인전용 리무진 | 400Km(왕복) 이내 제공 (화장장 기준)\n비고 | * 선두 차량용 종교별 리본 제공\n유족전용 버스 | 400Km(왕복) 이내 제공 (화장장 기준)' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관+도자기봉안함(화장)\n수의 | 대마수의 및 수의 재질과 동일한 요/이불/염포\n대렴 | 전통 상례에 따른 궁중 한지대렴(국화) 제공' },
+      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 관내(요청 시 행정구역 기준)\n장의 버스 | 400Km(왕복) 이내 제공\n전용 리무진 | 400Km(왕복) 이내 제공\n추가 혜택 | 선두 차량용 종교별 리본' },
+      { icon: '⚰️', label: '고인 용품', value: '관 제공 | 화장 규격관 + 도자기봉안함\n수의/납골함 | 대마수의 (요/이불 포함)\n궁중 대렴 | 전통 상례 궁중 한지대렴(국화)' },
       { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주용품 3종 | 완장, 리본, 장갑 제공\n상복 | 남자상복 4벌(와이셔츠, 넥타이 포함), 여자상복 4벌' },
+      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 남상복 4벌, 여자상복 4벌' },
       { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
     ],
   },
@@ -258,8 +258,8 @@ export default function ProductsPage() {
                               const [left, right] = line.split('|');
                               return (
                                 <div key={i} style={{ display: 'flex', padding: '0.6rem 0', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
-                                  <div style={{ flex: '0 0 35%', fontWeight: '700', color: p.accent, paddingRight: '0.5rem', opacity: 0.85 }}>{left.trim()}</div>
-                                  <div style={{ flex: '1', lineHeight: '1.6' }}>{right.trim()}</div>
+                                  <div style={{ flex: '0 0 32%', fontWeight: '700', color: p.accent, paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
+                                  <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>{right.trim()}</div>
                                 </div>
                               );
                             }
@@ -318,8 +318,8 @@ export default function ProductsPage() {
                                   const [left, right] = line.split('|');
                                   return (
                                     <div key={i} style={{ display: 'flex', padding: '0.6rem 0', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
-                                      <div style={{ flex: '0 0 35%', fontWeight: '700', color: '#4b5563', paddingRight: '0.5rem', opacity: 0.85 }}>{left.trim()}</div>
-                                      <div style={{ flex: '1', lineHeight: '1.6' }}>{right.trim()}</div>
+                                      <div style={{ flex: '0 0 28%', fontWeight: '700', color: '#4b5563', paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
+                                      <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>{right.trim()}</div>
                                     </div>
                                   );
                                 }
@@ -339,9 +339,9 @@ export default function ProductsPage() {
                                   if (line.includes('|')) {
                                     const [left, right] = line.split('|');
                                     return (
-                                      <div key={i} style={{ display: 'flex', padding: '0.6rem 0', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
-                                        <div style={{ flex: '0 0 35%', fontWeight: '700', color: p.accent, paddingRight: '0.5rem', opacity: 0.85 }}>{left.trim()}</div>
-                                        <div style={{ flex: '1', lineHeight: '1.6' }}>{right.trim()}</div>
+                                      <div key={i} style={{ display: 'flex', padding: '0.6rem 0', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
+                                        <div style={{ flex: '0 0 28%', fontWeight: '700', color: p.accent, paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
+                                        <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>{right.trim()}</div>
                                       </div>
                                     );
                                   }
