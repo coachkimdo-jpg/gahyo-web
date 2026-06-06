@@ -32,21 +32,20 @@ export const metadata = {
 const PRODUCTS = [
   {
     id: 'mubin',
-    name: '가효 무빈소 170',
-    price: '1,700,000',
-    priceShort: '170만원',
+    name: '가효 무빈소 120',
+    price: '1,200,000',
+    priceShort: '120만원',
     target: '가족끼리 조용히 모시고 싶은 분',
     days: '1~2일장',
     includes: [
-      '장례지도사 1명(3일 파견 / 염습)',
-      '앰뷸런스 관내 제공',
-      '유족전용 버스 총 200km',
-      '면 수의 100%',
-      '오동나무 관 (매장용/화장용 선택)',
-      '남상복 2복 / 여상복 2복',
+      '장례지도사 1명(3일 파견)',
+      '입관보조 1명(염습, 입관 진행)',
+      '스프린터 또는 8인승 리무진 1대',
+      '상주용품 3종 (완장, 리본, 장갑)',
+      '입관용품 16종 (0.6 오동관 포함)',
       '궁중 한지대렴(국화)'
     ],
-    excludes: ['장례도우미', '고인전용 리무진'],
+    excludes: ['장례도우미', '수의 / 상복'],
     color: '#4b5563',
     colorLight: '#f3f4f6',
   },
@@ -246,7 +245,7 @@ export default function HomePage() {
           {/* 가격대 요약 */}
           <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
             {[
-              { label: '무빈소', price: '170만원' },
+              { label: '무빈소', price: '120만원' },
               { label: '일반 3일장', price: '270만원' },
               { label: '리무진 포함', price: '330만원' },
               { label: 'VIP 프리미엄', price: '430만원' },

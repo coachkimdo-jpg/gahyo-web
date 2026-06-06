@@ -241,7 +241,7 @@ export default function AboutPage() {
               </h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem' }}>
                 {[
-                  { name: '무빈소 170', price: '170만 원', feature: '가족 소규모 1~2일장', accent: '#4b5563' },
+                  { name: '무빈소 120', price: '120만 원', feature: '가족 소규모 1~2일장', accent: '#4b5563' },
                   { name: '가효 270', price: '270만 원', feature: '표준 3일장 (추천)', accent: '#002c5f' },
                   { name: '가효 330', price: '330만 원', feature: '리무진 포함 품격장', accent: '#92520a' },
                   { name: '가효 430', price: '430만 원', feature: '장거리 VIP 프리미엄', accent: '#1d4a3a' },
