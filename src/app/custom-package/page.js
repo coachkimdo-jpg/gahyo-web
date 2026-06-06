@@ -238,7 +238,7 @@ export default function CustomPackagePage() {
                   <div style={{ fontWeight: '700', color: '#1e293b' }}>
                     {selections.altar === 'a_none' ? '기본 제공 항목 (무빈소 기준)' : '기본 제공 항목 (빈소 마련 기준)'}
                   </div>
-                  <div style={{ marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', padding: '1rem', background: '#f8fafc', borderRadius: '8px' }}>
+                  <div style={{ marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', padding: '1.25rem 1rem', background: '#f8fafc', borderRadius: '8px' }}>
                     {(selections.altar === 'a_none' ? [
                       '장례지도사 1명 (3일 진행)',
                       '입관지도사 2명 (염습, 입관 진행)',
@@ -260,8 +260,8 @@ export default function CustomPackagePage() {
                       '유품 정리 할인',
                       '산재, 재산 및 상속 법률 상담 무료'
                     ]).filter(Boolean).map((benefit, idx) => (
-                      <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.4rem', fontSize: '0.85rem', color: '#475569', lineHeight: '1.4' }}>
-                        <span style={{ color: 'var(--gold, #d4af37)', fontSize: '0.9rem', marginTop: '-0.1rem', fontWeight: 'bold' }}>✓</span>
+                      <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.85rem', color: '#475569', lineHeight: '1.6' }}>
+                        <span style={{ color: 'var(--gold, #d4af37)', fontSize: '0.9rem', marginTop: '-0.05rem', fontWeight: 'bold' }}>✓</span>
                         <span style={{ wordBreak: 'keep-all' }}>{benefit}</span>
                       </div>
                     ))}
