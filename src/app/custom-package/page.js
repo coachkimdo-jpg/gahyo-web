@@ -239,10 +239,19 @@ export default function CustomPackagePage() {
                     {selections.altar === 'a_none' ? '기본 제공 항목 (무빈소 기준)' : '기본 제공 항목 (빈소 마련 기준)'}
                   </div>
                   <div style={{ marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', padding: '1rem', background: '#f8fafc', borderRadius: '8px' }}>
-                    {[
+                    {(selections.altar === 'a_none' ? [
                       '장례지도사 1명 (3일 진행)',
                       '입관지도사 2명 (염습, 입관 진행)',
-                      selections.altar !== 'a_none' ? '빈소용품 (향, 초, 부의록, 명패, 위패, 운구장갑, 머리핀, 완장)' : null,
+                      '입관용품 (관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)',
+                      '장례식장 안치실 예약',
+                      '화장장 예약',
+                      '장지(모실곳) 할인 및 예약',
+                      '유품 정리 할인',
+                      '산재, 재산 및 상속 법률 상담 무료'
+                    ] : [
+                      '장례지도사 1명 (3일 진행)',
+                      '입관지도사 2명 (염습, 입관 진행)',
+                      '빈소용품 (향, 초, 부의록, 명패, 위패, 운구장갑, 머리핀, 완장)',
                       '입관용품 (관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 멧베, 천금, 지금, 장매, 보공, 한지, 베개, 수시포)',
                       '장례식장 빈소 예약',
                       '모바일 부고 문자',
@@ -250,7 +259,7 @@ export default function CustomPackagePage() {
                       '장지(모실곳) 할인 및 예약',
                       '유품 정리 할인',
                       '산재, 재산 및 상속 법률 상담 무료'
-                    ].filter(Boolean).map((benefit, idx) => (
+                    ]).filter(Boolean).map((benefit, idx) => (
                       <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.4rem', fontSize: '0.85rem', color: '#475569', lineHeight: '1.4' }}>
                         <span style={{ color: 'var(--gold, #d4af37)', fontSize: '0.9rem', marginTop: '-0.1rem', fontWeight: 'bold' }}>✓</span>
                         <span style={{ wordBreak: 'keep-all' }}>{benefit}</span>
