@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const metadata = {
   title: '후불제상조상품 비교 및 가격 안내 | 가효상조',
-  description: '투명하고 정직한 가효상조의 4가지 후불제상조상품(무빈소 120, 가효 265, 가효 330, 가효 430)을 비교해 보세요. 전문가가 검증한 합리적인 장례비용입니다.',
+  description: '투명하고 정직한 가효상조의 4가지 후불제상조상품(무빈소 120, 가효 265, 가효 334, 가효 363)을 비교해 보세요. 전문가가 검증한 합리적인 장례비용입니다.',
 };
 
 const PRODUCTS = [
@@ -44,9 +44,9 @@ const PRODUCTS = [
     ],
   },
   {
-    id: '330',
-    name: '가효 330',
-    price: '3,300,000',
+    id: '334',
+    name: '가효 334',
+    price: '3,340,000',
     badge: '가장 많이 찾는',
     desc: '리무진이 포함된 품격 있는 3일장',
     accent: '#92520a',
@@ -63,21 +63,21 @@ const PRODUCTS = [
     ],
   },
   {
-    id: '430',
-    name: '가효 430',
-    price: '4,300,000',
+    id: '363',
+    name: '가효 363',
+    price: '3,630,000',
     badge: '프리미엄 VIP',
     desc: '장거리 이동이 가능한 최고급 프리미엄 장례',
     accent: '#1d4a3a',
     accentLight: '#e8f2ee',
     borderColor: '#5a9e80',
     rows: [
-      { icon: '👥', label: '인력 지원', value: '장례지도사 1명 / 3일 파견 / 장례예식 총괄 진행 / 장지동행 / 염습(2명)\n장례도우미 6명(10시간 기준) 지원 / 조문객 접대' },
-      { icon: '🚗', label: '의전 차량', value: '[앰뷸런스] 관내(요청 시 행정구역 기준) 제공\n[고인전용 리무진] 400Km(왕복) 이내 제공 (화장장 기준)\n[유족전용 버스] 400Km(왕복) 이내 제공\n* 선두 차량용 종교별 리본 제공' },
-      { icon: '⚰️', label: '고인 용품', value: '[관] 오동나무 1.5치(매장) 또는 1치+기본봉안함(화장)\n[수의] 대마수의(대마 100%, 기계직) 및 동일 재질 요/이불/염포\n[대렴] 전통 상례에 따른 궁중 한지대렴(국화) 제공' },
-      { icon: '🌸', label: '입관 용품', value: '[규격품] 명정, 관보, 결관바, 연출꽃 등 제공\n[궁중대렴] 국화꽃 모양의 한지고깔 제공\n[위생용품] 베게, 습신, 수시포, 한지, 예단, 다라니경, 탈지면, 알코올 등' },
-      { icon: '👔', label: '상복 제공', value: '남상복 7복 (Y셔츠, 넥타이 포함) / 여상복 9복\n완정, 두건, 행전, 상장, 근조리본 필요량 제공' },
-      { icon: '✨', label: '특화 서비스', value: '[특별서비스] 유가족 장례편의용품 1BOX, 꽃침대 연출 등\n[기타서비스] 방명록, 부의록, 축문, 흰장갑, 향, 양초 등 제공\n[안내서비스] 화장예약, 제례, 장례행정, 유품정리, 장지 안내' },
+      { icon: '👥', label: '인력 지원', value: '장례지도사 1명 (3일 파견)\n입관지도사 1명 (염습, 입관 진행)\n장례도우미 5명(총50시간)' },
+      { icon: '🚗', label: '의전 차량', value: '[앰뷸런스] 관내(요청 시 행정구역 기준) 제공\n[고인전용 리무진] 400Km(왕복) 이내 제공 (화장장 기준)\n* 선두 차량용 종교별 리본 제공\n[유족전용 버스] 400Km(왕복) 이내 제공 (화장장 기준)' },
+      { icon: '⚰️', label: '고인 용품', value: '[관] 오동나무 화장 규격관+도자기봉안함(화장)\n[수의] 대마수의 및 수의 재질과 동일한 요/이불/염포\n[대렴] 전통 상례에 따른 궁중 한지대렴(국화) 제공' },
+      { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
+      { icon: '👔', label: '상복 제공', value: '[상주용품 3종] 완장, 리본, 장갑 제공\n남자상복 4벌(와이셔츠, 넥타이 포함), 여자상복 4벌' },
+      { icon: '✨', label: '특화 서비스', value: '장례식장 빈소 예약\n화장장 예약\n장지(모실곳)할인 및 예약\n유품 정리 할인\n산재, 재산 및 상속 법률 상담 무료' },
     ],
   },
 ];
@@ -213,7 +213,7 @@ export default function ProductsPage() {
           </p>
           <ul style={{ marginTop: '0.75rem', paddingLeft: '1.25rem', color: '#475569', fontSize: '0.95rem', lineHeight: 1.7 }}>
             <li>월 납입금, 가입비, 중간 해지 위약금이 전혀 없습니다.</li>
-            <li>투명하게 공개된 4가지 패키지(무빈소 120 ~ VIP 430) 중 상황에 맞게 선택할 수 있습니다.</li>
+            <li>투명하게 공개된 4가지 패키지(무빈소 120 ~ VIP 363) 중 상황에 맞게 선택할 수 있습니다.</li>
             <li>상품 금액에는 장례지도사, 수의, 관, 리무진, 입관 용품 등 핵심 의전 서비스가 모두 포함되어 있습니다.</li>
           </ul>
         </section>
@@ -352,8 +352,8 @@ export default function ProductsPage() {
                   <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.75rem' }}>중도 해지 위약금</div>
                 </div>
                 <div style={{ flex: 1, padding: '1.5rem', textAlign: 'center', background: '#fdf3e0' }}>
-                  <div style={{ fontSize: '0.85rem', color: '#92520a', fontWeight: '700', marginBottom: '0.5rem' }}>가효상조 330</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#c0392b' }}>3,300,000원</div>
+                  <div style={{ fontSize: '0.85rem', color: '#92520a', fontWeight: '700', marginBottom: '0.5rem' }}>가효상조 334</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#c0392b' }}>3,340,000원</div>
                   <div style={{ fontSize: '0.85rem', color: '#c0392b', fontWeight: '800', marginTop: '0.75rem', background: 'white', padding: '0.25rem 0', borderRadius: '4px' }}>약 160만원 절약</div>
                 </div>
               </div>

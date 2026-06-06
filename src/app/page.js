@@ -71,10 +71,10 @@ const PRODUCTS = [
     colorLight: '#e6eef8',
   },
   {
-    id: 'g330',
-    name: '가효 330',
-    price: '3,300,000',
-    priceShort: '330만원',
+    id: 'g334',
+    name: '가효 334',
+    price: '3,340,000',
+    priceShort: '334만원',
     target: '리무진이 포함된 품격 있는 장례',
     days: '3일장',
     includes: [
@@ -93,10 +93,10 @@ const PRODUCTS = [
     popular: true,
   },
   {
-    id: 'g430',
-    name: '가효 430',
-    price: '4,300,000',
-    priceShort: '430만원',
+    id: 'g363',
+    name: '가효 363',
+    price: '3,630,000',
+    priceShort: '363만원',
     target: '장거리 이동·VIP 프리미엄 장례',
     days: '3일장',
     includes: [
@@ -248,8 +248,8 @@ export default function HomePage() {
             {[
               { label: '무빈소', price: '120만원' },
               { label: '일반 3일장', price: '265만원' },
-              { label: '리무진 포함', price: '330만원' },
-              { label: 'VIP 프리미엄', price: '430만원' },
+              { label: '리무진 포함', price: '334만원' },
+              { label: 'VIP 프리미엄', price: '363만원' },
             ].map(p => (
               <div key={p.label} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 'var(--radius-sm)', padding: '0.5rem 1rem', textAlign: 'center' }}>
                 <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.78rem' }}>{p.label}</div>

@@ -227,8 +227,8 @@ export default function AboutPage() {
                 </h3>
                 <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', color: '#475569', lineHeight: 1.8, fontSize: '0.95rem' }}>
                   <li>앰뷸런스 관내 지원 (전 상품 동일)</li>
-                  <li>유족 전용 버스 (330 이상: 리무진 동시 지원)</li>
-                  <li>430 상품: 장거리 400km 왕복 지원</li>
+                  <li>유족 전용 버스 (334 이상: 리무진 동시 지원)</li>
+                  <li>363 상품: 장거리 400km 왕복 지원</li>
                   <li>종교별 선두 차량 리본 제공</li>
                 </ul>
               </div>
@@ -243,8 +243,8 @@ export default function AboutPage() {
                 {[
                   { name: '무빈소 120', price: '120만 원', feature: '가족 소규모 1~2일장', accent: '#4b5563' },
                   { name: '가효 265', price: '265만 원', feature: '표준 3일장 (추천)', accent: '#002c5f' },
-                  { name: '가효 330', price: '330만 원', feature: '리무진 포함 품격장', accent: '#92520a' },
-                  { name: '가효 430', price: '430만 원', feature: '장거리 VIP 프리미엄', accent: '#1d4a3a' },
+                  { name: '가효 334', price: '334만 원', feature: '리무진 포함 품격장', accent: '#92520a' },
+                  { name: '가효 363', price: '363만 원', feature: '장거리 VIP 프리미엄', accent: '#1d4a3a' },
                 ].map(p => (
                   <div key={p.name} style={{ border: `2px solid ${p.accent}`, borderRadius: '8px', padding: '1rem', textAlign: 'center' }}>
                     <div style={{ fontSize: '0.85rem', fontWeight: '800', color: p.accent, marginBottom: '0.25rem' }}>{p.name}</div>
