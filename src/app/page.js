@@ -69,6 +69,7 @@ const PRODUCTS = [
     excludes: ['고인전용 리무진'],
     color: '#002C5F',
     colorLight: '#e6eef8',
+    popular: true,
   },
   {
     id: 'g334',
@@ -90,7 +91,6 @@ const PRODUCTS = [
     excludes: [],
     color: '#826221',
     colorLight: '#f7f1e0',
-    popular: true,
   },
   {
     id: 'g363',
@@ -328,13 +328,12 @@ export default function HomePage() {
                 border: `2px solid ${p.popular ? p.color : 'var(--border-color)'}`,
                 overflow: 'hidden', position: 'relative',
                 boxShadow: p.popular ? `0 8px 32px ${p.color}30` : 'var(--shadow-sm)',
-                display: 'flex', flexDirection: 'column'
+                display: 'flex', flexDirection: 'column',
+                height: '100%'
               }}>
-                {p.popular && (
-                  <div style={{ background: p.color, color: 'white', textAlign: 'center', padding: '0.4rem', fontSize: '0.82rem', fontWeight: '700' }}>
-                    ⭐ 가장 많이 선택하는 상품
-                  </div>
-                )}
+                <div style={{ background: p.popular ? p.color : 'transparent', color: p.popular ? 'white' : 'transparent', textAlign: 'center', padding: '0.4rem', fontSize: '0.82rem', fontWeight: '700' }}>
+                  ⭐ 가장 많이 선택하는 상품
+                </div>
                 <div style={{ padding: '1.75rem', background: p.colorLight }}>
                   <div style={{ fontWeight: '800', fontSize: '1.3rem', color: p.color, marginBottom: '0.25rem' }}>{p.name}</div>
                   <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
