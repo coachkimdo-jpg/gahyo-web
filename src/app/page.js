@@ -225,20 +225,20 @@ export default function HomePage() {
           </div>
 
           <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.7rem)', fontWeight: '800', color: 'white', lineHeight: 1.25, marginBottom: '1.25rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
-            가효상조 — 100% 후불제 상조<br />
-            및 <span style={{ color: 'var(--gold)' }}>투명한 장례 서비스</span>
+            가효상조 — 내 상황에 맞게<br />
+            <span style={{ color: 'var(--gold)' }}>직접 구성하는</span> 맞춤형 후불제 상조
           </h1>
           
           {/* BLUF(핵심 요약) 영역 */}
           <div style={{ maxWidth: '720px', marginBottom: '2rem' }}>
             <p style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, marginBottom: 0 }}>
-              <strong>가효상조는 매월 납입하는 선불금이나 가입비가 전혀 없는 100% 후불제 상조입니다.</strong> 전화 한 통이면 전국 500여 개 제휴 장례식장에서 즉시 장례를 치르실 수 있습니다. 무빈소 장례부터 일반 3일장까지, 숨겨진 추가 비용 없이 발인 날 결제하는 투명한 서비스를 제공합니다.
+              <strong>가효상조의 핵심은 고객이 스스로 필요한 장례 품목을 선택하여 내 상황에 꼭 맞는 맞춤형 상품을 구성하는 것입니다.</strong> 매월 납입하는 선불금이나 가입비가 전혀 없습니다. 거품을 빼고 불필요한 지출 없이, 꼭 필요한 서비스만 골라 발인 날 결제하는 가장 합리적이고 투명한 장례를 약속드립니다.
             </p>
           </div>
 
           {/* 신뢰 포인트 */}
           <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-            {['✅ 24시간 연중무휴', '✅ 전국 즉시 출동', '✅ 장례 종료 후 결제'].map(b => (
+            {['✅ 24시간 연중무휴', '✅ 전국 즉시 출동', '✅ 내 마음대로 맞춤 구성', '✅ 장례 종료 후 결제'].map(b => (
               <span key={b} style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.9)', borderRadius: '999px', padding: '0.3rem 0.9rem', fontSize: '0.85rem', fontWeight: '600' }}>{b}</span>
             ))}
           </div>
