@@ -323,9 +323,42 @@ export default function CustomPackagePage() {
               <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#475569' }}>총 확정 금액</span>
               <span style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--navy)' }}>{finalTotalPrice.toLocaleString()}<span style={{ fontSize: '1.2rem', fontWeight: '700', marginLeft: '2px' }}>원</span></span>
             </div>
-            <p style={{ textAlign: 'right', fontSize: '0.85rem', color: '#94a3b8', marginTop: '0.75rem', wordBreak: 'keep-all' }}>
-              * 위 금액은 선택하신 내역에 해당하는 고정가격이며 장례식장, 화장, 장지 시설 사용료 및 식대는 별도입니다.
-            </p>
+            <div style={{ marginTop: '1.5rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6', wordBreak: 'keep-all', border: '1px solid #e2e8f0' }}>
+              <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#334155', marginBottom: '1rem' }}>[장례 서비스 이용 및 추가 비용 안내]</h4>
+              
+              <div style={{ marginBottom: '1rem' }}>
+                <strong style={{ color: '#475569' }}>■ 기본 안내</strong>
+                <ul style={{ paddingLeft: '1.2rem', marginTop: '0.3rem', marginBottom: '0' }}>
+                  <li>현장 컨설팅을 통해 최적의 품목을 안내해 드리며, 다른 품목으로 대체는 어렵습니다. (매장 진행 시 관, 수의, 유골함 등 품목 변경)</li>
+                  <li>장례식장 시설 이용료, 식대(접대 음식비), 제물 구입비는 장례식장에 직접 납부해 주셔야 합니다.</li>
+                </ul>
+              </div>
+
+              <div style={{ marginBottom: '1rem' }}>
+                <strong style={{ color: '#475569' }}>■ 일정 및 인력 추가</strong>
+                <ul style={{ paddingLeft: '1.2rem', marginTop: '0.3rem', marginBottom: '0' }}>
+                  <li>일정 연장(4·5일장 등): 3일장 초과 시 1일당 지도사 비용 20만 원 추가 (무빈소장 15만 원)</li>
+                  <li>접객 도우미: 시간 초과 시 시간당 2만 원 추가 (시간당 공제 불가 / 22시 이후 교통비 20,000원 별도)</li>
+                </ul>
+              </div>
+
+              <div style={{ marginBottom: '1rem' }}>
+                <strong style={{ color: '#475569' }}>■ 차량 이용 추가</strong>
+                <ul style={{ paddingLeft: '1.2rem', marginTop: '0.3rem', marginBottom: '0' }}>
+                  <li>장의 차량: 기본 거리 초과 시 1km당 2천 원 추가 (관외 이용 시 거리와 상황에 따라 비용 책정)</li>
+                  <li>리무진: 화장장까지 편도 운행 기준, 초과 시 1km당 2천 원 추가 (경유 요청 시 추가 경유비 발생)</li>
+                </ul>
+              </div>
+
+              <div>
+                <strong style={{ color: '#475569' }}>■ 취소 및 특수 상황</strong>
+                <ul style={{ paddingLeft: '1.2rem', marginTop: '0.3rem', marginBottom: '0' }}>
+                  <li>출동 후 취소: 취소 위약금 기본 25만 원 + 준비 완료된 품목 비용 추가 청구</li>
+                  <li>진행 중 취소: 이미 배차 및 배치 완료된 품목은 취소 및 공제 불가</li>
+                  <li>특수염: 사고사 등 발생 시 최대 50만 원 추가</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
