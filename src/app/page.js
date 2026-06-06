@@ -253,10 +253,10 @@ export default function HomePage() {
               padding: '1.1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
               color: '#001a3a', borderRadius: 'var(--radius-sm)', fontWeight: '800', fontSize: '1.1rem',
               textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)', width: '100%',
-              transition: 'var(--transition)'
+              transition: 'var(--transition)', position: 'relative'
             }}>
               <span>🛠️ 상조 상품 직접 구성하기</span>
-              <span style={{ fontSize: '1.2rem', marginLeft: 'auto' }}>→</span>
+              <span style={{ fontSize: '1.2rem', position: 'absolute', right: '1.5rem' }}>→</span>
             </Link>
             <a href="tel:1551-5718" style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
