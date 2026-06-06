@@ -313,7 +313,7 @@ export default function ProductsPage() {
                           {PRODUCTS[0].rows[rowIdx].icon} {label}
                         </td>
                         {allSame ? (
-                          <td colSpan={PRODUCTS.length} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', verticalAlign: 'top', textAlign: 'center', background: '#fdfdfd', height: '100%' }}>
+                          <td colSpan={PRODUCTS.length} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', verticalAlign: 'top', textAlign: 'center', background: '#fdfdfd', height: '1px' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                               {PRODUCTS[0].rows[rowIdx].value.split('\n').map((line, i, arr) => {
                                 if (line.includes('|')) {
@@ -337,7 +337,7 @@ export default function ProductsPage() {
                           </td>
                         ) : (
                           PRODUCTS.map(p => (
-                            <td key={`${p.id}-${label}`} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', borderLeft: `1px solid ${p.borderColor}30`, verticalAlign: 'top', height: '100%' }}>
+                            <td key={`${p.id}-${label}`} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', borderLeft: `1px solid ${p.borderColor}30`, verticalAlign: 'top', height: '1px' }}>
                               <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                                 {p.rows[rowIdx].value.split('\n').map((line, i, arr) => {
                                   if (line.includes('|')) {
