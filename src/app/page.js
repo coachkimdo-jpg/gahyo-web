@@ -231,11 +231,12 @@ export default function HomePage() {
             <span style={{ color: 'var(--gold)' }}>오직 '나에게 꼭 필요한 장례'만 남겼습니다.</span>
           </h1>
           
-          {/* BLUF(핵심 요약) 영역 */}
           <div style={{ maxWidth: '720px', marginBottom: '2rem' }}>
             <p style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, marginBottom: 0, wordBreak: 'keep-all' }}>
               <strong>남들이 정해준 비싼 패키지에 맞추지 마십시오. 내 상황은 내가 가장 잘 압니다.</strong><br />
-              가효상조는 고객님이 스스로 장례 품목을 선택하고 직접 구성하는 '맞춤형 후불제'입니다. 미리 돈을 낼 필요도, 원치 않는 서비스를 받을 필요도 없습니다. 꼭 필요한 서비스만 골라 발인 날 결제하십시오. 가장 정직한 장례의 기준, 가효상조가 만듭니다.
+              가효상조는 고객님이 스스로 장례 품목을 선택하고 직접 구성하는 '맞춤형 후불제'입니다.<br />
+              미리 돈을 낼 필요도, 원치 않는 서비스를 받을 필요도 없습니다.<br />
+              꼭 필요한 서비스만 골라 발인 날 결제하십시오. 가장 정직한 장례의 기준, 가효상조가 만듭니다.
             </p>
           </div>
 
@@ -253,7 +254,7 @@ export default function HomePage() {
               padding: '1.1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
               color: '#001a3a', borderRadius: 'var(--radius-sm)', fontWeight: '800', fontSize: '1.1rem',
               textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)', width: '100%',
-              transition: 'var(--transition)', position: 'relative'
+              transition: 'var(--transition)', position: 'relative', minHeight: '90px'
             }}>
               <span>🛠️ 상조 상품 직접 구성하기</span>
               <span style={{ fontSize: '1.2rem', position: 'absolute', right: '1.5rem' }}>→</span>
@@ -264,7 +265,7 @@ export default function HomePage() {
               background: 'linear-gradient(135deg, #c0392b, #96281b)',
               color: 'white', borderRadius: 'var(--radius-sm)',
               boxShadow: '0 4px 20px rgba(192,57,43,0.5)', textDecoration: 'none', width: '100%',
-              transition: 'var(--transition)'
+              transition: 'var(--transition)', minHeight: '90px'
             }} id="hero-call-btn">
               📞 24시간 장례 접수·상담
             </a>
@@ -273,7 +274,7 @@ export default function HomePage() {
               padding: '1.1rem 1.5rem', fontSize: '1.05rem', fontWeight: '700',
               background: 'rgba(255,255,255,0.1)', color: 'white',
               border: '2px solid rgba(255,255,255,0.3)', borderRadius: 'var(--radius-sm)', textDecoration: 'none', width: '100%',
-              transition: 'var(--transition)'
+              transition: 'var(--transition)', minHeight: '90px'
             }} id="hero-estimate-btn">
               🧮 투명한 장례비용 산출하기
             </Link>
@@ -302,6 +303,7 @@ export default function HomePage() {
                 textDecoration: 'none',
                 boxShadow: item.isEm ? '0 4px 16px rgba(192,57,43,0.3)' : 'var(--shadow-sm)',
                 transition: 'var(--transition)',
+                minHeight: '90px'
               }}>
                 <span style={{ fontSize: '1.75rem' }}>{item.icon}</span>
                 <div>
