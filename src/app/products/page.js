@@ -313,13 +313,13 @@ export default function ProductsPage() {
                           {PRODUCTS[0].rows[rowIdx].icon} {label}
                         </td>
                         {allSame ? (
-                          <td colSpan={PRODUCTS.length} style={{ padding: '1.1rem 1.25rem', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', verticalAlign: 'middle', textAlign: 'center', background: '#fdfdfd' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                          <td colSpan={PRODUCTS.length} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', verticalAlign: 'top', textAlign: 'center', background: '#fdfdfd', height: '100%' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                               {PRODUCTS[0].rows[rowIdx].value.split('\n').map((line, i, arr) => {
                                 if (line.includes('|')) {
                                   const [left, right] = line.split('|');
                                   return (
-                                    <div key={i} style={{ display: 'flex', padding: '0.6rem 0', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
+                                    <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '1.1rem 1.25rem', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
                                       <div style={{ flex: '0 0 28%', fontWeight: '700', color: '#4b5563', paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
                                       <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>
                                         {right.includes('<br/>') ? right.split('<br/>').map((rLine, j) => <div key={j}>{rLine.trim()}</div>) : right.trim()}
@@ -328,7 +328,7 @@ export default function ProductsPage() {
                                   );
                                 }
                                 return (
-                                  <div key={i} style={{ padding: '0.6rem 0', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
+                                  <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.1rem 1.25rem', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
                                     {line}
                                   </div>
                                 );
@@ -337,13 +337,13 @@ export default function ProductsPage() {
                           </td>
                         ) : (
                           PRODUCTS.map(p => (
-                            <td key={`${p.id}-${label}`} style={{ padding: '1.1rem 1.25rem', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', borderLeft: `1px solid ${p.borderColor}30`, verticalAlign: 'middle' }}>
-                              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <td key={`${p.id}-${label}`} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', borderLeft: `1px solid ${p.borderColor}30`, verticalAlign: 'top', height: '100%' }}>
+                              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                                 {p.rows[rowIdx].value.split('\n').map((line, i, arr) => {
                                   if (line.includes('|')) {
                                     const [left, right] = line.split('|');
                                     return (
-                                      <div key={i} style={{ display: 'flex', padding: '0.6rem 0', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
+                                      <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '1.1rem 1.25rem', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
                                         <div style={{ flex: '0 0 28%', fontWeight: '700', color: p.accent, paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
                                         <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>
                                           {right.includes('<br/>') ? right.split('<br/>').map((rLine, j) => <div key={j}>{rLine.trim()}</div>) : right.trim()}
@@ -352,7 +352,7 @@ export default function ProductsPage() {
                                     );
                                   }
                                   return (
-                                    <div key={i} style={{ padding: '0.6rem 0', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
+                                    <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '1.1rem 1.25rem', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
                                       {line}
                                     </div>
                                   );
