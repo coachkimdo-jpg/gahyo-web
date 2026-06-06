@@ -208,13 +208,7 @@ export default function HomePage() {
         </div>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           
-          {/* 상조 상품 직접 구성하기 (모바일 접근성 강화 CTA) */}
-          <div style={{ marginBottom: '2rem' }}>
-            <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', maxWidth: '320px', padding: '1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: '#001a3a', borderRadius: '8px', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)' }}>
-              <span>🛠️ 상조 상품 직접 구성하기</span>
-              <span style={{ fontSize: '1.2rem', marginLeft: 'auto' }}>→</span>
-            </Link>
-          </div>
+
 
           {/* E-E-A-T 신뢰도 배지 */}
           <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', padding: '0.7rem 1.25rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', marginBottom: '1.5rem' }}>
@@ -251,19 +245,12 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* 가격대 요약 */}
-          <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-            {[
-              { label: '무빈소', price: '120만원' },
-              { label: '일반 3일장', price: '265만원' },
-              { label: '리무진 포함', price: '334만원' },
-              { label: 'VIP 프리미엄', price: '363만원' },
-            ].map(p => (
-              <div key={p.label} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 'var(--radius-sm)', padding: '0.5rem 1rem', textAlign: 'center' }}>
-                <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.78rem' }}>{p.label}</div>
-                <div style={{ color: 'var(--gold)', fontWeight: '800', fontSize: '1.05rem' }}>{p.price}</div>
-              </div>
-            ))}
+          {/* 상조 상품 직접 구성하기 (모바일 접근성 강화 CTA) */}
+          <div style={{ marginBottom: '2rem' }}>
+            <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', maxWidth: '320px', padding: '1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: '#001a3a', borderRadius: '8px', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)' }}>
+              <span>🛠️ 상조 상품 직접 구성하기</span>
+              <span style={{ fontSize: '1.2rem', marginLeft: 'auto' }}>→</span>
+            </Link>
           </div>
 
           {/* CTA 버튼 */}
