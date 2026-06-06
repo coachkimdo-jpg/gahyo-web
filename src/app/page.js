@@ -246,30 +246,34 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* 상조 상품 직접 구성하기 (모바일 접근성 강화 CTA) */}
-          <div style={{ marginBottom: '2rem' }}>
-            <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', maxWidth: '320px', padding: '1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: '#001a3a', borderRadius: '8px', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)' }}>
+          {/* 메인 CTA 버튼 그룹 */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem', marginTop: '2rem' }}>
+            <Link href="/custom-package" style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+              padding: '1.1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
+              color: '#001a3a', borderRadius: 'var(--radius-sm)', fontWeight: '800', fontSize: '1.1rem',
+              textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)', width: '100%',
+              transition: 'var(--transition)'
+            }}>
               <span>🛠️ 상조 상품 직접 구성하기</span>
               <span style={{ fontSize: '1.2rem', marginLeft: 'auto' }}>→</span>
             </Link>
-          </div>
-
-          {/* CTA 버튼 */}
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <a href="tel:1551-5718" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
-              padding: '1.1rem 2rem', fontSize: '1.1rem', fontWeight: '800',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
+              padding: '1.1rem 1.5rem', fontSize: '1.1rem', fontWeight: '800',
               background: 'linear-gradient(135deg, #c0392b, #96281b)',
               color: 'white', borderRadius: 'var(--radius-sm)',
-              boxShadow: '0 4px 20px rgba(192,57,43,0.5)', textDecoration: 'none',
+              boxShadow: '0 4px 20px rgba(192,57,43,0.5)', textDecoration: 'none', width: '100%',
+              transition: 'var(--transition)'
             }} id="hero-call-btn">
               📞 24시간 장례 접수·상담
             </a>
             <Link href="/estimate" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
-              padding: '1.1rem 2rem', fontSize: '1.05rem', fontWeight: '700',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
+              padding: '1.1rem 1.5rem', fontSize: '1.05rem', fontWeight: '700',
               background: 'rgba(255,255,255,0.1)', color: 'white',
-              border: '2px solid rgba(255,255,255,0.3)', borderRadius: 'var(--radius-sm)', textDecoration: 'none',
+              border: '2px solid rgba(255,255,255,0.3)', borderRadius: 'var(--radius-sm)', textDecoration: 'none', width: '100%',
+              transition: 'var(--transition)'
             }} id="hero-estimate-btn">
               🧮 투명한 장례비용 산출하기
             </Link>
