@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 
 export const metadata = {
   metadataBase: new URL('https://gahyo.co.kr'),
@@ -76,6 +77,21 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <EmergencyFloat />
+
+        {/* Google Ads Tag (AW-11204427788) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-11204427788');
+          `}
+        </Script>
+
         {/* Google Analytics - 브라우저 유휴 시간에 지연 로드 (성능 최적화) */}
         <GoogleAnalytics gaId="G-4QVQ5GFTLV" />
       </body>
