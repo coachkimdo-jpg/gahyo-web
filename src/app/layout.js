@@ -65,6 +65,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <head>
+        {/* Google Ads Tag (AW-11204427788) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11204427788');
+            `,
+          }}
+        />
         {/* 
           폰트 관련 모든 외부 요청 제거 - 시스템 폰트 사용으로 완전 전환
           Google Analytics는 afterInteractive 전략으로 렌더링 완료 후 로드 
@@ -77,21 +89,6 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <EmergencyFloat />
-
-        {/* Google Ads Tag (AW-11204427788) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-11204427788');
-          `}
-        </Script>
-
         {/* Google Analytics - 브라우저 유휴 시간에 지연 로드 (성능 최적화) */}
         <GoogleAnalytics gaId="G-4QVQ5GFTLV" />
       </body>
