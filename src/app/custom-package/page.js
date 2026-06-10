@@ -7,12 +7,12 @@ import Link from 'next/link';
 // BASE_PRICE is dynamic based on altar selection
 
 const STEPS = [
-  { id: 'altar', label: '빈소', desc: '장례의 규모와 방식을 결정하는 가장 중요한 첫걸음입니다. 원하시는 형태를 선택해 주세요.' },
-  { id: 'clothes', label: '상복', desc: '유가족분들의 인원수에 맞춰 낭비 없이 필요한 만큼만 딱 맞게 준비하세요.' },
-  { id: 'vehicles', label: '차량', desc: '고인과 유가족이 안전하게 이동할 차량을 선택해 주세요. (여러 대 선택 가능)' },
-  { id: 'staff', label: '도우미', desc: '조문객 규모를 예상하여 접객을 도와드릴 전문 인력을 배치해 주세요.' },
-  { id: 'shroud', label: '수의', desc: '고인에게 입혀드릴 마지막 옷입니다. 상황에 맞는 수의를 정성껏 선택해 주세요.' },
-  { id: 'urn', label: '납골함', desc: '장지(모실 곳)의 형태(수목장, 납골당 등)에 가장 적합한 유골함을 선택해 주세요.' }
+  { id: 'altar', label: '빈소', mainCopy: '남들이 정해준 비싼 패키지, 더 이상 손해 보지 마세요.', subCopy: '쓰지도 않을 품목 강요 없이, 우리 가족에게 꼭 필요한 장례 서비스만 직접 구성하세요.' },
+  { id: 'clothes', label: '상복', mainCopy: '입지도 않을 상복까지 강제로 결제하고 계시진 않나요?', subCopy: '남상복 5만 원, 여상복 2만 원. 우리 가족 규모에 딱 맞게 꼭 필요한 수량만 합리적으로 대여하세요.' },
+  { id: 'vehicles', label: '차량', mainCopy: '쓰지도 않을 고급 리무진, 억지로 탈 필요 없습니다.', subCopy: '리무진, 45인승 장의버스, 관내 앰뷸런스 중 장지 이동 거리와 유족 규모에 맞춰 필요한 차량만 선택하세요.' },
+  { id: 'staff', label: '도우미', mainCopy: '조문객이 적은데 비싼 도우미 비용을 다 내실 건가요?', subCopy: '1명당 12만 원(10시간 기준). 예상되는 조문객 수에 딱 맞춰 꼭 필요한 인원만 투명하게 추가하세요.' },
+  { id: 'shroud', label: '수의', mainCopy: '수의에 숨겨진 수백만 원의 거품을 완벽하게 뺐습니다.', subCopy: '10만 원대 면수의부터 고급 한복 수의까지. 고인을 모시는 마음만 생각하며 예산에 맞게 자유롭게 고르세요.' },
+  { id: 'urn', label: '납골함', mainCopy: '마지막 모시는 길, 납골함 바가지 요금은 이제 없습니다.', subCopy: '기본 목함 3만 원부터 종교별 고급 도자기까지. 비싼 강매 없이 투명한 정찰제로 직접 선택하세요.' }
 ];
 
 const OPTIONS = {
@@ -613,9 +613,14 @@ export default function CustomPackagePage() {
           <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.5rem' }}>
             {currentStep + 1}단계: {currentStepData.label} 선택
           </h2>
-          <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '2rem', wordBreak: 'keep-all', lineHeight: '1.5' }}>
-            {currentStepData.desc}
-          </p>
+          <div style={{ marginBottom: '2rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #f97316' }}>
+            <p style={{ fontSize: '1.15rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.5rem', wordBreak: 'keep-all', lineHeight: '1.4' }}>
+              {currentStepData.mainCopy}
+            </p>
+            <p style={{ color: '#475569', fontSize: '0.95rem', wordBreak: 'keep-all', lineHeight: '1.5', margin: 0 }}>
+              {currentStepData.subCopy}
+            </p>
+          </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {OPTIONS[currentStepData.id].map((opt) => {
