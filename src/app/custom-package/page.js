@@ -563,10 +563,6 @@ export default function CustomPackagePage() {
         .progress-bar-container {
           margin-bottom: 3rem;
         }
-        .hero-btn {
-          padding: 1.2rem 3rem;
-          font-size: 1.3rem;
-        }
         @media (max-width: 768px) {
           .hero-section {
             padding: 2rem 1rem 1.5rem;
@@ -579,11 +575,6 @@ export default function CustomPackagePage() {
             font-size: 0.95rem;
             margin-bottom: 1rem;
             line-height: 1.4 !important;
-          }
-          .hero-btn {
-            padding: 0.8rem 2rem;
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
           }
           .config-container {
             padding-top: 1.5rem;
@@ -609,7 +600,7 @@ export default function CustomPackagePage() {
                 </span>
               ))}
             </h1>
-            <p className="hero-sub" style={{ color: '#cbd5e1', wordBreak: 'keep-all', lineHeight: '1.6' }}>
+            <p className="hero-sub" style={{ color: '#cbd5e1', wordBreak: 'keep-all', lineHeight: '1.6', margin: 0 }}>
               {STEPS[currentStep].subCopy.split('. ').map((text, idx, arr) => (
                 <span key={idx}>
                   {text}{idx < arr.length - 1 && '.'}
@@ -617,21 +608,6 @@ export default function CustomPackagePage() {
                 </span>
               ))}
             </p>
-            <button 
-              className="hero-btn"
-              onClick={() => {
-                const el = document.getElementById('config-start');
-                if (el) {
-                  const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
-                  window.scrollTo({ top: y, behavior: 'smooth' });
-                }
-              }}
-              style={{ background: '#f97316', color: 'white', fontWeight: '800', border: 'none', borderRadius: '50px', cursor: 'pointer', boxShadow: '0 10px 25px rgba(249, 115, 22, 0.4)', transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
-              onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              상조 직접 구성하기 👉
-            </button>
           </div>
         </div>
       )}
