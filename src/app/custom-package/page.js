@@ -7,12 +7,12 @@ import Link from 'next/link';
 // BASE_PRICE is dynamic based on altar selection
 
 const STEPS = [
-  { id: 'altar', label: '빈소' },
-  { id: 'clothes', label: '상복' },
-  { id: 'vehicles', label: '차량' },
-  { id: 'staff', label: '도우미' },
-  { id: 'shroud', label: '수의' },
-  { id: 'urn', label: '납골함' }
+  { id: 'altar', label: '빈소', desc: '장례의 규모와 방식을 결정하는 가장 중요한 첫걸음입니다. 원하시는 형태를 선택해 주세요.' },
+  { id: 'clothes', label: '상복', desc: '유가족분들의 인원수에 맞춰 낭비 없이 필요한 만큼만 딱 맞게 준비하세요.' },
+  { id: 'vehicles', label: '차량', desc: '고인과 유가족이 안전하게 이동할 차량을 선택해 주세요. (여러 대 선택 가능)' },
+  { id: 'staff', label: '도우미', desc: '조문객 규모를 예상하여 접객을 도와드릴 전문 인력을 배치해 주세요.' },
+  { id: 'shroud', label: '수의', desc: '고인에게 입혀드릴 마지막 옷입니다. 상황에 맞는 수의를 정성껏 선택해 주세요.' },
+  { id: 'urn', label: '납골함', desc: '장지(모실 곳)의 형태(수목장, 납골당 등)에 가장 적합한 유골함을 선택해 주세요.' }
 ];
 
 const OPTIONS = {
@@ -613,10 +613,8 @@ export default function CustomPackagePage() {
           <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.5rem' }}>
             {currentStep + 1}단계: {currentStepData.label} 선택
           </h2>
-          <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '2rem' }}>
-            {currentStepData.id === 'vehicles' ? '원하시는 차량을 모두 선택해주세요.' : 
-             (currentStepData.id === 'clothes' || currentStepData.id === 'staff') ? '필요하신 수량(인원)을 조절해주세요.' : 
-             '원하시는 옵션을 하나 선택해주세요.'}
+          <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '2rem', wordBreak: 'keep-all', lineHeight: '1.5' }}>
+            {currentStepData.desc}
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
