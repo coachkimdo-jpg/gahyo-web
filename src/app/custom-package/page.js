@@ -553,10 +553,20 @@ export default function CustomPackagePage() {
         <div style={{ background: 'linear-gradient(135deg, var(--navy), #0a192f)', color: 'white', padding: '6rem 1rem', textAlign: 'center' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             <h1 style={{ fontSize: '2.8rem', fontWeight: '900', marginBottom: '1.2rem', wordBreak: 'keep-all', lineHeight: '1.3', letterSpacing: '-0.02em' }}>
-              남들이 정해준 비싼 패키지,<br/>더 이상 손해 보지 마세요.
+              {STEPS[currentStep].mainCopy.split(', ').map((text, idx, arr) => (
+                <span key={idx}>
+                  {text}{idx < arr.length - 1 && ','}
+                  {idx < arr.length - 1 && <br />}
+                </span>
+              ))}
             </h1>
             <p style={{ fontSize: '1.2rem', color: '#cbd5e1', marginBottom: '3rem', wordBreak: 'keep-all', lineHeight: '1.6' }}>
-              쓰지도 않을 품목 강요 없이,<br/>우리 가족에게 꼭 필요한 장례 서비스만 직접 구성하세요.
+              {STEPS[currentStep].subCopy.split('. ').map((text, idx, arr) => (
+                <span key={idx}>
+                  {text}{idx < arr.length - 1 && '.'}
+                  {idx < arr.length - 1 && <br />}
+                </span>
+              ))}
             </p>
             <button 
               onClick={() => {
@@ -610,17 +620,9 @@ export default function CustomPackagePage() {
 
         {/* 현재 스텝 컨텐츠 */}
         <div style={{ background: 'white', borderRadius: '16px', padding: '2.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0', marginBottom: '2rem' }}>
-          <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.5rem' }}>
+          <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '1.5rem' }}>
             {currentStep + 1}단계: {currentStepData.label} 선택
           </h2>
-          <div style={{ marginBottom: '2rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #f97316' }}>
-            <p style={{ fontSize: '1.15rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.5rem', wordBreak: 'keep-all', lineHeight: '1.4' }}>
-              {currentStepData.mainCopy}
-            </p>
-            <p style={{ color: '#475569', fontSize: '0.95rem', wordBreak: 'keep-all', lineHeight: '1.5', margin: 0 }}>
-              {currentStepData.subCopy}
-            </p>
-          </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {OPTIONS[currentStepData.id].map((opt) => {
