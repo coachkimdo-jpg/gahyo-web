@@ -580,9 +580,6 @@ export default function CustomPackagePage() {
         
         {/* 상단 진행 상태 바 */}
         <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '1.8rem', fontWeight: '900', color: 'var(--navy)', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
-            상조 직접 구성하기
-          </h2>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', maxWidth: '600px', margin: '0 auto' }}>
             <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '3px', background: '#e2e8f0', zIndex: 0, transform: 'translateY(-50%)' }} />
             <div style={{ position: 'absolute', top: '50%', left: 0, height: '3px', background: 'var(--gold)', zIndex: 1, transform: 'translateY(-50%)', width: `${(currentStep / (STEPS.length - 1)) * 100}%`, transition: 'width 0.3s ease' }} />
