@@ -101,14 +101,14 @@ export default function ProductsPage() {
       'author': {
         '@type': 'Person',
         'name': '가효상조 수석 장례지도사',
-        'url': 'https://gahyo.com/about'
+        'url': 'https://gahyo.co.kr/about'
       },
       'dateModified': today,
       'datePublished': '2023-01-01',
       'publisher': {
         '@type': 'Organization',
         'name': '가효상조',
-        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.com/logo.png' }
+        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.co.kr/logo.png' }
       }
     },
     {
@@ -131,13 +131,14 @@ export default function ProductsPage() {
       '@context': 'https://schema.org',
       '@type': 'Product',
       'name': p.name,
+      'image': 'https://gahyo.co.kr/og-image.png',
       'description': p.desc,
       'brand': { '@type': 'Brand', 'name': '가효상조' },
       'offers': {
         '@type': 'Offer',
         'price': p.price.replace(/,/g, ''),
         'priceCurrency': 'KRW',
-        'url': 'https://gahyo.com/products'
+        'url': 'https://gahyo.co.kr/products'
       }
     }))
   ];
