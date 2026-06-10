@@ -545,14 +545,63 @@ export default function CustomPackagePage() {
 
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '100px' }}>
+      <style>{`
+        .hero-section {
+          padding: 5rem 1rem;
+        }
+        .hero-title {
+          font-size: 2.6rem;
+          margin-bottom: 1.2rem;
+        }
+        .hero-sub {
+          font-size: 1.15rem;
+          margin-bottom: 3rem;
+        }
+        .config-container {
+          padding-top: 3.5rem;
+        }
+        .progress-bar-container {
+          margin-bottom: 3rem;
+        }
+        .hero-btn {
+          padding: 1.2rem 3rem;
+          font-size: 1.3rem;
+        }
+        @media (max-width: 768px) {
+          .hero-section {
+            padding: 2rem 1rem 1.5rem;
+          }
+          .hero-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+          }
+          .hero-sub {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.4 !important;
+          }
+          .hero-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+          }
+          .config-container {
+            padding-top: 1.5rem;
+          }
+          .progress-bar-container {
+            margin-bottom: 1.5rem;
+          }
+        }
+      `}</style>
+
       {/* Header Spacer */}
       <div style={{ height: '76px' }} />
 
       {/* Landing Hero Section */}
       {!isFinished && (
-        <div style={{ background: 'linear-gradient(135deg, var(--navy), #0a192f)', color: 'white', padding: '6rem 1rem', textAlign: 'center' }}>
+        <div className="hero-section" style={{ background: 'linear-gradient(135deg, var(--navy), #0a192f)', color: 'white', textAlign: 'center' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <h1 style={{ fontSize: '2.8rem', fontWeight: '900', marginBottom: '1.2rem', wordBreak: 'keep-all', lineHeight: '1.3', letterSpacing: '-0.02em' }}>
+            <h1 className="hero-title" style={{ fontWeight: '900', wordBreak: 'keep-all', lineHeight: '1.3', letterSpacing: '-0.02em' }}>
               {STEPS[currentStep].mainCopy.split(', ').map((text, idx, arr) => (
                 <span key={idx}>
                   {text}{idx < arr.length - 1 && ','}
@@ -560,7 +609,7 @@ export default function CustomPackagePage() {
                 </span>
               ))}
             </h1>
-            <p style={{ fontSize: '1.2rem', color: '#cbd5e1', marginBottom: '3rem', wordBreak: 'keep-all', lineHeight: '1.6' }}>
+            <p className="hero-sub" style={{ color: '#cbd5e1', wordBreak: 'keep-all', lineHeight: '1.6' }}>
               {STEPS[currentStep].subCopy.split('. ').map((text, idx, arr) => (
                 <span key={idx}>
                   {text}{idx < arr.length - 1 && '.'}
@@ -569,6 +618,7 @@ export default function CustomPackagePage() {
               ))}
             </p>
             <button 
+              className="hero-btn"
               onClick={() => {
                 const el = document.getElementById('config-start');
                 if (el) {
@@ -576,7 +626,7 @@ export default function CustomPackagePage() {
                   window.scrollTo({ top: y, behavior: 'smooth' });
                 }
               }}
-              style={{ background: '#f97316', color: 'white', padding: '1.2rem 3rem', fontSize: '1.3rem', fontWeight: '800', border: 'none', borderRadius: '50px', cursor: 'pointer', boxShadow: '0 10px 25px rgba(249, 115, 22, 0.4)', transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              style={{ background: '#f97316', color: 'white', fontWeight: '800', border: 'none', borderRadius: '50px', cursor: 'pointer', boxShadow: '0 10px 25px rgba(249, 115, 22, 0.4)', transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
               onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
               onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
@@ -586,10 +636,10 @@ export default function CustomPackagePage() {
         </div>
       )}
 
-      <div id="config-start" className="container" style={{ maxWidth: '800px', margin: '0 auto', paddingTop: '4rem' }}>
+      <div id="config-start" className="container config-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
         
         {/* 상단 진행 상태 바 */}
-        <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
+        <div className="progress-bar-container" style={{ textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', maxWidth: '600px', margin: '0 auto' }}>
             <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '3px', background: '#e2e8f0', zIndex: 0, transform: 'translateY(-50%)' }} />
             <div style={{ position: 'absolute', top: '50%', left: 0, height: '3px', background: 'var(--gold)', zIndex: 1, transform: 'translateY(-50%)', width: `${(currentStep / (STEPS.length - 1)) * 100}%`, transition: 'width 0.3s ease' }} />
