@@ -548,13 +548,41 @@ export default function CustomPackagePage() {
       {/* Header Spacer */}
       <div style={{ height: '76px' }} />
 
-      <div className="container" style={{ maxWidth: '800px', margin: '0 auto', paddingTop: '3rem' }}>
+      {/* Landing Hero Section */}
+      {!isFinished && (
+        <div style={{ background: 'linear-gradient(135deg, var(--navy), #0a192f)', color: 'white', padding: '6rem 1rem', textAlign: 'center' }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <h1 style={{ fontSize: '2.8rem', fontWeight: '900', marginBottom: '1.2rem', wordBreak: 'keep-all', lineHeight: '1.3', letterSpacing: '-0.02em' }}>
+              남들이 정해준 비싼 패키지,<br/>더 이상 손해 보지 마세요.
+            </h1>
+            <p style={{ fontSize: '1.2rem', color: '#cbd5e1', marginBottom: '3rem', wordBreak: 'keep-all', lineHeight: '1.6' }}>
+              쓰지도 않을 품목 강요 없이,<br/>우리 가족에게 꼭 필요한 장례 서비스만 직접 구성하세요.
+            </p>
+            <button 
+              onClick={() => {
+                const el = document.getElementById('config-start');
+                if (el) {
+                  const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+              }}
+              style={{ background: '#f97316', color: 'white', padding: '1.2rem 3rem', fontSize: '1.3rem', fontWeight: '800', border: 'none', borderRadius: '50px', cursor: 'pointer', boxShadow: '0 10px 25px rgba(249, 115, 22, 0.4)', transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              상조 직접 구성하기 👉
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div id="config-start" className="container" style={{ maxWidth: '800px', margin: '0 auto', paddingTop: '4rem' }}>
         
         {/* 상단 진행 상태 바 */}
         <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: '900', color: 'var(--navy)', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: '900', color: 'var(--navy)', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
             상조 직접 구성하기
-          </h1>
+          </h2>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', maxWidth: '600px', margin: '0 auto' }}>
             <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '3px', background: '#e2e8f0', zIndex: 0, transform: 'translateY(-50%)' }} />
             <div style={{ position: 'absolute', top: '50%', left: 0, height: '3px', background: 'var(--gold)', zIndex: 1, transform: 'translateY(-50%)', width: `${(currentStep / (STEPS.length - 1)) * 100}%`, transition: 'width 0.3s ease' }} />
