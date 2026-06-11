@@ -597,19 +597,16 @@ export default function CustomPackagePage() {
           </div>
         </div>
 
-        {/* 현재 총 가격 표시 */}
+        {/* 선택 옵션 가격 표시 */}
         <div style={{ 
-          background: 'var(--navy)', color: 'white', padding: '1.5rem', borderRadius: '12px', 
-          marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          boxShadow: '0 4px 15px rgba(0, 44, 95, 0.15)'
+          background: '#f0f9ff', border: '1px solid #bae6fd', padding: '1.25rem 1.5rem', borderRadius: '12px', 
+          marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'
         }}>
-          <div>
-            <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '0.25rem' }}>현재까지 누적된 예상 비용</div>
-            <div style={{ fontSize: '1.5rem', fontWeight: '800' }}>총 {finalTotalPrice.toLocaleString()}원</div>
+          <div style={{ fontSize: '1rem', fontWeight: '700', color: '#0369a1' }}>
+            추가 선택 옵션 합계
           </div>
-          <div style={{ textAlign: 'right', fontSize: '0.85rem', opacity: 0.8, lineHeight: 1.4 }}>
-            기본: {basePrice.toLocaleString()}원<br/>
-            추가: <span style={{ color: 'var(--gold)', fontWeight: 'bold' }}>+{optionsPrice.toLocaleString()}원</span>
+          <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#0284c7' }}>
+            {optionsPrice > 0 ? '+' : ''}{optionsPrice.toLocaleString()}원
           </div>
         </div>
 
