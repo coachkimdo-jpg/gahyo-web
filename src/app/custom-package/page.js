@@ -733,7 +733,7 @@ export default function CustomPackagePage() {
           marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'
         }}>
           <div style={{ fontSize: '1rem', fontWeight: '700', color: '#0369a1' }}>
-            추가 선택 옵션 합계
+            현재까지의 나의 구성 합계
           </div>
           <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#0284c7' }}>
             {optionsPrice > 0 ? '+' : ''}{optionsPrice.toLocaleString()}원
