@@ -6,48 +6,62 @@ import { getSlug } from '@/lib/utils';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
-  let ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { return { title: 'Not Found' }; }
+  
+  let ossuary = ossuariesData.find(g => getSlug(g.address, g.name) === decodedSlug);
   
   if (!ossuary) {
-    if (/^\d+$/.test(id)) {
-      const legacyOssuary = ossuariesData.find((o) => o.id === id);
-      if (legacyOssuary) return { title: `가효상조 - ${legacyOssuary.name} 100% 후불제 상조 및 투명한 장례 서비스` };
+    let legacyOssuary = ossuariesData.find((g) => g.id === id || g.id === decodedSlug);
+    if (!legacyOssuary) {
+      legacyOssuary = ossuariesData.find((g) => {
+        if (!g.address) return false;
+        const addrSlug = g.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || g.address === decodedSlug || g.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackOssuary = ossuariesData.find((o) => o.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackOssuary) ossuary = fallbackOssuary;
+    if (!legacyOssuary) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyOssuary = ossuariesData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart || g.name.includes(slugNamePart.replace(/-/g, '')));
+      }
     }
+    if (legacyOssuary) ossuary = legacyOssuary;
     if (!ossuary) return { title: 'Not Found' };
   }
   return {
     title: `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`,
-    description: `${ossuary.address}에 위치한 ${ossuary.name}. 가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. 안치 비용 ${ossuary.priceRange} 안내.`,
+    description: `${ossuary.address}에 위치한 ${ossuary.name}. 선불금 없는 100% 후불제 가효상조와 함께 준비하세요. 봉안당(납골당) 안치단별 사용료 ${ossuary.priceRange} 수준 안내.`,
     alternates: {
-      canonical: `/cemeteries/ossuary/${encodeURIComponent(decodedSlug)}`,
+      canonical: `/cemeteries/ossuary/${encodeURIComponent(getSlug(ossuary.address, ossuary.name))}`,
     },
   };
 }
 
 export default async function OssuaryPage({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
-  let ossuary = ossuariesData.find(o => getSlug(o.address, o.name) === decodedSlug);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { notFound(); }
+  
+  let ossuary = ossuariesData.find(g => getSlug(g.address, g.name) === decodedSlug);
   
   if (!ossuary) {
-    if (/^\d+$/.test(id)) {
-      const legacyOssuary = ossuariesData.find((o) => o.id === id);
-      if (legacyOssuary) {
-        permanentRedirect(`/cemeteries/ossuary/${encodeURIComponent(getSlug(legacyOssuary.address, legacyOssuary.name))}`);
+    let legacyOssuary = ossuariesData.find((g) => g.id === id || g.id === decodedSlug);
+    if (!legacyOssuary) {
+      legacyOssuary = ossuariesData.find((g) => {
+        if (!g.address) return false;
+        const addrSlug = g.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || g.address === decodedSlug || g.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
+    }
+    if (!legacyOssuary) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyOssuary = ossuariesData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart || g.name.includes(slugNamePart.replace(/-/g, '')));
       }
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackOssuary = ossuariesData.find((o) => o.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackOssuary) {
-        permanentRedirect(`/cemeteries/ossuary/${encodeURIComponent(getSlug(fallbackOssuary.address, fallbackOssuary.name))}`);
-      }
+    if (legacyOssuary) {
+      permanentRedirect(`/cemeteries/ossuary/${encodeURIComponent(getSlug(legacyOssuary.address, legacyOssuary.name))}`);
     }
     notFound();
   }

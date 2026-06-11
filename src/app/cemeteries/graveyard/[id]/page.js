@@ -6,48 +6,62 @@ import { getSlug } from '@/lib/utils';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { return { title: 'Not Found' }; }
+  
   let graveyard = graveyardsData.find(g => getSlug(g.address, g.name) === decodedSlug);
   
   if (!graveyard) {
-    if (/^\d+$/.test(id)) {
-      const legacyGraveyard = graveyardsData.find((g) => g.id === id);
-      if (legacyGraveyard) return { title: `가효상조 - ${legacyGraveyard.name} 100% 후불제 상조 및 투명한 장례 서비스` };
+    let legacyGraveyard = graveyardsData.find((g) => g.id === id || g.id === decodedSlug);
+    if (!legacyGraveyard) {
+      legacyGraveyard = graveyardsData.find((g) => {
+        if (!g.address) return false;
+        const addrSlug = g.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || g.address === decodedSlug || g.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackGraveyard = graveyardsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackGraveyard) graveyard = fallbackGraveyard;
+    if (!legacyGraveyard) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyGraveyard = graveyardsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart || g.name.includes(slugNamePart.replace(/-/g, '')));
+      }
     }
+    if (legacyGraveyard) graveyard = legacyGraveyard;
     if (!graveyard) return { title: 'Not Found' };
   }
   return {
     title: `가효상조 - ${graveyard.name} 100% 후불제 상조 및 투명한 장례 서비스`,
     description: `${graveyard.address}에 위치한 ${graveyard.name}. 가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. 묘지 사용료 및 관리비 ${graveyard.priceRange} 안내.`,
     alternates: {
-      canonical: `/cemeteries/graveyard/${encodeURIComponent(decodedSlug)}`,
+      canonical: `/cemeteries/graveyard/${encodeURIComponent(getSlug(graveyard.address, graveyard.name))}`,
     },
   };
 }
 
 export default async function GraveyardPage({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { notFound(); }
+  
   let graveyard = graveyardsData.find(g => getSlug(g.address, g.name) === decodedSlug);
   
   if (!graveyard) {
-    if (/^\d+$/.test(id)) {
-      const legacyGraveyard = graveyardsData.find((g) => g.id === id);
-      if (legacyGraveyard) {
-        permanentRedirect(`/cemeteries/graveyard/${encodeURIComponent(getSlug(legacyGraveyard.address, legacyGraveyard.name))}`);
+    let legacyGraveyard = graveyardsData.find((g) => g.id === id || g.id === decodedSlug);
+    if (!legacyGraveyard) {
+      legacyGraveyard = graveyardsData.find((g) => {
+        if (!g.address) return false;
+        const addrSlug = g.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || g.address === decodedSlug || g.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
+    }
+    if (!legacyGraveyard) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyGraveyard = graveyardsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart || g.name.includes(slugNamePart.replace(/-/g, '')));
       }
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackGraveyard = graveyardsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackGraveyard) {
-        permanentRedirect(`/cemeteries/graveyard/${encodeURIComponent(getSlug(fallbackGraveyard.address, fallbackGraveyard.name))}`);
-      }
+    if (legacyGraveyard) {
+      permanentRedirect(`/cemeteries/graveyard/${encodeURIComponent(getSlug(legacyGraveyard.address, legacyGraveyard.name))}`);
     }
     notFound();
   }

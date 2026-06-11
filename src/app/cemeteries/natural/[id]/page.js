@@ -6,49 +6,62 @@ import { getSlug } from '@/lib/utils';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
-  let facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { return { title: 'Not Found' }; }
   
-  if (!facility) {
-    if (/^\d+$/.test(id)) {
-      const legacyFacility = naturalBurialsData.find((n) => n.id === id);
-      if (legacyFacility) return { title: `가효상조 - ${legacyFacility.name} 100% 후불제 상조 및 투명한 장례 서비스` };
+  let burial = naturalBurialsData.find(g => getSlug(g.address, g.name) === decodedSlug);
+  
+  if (!burial) {
+    let legacyBurial = naturalBurialsData.find((g) => g.id === id || g.id === decodedSlug);
+    if (!legacyBurial) {
+      legacyBurial = naturalBurialsData.find((g) => {
+        if (!g.address) return false;
+        const addrSlug = g.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || g.address === decodedSlug || g.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackFacility = naturalBurialsData.find((n) => n.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackFacility) facility = fallbackFacility;
+    if (!legacyBurial) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyBurial = naturalBurialsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart || g.name.includes(slugNamePart.replace(/-/g, '')));
+      }
     }
-    if (!facility) return { title: 'Not Found' };
+    if (legacyBurial) burial = legacyBurial;
+    if (!burial) return { title: 'Not Found' };
   }
-  
   return {
-    title: `가효상조 - ${facility.name} 100% 후불제 자연장 서비스`,
-    description: `가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. ${facility.address}에 위치한 ${facility.name} 이용 시 투명한 비용을 약속드립니다.`,
+    title: `가효상조 - ${burial.name} 100% 후불제 상조 및 투명한 장례 서비스`,
+    description: `${burial.address}에 위치한 자연장지(수목장/잔디장) ${burial.name}. 선불금 없는 100% 후불제 가효상조와 함께 준비하세요. 관리비 ${burial.priceRange} 수준 안내.`,
     alternates: {
-      canonical: `/cemeteries/natural/${encodeURIComponent(decodedSlug)}`,
+      canonical: `/cemeteries/natural/${encodeURIComponent(getSlug(burial.address, burial.name))}`,
     },
   };
 }
 
 export default async function NaturalBurialPage({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
-  let facility = naturalBurialsData.find(n => getSlug(n.address, n.name) === decodedSlug);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { notFound(); }
   
-  if (!facility) {
-    if (/^\d+$/.test(id)) {
-      const legacyFacility = naturalBurialsData.find((n) => n.id === id);
-      if (legacyFacility) {
-        permanentRedirect(`/cemeteries/natural/${encodeURIComponent(getSlug(legacyFacility.address, legacyFacility.name))}`);
+  let burial = naturalBurialsData.find(g => getSlug(g.address, g.name) === decodedSlug);
+  
+  if (!burial) {
+    let legacyBurial = naturalBurialsData.find((g) => g.id === id || g.id === decodedSlug);
+    if (!legacyBurial) {
+      legacyBurial = naturalBurialsData.find((g) => {
+        if (!g.address) return false;
+        const addrSlug = g.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || g.address === decodedSlug || g.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
+    }
+    if (!legacyBurial) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyBurial = naturalBurialsData.find((g) => g.name.replace(/[\s/\\_]+/g, '') === slugNamePart || g.name.includes(slugNamePart.replace(/-/g, '')));
       }
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackFacility = naturalBurialsData.find((n) => n.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackFacility) {
-        permanentRedirect(`/cemeteries/natural/${encodeURIComponent(getSlug(fallbackFacility.address, fallbackFacility.name))}`);
-      }
+    if (legacyBurial) {
+      permanentRedirect(`/cemeteries/natural/${encodeURIComponent(getSlug(legacyBurial.address, legacyBurial.name))}`);
     }
     notFound();
   }

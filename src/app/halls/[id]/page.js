@@ -9,19 +9,27 @@ import { getSlug } from '@/lib/utils';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { return { title: '장례식장을 찾을 수 없습니다' }; }
+  
   let hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
   
   if (!hall) {
-    if (/^\d+$/.test(id)) {
-      const legacyHall = funeralHalls.find((h) => h.id === id);
-      if (legacyHall) return { title: `${legacyHall.name} | 가효상조 장례식장 안내` };
+    let legacyHall = funeralHalls.find((h) => h.id === id || h.id === decodedSlug);
+    if (!legacyHall) {
+      legacyHall = funeralHalls.find((h) => {
+        if (!h.address) return false;
+        const addrSlug = h.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || h.address === decodedSlug || h.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackHall = funeralHalls.find((h) => h.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackHall) hall = fallbackHall;
+    if (!legacyHall) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyHall = funeralHalls.find((h) => h.name.replace(/[\s/\\_]+/g, '') === slugNamePart || h.name.includes(slugNamePart.replace(/-/g, '')));
+      }
     }
+    if (legacyHall) hall = legacyHall;
     if (!hall) return { title: '장례식장을 찾을 수 없습니다' };
   }
   return {
@@ -42,29 +50,36 @@ export async function generateMetadata({ params }) {
       description: `${hall.name}의 빈소, 비용, 주차 등 모든 정보를 한눈에 요약해 드립니다.`,
     },
     alternates: {
-      canonical: `/halls/${encodeURIComponent(decodedSlug)}`,
+      canonical: `/halls/${encodeURIComponent(getSlug(hall.address, hall.name))}`,
     },
   };
 }
 
 export default async function HallDetailPage({ params }) {
   const { id } = await params;
-  const decodedSlug = decodeURIComponent(id);
+  let decodedSlug = id;
+  try { decodedSlug = decodeURIComponent(id); } catch(e) { notFound(); }
+  
   let hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
   
   if (!hall) {
-    if (/^\d+$/.test(id)) {
-      const legacyHall = funeralHalls.find((h) => h.id === id);
-      if (legacyHall) {
-        permanentRedirect(`/halls/${encodeURIComponent(getSlug(legacyHall.address, legacyHall.name))}`);
+    let legacyHall = funeralHalls.find((h) => h.id === id || h.id === decodedSlug);
+    if (!legacyHall) {
+      legacyHall = funeralHalls.find((h) => {
+        if (!h.address) return false;
+        const addrSlug = h.address.replace(/\s+/g, '-');
+        return addrSlug === decodedSlug || h.address === decodedSlug || h.address.includes(decodedSlug.replace(/-/g, ' '));
+      });
+    }
+    if (!legacyHall) {
+      const slugNamePart = decodedSlug.split('-').slice(1).join('-');
+      if (slugNamePart) {
+        legacyHall = funeralHalls.find((h) => h.name.replace(/[\s/\\_]+/g, '') === slugNamePart || h.name.includes(slugNamePart.replace(/-/g, '')));
       }
     }
-    const slugNamePart = decodedSlug.split('-').slice(1).join('-');
-    if (slugNamePart) {
-      const fallbackHall = funeralHalls.find((h) => h.name.replace(/[\s/\\_]+/g, '') === slugNamePart);
-      if (fallbackHall) {
-        permanentRedirect(`/halls/${encodeURIComponent(getSlug(fallbackHall.address, fallbackHall.name))}`);
-      }
+    
+    if (legacyHall) {
+      permanentRedirect(`/halls/${encodeURIComponent(getSlug(legacyHall.address, legacyHall.name))}`);
     }
     notFound();
   }
