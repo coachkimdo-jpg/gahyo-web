@@ -533,139 +533,112 @@ export default function CustomPackagePage() {
                       </>
                     )}
                   </div>
-                  <button onClick={() => setActiveTermsModal(null)} style={{ marginTop: '1rem', padding: '1rem', background: '#334155', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '700', cursor: 'pointer' }}>확인</button>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '100px' }}>
-      <style>{`
-        .hero-section {
-          padding: 5rem 1rem;
-        }
-        .hero-title {
-          font-size: 2.6rem;
-          margin-bottom: 1.2rem;
-        }
-        .hero-sub {
-          font-size: 1.15rem;
-          margin-bottom: 3rem;
-        }
-        .config-container {
-          padding-top: 3.5rem;
-        }
-        .progress-bar-container {
-          margin-bottom: 3rem;
-        }
-        @media (max-width: 768px) {
-          .hero-section {
-            padding: 2rem 1rem 1.5rem;
-          }
-          .hero-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-          }
-          .hero-sub {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.4 !important;
-          }
-          .config-container {
-            padding-top: 1.5rem;
-          }
-          .progress-bar-container {
-            margin-bottom: 1.5rem;
-          }
-        }
-      `}</style>
-
-      {/* Header Spacer */}
-      <div style={{ height: '76px' }} />
-
-      {/* Landing Hero Section */}
-      {!isFinished && (
-        <div className="hero-section" style={{ background: 'linear-gradient(135deg, var(--navy), #0a192f)', color: 'white', textAlign: 'center' }}>
-          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <h1 className="hero-title" style={{ fontWeight: '900', wordBreak: 'keep-all', lineHeight: '1.3', letterSpacing: '-0.02em' }}>
-              {STEPS[currentStep].mainCopy.split(', ').map((text, idx, arr) => (
-                <span key={idx}>
-                  {text}{idx < arr.length - 1 && ','}
-                  {idx < arr.length - 1 && <br />}
-                </span>
-              ))}
-            </h1>
-            <p className="hero-sub" style={{ color: '#cbd5e1', wordBreak: 'keep-all', lineHeight: '1.6', margin: 0 }}>
-              {STEPS[currentStep].subCopy.split('. ').map((text, idx, arr) => (
-                <span key={idx}>
-                  {text}{idx < arr.length - 1 && '.'}
-                  {idx < arr.length - 1 && <br />}
-                </span>
-              ))}
-            </p>
-          </div>
-        </div>
-      )}
-
-      <div id="config-start" className="container config-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
-        
-        {/* 상단 진행 상태 바 */}
-        <div className="progress-bar-container" style={{ textAlign: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', maxWidth: '600px', margin: '0 auto' }}>
-            <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '3px', background: '#e2e8f0', zIndex: 0, transform: 'translateY(-50%)' }} />
-            <div style={{ position: 'absolute', top: '50%', left: 0, height: '3px', background: 'var(--gold)', zIndex: 1, transform: 'translateY(-50%)', width: `${(currentStep / (STEPS.length - 1)) * 100}%`, transition: 'width 0.3s ease' }} />
-            
-            {STEPS.map((step, idx) => (
-              <div 
-                key={step.id} 
-                onClick={() => setCurrentStep(idx)}
-                style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
-              >
-                <div style={{ 
-                  width: '32px', height: '32px', borderRadius: '50%', 
-                  background: idx <= currentStep ? 'var(--gold)' : '#fff', 
-                  border: idx <= currentStep ? '2px solid var(--gold)' : '2px solid #cbd5e1',
-                  color: idx <= currentStep ? '#fff' : '#94a3b8',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800', fontSize: '0.9rem',
-                  transition: 'all 0.3s'
-                }}>
-                  {idx + 1}
-                </div>
-                <div style={{ fontSize: '0.8rem', fontWeight: idx <= currentStep ? '700' : '500', color: idx <= currentStep ? 'var(--navy)' : '#94a3b8' }}>
-                  {step.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 현재 스텝 컨텐츠 */}
-        <div style={{ background: 'white', borderRadius: '16px', padding: '2.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0', marginBottom: '2rem' }}>
-          <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '1.5rem' }}>
-            {currentStep + 1}단계: {currentStepData.label} 선택
-          </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {OPTIONS[currentStepData.id].map((opt) => {
-              if (opt.type === 'counter') {
-                 const count = selections[currentStepData.id][opt.id] || 0;
-                 const isSelected = count > 0;
-                 return (
-                    <div key={opt.id} style={{ 
-                      border: isSelected ? '2px solid var(--navy)' : '1px solid #cbd5e1',
-                      background: isSelected ? '#f8fafc' : 'white',
-                      borderRadius: '12px', padding: '1.5rem',
-                      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                      transition: 'all 0.2s'
-                    }}>
-                       <div>
+                  <button onClick={() => setActiveTermsModal(null)} style={{ margin                        <div>
                          <div style={{ fontSize: '1.15rem', fontWeight: '800', color: isSelected ? 'var(--navy)' : '#334155' }}>{opt.title}</div>
                          <div style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '2px' }}>{opt.desc}</div>
+                         <div style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1rem', marginTop: '6px' }}>
+                           +{count > 0 ? (opt.price * count).toLocaleString() : opt.price.toLocaleString()}원
+                         </div>
+                       </div>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#e2e8f0', padding: '6px', borderRadius: '8px' }}>
+                         <button onClick={(e) => { e.stopPropagation(); handleCounter(currentStepData.id, opt.id, -1) }} style={{ width: '32px', height: '32px', border: 'none', background: 'white', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>-</button>
+                         <span style={{ fontWeight: '800', minWidth: '24px', textAlign: 'center', color: '#1e293b' }}>{count}</span>
+                         <button onClick={(e) => { e.stopPropagation(); handleCounter(currentStepData.id, opt.id, 1) }} style={{ width: '32px', height: '32px', border: 'none', background: 'white', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>+</button>
+                       </div>
+                    </div>
+                 );
+              }
+
+              let isSelected = false;
+              if (opt.type === 'radio') {
+                 isSelected = selections[currentStepData.id] === opt.id;
+              } else if (opt.type === 'checkbox') {
+                 isSelected = selections[currentStepData.id].includes(opt.id);
+              }
+
+              return (
+                <div 
+                  key={opt.id} 
+                  onClick={() => handleSelect(currentStepData.id, opt)}
+                  style={{ 
+                    border: isSelected ? '2px solid var(--navy)' : '1px solid #cbd5e1',
+                    background: isSelected ? '#f8fafc' : 'white',
+                    borderRadius: '12px', padding: '1.5rem', cursor: 'pointer',
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ 
+                      width: '22px', height: '22px', 
+                      borderRadius: opt.type === 'radio' ? '50%' : '6px', 
+                      border: isSelected ? '6px solid var(--navy)' : '2px solid #cbd5e1', 
+                      background: isSelected ? 'white' : 'transparent',
+                      transition: 'all 0.2s', flexShrink: 0
+                    }} />
+                    <div>
+                      <div style={{ fontSize: '1.15rem', fontWeight: '800', color: isSelected ? 'var(--navy)' : '#334155' }}>
+                        {opt.title}
+                      </div>
+                      {opt.desc && <div style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '2px' }}>{opt.desc}</div>}
+                      {opt.note && (
+                        <div style={{ fontSize: '0.8rem', color: '#0369a1', background: '#f0f9ff', padding: '0.6rem 0.8rem', borderRadius: '6px', marginTop: '0.6rem', lineHeight: '1.4', wordBreak: 'keep-all' }}>
+                          {opt.note}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div style={{ fontWeight: '800', color: isSelected ? 'var(--navy)' : '#475569', fontSize: '1.1rem', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                    {opt.price > 0 && `+${opt.price.toLocaleString()}원`}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 현재 총 가격 표시 */}
+        <div style={{ 
+          background: 'var(--navy)', color: 'white', padding: '1.5rem', borderRadius: '12px', 
+          marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          boxShadow: '0 4px 15px rgba(0, 44, 95, 0.15)'
+        }}>
+          <div>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '0.25rem' }}>현재까지 누적된 예상 비용</div>
+            <div style={{ fontSize: '1.5rem', fontWeight: '800' }}>총 {finalTotalPrice.toLocaleString()}원</div>
+          </div>
+          <div style={{ textAlign: 'right', fontSize: '0.85rem', opacity: 0.8, lineHeight: 1.4 }}>
+            기본: {basePrice.toLocaleString()}원<br/>
+            추가: <span style={{ color: 'var(--gold)', fontWeight: 'bold' }}>+{optionsPrice.toLocaleString()}원</span>
+          </div>
+        </div>
+
+        {/* 이전/다음 버튼 */}
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'space-between' }}>
+          <button 
+            onClick={handlePrev} 
+            disabled={currentStep === 0}
+            style={{ 
+              padding: '1rem 2rem', borderRadius: '8px', fontWeight: '700', fontSize: '1rem',
+              background: currentStep === 0 ? '#f1f5f9' : 'white', 
+              color: currentStep === 0 ? '#cbd5e1' : '#475569',
+              border: '1px solid #e2e8f0', cursor: currentStep === 0 ? 'not-allowed' : 'pointer',
+              flex: 1
+            }}
+          >
+            이전 단계
+          </button>
+          <button 
+            onClick={handleNext}
+            className="btn-primary"
+            style={{ padding: '1rem 2rem', borderRadius: '8px', fontSize: '1.05rem', border: 'none', flex: 2 }}
+          >
+            {currentStep === STEPS.length - 1 ? '구성 완료 및 견적 보기' : '다음 단계'}
+          </button>
+        </div>
+
+      </div>
+sc}</div>
                          <div style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1rem', marginTop: '6px' }}>+{opt.price.toLocaleString()}원</div>
                        </div>
                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#e2e8f0', padding: '6px', borderRadius: '8px' }}>
@@ -749,27 +722,6 @@ export default function CustomPackagePage() {
         </div>
 
       </div>
-
-      {/* 하단 고정 가격 표시 바 */}
-      {!isFinished && currentStep > 0 && (
-        <div style={{ 
-          position: 'fixed', bottom: 0, left: 0, right: 0, background: 'white',
-          borderTop: '1px solid #e2e8f0', padding: '1rem 1.5rem', zIndex: 100,
-          boxShadow: '0 -4px 20px rgba(0,0,0,0.05)'
-        }}>
-          <div className="container" style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: '600' }}>추가 선택 항목 합계 (기본요금 별도)</div>
-              <div style={{ fontSize: '1.5rem', fontWeight: '900', color: 'var(--navy)' }}>
-                {optionsPrice > 0 ? '+' : ''}{optionsPrice.toLocaleString()}<span style={{ fontSize: '1rem', marginLeft: '2px' }}>원</span>
-              </div>
-            </div>
-            <button onClick={handleNext} className="btn-primary" style={{ padding: '0.75rem 2rem', borderRadius: '8px' }}>
-              {currentStep === STEPS.length - 1 ? '완료' : '다음'}
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
