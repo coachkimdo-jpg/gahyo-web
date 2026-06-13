@@ -159,8 +159,8 @@ export async function POST(req) {
             }
 
             // Upload to Firebase Storage
-            const storageRef = ref(storage, `ai-posts/${imageFilename}.jpeg`);
-            await uploadBytes(storageRef, bytes, { contentType: 'image/jpeg' });
+            const storageRef = ref(storage, `ai-posts/${imageFilename}.png`);
+            await uploadBytes(storageRef, bytes, { contentType: 'image/png' });
             finalImageUrl = await getDownloadURL(storageRef);
           }
         } else {
