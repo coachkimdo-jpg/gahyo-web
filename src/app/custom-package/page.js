@@ -590,7 +590,7 @@ export default function CustomPackagePage() {
 
       {/* Landing Hero Section */}
       {!isFinished && (
-        <div className="hero-section" style={{ background: 'linear-gradient(135deg, var(--navy), #0a192f)', color: 'white', textAlign: 'center' }}>
+        <div className="hero-section" style={{ background: 'linear-gradient(135deg, #f8fafc, #f1f5f9)', color: 'var(--text-primary)', textAlign: 'center' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             <h1 className="hero-title" style={{ fontWeight: '900', wordBreak: 'keep-all', lineHeight: '1.3', letterSpacing: '-0.02em' }}>
               {STEPS[currentStep].mainCopy.split(', ').map((text, idx, arr) => (
@@ -600,7 +600,7 @@ export default function CustomPackagePage() {
                 </span>
               ))}
             </h1>
-            <p className="hero-sub" style={{ color: '#cbd5e1', wordBreak: 'keep-all', lineHeight: '1.6', margin: 0 }}>
+            <p className="hero-sub" style={{ color: 'var(--text-secondary)', wordBreak: 'keep-all', lineHeight: '1.6', margin: 0 }}>
               {STEPS[currentStep].subCopy.split('. ').map((text, idx, arr) => (
                 <span key={idx}>
                   {text}{idx < arr.length - 1 && '.'}

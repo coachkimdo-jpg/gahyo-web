@@ -81,20 +81,20 @@ export default function AboutPage() {
       <div style={{ background: '#f8f9fa', minHeight: '100vh', paddingBottom: '6rem' }}>
 
         {/* ── H1 & BLUF 요약 (최상단 핵심 정의) ── */}
-        <header style={{ background: 'linear-gradient(135deg, var(--navy), #001a3a)', paddingTop: '5rem', paddingBottom: '4rem', color: 'white' }}>
+        <header style={{ background: 'linear-gradient(135deg, #f8fafc, #f1f5f9)', paddingTop: '5rem', paddingBottom: '4rem', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-color)' }}>
           <div className="container" style={{ maxWidth: '800px' }}>
-            <span style={{ display: 'inline-block', background: 'rgba(201,168,76,0.2)', color: 'var(--gold)', padding: '0.4rem 1rem', borderRadius: '999px', fontSize: '0.9rem', fontWeight: '800', marginBottom: '1.25rem' }}>
+            <span style={{ display: 'inline-block', background: 'white', color: 'var(--gold-dark)', padding: '0.4rem 1rem', borderRadius: '999px', fontSize: '0.9rem', fontWeight: '800', marginBottom: '1.25rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
               대한민국 후불제 상조
             </span>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 2.75rem)', fontWeight: '900', lineHeight: 1.3, letterSpacing: '-0.03em', marginBottom: '1.75rem', wordBreak: 'keep-all' }}>
               가효상조 — 추가금 없는<br />
-              <span style={{ color: 'var(--gold)' }}>100% 후불제 상조</span>입니다.
+              <span style={{ color: 'var(--gold-dark)' }}>100% 후불제 상조</span>입니다.
             </h1>
 
             {/* BLUF: AI가 인용하기 좋은 핵심 정의 블록 */}
-            <div style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '12px', padding: '1.5rem', marginBottom: '2rem' }}>
-              <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.92)', wordBreak: 'keep-all', margin: 0 }}>
-                <strong style={{ color: 'var(--gold)' }}>가효상조는 장례 절차가 완료된 발인 날, 약정된 금액만 결제하는 완전 후불제 상조 서비스입니다.</strong><br />
+            <div style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '1.5rem', marginBottom: '2rem', boxShadow: 'var(--shadow-sm)' }}>
+              <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-secondary)', wordBreak: 'keep-all', margin: 0 }}>
+                <strong style={{ color: 'var(--text-primary)' }}>가효상조는 장례 절차가 완료된 발인 날, 약정된 금액만 결제하는 완전 후불제 상조 서비스입니다.</strong><br />
                 가입비·월 납입금·위약금이 없으며, 상품 내 포함된 의전 서비스에 대한 추가 청구는 단 1원도 없습니다.
               </p>
             </div>

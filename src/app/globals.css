@@ -5,39 +5,48 @@
 
 
 
-/* CSS Custom Properties */
+/* CSS Custom Properties - White Minimalist Theme */
 :root {
-  --navy-dark: #001a3a;
-  --navy: #002C5F;
-  --navy-mid: #003a7a;
-  --navy-light: #e6eef8;
+  /* 기존 Navy 색상을 모던 차콜(Slate/Charcoal) 계열로 변경 */
+  --navy-dark: #0f172a;   /* Slate 900 */
+  --navy: #1e293b;        /* Slate 800 - 주요 텍스트 및 강한 포인트 */
+  --navy-mid: #334155;    /* Slate 700 */
+  --navy-light: #f8fafc;  /* Slate 50 - 기존의 옅은 네이비 배경을 거의 흰색에 가까운 라이트그레이로 변경 */
+  
   --gold: #C9A84C;
   --gold-dark: #8c6b24;
-  --gold-light: #f7f1e0;
+  --gold-light: #fcf9f2;
+
   /* 따뜻한 위로 톤 – Warm Beige & Soft Green */
-  --beige: #f5f0e8;
-  --beige-mid: #ede5d8;
-  --beige-dark: #c8b89a;
-  --deep-green: #1d4a3a;
-  --deep-green-light: #e8f2ee;
+  --beige: #faf7f2;
+  --beige-mid: #f5f0e8;
+  --beige-dark: #d6cbb5;
+  --deep-green: #273f36;
+  --deep-green-light: #f0f4f2;
+  
+  /* 기본 배경 및 텍스트 */
   --white: #ffffff;
   --gray-bg: #f8f9fb;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4b5563;
-  --border-color: #e5e7eb;
-  --shadow-sm: 0 1px 3px rgba(0, 44, 95, 0.08);
-  --shadow-md: 0 4px 16px rgba(0, 44, 95, 0.12);
-  --shadow-lg: 0 8px 32px rgba(0, 44, 95, 0.16);
+  --text-primary: #0f172a; /* 더 진하고 선명한 차콜 */
+  --text-secondary: #475569; /* Slate 600 */
+  --border-color: #e2e8f0;
+  
+  /* 그림자를 밝고 부드럽게 (Soft UI) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.06);
+  
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  
   /* 색상 변수 (article-html-content 등에서 사용) */
-  --color-navy-600: #005bb5;
-  --color-navy-800: #003a7a;
-  --color-navy-100: #e6eef8;
-  --gray-50: #f9fafb;
+  --color-navy-600: #475569;
+  --color-navy-800: #1e293b;
+  --color-navy-100: #f8fafc;
+  --gray-50: #f8fafc;
 }
 
 /* Reset & Base */
