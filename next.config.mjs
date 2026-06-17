@@ -15,16 +15,16 @@ const nextConfig = {
             value: 'nosniff',
           },
           {
-            key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.google.co.kr; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-src 'self' https://bid.g.doubleclick.net https://td.doubleclick.net https://www.google.com https://www.google.co.kr; object-src 'none'; frame-ancestors 'self';",
-          },
-          {
             key: 'Cross-Origin-Opener-Policy',
             value: 'same-origin',
           },
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'attribution-reporting=()',
           }
         ],
       },

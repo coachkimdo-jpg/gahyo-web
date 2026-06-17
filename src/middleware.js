@@ -1,25 +1,65 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  // 현재 접속하려는 경로 확인
+  // Generate a random nonce for CSP
+  const nonce = btoa(crypto.randomUUID());
+  
+  // Construct a strict CSP using nonce and strict-dynamic
+  const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval' 'unsafe-inline' https:;
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data: https:;
+    font-src 'self' data:;
+    connect-src 'self' https:;
+    frame-src 'self' https://bid.g.doubleclick.net https://td.doubleclick.net https://www.google.com https://www.google.co.kr;
+    object-src 'none';
+    base-uri 'none';
+    frame-ancestors 'self';
+    form-action 'self';
+    upgrade-insecure-requests;
+    require-trusted-types-for 'script';
+  `.replace(/\s{2,}/g, ' ').trim();
+
+  // Set the nonce and CSP on the request headers so they can be read by Server Components
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-nonce', nonce);
+  requestHeaders.set('Content-Security-Policy', cspHeader);
+
   const path = request.nextUrl.pathname;
 
-  // /admin 으로 시작하는 경로에 대해서만 검사하되, /admin/login 경로는 제외
+  // /admin auth check
   if (path.startsWith('/admin') && !path.startsWith('/admin/login')) {
-    // 브라우저 쿠키에서 'admin_auth_token' 값 확인
     const token = request.cookies.get('admin_auth_token')?.value;
 
-    // 토큰이 없거나 유효하지 않으면 로그인 페이지로 리다이렉트
     if (token !== 'authenticated') {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      const response = NextResponse.redirect(new URL('/admin/login', request.url));
+      response.headers.set('Content-Security-Policy', cspHeader);
+      return response;
     }
   }
 
-  // 그 외의 경우는 정상적으로 요청 통과
-  return NextResponse.next();
+  // Pass request to next handler
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  // Set the CSP header on the response
+  response.headers.set('Content-Security-Policy', cspHeader);
+
+  return response;
 }
 
-// 미들웨어가 적용될 특정 경로 설정 (필요없는 리소스 호출 방지용)
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: [
+    {
+      source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
+      missing: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
+      ],
+    },
+  ],
 };

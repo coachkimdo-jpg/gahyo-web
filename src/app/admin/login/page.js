@@ -50,22 +50,23 @@ export default function AdminLoginPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-slate-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-slate-700">
-          <form className="space-y-6" onSubmit={handleLogin}>
+          <form className="space-y-6" onSubmit={handleLogin} toolname="admin_login" tooldescription="Log in to the admin panel with email and password." toolautosubmit>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-slate-300">
                 아이디 (이메일)
               </label>
               <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-slate-600 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-[#B89B72] focus:border-[#B89B72] sm:text-sm bg-slate-700 text-white"
-                  placeholder="admin@example.com"
-                />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="appearance-none block w-full px-3 py-2 border border-slate-600 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-[#B89B72] focus:border-[#B89B72] sm:text-sm bg-slate-700 text-white"
+                    placeholder="admin@example.com"
+                    toolparamdescription="Admin email address"
+                  />
               </div>
             </div>
 
@@ -74,16 +75,17 @@ export default function AdminLoginPage() {
                 비밀번호
               </label>
               <div className="mt-1">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-slate-600 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-[#B89B72] focus:border-[#B89B72] sm:text-sm bg-slate-700 text-white"
-                  placeholder="••••••••"
-                />
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="appearance-none block w-full px-3 py-2 border border-slate-600 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-[#B89B72] focus:border-[#B89B72] sm:text-sm bg-slate-700 text-white"
+                    placeholder="••••••••"
+                    toolparamdescription="Admin password"
+                  />
               </div>
             </div>
 

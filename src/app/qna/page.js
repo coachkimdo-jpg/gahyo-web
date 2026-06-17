@@ -147,37 +147,37 @@ export default function QnaPage() {
         {view === 'write' && (
           <div>
             <h2 style={{ fontSize: '1.3rem', fontWeight: '800', marginBottom: '1.5rem', color: '#1a1a2e', borderBottom: '2px solid var(--gold)', paddingBottom: '0.5rem' }}>문의글 작성</h2>
-            <form onSubmit={handleWriteSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <form onSubmit={handleWriteSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} toolname="submit_qna" tooldescription="Submit a new customer inquiry or consultation request." toolautosubmit>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '700', color: '#4b5563' }}>제목 <span style={{color:'red'}}>*</span></label>
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} required style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} />
+                <input type="text" name="title" value={title} onChange={e => setTitle(e.target.value)} required style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} toolparamdescription="The title of the inquiry" />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '700', color: '#4b5563' }}>작성자 <span style={{color:'red'}}>*</span></label>
-                  <input type="text" value={author} onChange={e => setAuthor(e.target.value)} required style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} />
+                  <input type="text" name="author" value={author} onChange={e => setAuthor(e.target.value)} required style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} toolparamdescription="The name of the person submitting the inquiry" />
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '700', color: '#4b5563' }}>비밀번호 (열람용) <span style={{color:'red'}}>*</span></label>
-                  <input type="password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} />
+                  <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} toolparamdescription="A password to protect and view this inquiry later" />
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '700', color: '#4b5563' }}>연락처</label>
-                  <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="010-0000-0000" style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} />
+                  <input type="tel" name="phone" value={phone} onChange={e => setPhone(e.target.value)} placeholder="010-0000-0000" style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} toolparamdescription="Contact phone number" />
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '700', color: '#4b5563' }}>이메일</label>
-                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="example@email.com" style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} />
+                  <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="example@email.com" style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem' }} toolparamdescription="Contact email address" />
                 </div>
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '700', color: '#4b5563' }}>내용 <span style={{color:'red'}}>*</span></label>
-                <textarea value={content} onChange={e => setContent(e.target.value)} required rows={8} style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem', resize: 'vertical' }} />
+                <textarea name="content" value={content} onChange={e => setContent(e.target.value)} required rows={8} style={{ width: '100%', padding: '0.8rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', fontSize: '1rem', resize: 'vertical' }} toolparamdescription="The full content of the inquiry or consultation request" />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <input type="checkbox" id="secret" checked={isSecret} onChange={e => setIsSecret(e.target.checked)} style={{ width: '1.2rem', height: '1.2rem' }} />
+                <input type="checkbox" name="secret" id="secret" checked={isSecret} onChange={e => setIsSecret(e.target.checked)} style={{ width: '1.2rem', height: '1.2rem' }} toolparamdescription="Set to true if this inquiry should be kept secret/private" />
                 <label htmlFor="secret" style={{ fontWeight: '600', color: '#ef4444', cursor: 'pointer' }}>🔒 비공개 글로 설정하기</label>
               </div>
               

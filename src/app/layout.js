@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
+import { headers } from 'next/headers';
 
 export const metadata = {
   metadataBase: new URL('https://gahyo.co.kr'),
@@ -62,12 +63,17 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const nonce = headers().get('x-nonce') || '';
+
   return (
     <html lang="ko">
       <head>
         {/* Google Ads Tag (AW-11204427788) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788"></script>
-        <script
+        <Script id="gtag-script" strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788" nonce={nonce} />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -91,7 +97,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <EmergencyFloat />
         {/* Google Analytics - 브라우저 유휴 시간에 지연 로드 (성능 최적화) */}
-        <GoogleAnalytics gaId="G-4QVQ5GFTLV" />
+        <GoogleAnalytics gaId="G-4QVQ5GFTLV" nonce={nonce} />
       </body>
     </html>
   );
