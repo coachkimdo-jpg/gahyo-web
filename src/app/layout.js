@@ -86,7 +86,7 @@ export default async function RootLayout({ children }) {
           }}
         />
         <Header />
-        <main style={{ flex: 1 }}>
+        <main role="main" style={{ flex: 1 }}>
           {children}
         </main>
         <Footer />

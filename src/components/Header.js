@@ -37,7 +37,7 @@ export default function Header() {
 
   return (
     <>
-      <header style={{
+      <header role="banner" style={{
         position: 'fixed',
         top: 0,
         left: 0,
@@ -92,7 +92,7 @@ export default function Header() {
             </Link>
 
             {/* 데스크탑 네비게이션 */}
-            <nav style={{ display: 'none' }} className="desktop-nav">
+            <nav role="navigation" style={{ display: 'none' }} className="desktop-nav">
               {mainNavItems.map((item) => {
                 const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
                 return (
@@ -168,7 +168,7 @@ export default function Header() {
         paddingTop: '90px',
         paddingInline: '1.5rem',
       }}>
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+        <nav role="navigation" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
           {/* 모바일에서는 메인 메뉴와 QnA를 모두 보여줌 */}
           {[...mainNavItems, { href: '/qna', label: '고객 문의/상담' }].map((item, idx) => {
             const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));

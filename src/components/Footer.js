@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer style={{
+    <footer role="contentinfo" style={{
       background: 'linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%)',
       color: 'rgba(255,255,255,0.75)',
       paddingTop: '3.5rem',
