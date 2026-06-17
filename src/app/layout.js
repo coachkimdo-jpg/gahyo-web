@@ -68,7 +68,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="ko">
-      <head>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         {/* Google Ads Tag (AW-11204427788) */}
         <Script id="gtag-script" strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788" nonce={nonce} />
         <Script
@@ -85,12 +85,6 @@ export default async function RootLayout({ children }) {
             `,
           }}
         />
-        {/* 
-          폰트 관련 모든 외부 요청 제거 - 시스템 폰트 사용으로 완전 전환
-          Google Analytics는 afterInteractive 전략으로 렌더링 완료 후 로드 
-        */}
-      </head>
-      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Header />
         <main style={{ flex: 1 }}>
           {children}
