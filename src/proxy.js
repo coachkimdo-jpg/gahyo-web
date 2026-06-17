@@ -25,6 +25,7 @@ export function proxy(request) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);
+  requestHeaders.set('x-middleware-request-content-security-policy', cspHeader);
 
   const path = request.nextUrl.pathname;
 
