@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
     title: `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`,
     description: `${ossuary.address}에 위치한 ${ossuary.name}. 선불금 없는 100% 후불제 가효상조와 함께 준비하세요. 봉안당(납골당) 안치단별 사용료 ${ossuary.priceRange} 수준 안내.`,
     alternates: {
-      canonical: `/cemeteries/ossuary/${encodeURIComponent(getSlug(ossuary.address, ossuary.name))}`,
+      canonical: `/cemeteries/ossuary/${getSlug(ossuary.address, ossuary.name)}`,
     },
   };
 }

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
     title: `가효상조 - ${burial.name} 100% 후불제 상조 및 투명한 장례 서비스`,
     description: `${burial.address}에 위치한 자연장지(수목장/잔디장) ${burial.name}. 선불금 없는 100% 후불제 가효상조와 함께 준비하세요. 관리비 ${burial.priceRange} 수준 안내.`,
     alternates: {
-      canonical: `/cemeteries/natural/${encodeURIComponent(getSlug(burial.address, burial.name))}`,
+      canonical: `/cemeteries/natural/${getSlug(burial.address, burial.name)}`,
     },
   };
 }

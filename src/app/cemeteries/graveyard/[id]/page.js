@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
     title: `가효상조 - ${graveyard.name} 100% 후불제 상조 및 투명한 장례 서비스`,
     description: `${graveyard.address}에 위치한 ${graveyard.name}. 가효상조는 선불 납입금 없이 발인 날 결제하는 100% 후불제 상조입니다. 묘지 사용료 및 관리비 ${graveyard.priceRange} 안내.`,
     alternates: {
-      canonical: `/cemeteries/graveyard/${encodeURIComponent(getSlug(graveyard.address, graveyard.name))}`,
+      canonical: `/cemeteries/graveyard/${getSlug(graveyard.address, graveyard.name)}`,
     },
   };
 }
