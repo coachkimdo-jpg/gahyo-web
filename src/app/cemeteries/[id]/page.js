@@ -274,7 +274,7 @@ export default async function CemeteryDetailPage({ params }) {
 
           {/* 사이드바 CTA */}
           <div>
-            <div className="card" style={{ padding: '2rem', background: 'linear-gradient(135deg, var(--navy), var(--navy-light))', color: 'white', position: 'sticky', top: '100px' }}>
+            <div className="card" style={{ padding: '2rem', background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))', color: 'white', position: 'sticky', top: '100px' }}>
               <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                 <span style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'var(--gold)', color: 'white', fontSize: '0.75rem', fontWeight: '700', borderRadius: '999px', marginBottom: '1rem' }}>
                   가효상조 특별 혜택

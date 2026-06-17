@@ -66,6 +66,8 @@ export default async function NaturalBurialPage({ params }) {
     notFound();
   }
 
+  const facility = burial;
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
