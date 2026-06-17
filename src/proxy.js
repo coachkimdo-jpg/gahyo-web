@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
+export function proxy(request) {
   // Generate a random nonce for CSP
   const nonce = btoa(crypto.randomUUID());
   
