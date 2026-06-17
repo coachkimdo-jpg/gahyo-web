@@ -500,6 +500,9 @@ export default function HomePage() {
                 { name: '김○○ 고객님', region: '서울 강남구', text: '갑작스러운 부모님 임종에 당황했는데, 상담원이 처음부터 끝까지 세심하게 안내해 주셨어요. AI 견적 덕분에 비용도 미리 파악할 수 있었습니다.' },
                 { name: '이○○ 고객님', region: '경기 수원시', text: '예상 견적과 실제 비용이 거의 일치해서 믿음이 갔어요. 추가비가 생기는 부분도 미리 안내해 주셔서 불안하지 않았습니다.' },
                 { name: '박○○ 고객님', region: '대구 수성구', text: '처음 장례를 치르는 거라 막막했는데, 단계별로 친절하게 설명해 주시고 직접 움직여 주셔서 정말 감사했습니다.' },
+                { name: '최○○ 고객님', region: '인천 연수구', text: '새벽 3시에 연락드렸는데도 바로 앰뷸런스를 보내주시고 장례식장 섭외까지 일사천리로 진행해 주셔서 큰 위로가 되었습니다.' },
+                { name: '정○○ 고객님', region: '부산 해운대구', text: '쓸데없는 강매나 바가지 요금이 전혀 없어서 좋았습니다. 제가 선택한 꼭 필요한 항목들로만 진행할 수 있는 진짜 맞춤형 후불제입니다.' },
+                { name: '강○○ 고객님', region: '서울 송파구', text: '장례지도사님의 품격 있는 염습 과정이 특히 인상 깊었습니다. 고인을 정말 진심으로 모시는 모습에 온 가족이 큰 감동을 받았습니다.' },
               ].map(t => (
                 <div key={t.name} style={{ background: 'white', borderRadius: 'var(--radius-lg)', padding: '1.75rem', boxShadow: 'var(--shadow-sm)', borderLeft: '4px solid var(--gold)' }}>
                   <div style={{ display: 'flex', gap: '0.2rem', marginBottom: '0.9rem' }}>
