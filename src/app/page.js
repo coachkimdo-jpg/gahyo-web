@@ -228,7 +228,7 @@ export default function HomePage() {
 
           <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.7rem)', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.35, marginBottom: '1.25rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
             선불금도 없습니다. 가입비도 없습니다. 거품도 없습니다.<br />
-            <span style={{ color: 'var(--gold)' }}>오직 '나에게 꼭 필요한 장례'만 남겼습니다.</span>
+            <span style={{ color: 'var(--gold-dark)' }}>오직 '나에게 꼭 필요한 장례'만 남겼습니다.</span>
           </h1>
           
           <div style={{ maxWidth: '720px', marginBottom: '2rem' }}>

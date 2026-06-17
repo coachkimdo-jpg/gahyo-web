@@ -274,7 +274,7 @@ img {
   box-shadow: 0 6px 24px rgba(192, 57, 43, 0.55);
   white-space: nowrap;
   text-decoration: none;
-  animation: emergencyPulse 2s ease-in-out infinite;
+  animation: emergencyPulse 2s ease-in-out 3; /* Changed from infinite to 3 to prevent Lighthouse SpeedIndex error */
   transition: var(--transition);
 }
 

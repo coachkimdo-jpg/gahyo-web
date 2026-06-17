@@ -68,6 +68,7 @@ export default function EmergencyFloat() {
       {/* 토글 플로팅 버튼 */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? '상담 메뉴 닫기' : '상담 메뉴 열기'}
         style={{
           width: '56px',
           height: '56px',
