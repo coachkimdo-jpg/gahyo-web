@@ -157,10 +157,17 @@ img {
   .desktop-float-only {
     display: none !important;
   }
+  .mobile-br {
+    display: block;
+  }
   /* 하단 바가 콘텐츠를 가리지 않도록 여백 확보 */
   body {
     padding-bottom: 72px;
   }
+}
+
+.mobile-br {
+  display: none;
 }
 
 /* 버튼 스타일 */

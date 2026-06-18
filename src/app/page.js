@@ -227,16 +227,22 @@ export default function HomePage() {
           </div>
 
           <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.7rem)', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.35, marginBottom: '1.25rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
-            선불금도 없습니다. 가입비도 없습니다. 거품도 없습니다.<br />
-            <span style={{ color: 'var(--gold-dark)' }}>오직 '나에게 꼭 필요한 장례'만 남겼습니다.</span>
+            선불금도 없습니다. <br className="mobile-br" />
+            가입비도 없습니다. <br className="mobile-br" />
+            거품도 없습니다.<br />
+            <br className="mobile-br" />
+            <span style={{ color: 'var(--gold-dark)' }}>오직 '나에게 꼭 필요한 장례'만 <br className="mobile-br" />남겼습니다.</span>
           </h1>
           
           <div style={{ maxWidth: '720px', marginBottom: '2rem' }}>
             <p style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 0, wordBreak: 'keep-all' }}>
-              <strong style={{ color: 'var(--text-primary)' }}>남들이 정해준 비싼 패키지에 맞추지 마십시오. 내 상황은 내가 가장 잘 압니다.</strong><br />
-              가효상조는 고객님이 스스로 장례 품목을 선택하고 직접 구성하는 '맞춤형 후불제'입니다.<br />
-              미리 돈을 낼 필요도, 원치 않는 서비스를 받을 필요도 없습니다.<br />
-              꼭 필요한 서비스만 골라 발인 날 결제하십시오. 가장 정직한 장례의 기준, 가효상조가 만듭니다.
+              <strong style={{ color: 'var(--text-primary)' }}>남들이 정해준 비싼 패키지에 맞추지 마십시오. <br className="mobile-br" />내 상황은 내가 가장 잘 압니다.</strong><br />
+              <br className="mobile-br" />
+              가효상조는 고객님이 스스로 장례 품목을 선택하고 <br className="mobile-br" />직접 구성하는 '맞춤형 후불제'입니다.<br />
+              <br className="mobile-br" />
+              미리 돈을 낼 필요도, 원치 않는 서비스를 받을 <br className="mobile-br" />필요도 없습니다.<br />
+              <br className="mobile-br" />
+              꼭 필요한 서비스만 골라 발인 날 결제하십시오. <br className="mobile-br" />가장 정직한 장례의 기준, 가효상조가 만듭니다.
             </p>
           </div>
 
