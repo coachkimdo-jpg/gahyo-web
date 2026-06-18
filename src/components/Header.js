@@ -159,11 +159,11 @@ export default function Header() {
         }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.4rem', textAlign: 'center' }}>
             {[
-              { href: '/estimate', label: '장례견적' },
+              { href: '/estimate', label: 'AI장례견적내기' },
               { href: '/products', label: '상품안내' },
-              { href: '/halls', label: '장례식장' },
-              { href: '/cemeteries', label: '장지안내' },
-              { href: '/custom-package', label: '상조상품 직접 구성하기', colSpan: 2 },
+              { href: '/halls', label: '장례식장찾기' },
+              { href: '/cemeteries', label: '모실곳찾기' },
+              { href: '/custom-package', label: '상조상품 직접구성하기', colSpan: 2 },
               { href: '/guide', label: '장례가이드' },
               { href: '/about', label: '회사소개' },
             ].map((item) => {
