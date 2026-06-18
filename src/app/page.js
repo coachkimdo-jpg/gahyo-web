@@ -247,9 +247,24 @@ export default function HomePage() {
           </div>
 
           {/* 신뢰 포인트 */}
-          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.6rem', marginBottom: '2rem', maxWidth: '480px' }}>
             {['✅ 24시간 연중무휴', '✅ 전국 즉시 출동', '✅ 내 마음대로 맞춤 구성', '✅ 장례 종료 후 결제'].map(b => (
-              <span key={b} style={{ background: 'white', border: '1px solid var(--border-color)', color: 'var(--text-primary)', borderRadius: '999px', padding: '0.3rem 0.9rem', fontSize: '0.85rem', fontWeight: '600', boxShadow: 'var(--shadow-sm)' }}>{b}</span>
+              <span key={b} style={{ 
+                background: 'white', 
+                border: '1px solid var(--border-color)', 
+                color: 'var(--text-primary)', 
+                borderRadius: '999px', 
+                padding: '0.4rem 0.2rem', 
+                fontSize: 'clamp(0.75rem, 3vw, 0.85rem)', 
+                fontWeight: '700', 
+                letterSpacing: '-0.04em',
+                boxShadow: 'var(--shadow-sm)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                whiteSpace: 'nowrap'
+              }}>{b}</span>
             ))}
           </div>
 
