@@ -2,7 +2,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EmergencyFloat from '@/components/EmergencyFloat';
-import { GoogleAnalytics } from '@next/third-parties/google';
+
 import Script from 'next/script';
 import { headers } from 'next/headers';
 
@@ -83,11 +83,11 @@ export default async function RootLayout({ children }) {
             }
           `
         }} />
-        {/* Google Ads Tag (AW-11204427788) */}
-        <Script id="gtag-script" strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788" nonce={nonce} />
+        {/* Google Ads & Analytics (lazyOnload for performance) */}
+        <Script id="gtag-script" strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788" nonce={nonce} />
         <Script
           id="gtag-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
@@ -95,6 +95,7 @@ export default async function RootLayout({ children }) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'AW-11204427788');
+              gtag('config', 'G-4QVQ5GFTLV');
               gtag('event', 'conversion', {'send_to': 'AW-11204427788/CSo8CLaSwLscENX_194p'});
             `,
           }}
@@ -105,8 +106,7 @@ export default async function RootLayout({ children }) {
         </main>
         <Footer />
         <EmergencyFloat />
-        {/* Google Analytics - 브라우저 유휴 시간에 지연 로드 (성능 최적화) */}
-        <GoogleAnalytics gaId="G-4QVQ5GFTLV" nonce={nonce} />
+
       </body>
     </html>
   );
