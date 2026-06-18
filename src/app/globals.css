@@ -149,6 +149,10 @@ img {
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
 }
 
+.mobile-br {
+  display: none;
+}
+
 /* 모바일에서만 하단 바 표시, 플로팅 버튼 숨김 */
 @media (max-width: 767px) {
   .mobile-bottom-bar {
@@ -164,10 +168,6 @@ img {
   body {
     padding-bottom: 72px;
   }
-}
-
-.mobile-br {
-  display: none;
 }
 
 /* 버튼 스타일 */
