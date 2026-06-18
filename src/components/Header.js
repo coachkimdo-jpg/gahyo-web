@@ -151,37 +151,35 @@ export default function Header() {
             </div>
           </div>
         </div>
-        {/* 3단: 모바일 가로 스크롤 네비게이션 */}
+        {/* 3단: 모바일 고정형 네비게이션 (그리드) */}
         <div className="mobile-scroll-nav" style={{
           background: 'rgba(255, 255, 255, 0.98)',
           borderBottom: '1px solid var(--border-color)',
-          display: 'flex',
-          overflowX: 'auto',
-          whiteSpace: 'nowrap',
-          gap: '1.25rem',
-          padding: '0 1.25rem',
-          height: '44px',
-          alignItems: 'center',
-          scrollbarWidth: 'none',
-          WebkitOverflowScrolling: 'touch',
+          padding: '0.75rem 0.5rem',
         }}>
-          <style>{`.mobile-scroll-nav::-webkit-scrollbar { display: none; }`}</style>
-          {[...mainNavItems, { href: '/qna', label: '고객 문의/상담' }].map((item) => {
-            const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
-            return (
-              <Link key={item.href} href={item.href} style={{
-                color: active ? 'var(--navy)' : 'var(--text-secondary)',
-                fontWeight: active ? '800' : '600',
-                fontSize: '0.95rem',
-                padding: '0.5rem 0',
-                borderBottom: active ? '2px solid var(--navy)' : '2px solid transparent',
-                transition: 'all 0.2s',
-                display: 'inline-block',
-              }}>
-                {item.label}
-              </Link>
-            );
-          })}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem 0', textAlign: 'center' }}>
+            {[
+              { href: '/estimate', label: '장례견적' },
+              { href: '/products', label: '상품안내' },
+              { href: '/halls', label: '장례식장' },
+              { href: '/cemeteries', label: '장지안내' },
+              { href: '/custom-package', label: '직접구성' },
+              { href: '/guide', label: '장례가이드' },
+              { href: '/about', label: '회사소개' },
+            ].map((item) => {
+              const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+              return (
+                <Link key={item.href} href={item.href} style={{
+                  color: active ? 'var(--navy)' : 'var(--text-secondary)',
+                  fontWeight: active ? '800' : '600',
+                  fontSize: '0.85rem',
+                  letterSpacing: '-0.02em',
+                }}>
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </header>
 
