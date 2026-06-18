@@ -141,6 +141,7 @@ export default function HallsPage() {
                         src={hall.photo}
                         alt={`${hall.name} 장례식장 전경`}
                         fill
+                        unoptimized={true}
                         style={{ objectFit: 'cover' }}
                         sizes="260px"
                         loading={idx < 6 ? 'eager' : 'lazy'}

@@ -230,7 +230,7 @@ export default async function HallDetailPage({ params }) {
           <div style={{ marginBottom: '2rem', display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '1rem', scrollSnapType: 'x mandatory' }}>
             {photos.map((photoUrl, idx) => (
               <div key={idx} style={{ minWidth: '320px', height: '240px', position: 'relative', borderRadius: '8px', overflow: 'hidden', scrollSnapAlign: 'start', flexShrink: 0 }}>
-                <Image src={photoUrl} alt={`${hall.name} 장례식장 ${idx === 0 ? '외관 전경 및 주차장' : '빈소, 안치실 등 내부 시설'} 상세 사진 ${idx + 1}`} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 320px" priority={idx === 0} />
+                <Image src={photoUrl} alt={`${hall.name} 장례식장 ${idx === 0 ? '외관 전경 및 주차장' : '빈소, 안치실 등 내부 시설'} 상세 사진 ${idx + 1}`} fill unoptimized={true} style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 320px" priority={idx === 0} />
               </div>
             ))}
           </div>
