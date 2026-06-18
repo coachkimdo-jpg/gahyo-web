@@ -151,6 +151,38 @@ export default function Header() {
             </div>
           </div>
         </div>
+        {/* 3단: 모바일 가로 스크롤 네비게이션 */}
+        <div className="mobile-scroll-nav" style={{
+          background: 'rgba(255, 255, 255, 0.98)',
+          borderBottom: '1px solid var(--border-color)',
+          display: 'flex',
+          overflowX: 'auto',
+          whiteSpace: 'nowrap',
+          gap: '1.25rem',
+          padding: '0 1.25rem',
+          height: '44px',
+          alignItems: 'center',
+          scrollbarWidth: 'none',
+          WebkitOverflowScrolling: 'touch',
+        }}>
+          <style>{`.mobile-scroll-nav::-webkit-scrollbar { display: none; }`}</style>
+          {[...mainNavItems, { href: '/qna', label: '고객 문의/상담' }].map((item) => {
+            const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+            return (
+              <Link key={item.href} href={item.href} style={{
+                color: active ? 'var(--navy)' : 'var(--text-secondary)',
+                fontWeight: active ? '800' : '600',
+                fontSize: '0.95rem',
+                padding: '0.5rem 0',
+                borderBottom: active ? '2px solid var(--navy)' : '2px solid transparent',
+                transition: 'all 0.2s',
+                display: 'inline-block',
+              }}>
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
       </header>
 
       {/* 모바일 오버레이 메뉴 */}
