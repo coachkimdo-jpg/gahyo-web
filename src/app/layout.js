@@ -69,6 +69,20 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="ko">
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        {/* Trusted Types Default Policy to allow React hydration */}
+        <script nonce={nonce} dangerouslySetInnerHTML={{
+          __html: `
+            if (typeof window !== 'undefined' && window.trustedTypes && window.trustedTypes.createPolicy) {
+              try {
+                window.trustedTypes.createPolicy('default', {
+                  createHTML: function(s) { return s; },
+                  createScript: function(s) { return s; },
+                  createScriptURL: function(s) { return s; }
+                });
+              } catch (e) {}
+            }
+          `
+        }} />
         {/* Google Ads Tag (AW-11204427788) */}
         <Script id="gtag-script" strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788" nonce={nonce} />
         <Script
