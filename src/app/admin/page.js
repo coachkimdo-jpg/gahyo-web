@@ -108,13 +108,19 @@ export default function AdminPage() {
     // 마운트 시 API에서 게시물 목록을 불러옵니다.
     fetch('/api/articles')
       .then(res => res.json())
-      .then(data => setArticles(data))
+      .then(data => {
+        if (Array.isArray(data)) setArticles(data);
+        else console.error('Articles API returned non-array:', data);
+      })
       .catch(err => console.error('Failed to load articles:', err));
       
     // QnA 목록 불러오기
     fetch('/api/qna')
       .then(res => res.json())
-      .then(data => setQnaPosts(data))
+      .then(data => {
+        if (Array.isArray(data)) setQnaPosts(data);
+        else console.error('QnA API returned non-array:', data);
+      })
       .catch(err => console.error('Failed to load QnA:', err));
   }, []);
 
@@ -141,28 +147,7 @@ export default function AdminPage() {
     }
   };
 
-  const handleAiGenerate = async () => {
-    if (!aiKeyword) return alert('키워드를 입력해주세요.');
-    setIsGenerating(true);
-    try {
-      const res = await fetch('/api/generate-post', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ keyword: aiKeyword, guideline: aiGuideline })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setEditingArticle({ ...editingArticle, ...data });
-        handleSave('AI 작성이 완료되었습니다!');
-      } else {
-        alert(`AI 생성 실패: ${data.error}`);
-      }
-    } catch (err) {
-      alert('오류가 발생했습니다.');
-    } finally {
-      setIsGenerating(false);
-    }
-  };
+
 
   const handleSaveArticle = async () => {
     try {
