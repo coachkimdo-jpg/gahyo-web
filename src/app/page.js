@@ -226,25 +226,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.7rem)', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.35, marginBottom: '1.25rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
-            선불금도 없습니다. <br className="mobile-br" />
-            가입비도 없습니다. <br className="mobile-br" />
-            거품도 없습니다.<br />
+          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.35, marginBottom: '2rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
+            꽃, 수의, 제단까지 <br className="mobile-br" />유가족이 직접 골라 구성합니다.<br />
             <br className="mobile-br" />
-            <span style={{ color: 'var(--gold-dark)' }}>오직 '나에게 꼭 필요한 장례'만 <br className="mobile-br" />남겼습니다.</span>
+            <span style={{ color: 'var(--gold-dark)' }}>내가 직접 고른 마지막이라, <br className="mobile-br" />후회가 없습니다.</span>
           </h1>
-          
-          <div style={{ maxWidth: '720px', marginBottom: '2rem' }}>
-            <p style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 0, wordBreak: 'keep-all' }}>
-              <strong style={{ color: 'var(--text-primary)' }}>남들이 정해준 비싼 패키지에 맞추지 마십시오. <br className="mobile-br" />내 상황은 내가 가장 잘 압니다.</strong><br />
-              <br className="mobile-br" />
-              가효상조는 고객님이 스스로 장례 품목을 선택하고 <br className="mobile-br" />직접 구성하는 '맞춤형 후불제'입니다.<br />
-              <br className="mobile-br" />
-              미리 돈을 낼 필요도, 원치 않는 서비스를 받을 <br className="mobile-br" />필요도 없습니다.<br />
-              <br className="mobile-br" />
-              꼭 필요한 서비스만 골라 발인 날 결제하십시오. <br className="mobile-br" />가장 정직한 장례의 기준, 가효상조가 만듭니다.
-            </p>
-          </div>
 
           {/* 신뢰 포인트 */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.6rem', marginBottom: '2rem', maxWidth: '480px' }}>
@@ -269,24 +255,27 @@ export default function HomePage() {
           </div>
 
           {/* 메인 CTA 버튼 그룹 */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem', marginTop: '2rem' }}>
+          <div style={{ marginBottom: '1rem', marginTop: '2rem' }}>
             <Link href="/custom-package" style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-              padding: '1.1rem 1.5rem', background: 'var(--navy)',
-              color: 'white', borderRadius: 'var(--radius-sm)', fontWeight: '800', fontSize: '1.1rem',
-              textDecoration: 'none', boxShadow: 'var(--shadow-md)', width: '100%',
-              transition: 'var(--transition)', position: 'relative', minHeight: '90px'
+              padding: '1.5rem 1.5rem', background: 'var(--navy)',
+              color: 'white', borderRadius: 'var(--radius-md)', fontWeight: '800', fontSize: '1.3rem',
+              textDecoration: 'none', boxShadow: '0 8px 25px rgba(0, 44, 95, 0.3)', width: '100%',
+              transition: 'transform 0.2s', position: 'relative', minHeight: '90px'
             }}>
               <span>🛠️ 상조 상품 직접 구성하기</span>
-              <span style={{ fontSize: '1.2rem', position: 'absolute', right: '1.5rem' }}>→</span>
+              <span style={{ fontSize: '1.5rem', position: 'absolute', right: '2rem' }}>→</span>
             </Link>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem' }}>
             <a href="tel:1551-5718" style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
               padding: '1.1rem 1.5rem', fontSize: '1.1rem', fontWeight: '800',
               background: 'linear-gradient(135deg, #c0392b, #96281b)',
               color: 'white', borderRadius: 'var(--radius-sm)',
               boxShadow: '0 4px 20px rgba(192,57,43,0.3)', textDecoration: 'none', width: '100%',
-              transition: 'var(--transition)', minHeight: '90px'
+              transition: 'var(--transition)', minHeight: '80px'
             }} id="hero-call-btn">
               📞 24시간 장례 접수·상담
             </a>
@@ -295,7 +284,7 @@ export default function HomePage() {
               padding: '1.1rem 1.5rem', fontSize: '1.05rem', fontWeight: '700',
               background: 'white', color: 'var(--text-primary)',
               border: '2px solid var(--border-color)', borderRadius: 'var(--radius-sm)', textDecoration: 'none', width: '100%',
-              transition: 'var(--transition)', minHeight: '90px', boxShadow: 'var(--shadow-sm)'
+              transition: 'var(--transition)', minHeight: '80px', boxShadow: 'var(--shadow-sm)'
             }} id="hero-estimate-btn">
               🧮 투명한 장례비용 산출하기
             </Link>
