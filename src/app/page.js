@@ -227,24 +227,26 @@ export default function HomePage() {
           </div>
 
           <div style={{
-            background: 'rgba(255, 255, 255, 0.85)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
             borderRadius: '1.5rem',
-            padding: 'clamp(1.5rem, 4vw, 3rem)',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0,0,0,0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.6)',
+            padding: 'clamp(2rem, 5vw, 4rem)',
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02)',
+            border: '1px solid rgba(255, 255, 255, 1)',
             marginBottom: '1rem',
-            maxWidth: '800px'
+            maxWidth: '900px',
+            margin: '0 auto',
+            textAlign: 'center'
           }}>
-            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.35, marginBottom: '2rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
+            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.35, marginBottom: '2.5rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
               꽃, 수의, 제단까지 <br className="mobile-br" />유가족이 직접 골라 구성합니다.<br />
               <br className="mobile-br" />
               <span style={{ color: 'var(--gold-dark)' }}>내가 직접 고른 마지막이라, <br className="mobile-br" />후회가 없습니다.</span>
             </h1>
 
             {/* 신뢰 포인트 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.6rem', marginBottom: '2rem', maxWidth: '480px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.6rem', marginBottom: '2.5rem', maxWidth: '480px', margin: '0 auto' }}>
               {['✅ 24시간 연중무휴', '✅ 전국 즉시 출동', '✅ 내 마음대로 맞춤 구성', '✅ 장례 종료 후 결제'].map(b => (
                 <span key={b} style={{ 
                   background: 'white', 
