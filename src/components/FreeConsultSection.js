@@ -179,8 +179,9 @@ export default function FreeConsultSection() {
 
                 {/* 성함 */}
                 <div>
-                  <label style={labelStyle}>성함 <span style={{ color: '#c0392b' }}>*</span></label>
+                  <label htmlFor="consult-name" style={labelStyle}>성함 <span style={{ color: '#c0392b' }}>*</span></label>
                   <input
+                    id="consult-name"
                     type="text"
                     value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
@@ -191,8 +192,9 @@ export default function FreeConsultSection() {
 
                 {/* 연락처 */}
                 <div>
-                  <label style={labelStyle}>연락처 <span style={{ color: '#c0392b' }}>*</span></label>
+                  <label htmlFor="consult-phone" style={labelStyle}>연락처 <span style={{ color: '#c0392b' }}>*</span></label>
                   <input
+                    id="consult-phone"
                     type="tel"
                     value={form.phone}
                     onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
@@ -231,8 +233,9 @@ export default function FreeConsultSection() {
 
                 {/* 장례 준비 상황 */}
                 <div>
-                  <label style={labelStyle}>장례 준비 상황</label>
+                  <label htmlFor="consult-situation" style={labelStyle}>장례 준비 상황</label>
                   <select
+                    id="consult-situation"
                     value={form.situation}
                     onChange={e => setForm(f => ({ ...f, situation: e.target.value }))}
                     style={{
