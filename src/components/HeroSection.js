@@ -244,14 +244,16 @@ export default function HeroSection({ today }) {
                 onClick={() => goTo(i)}
                 aria-label={`슬라이드 ${i + 1}`}
                 style={{
-                  width: i === current ? '28px' : '8px',
+                  width: '28px',
                   height: '8px',
                   borderRadius: '999px',
                   background: i === current ? '#C9A84C' : 'rgba(255,255,255,0.3)',
                   border: 'none',
                   cursor: 'pointer',
                   padding: 0,
-                  transition: 'all 0.3s ease',
+                  transform: i === current ? 'scaleX(1)' : 'scaleX(0.29)',
+                  transformOrigin: 'left center',
+                  transition: 'background-color 0.3s ease, transform 0.3s ease',
                 }}
               />
             ))}
