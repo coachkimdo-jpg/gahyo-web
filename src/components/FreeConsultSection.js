@@ -119,7 +119,7 @@ export default function FreeConsultSection() {
             </h2>
             <p style={{
               fontSize: '0.95rem',
-              color: '#64748b',
+              color: '#475569',
               lineHeight: 1.75,
               marginBottom: '1.5rem',
               wordBreak: 'keep-all',
