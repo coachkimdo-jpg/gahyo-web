@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HeroSection from '@/components/HeroSection';
 
 export const metadata = {
   title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
@@ -196,115 +197,9 @@ export default function HomePage() {
       />
 
       {/* ══════════════════════════════════════════
-          ① HERO — 단순하고 즉각적인 첫 화면 + E-E-A-T + BLUF
+          ① HERO — 다크 네이비 캐러셀 + 긴급 연락 카드
          ══════════════════════════════════════════ */}
-      <section style={{
-        background: 'linear-gradient(170deg, #f8fafc 0%, #f1f5f9 60%, #e2e8f0 100%)',
-        padding: '5rem 0 4rem',
-        position: 'relative', overflow: 'hidden',
-      }}>
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-          <div style={{ position: 'absolute', top: '-15%', right: '-8%', width: '480px', height: '480px', background: 'radial-gradient(circle, rgba(201,168,76,0.09) 0%, transparent 70%)', borderRadius: '50%' }} />
-        </div>
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          
-
-
-          {/* E-E-A-T 신뢰도 배지 */}
-          <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', padding: '0.7rem 1.25rem', background: 'white', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '1.5rem', boxShadow: 'var(--shadow-sm)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span>🎖️</span>
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>신뢰할 수 있는 전문가</div>
-                <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>국가공인 장례지도사 24시간 직접 출동</div>
-              </div>
-            </div>
-            <div style={{ width: '1px', height: '20px', background: 'var(--border-color)' }} />
-            <div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>최종 업데이트</div>
-              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>{today}</div>
-            </div>
-          </div>
-
-          <div style={{
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            borderRadius: '1.5rem',
-            padding: 'clamp(2rem, 5vw, 4rem)',
-            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02)',
-            border: '1px solid rgba(255, 255, 255, 1)',
-            marginBottom: '1rem',
-            maxWidth: '900px',
-            margin: '0 auto',
-            textAlign: 'center'
-          }}>
-            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.35, marginBottom: '2.5rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
-              꽃, 수의, 제단까지 <br className="mobile-br" />유가족이 직접 골라 구성합니다.<br />
-              <br className="mobile-br" />
-              <span style={{ color: 'var(--gold-dark)' }}>내가 직접 고른 마지막이라, <br className="mobile-br" />후회가 없습니다.</span>
-            </h1>
-
-            {/* 신뢰 포인트 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.6rem', marginBottom: '2.5rem', maxWidth: '480px', margin: '0 auto' }}>
-              {['✅ 24시간 연중무휴', '✅ 전국 즉시 출동', '✅ 내 마음대로 맞춤 구성', '✅ 장례 종료 후 결제'].map(b => (
-                <span key={b} style={{ 
-                  background: 'white', 
-                  border: '1px solid var(--border-color)', 
-                  color: 'var(--text-primary)', 
-                  borderRadius: '999px', 
-                  padding: '0.4rem 0.2rem', 
-                  fontSize: 'clamp(0.75rem, 3vw, 0.85rem)', 
-                  fontWeight: '700', 
-                  letterSpacing: '-0.04em',
-                  boxShadow: 'var(--shadow-sm)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  whiteSpace: 'nowrap'
-                }}>{b}</span>
-              ))}
-            </div>
-
-            {/* 메인 CTA 버튼 그룹 */}
-            <div style={{ marginBottom: '1.5rem', marginTop: '2.5rem' }}>
-              <Link href="/custom-package" style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                padding: '1.5rem 1.5rem', background: 'var(--navy)',
-                color: 'white', borderRadius: 'var(--radius-md)', fontWeight: '800', fontSize: '1.3rem',
-                textDecoration: 'none', boxShadow: '0 8px 25px rgba(0, 44, 95, 0.3)', width: '100%',
-                transition: 'transform 0.2s', position: 'relative', minHeight: '90px'
-              }}>
-                <span>🛠️ 상조 상품 직접 구성하기</span>
-                <span style={{ fontSize: '1.5rem', position: 'absolute', right: '2rem' }}>→</span>
-              </Link>
-            </div>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem' }}>
-              <a href="tel:1551-5718" style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
-                padding: '1.1rem 1.5rem', fontSize: '1.1rem', fontWeight: '800',
-                background: 'linear-gradient(135deg, #c0392b, #96281b)',
-                color: 'white', borderRadius: 'var(--radius-sm)',
-                boxShadow: '0 4px 20px rgba(192,57,43,0.3)', textDecoration: 'none', width: '100%',
-                transition: 'var(--transition)', minHeight: '80px'
-              }} id="hero-call-btn">
-                📞 24시간 장례 접수·상담
-              </a>
-              <Link href="/estimate" style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
-                padding: '1.1rem 1.5rem', fontSize: '1.05rem', fontWeight: '700',
-                background: 'white', color: 'var(--text-primary)',
-                border: '2px solid var(--border-color)', borderRadius: 'var(--radius-sm)', textDecoration: 'none', width: '100%',
-                transition: 'var(--transition)', minHeight: '80px', boxShadow: 'var(--shadow-sm)'
-              }} id="hero-estimate-btn">
-                🧮 투명한 장례비용 산출하기
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection today={today} />
 
       {/* ══════════════════════════════════════════
           ② 지금 이 상황인가요? — 빠른 상황 분기
