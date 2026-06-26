@@ -203,33 +203,29 @@ export default function HomePage() {
       <HeroSection today={today} />
 
       {/* ══════════════════════════════════════════
-          ② 지금 이 상황인가요? — 빠른 상황 분기
+          ② 빠른 링크 — 상황별 바로가기
          ══════════════════════════════════════════ */}
-      <section style={{ background: 'var(--beige)', padding: '2.5rem 0' }}>
+      <section style={{ background: 'white', padding: '2rem 0', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container">
-          <p style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1.05rem', marginBottom: '1.25rem', textAlign: 'center' }}>지금 어떤 상황이신가요?</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
             {[
-              { icon: '🚨', label: '방금 임종하셨나요?', sub: '지금 바로 전화주세요', href: 'tel:1551-5718', bg: '#c0392b', isEm: true },
-              { icon: '📋', label: '장례 절차가 궁금해요', sub: '단계별 안내 확인', href: '/guide', bg: 'var(--navy)', isEm: false },
-              { icon: '💰', label: '비용이 얼마인지 궁금해요', sub: 'AI 견적 즉시 산출', href: '/estimate', bg: 'var(--deep-green)', isEm: false },
+              { icon: '📞', label: '장례 접수', sub: '지금 바로 연결', href: 'tel:1551-5718', accent: true },
+              { icon: '📋', label: '장례 절차', sub: '단계별 안내', href: '/guide', accent: false },
+              { icon: '💰', label: '비용 확인', sub: '투명한 견적', href: '/estimate', accent: false },
+              { icon: '🏥', label: '장례식장', sub: '전국 500+ 제휴', href: '/halls', accent: false },
             ].map(item => (
               <a key={item.label} href={item.href} style={{
-                display: 'flex', alignItems: 'center', gap: '1rem',
-                padding: '1.1rem 1.25rem',
-                background: item.isEm ? `linear-gradient(135deg, ${item.bg}, #96281b)` : 'white',
-                border: item.isEm ? 'none' : '2px solid var(--border-color)',
-                borderRadius: 'var(--radius-md)',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                gap: '0.35rem', padding: '1.25rem 0.75rem',
+                background: item.accent ? 'var(--navy)' : 'var(--gray-bg)',
+                borderRadius: '12px',
                 textDecoration: 'none',
-                boxShadow: item.isEm ? '0 4px 16px rgba(192,57,43,0.3)' : 'var(--shadow-sm)',
-                transition: 'var(--transition)',
-                minHeight: '90px'
+                transition: 'opacity 0.15s',
+                minHeight: '90px',
               }}>
-                <span style={{ fontSize: '1.75rem' }}>{item.icon}</span>
-                <div>
-                  <div style={{ fontWeight: '700', fontSize: '1rem', color: item.isEm ? 'white' : 'var(--navy)' }}>{item.label}</div>
-                  <div style={{ fontSize: '0.85rem', color: item.isEm ? 'rgba(255,255,255,0.8)' : 'var(--text-secondary)', marginTop: '0.15rem' }}>{item.sub}</div>
-                </div>
+                <span style={{ fontSize: '1.5rem' }}>{item.icon}</span>
+                <div style={{ fontWeight: '700', fontSize: '0.92rem', color: item.accent ? 'white' : 'var(--navy)', textAlign: 'center' }}>{item.label}</div>
+                <div style={{ fontSize: '0.78rem', color: item.accent ? 'rgba(255,255,255,0.7)' : 'var(--text-secondary)', textAlign: 'center' }}>{item.sub}</div>
               </a>
             ))}
           </div>

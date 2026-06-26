@@ -261,43 +261,8 @@ export default function HeroSection({ today }) {
         {/* 하단 웨이브 구분선 */}
         <div style={{ lineHeight: 0, marginTop: '-1px' }}>
           <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', width: '100%' }}>
-            <path d="M0,32 C360,60 1080,0 1440,32 L1440,48 L0,48 Z" fill="#f8f4ee" />
+            <path d="M0,32 C360,60 1080,0 1440,32 L1440,48 L0,48 Z" fill="white" />
           </svg>
-        </div>
-      </section>
-
-      {/* ──────────────────────────────────────────
-          긴급 연락 카드 (장례 발생 시)
-         ────────────────────────────────────────── */}
-      <section style={{ background: '#f8f4ee', padding: '1.25rem 0 2rem' }}>
-        <div className="container">
-          <a href="tel:1551-5718" style={{
-            display: 'flex', alignItems: 'center', gap: '1rem',
-            padding: '1.25rem 1.5rem',
-            background: 'white',
-            border: '2px solid #e5e0d6',
-            borderLeft: '5px solid #c0392b',
-            borderRadius: '12px',
-            textDecoration: 'none',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-            transition: 'box-shadow 0.2s',
-            maxWidth: '640px',
-            margin: '0 auto',
-          }}>
-            <span style={{ fontSize: '2rem', flexShrink: 0 }}>🚨</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: '700', fontSize: '1rem', color: '#1e293b', marginBottom: '0.1rem' }}>
-                장례가 발생하셨나요?
-              </div>
-              <div style={{ fontSize: '0.85rem', color: '#c0392b', fontWeight: '600' }}>지금 연결하기</div>
-            </div>
-            <div style={{ textAlign: 'right', flexShrink: 0 }}>
-              <div style={{ fontSize: '1.5rem', fontWeight: '800', color: '#1e293b', letterSpacing: '-0.02em' }}>
-                1551-5718
-              </div>
-            </div>
-            <span style={{ fontSize: '1.1rem', color: '#94a3b8', flexShrink: 0 }}>↗</span>
-          </a>
         </div>
       </section>
     </>
