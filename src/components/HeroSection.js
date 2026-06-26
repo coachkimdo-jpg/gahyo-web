@@ -244,18 +244,27 @@ export default function HeroSection({ today }) {
                 onClick={() => goTo(i)}
                 aria-label={`슬라이드 ${i + 1}`}
                 style={{
+                  width: '44px',
+                  height: '44px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'flex-start',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '18px 8px',
+                  boxSizing: 'border-box',
+                }}
+              >
+                <span style={{
+                  display: 'block',
                   width: '28px',
                   height: '8px',
                   borderRadius: '999px',
                   background: i === current ? '#C9A84C' : 'rgba(255,255,255,0.3)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 0,
                   transform: i === current ? 'scaleX(1)' : 'scaleX(0.29)',
                   transformOrigin: 'left center',
                   transition: 'background-color 0.3s ease, transform 0.3s ease',
-                }}
-              />
+                }} />
+              </button>
             ))}
           </div>
         </div>

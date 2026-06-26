@@ -115,7 +115,7 @@ export default function FreeConsultSection() {
               wordBreak: 'keep-all',
             }}>
               가입비도 월 납입도 0원.<br />
-              <span style={{ color: '#C9A84C' }}>쓴 만큼만 후불 결제</span>
+              <span style={{ color: '#7a5910' }}>쓴 만큼만 후불 결제</span>
             </h2>
             <p style={{
               fontSize: '0.95rem',
@@ -217,8 +217,8 @@ export default function FreeConsultSection() {
                           padding: '0.65rem 0.25rem',
                           borderRadius: '8px',
                           border: form.region === r ? 'none' : '1.5px solid #e2e8f0',
-                          background: form.region === r ? '#C9A84C' : '#f8fafc',
-                          color: form.region === r ? 'white' : '#64748b',
+                          background: form.region === r ? '#7a5910' : '#f8fafc',
+                          color: form.region === r ? 'white' : '#334155',
                           fontWeight: form.region === r ? '700' : '500',
                           fontSize: '0.88rem',
                           cursor: 'pointer',
@@ -290,7 +290,7 @@ export default function FreeConsultSection() {
                   disabled={status === 'loading'}
                   style={{
                     padding: '1rem',
-                    background: status === 'loading' ? '#94a3b8' : 'linear-gradient(135deg, #C9A84C, #a07830)',
+                    background: status === 'loading' ? '#64748b' : 'linear-gradient(135deg, #7a5910, #5c4010)',
                     color: 'white', border: 'none', borderRadius: '10px',
                     fontWeight: '800', fontSize: '1rem', cursor: status === 'loading' ? 'not-allowed' : 'pointer',
                     transition: 'opacity 0.15s', letterSpacing: '0.02em',
@@ -300,7 +300,7 @@ export default function FreeConsultSection() {
                   {status === 'loading' ? '신청 중...' : '무료 상담받기'}
                 </button>
 
-                <div style={{ textAlign: 'center', fontSize: '0.82rem', color: '#94a3b8' }}>
+                <div style={{ textAlign: 'center', fontSize: '0.82rem', color: '#475569' }}>
                   급하신 분은 바로 전화하세요 →{' '}
                   <a href="tel:1551-5718" style={{ color: '#002C5F', fontWeight: '700', textDecoration: 'none' }}>
                     1551-5718
