@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
+import FreeConsultSection from '@/components/FreeConsultSection';
 
 export const metadata = {
   title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
@@ -236,7 +237,12 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          ③ 상품 카드 — 가격 + 포함 항목 투명 공개
+          ③ 무료 상담받기 섹션
+         ══════════════════════════════════════════ */}
+      <FreeConsultSection />
+
+      {/* ══════════════════════════════════════════
+          ④ 상품 카드 — 가격 + 포함 항목 투명 공개
          ══════════════════════════════════════════ */}
       <section style={{ padding: '5rem 0', background: 'white' }}>
         <div className="container">
