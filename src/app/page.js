@@ -242,236 +242,153 @@ export default function HomePage() {
       <FreeConsultSection />
 
       {/* ══════════════════════════════════════════
-          ④ 상품 카드 — 가격 + 포함 항목 투명 공개
+          ④ 상품 카드 — 심플 가격 카드
          ══════════════════════════════════════════ */}
-      <section style={{ padding: '5rem 0', background: 'white' }}>
+      <section style={{ padding: '4rem 0', background: 'white' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '2.75rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <span className="section-label">후불제상조상품</span>
-            <h2 className="section-title" style={{ margin: '0.5rem auto 0.75rem' }}>정찰제 · 포함 항목 투명 공개</h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7 }}>
-              아래 금액이 전부입니다. 장례식장 비용·음식비·화장장 이용료는 별도이며, 미리 안내해드립니다.
+            <h2 className="section-title" style={{ margin: '0.5rem auto 0.5rem' }}>상황별 장례 상품</h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+              장례식장·음식·화장장 비용은 별도이며, 상담 시 미리 안내드립니다.
             </p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
             {PRODUCTS.map(p => (
               <div key={p.id} style={{
-                borderRadius: 'var(--radius-lg)',
+                borderRadius: '14px',
                 border: `2px solid ${p.popular ? p.color : 'var(--border-color)'}`,
-                overflow: 'hidden', position: 'relative',
-                boxShadow: p.popular ? `0 8px 32px ${p.color}30` : 'var(--shadow-sm)',
+                overflow: 'hidden',
+                boxShadow: p.popular ? `0 6px 24px ${p.color}25` : 'var(--shadow-sm)',
                 display: 'flex', flexDirection: 'column',
-                height: '100%'
               }}>
-                <div style={{ background: p.popular ? p.color : 'transparent', color: p.popular ? 'white' : 'transparent', textAlign: 'center', padding: '0.4rem', fontSize: '0.82rem', fontWeight: '700' }}>
-                  ⭐ 가장 많이 선택하는 상품
-                </div>
-                <div style={{ padding: '1.75rem', background: p.colorLight }}>
-                  <div style={{ fontWeight: '800', fontSize: '1.3rem', color: p.color, marginBottom: '0.25rem' }}>{p.name}</div>
-                  <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+                {p.popular && (
+                  <div style={{ background: p.color, color: 'white', textAlign: 'center', padding: '0.35rem', fontSize: '0.78rem', fontWeight: '700' }}>
+                    ⭐ 가장 많이 선택
+                  </div>
+                )}
+                <div style={{ padding: '1.5rem', background: p.colorLight, flex: 1 }}>
+                  <div style={{ fontWeight: '800', fontSize: '1.05rem', color: p.color, marginBottom: '0.4rem' }}>{p.name}</div>
+                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text-primary)', letterSpacing: '-0.02em', lineHeight: 1 }}>
                     {p.priceShort}
                   </div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>{p.days} · {p.target}</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.4rem' }}>{p.days}</div>
+                  <div style={{ fontSize: '0.85rem', color: '#475569', marginTop: '0.5rem', lineHeight: 1.5 }}>{p.target}</div>
                 </div>
-                <div style={{ padding: '1.5rem', background: 'white', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <div style={{ fontWeight: '700', fontSize: '0.85rem', color: 'var(--navy)', marginBottom: '0.75rem', letterSpacing: '0.04em' }}>✅ 포함 항목</div>
-                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: p.excludes.length > 0 ? '1rem' : '1.5rem' }}>
-                    {p.includes.map(item => (
-                      <li key={item} style={{ fontSize: '0.9rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}>
-                        <span style={{ color: p.color, fontWeight: '700', flexShrink: 0, marginTop: '0.05rem' }}>✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  {p.excludes.length > 0 && (
-                    <>
-                      <div style={{ fontWeight: '700', fontSize: '0.85rem', color: '#4b5563', marginBottom: '0.5rem', letterSpacing: '0.04em' }}>➖ 미포함</div>
-                      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.3rem', marginBottom: '1.5rem' }}>
-                        {p.excludes.map(item => (
-                           <li key={item} style={{ fontSize: '0.88rem', color: '#6b7280', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                             <span>✕</span> {item}
-                           </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
+                <div style={{ padding: '1rem', background: 'white', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <a href="tel:1551-5718" style={{
-                    display: 'block', textAlign: 'center', padding: '0.85rem',
-                    background: p.color, color: 'white', borderRadius: 'var(--radius-sm)',
-                    fontWeight: '700', fontSize: '1rem', textDecoration: 'none',
-                    marginTop: 'auto'
+                    display: 'block', textAlign: 'center', padding: '0.75rem',
+                    background: p.color, color: 'white', borderRadius: '8px',
+                    fontWeight: '700', fontSize: '0.9rem', textDecoration: 'none',
                   }}>
-                    이 상품으로 상담하기
+                    상담하기
                   </a>
+                  <Link href="/products" style={{
+                    display: 'block', textAlign: 'center', padding: '0.5rem',
+                    color: 'var(--text-secondary)', fontSize: '0.82rem', textDecoration: 'none',
+                  }}>
+                    상세 내역 보기 →
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
-          <Link href="/products" style={{ display: 'block', textAlign: 'center', marginTop: '2rem', color: 'var(--navy)', fontWeight: '700', fontSize: '1rem', textDecoration: 'underline' }}>
-            전체 항목 비교표 보기 →
-          </Link>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          ④ 투명한 비용 안내 — 추가 비용 솔직하게
+          ⑤ 장례 절차 — 컴팩트 6단계 그리드
          ══════════════════════════════════════════ */}
-      <section style={{ padding: '4rem 0', background: 'var(--beige)' }}>
+      <section style={{ padding: '3.5rem 0', background: 'var(--beige)' }}>
         <div className="container">
-          <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-            <h2 style={{ fontWeight: '800', color: 'var(--navy)', fontSize: 'clamp(1.3rem, 3vw, 1.75rem)', marginBottom: '0.5rem' }}>
-              💡 추가 비용이 생기는 경우, 미리 알려드립니다
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.75rem', fontSize: '1rem', lineHeight: 1.7 }}>
-              가효상조 상품 가격은 <strong style={{ color: 'var(--text-primary)' }}>장례 의전 비용</strong>입니다. 아래 항목은 선택 사항이며 별도로 발생합니다. 상담 시 미리 예상 금액을 안내해 드립니다.
-            </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-              {[
-                { icon: '🏥', title: '장례식장 시설 이용료', desc: '빈소·안치실·염습실 사용료 (장례식장별 상이)' },
-                { icon: '🍱', title: '음식·식음료비', desc: '조문객 식사 및 음료 (인원·메뉴에 따라 다름)' },
-                { icon: '🔥', title: '화장장 이용료', desc: '지역·시설에 따라 다름 (시립 화장장 우선 안내)' },
-                { icon: '⚱️', title: '봉안당·수목장비', desc: '선택 시 해당 시설 이용료 별도 (안내 무료)' },
-              ].map(item => (
-                <div key={item.title} style={{ background: 'white', borderRadius: 'var(--radius-md)', padding: '1.25rem', boxShadow: 'var(--shadow-sm)' }}>
-                  <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{item.icon}</div>
-                  <div style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '0.95rem', marginBottom: '0.35rem' }}>{item.title}</div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>{item.desc}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{ marginTop: '1.5rem', background: 'white', borderLeft: '4px solid var(--gold)', borderRadius: '0 var(--radius-md) var(--radius-md) 0', padding: '1rem 1.25rem', fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: 1.7 }}>
-              📞 상담 시 원하시는 장례식장과 예상 조문객 수를 말씀해 주시면, <strong>총 예상 비용을 전화로 즉시 안내</strong>해 드립니다.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          ⑤ 장례 절차 타임라인
-         ══════════════════════════════════════════ */}
-      <section style={{ padding: '5rem 0', background: 'white' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
             <span className="section-label">장례 절차 안내</span>
-            <h2 className="section-title" style={{ margin: '0.5rem auto 0.75rem' }}>임종부터 안장까지 6단계</h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>처음 장례를 치르시는 분들을 위해 절차를 단계별로 안내합니다.</p>
+            <h2 className="section-title" style={{ margin: '0.5rem auto 0' }}>임종부터 안장까지</h2>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
             {STEPS.map((s, idx) => (
-              <div key={s.step} style={{ display: 'flex', gap: '1.25rem', position: 'relative', paddingBottom: idx < STEPS.length - 1 ? '0' : '0' }}>
-                {/* 타임라인 선 */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                  <div style={{
-                    width: '48px', height: '48px', borderRadius: '50%',
-                    background: idx === 0 ? 'linear-gradient(135deg,#c0392b,#96281b)' : 'var(--navy)',
-                    color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontWeight: '800', fontSize: '0.9rem', flexShrink: 0, zIndex: 1,
-                  }}>{s.step}</div>
-                  {idx < STEPS.length - 1 && (
-                    <div style={{ width: '2px', background: 'var(--border-color)', flex: 1, minHeight: '32px' }} />
-                  )}
-                </div>
-                {/* 콘텐츠 */}
-                <div style={{ paddingBottom: idx < STEPS.length - 1 ? '2rem' : '0', paddingTop: '0.6rem', flex: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
-                    <h3 style={{ fontWeight: '800', fontSize: '1.1rem', color: 'var(--navy)' }}>{s.title}</h3>
-                    <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', background: 'var(--gray-bg)', padding: '0.15rem 0.6rem', borderRadius: '999px' }}>{s.time}</span>
-                  </div>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.65, marginBottom: '0.75rem' }}>{s.desc}</p>
-                  <a href={s.href} style={{
-                    display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
-                    fontSize: '0.9rem', fontWeight: '700',
-                    color: idx === 0 ? '#c0392b' : 'var(--navy)',
-                    textDecoration: 'none', borderBottom: `2px solid ${idx === 0 ? '#c0392b30' : 'var(--navy-light)'}`,
-                    paddingBottom: '0.1rem',
-                  }}>{s.action} →</a>
-                </div>
+              <div key={s.step} style={{
+                background: 'white', borderRadius: '12px', padding: '1.1rem',
+                border: idx === 0 ? '2px solid #c0392b' : '1px solid var(--border-color)',
+                textAlign: 'center', boxShadow: 'var(--shadow-sm)',
+              }}>
+                <div style={{
+                  width: '36px', height: '36px', borderRadius: '50%', margin: '0 auto 0.5rem',
+                  background: idx === 0 ? 'linear-gradient(135deg,#c0392b,#96281b)' : 'var(--navy)',
+                  color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontWeight: '800', fontSize: '0.82rem',
+                }}>{s.step}</div>
+                <div style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--navy)' }}>{s.title}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>{s.time}</div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>
-            <Link href="/guide" className="btn-secondary" style={{ padding: '0.9rem 2rem', fontSize: '1rem' }}>
-              장례 가이드 전체 보기
+          <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+            <Link href="/guide" style={{ color: 'var(--navy)', fontWeight: '700', fontSize: '0.9rem', textDecoration: 'none', borderBottom: '2px solid var(--navy-light)', paddingBottom: '0.1rem' }}>
+              장례 절차 자세히 보기 →
             </Link>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          ⑥ 신뢰 요소 — 제휴 장례식장 + 사업자 정보
+          ⑥ 신뢰 지표 + 후기
          ══════════════════════════════════════════ */}
-      <section style={{ padding: '4rem 0', background: 'var(--gray-bg)' }}>
+      <section style={{ padding: '3.5rem 0', background: 'white' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', textAlign: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', textAlign: 'center', marginBottom: '3rem' }}>
             {[
-              { num: '500+', label: '장례 지원 건수', sub: '' },
-              { num: '500+', label: '전국 제휴 장례식장', sub: '전국 어디서든' },
-              { num: '98%', label: '고객 만족도', sub: '실제 이용 고객 기준' },
-              { num: '24/7', label: '긴급 출동 가능', sub: '연중무휴' },
+              { num: '500+', label: '장례 지원 건수' },
+              { num: '500+', label: '전국 제휴 장례식장' },
+              { num: '98%', label: '고객 만족도' },
+              { num: '24/7', label: '긴급 출동' },
             ].map(s => (
-              <div key={s.label} style={{ padding: '1.5rem', background: 'white', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)' }}>
-                <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--navy)' }}>{s.num}</div>
-                <div style={{ fontWeight: '700', color: 'var(--text-primary)', marginTop: '0.25rem' }}>{s.label}</div>
-                <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>{s.sub}</div>
+              <div key={s.label} style={{ padding: '1.25rem 0.5rem', borderRight: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--navy)' }}>{s.num}</div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>{s.label}</div>
               </div>
             ))}
           </div>
 
-          {/* 고객 후기 */}
-          <div style={{ marginTop: '3.5rem' }}>
-            <h2 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1.35rem', marginBottom: '1.5rem', textAlign: 'center' }}>실제 이용 고객 후기</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: '1.25rem' }}>
-              {[
-                { name: '김○○ 고객님', region: '서울 강남구', text: '갑작스러운 부모님 임종에 당황했는데, 상담원이 처음부터 끝까지 세심하게 안내해 주셨어요. AI 견적 덕분에 비용도 미리 파악할 수 있었습니다.' },
-                { name: '이○○ 고객님', region: '경기 수원시', text: '예상 견적과 실제 비용이 거의 일치해서 믿음이 갔어요. 추가비가 생기는 부분도 미리 안내해 주셔서 불안하지 않았습니다.' },
-                { name: '박○○ 고객님', region: '대구 수성구', text: '처음 장례를 치르는 거라 막막했는데, 단계별로 친절하게 설명해 주시고 직접 움직여 주셔서 정말 감사했습니다.' },
-                { name: '최○○ 고객님', region: '인천 연수구', text: '새벽 3시에 연락드렸는데도 바로 앰뷸런스를 보내주시고 장례식장 섭외까지 일사천리로 진행해 주셔서 큰 위로가 되었습니다.' },
-                { name: '정○○ 고객님', region: '부산 해운대구', text: '쓸데없는 강매나 바가지 요금이 전혀 없어서 좋았습니다. 제가 선택한 꼭 필요한 항목들로만 진행할 수 있는 진짜 맞춤형 후불제입니다.' },
-                { name: '강○○ 고객님', region: '서울 송파구', text: '장례지도사님의 품격 있는 염습 과정이 특히 인상 깊었습니다. 고인을 정말 진심으로 모시는 모습에 온 가족이 큰 감동을 받았습니다.' },
-              ].map(t => (
-                <div key={t.name} style={{ background: 'white', borderRadius: 'var(--radius-lg)', padding: '1.75rem', boxShadow: 'var(--shadow-sm)', borderLeft: '4px solid var(--gold)' }}>
-                  <div style={{ display: 'flex', gap: '0.2rem', marginBottom: '0.9rem' }}>
-                    {[1,2,3,4,5].map(i => <span key={i} style={{ color: 'var(--gold)', fontSize: '1rem' }}>★</span>)}
-                  </div>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: '1.1rem', fontStyle: 'italic' }}>"{t.text}"</p>
-                  <div style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '0.9rem' }}>{t.name}</div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>{t.region}</div>
+          <h2 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1.2rem', marginBottom: '1.25rem', textAlign: 'center' }}>실제 이용 고객 후기</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+            {[
+              { name: '김○○', region: '서울 강남구', text: '처음부터 끝까지 세심하게 안내해 주셔서 당황하지 않고 장례를 마칠 수 있었습니다.' },
+              { name: '이○○', region: '경기 수원시', text: '예상 견적과 실제 비용이 거의 일치해 믿음이 갔어요. 추가비 없이 투명하게 진행됐습니다.' },
+              { name: '최○○', region: '인천 연수구', text: '새벽 3시에도 바로 앰뷸런스를 보내주셨어요. 큰 위로가 되었습니다.' },
+            ].map(t => (
+              <div key={t.name} style={{ background: 'var(--gray-bg)', borderRadius: '12px', padding: '1.5rem', borderLeft: '3px solid var(--gold)' }}>
+                <div style={{ display: 'flex', gap: '0.2rem', marginBottom: '0.6rem' }}>
+                  {[1,2,3,4,5].map(i => <span key={i} style={{ color: 'var(--gold)', fontSize: '0.9rem' }}>★</span>)}
                 </div>
-              ))}
-            </div>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '0.75rem', fontStyle: 'italic' }}>"{t.text}"</p>
+                <div style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '0.85rem' }}>{t.name} · {t.region}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          ⑦ 자주 묻는 질문 (FAQ) — SEO 및 롱테일 키워드 대응
+          ⑦ FAQ
          ══════════════════════════════════════════ */}
-      <section style={{ padding: '5rem 0', background: 'white' }}>
-        <div className="container" style={{ maxWidth: '800px' }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '1.5rem', textAlign: 'center' }}>
-            자주 묻는 질문 (FAQ)
+      <section style={{ padding: '3.5rem 0', background: 'var(--beige)' }}>
+        <div className="container" style={{ maxWidth: '720px' }}>
+          <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '1.25rem', textAlign: 'center' }}>
+            자주 묻는 질문
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {[
-              {
-                q: '후불제 상조와 선불제 상조의 가장 큰 차이점은 무엇인가요?',
-                a: '가효상조와 같은 후불제 상조는 매월 납입하는 선불금이나 가입비가 전혀 없습니다. 장례가 모두 끝난 발인 날, 실제 사용한 서비스 비용만 결제하므로 경제적이고 투명합니다.'
-              },
-              {
-                q: '한밤중에 임종하셨는데 지금 바로 장례식장 이동이 가능한가요?',
-                a: '네, 가능합니다. 가효상조는 24시간 연중무휴로 운영되며, 임종 즉시 1551-5718로 전화 주시면 앰뷸런스를 배차하여 원하시는 장례식장으로 고인을 모십니다.'
-              },
-              {
-                q: '장례식장을 미리 정해두지 않았는데 어떻게 하나요?',
-                a: '당황하지 않으셔도 됩니다. 가효상조의 전담 장례지도사가 유가족의 거주지, 예상 조문객 수, 예산 등을 고려하여 최적의 제휴 장례식장(전국 500여 곳)을 실시간으로 섭외해 드립니다.'
-              }
+              { q: '후불제 상조란 무엇인가요?', a: '가입비·월 납입금 없이, 장례 종료 후 실제 이용한 비용만 결제합니다.' },
+              { q: '한밤중에도 출동이 가능한가요?', a: '24시간 연중무휴로 운영합니다. 임종 직후 1551-5718로 전화하시면 즉시 앰뷸런스를 배차합니다.' },
+              { q: '장례식장을 미리 정하지 않았어도 되나요?', a: '전담 장례지도사가 거주지·예산에 맞는 전국 500여 곳 제휴 장례식장을 즉시 섭외해 드립니다.' },
             ].map((faq, i) => (
-              <article key={i} style={{ background: 'var(--gray-bg)', borderRadius: '12px', padding: '1.5rem', border: '1px solid #e2e8f0' }}>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', display: 'flex', gap: '0.5rem' }}>
-                  <span style={{ color: '#c0392b', flexShrink: 0 }}>Q.</span> {faq.q}
+              <article key={i} style={{ background: 'white', borderRadius: '10px', padding: '1.25rem 1.5rem', border: '1px solid #e2e8f0' }}>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.4rem', display: 'flex', gap: '0.4rem' }}>
+                  <span style={{ color: '#c0392b', flexShrink: 0 }}>Q.</span>{faq.q}
                 </h3>
-                <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.7, paddingLeft: '1.7rem', margin: 0 }}>
-                  <strong style={{ color: 'var(--gold-dark)', marginRight: '0.3rem' }}>A.</strong>{faq.a}
+                <p style={{ color: '#475569', fontSize: '0.88rem', lineHeight: 1.65, paddingLeft: '1.4rem', margin: 0 }}>
+                  {faq.a}
                 </p>
               </article>
             ))}
