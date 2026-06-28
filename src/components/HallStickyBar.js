@@ -3,81 +3,86 @@
 export default function HallStickyBar({ hallName }) {
   return (
     <>
-      <div
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
-          borderTop: '3px solid var(--gold)',
-          padding: '0.85rem 1rem',
+      {/* 바깥 래퍼: 풀 너비 배경 */}
+      <div style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+        borderTop: '3px solid var(--gold)',
+        boxShadow: '0 -6px 24px rgba(0,0,0,0.35)',
+      }}>
+        {/* 안쪽 컨테이너: 최대 너비 + 중앙 정렬 */}
+        <div style={{
+          maxWidth: '840px',
+          margin: '0 auto',
+          padding: '0.85rem 1.25rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: '0.75rem',
-          boxShadow: '0 -6px 24px rgba(0,0,0,0.35)',
-        }}
-      >
-        {/* 왼쪽: 안내 문구 */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '600', marginBottom: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {hallName ? `${hallName} 장례 준비` : '장례 준비'}
+        }}>
+          {/* 왼쪽: 안내 문구 */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '600', marginBottom: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {hallName ? `${hallName} 장례 준비` : '장례 준비'}
+            </div>
+            <div style={{ fontSize: '1rem', color: 'white', fontWeight: '800', lineHeight: 1.3 }}>
+              지금 바로 무료 상담
+            </div>
           </div>
-          <div style={{ fontSize: '1rem', color: 'white', fontWeight: '800', lineHeight: 1.3 }}>
-            지금 바로 무료 상담
-          </div>
-        </div>
 
-        {/* 오른쪽: CTA 버튼들 */}
-        <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
-          <a
-            href="https://pf.kakao.com/_ntRdX/friend"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '0.7rem 0.85rem',
-              background: '#FEE500',
-              color: '#000',
-              fontWeight: '800',
-              fontSize: '0.95rem',
-              borderRadius: '10px',
-              textDecoration: 'none',
-              whiteSpace: 'nowrap',
-              lineHeight: 1.2,
-              minWidth: '68px',
-            }}
-          >
-            <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>💬</span>
-            <span style={{ fontSize: '0.8rem', marginTop: '0.2rem' }}>카카오</span>
-          </a>
-          <a
-            href="tel:1551-5718"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.15rem',
-              padding: '0.7rem 1rem',
-              background: 'var(--gold)',
-              color: '#0f172a',
-              fontWeight: '800',
-              borderRadius: '10px',
-              textDecoration: 'none',
-              whiteSpace: 'nowrap',
-              lineHeight: 1.2,
-              minWidth: '110px',
-            }}
-          >
-            <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>📞</span>
-            <span style={{ fontSize: '1.05rem', fontWeight: '900', letterSpacing: '0.01em' }}>1551-5718</span>
-          </a>
+          {/* 오른쪽: CTA 버튼들 */}
+          <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
+            <a
+              href="https://pf.kakao.com/_ntRdX/chat"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '0.7rem 0.85rem',
+                background: '#FEE500',
+                color: '#000',
+                fontWeight: '800',
+                fontSize: '0.95rem',
+                borderRadius: '10px',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                lineHeight: 1.2,
+                minWidth: '68px',
+              }}
+            >
+              <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>💬</span>
+              <span style={{ fontSize: '0.8rem', marginTop: '0.2rem' }}>카카오</span>
+            </a>
+            <a
+              href="tel:1551-5718"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.15rem',
+                padding: '0.7rem 1rem',
+                background: 'var(--gold)',
+                color: '#0f172a',
+                fontWeight: '800',
+                borderRadius: '10px',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                lineHeight: 1.2,
+                minWidth: '110px',
+              }}
+            >
+              <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>📞</span>
+              <span style={{ fontSize: '1.05rem', fontWeight: '900', letterSpacing: '0.01em' }}>1551-5718</span>
+            </a>
+          </div>
         </div>
       </div>
 
