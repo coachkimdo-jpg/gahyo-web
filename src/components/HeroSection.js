@@ -9,16 +9,16 @@ const SLIDES = [
     badge: '국가공인 장례지도사 24시간 직접 출동',
     heading: (
       <>
-        꽃, 수의, 제단까지<br />
-        유가족이 직접<br />
-        <span style={{ color: '#C9A84C' }}>골라 구성합니다.</span>
+        갑자기 임종하셨나요?<br />
+        지금 전화하시면<br />
+        <span style={{ color: '#C9A84C' }}>5분 안에 연결됩니다.</span>
       </>
     ),
-    sub: '내가 직접 고른 마지막이라, 후회가 없습니다.',
-    primaryHref: '/custom-package',
-    primaryLabel: '🛠️ 상조 상품 직접 구성하기',
-    secondaryHref: '/estimate',
-    secondaryLabel: '🧮 투명한 장례비용 산출하기',
+    sub: '바가지 없이, 후불로, 24시간 즉시 출동. 전화 한 통으로 모든 것을 해결해 드립니다.',
+    primaryHref: 'tel:1551-5718',
+    primaryLabel: '📞 지금 바로 전화하기',
+    secondaryHref: '/custom-package',
+    secondaryLabel: '🛠️ 상조 상품 직접 구성하기',
   },
   {
     id: 1,
@@ -45,10 +45,10 @@ const SLIDES = [
       </>
     ),
     sub: '전국 어디서든 최적의 장례식장을 바로 연결해 드립니다.',
-    primaryHref: '/halls',
-    primaryLabel: '🏥 장례식장 찾기',
-    secondaryHref: '/estimate',
-    secondaryLabel: '💰 비용 미리 확인하기',
+    primaryHref: 'tel:1551-5718',
+    primaryLabel: '📞 지금 바로 전화하기',
+    secondaryHref: '/halls',
+    secondaryLabel: '🏥 장례식장 찾기',
   },
 ];
 
@@ -180,56 +180,29 @@ export default function HeroSection({ today }) {
               ))}
             </div>
 
-            {/* CTA 버튼 */}
+            {/* CTA 버튼 — 전화 링크는 항상 빨간 Primary, 나머지는 보조 스타일 */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2.5rem' }}>
-              {slide.id === 1 ? (
-                <a href={slide.primaryHref} style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  padding: '1rem 2rem', minWidth: '220px',
-                  background: 'linear-gradient(135deg, #c0392b, #96281b)',
-                  color: 'white', borderRadius: '10px', fontWeight: '800', fontSize: '1.05rem',
-                  textDecoration: 'none', boxShadow: '0 6px 20px rgba(192,57,43,0.4)',
-                  transition: 'transform 0.15s',
-                }}>
-                  {slide.primaryLabel}
-                </a>
-              ) : (
-                <Link href={slide.primaryHref} style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  padding: '1rem 2rem', minWidth: '220px',
-                  background: 'linear-gradient(135deg, #C9A84C, #a07830)',
-                  color: 'white', borderRadius: '10px', fontWeight: '800', fontSize: '1.05rem',
-                  textDecoration: 'none', boxShadow: '0 6px 20px rgba(201,168,76,0.35)',
-                  transition: 'transform 0.15s',
-                }}>
-                  {slide.primaryLabel}
-                </Link>
-              )}
-              {slide.id === 1 ? (
-                <Link href={slide.secondaryHref} style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  padding: '1rem 1.75rem',
-                  background: 'rgba(255,255,255,0.07)',
-                  color: 'rgba(255,255,255,0.85)',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  borderRadius: '10px', fontWeight: '700', fontSize: '1rem',
-                  textDecoration: 'none', transition: 'background 0.15s',
-                }}>
-                  {slide.secondaryLabel}
-                </Link>
-              ) : (
-                <a href={slide.id === 0 ? 'tel:1551-5718' : slide.secondaryHref} style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  padding: '1rem 1.75rem',
-                  background: 'rgba(255,255,255,0.07)',
-                  color: 'rgba(255,255,255,0.85)',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  borderRadius: '10px', fontWeight: '700', fontSize: '1rem',
-                  textDecoration: 'none', transition: 'background 0.15s',
-                }}>
-                  {slide.id === 0 ? '📞 24시간 장례 접수·상담' : slide.secondaryLabel}
-                </a>
-              )}
+              <a href={slide.primaryHref} style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                padding: '1rem 2rem', minWidth: '220px',
+                background: 'linear-gradient(135deg, #c0392b, #96281b)',
+                color: 'white', borderRadius: '10px', fontWeight: '800', fontSize: '1.05rem',
+                textDecoration: 'none', boxShadow: '0 6px 20px rgba(192,57,43,0.4)',
+                transition: 'transform 0.15s',
+              }}>
+                {slide.primaryLabel}
+              </a>
+              <Link href={slide.secondaryHref} style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                padding: '1rem 1.75rem',
+                background: 'rgba(255,255,255,0.07)',
+                color: 'rgba(255,255,255,0.85)',
+                border: '1px solid rgba(255,255,255,0.2)',
+                borderRadius: '10px', fontWeight: '700', fontSize: '1rem',
+                textDecoration: 'none', transition: 'background 0.15s',
+              }}>
+                {slide.secondaryLabel}
+              </Link>
             </div>
           </div>
 

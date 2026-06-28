@@ -272,12 +272,20 @@ export default function HomePage() {
                   <div style={{ fontSize: '0.85rem', color: '#475569', marginTop: '0.5rem', lineHeight: 1.5 }}>{p.target}</div>
                 </div>
                 <div style={{ padding: '1rem', background: 'white', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem',
+                    padding: '0.45rem 0.5rem', marginBottom: '0.1rem',
+                    background: '#f0fdf4', borderRadius: '7px',
+                    fontSize: '0.78rem', color: '#166534', fontWeight: '700',
+                  }}>
+                    🛡️ 추가비용 없음 보장 · 장례 후 결제
+                  </div>
                   <a href="tel:1551-5718" style={{
                     display: 'block', textAlign: 'center', padding: '0.75rem',
                     background: p.color, color: 'white', borderRadius: '8px',
                     fontWeight: '700', fontSize: '0.9rem', textDecoration: 'none',
                   }}>
-                    상담하기
+                    📞 바로 상담하기
                   </a>
                   <Link href="/products" style={{
                     display: 'block', textAlign: 'center', padding: '0.5rem',
