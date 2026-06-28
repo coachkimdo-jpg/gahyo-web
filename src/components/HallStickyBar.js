@@ -83,6 +83,9 @@ export default function HallStickyBar({ hallName }) {
 
       {/* 하단 바 높이만큼 여백 확보 (컨텐츠가 가려지지 않도록) */}
       <div style={{ height: '88px' }} />
+
+      {/* Hall 상세 페이지에서는 EmergencyFloat 숨김 (스티키 바가 동일 역할) */}
+      <style>{`.emergency-float { display: none !important; }`}</style>
     </>
   );
 }

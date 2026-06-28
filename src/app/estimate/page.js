@@ -102,6 +102,12 @@ export default function EstimatePage() {
   const [loadingEstimate, setLoadingEstimate] = useState(false);
   const [availableHalls, setAvailableHalls] = useState([]);
 
+  // 리드 캡처 폼 상태
+  const [leadName, setLeadName] = useState('');
+  const [leadPhone, setLeadPhone] = useState('');
+  const [leadSubmitting, setLeadSubmitting] = useState(false);
+  const [leadDone, setLeadDone] = useState(false);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -184,13 +190,40 @@ export default function EstimatePage() {
     setStep((s) => Math.max(0, s - 1)); 
   }
   
-  function handleReset() { 
-    setStep(0); 
-    setSido(''); 
-    setSigungu(''); 
-    setSelectedHall(null); 
-    setGuestCategory(''); 
-    setResult(null); 
+  function handleReset() {
+    setStep(0);
+    setSido('');
+    setSigungu('');
+    setSelectedHall(null);
+    setGuestCategory('');
+    setResult(null);
+    setLeadName('');
+    setLeadPhone('');
+    setLeadDone(false);
+  }
+
+  async function handleLeadSubmit(e) {
+    e.preventDefault();
+    if (!leadPhone.trim()) return;
+    setLeadSubmitting(true);
+    try {
+      await fetch('/api/free-consult', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: leadName,
+          phone: leadPhone,
+          region: `${sido} ${sigungu}`,
+          situation: `견적 완료 — ${selectedHall?.name} / ${GUEST_CATEGORIES.find(c => c.id === guestCategory)?.label}`,
+          agreeTerms: true,
+        }),
+      });
+      setLeadDone(true);
+    } catch {
+      setLeadDone(true);
+    } finally {
+      setLeadSubmitting(false);
+    }
   }
 
   let canNext = false;
@@ -516,8 +549,87 @@ export default function EstimatePage() {
                 );
               })()}
 
+              {/* 리드 캡처 폼 — 견적 완료 후 상담 신청 */}
+              {!leadDone ? (
+                <form onSubmit={handleLeadSubmit} style={{
+                  background: 'linear-gradient(135deg, #fff9e8 0%, #fffdf5 100%)',
+                  border: '2px solid var(--gold)',
+                  borderRadius: '12px',
+                  padding: '1.5rem',
+                  marginBottom: '1rem',
+                }}>
+                  <div style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.4rem' }}>
+                    📋 이 견적으로 전문가 상담 받기
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: '#64748b', marginBottom: '1.25rem' }}>
+                    연락처를 남기시면 장례지도사가 오늘 안에 직접 전화드립니다.
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                    <input
+                      type="text"
+                      placeholder="성함"
+                      value={leadName}
+                      onChange={e => setLeadName(e.target.value)}
+                      style={{
+                        padding: '0.85rem 1rem',
+                        borderRadius: '8px',
+                        border: '1.5px solid #cbd5e1',
+                        fontSize: '1rem',
+                        fontFamily: 'inherit',
+                        outline: 'none',
+                      }}
+                    />
+                    <input
+                      type="tel"
+                      placeholder="연락처 (필수)"
+                      value={leadPhone}
+                      onChange={e => setLeadPhone(e.target.value)}
+                      required
+                      style={{
+                        padding: '0.85rem 1rem',
+                        borderRadius: '8px',
+                        border: '1.5px solid #cbd5e1',
+                        fontSize: '1rem',
+                        fontFamily: 'inherit',
+                        outline: 'none',
+                      }}
+                    />
+                    <button
+                      type="submit"
+                      disabled={leadSubmitting || !leadPhone.trim()}
+                      style={{
+                        padding: '1rem',
+                        background: leadPhone.trim() ? 'var(--navy)' : '#94a3b8',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '8px',
+                        fontSize: '1.05rem',
+                        fontWeight: '800',
+                        cursor: leadPhone.trim() ? 'pointer' : 'not-allowed',
+                        fontFamily: 'inherit',
+                      }}
+                    >
+                      {leadSubmitting ? '접수 중...' : '무료 상담 신청하기'}
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div style={{
+                  background: '#f0fdf4',
+                  border: '2px solid #22c55e',
+                  borderRadius: '12px',
+                  padding: '1.5rem',
+                  marginBottom: '1rem',
+                  textAlign: 'center',
+                }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✅</div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: '800', color: '#15803d', marginBottom: '0.25rem' }}>상담 신청 완료!</div>
+                  <div style={{ fontSize: '0.9rem', color: '#166534' }}>장례지도사가 오늘 안에 연락드립니다.<br/>급하시면 아래 번호로 바로 전화하세요.</div>
+                </div>
+              )}
+
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.8rem' }}>
-                <a href="tel:1551-5718" className="btn-primary" style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.1rem' }}>📞 전문 장례지도사 1:1 무료 상담</a>
+                <a href="tel:1551-5718" className="btn-primary" style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.1rem' }}>📞 지금 바로 전화하기 · 1551-5718</a>
                 <button onClick={handleShare} className="btn-secondary" style={{ padding: '1.25rem', fontSize: '1.1rem', background: '#f8f9fa', borderColor: '#d1d5db', color: '#374151' }}>🔗 견적 결과 공유하기</button>
                 <button onClick={handleReset} className="btn-secondary" style={{ padding: '1.25rem', fontSize: '1.1rem' }}>처음부터 다시하기</button>
               </div>
