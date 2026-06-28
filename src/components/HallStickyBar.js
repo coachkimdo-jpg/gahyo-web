@@ -1,6 +1,6 @@
 'use client';
 
-export default function HallStickyBar({ hallName }) {
+export default function HallStickyBar({ hallName, subtitle = '장례 준비' }) {
   return (
     <>
       {/* 바깥 래퍼: 풀 너비 배경 */}
@@ -27,7 +27,7 @@ export default function HallStickyBar({ hallName }) {
           {/* 왼쪽: 안내 문구 */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '600', marginBottom: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-              {hallName ? `${hallName} 장례 준비` : '장례 준비'}
+              {hallName ? `${hallName} ${subtitle}` : subtitle}
             </div>
             <div style={{ fontSize: '1rem', color: 'white', fontWeight: '800', lineHeight: 1.3 }}>
               지금 바로 무료 상담

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound, permanentRedirect } from 'next/navigation';
 import graveyardsData from '@/lib/graveyards.json';
 import { getSlug } from '@/lib/utils';
+import HallStickyBar from '@/components/HallStickyBar';
 
 
 export async function generateMetadata({ params }) {
@@ -120,6 +121,7 @@ export default async function GraveyardPage({ params }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <HallStickyBar hallName={graveyard.name} subtitle="묘지 상담" />
 
       {/* 히어로 */}
       <div style={{ background: 'linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%)', color: 'white', padding: '3.5rem 1.25rem 2.5rem' }}>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound, permanentRedirect } from 'next/navigation';
 import naturalBurialsData from '@/lib/naturalBurials.json';
 import { getSlug } from '@/lib/utils';
+import HallStickyBar from '@/components/HallStickyBar';
 
 
 export async function generateMetadata({ params }) {
@@ -119,7 +120,8 @@ export default async function NaturalBurialPage({ params }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      
+      <HallStickyBar hallName={facility.name} subtitle="자연장지 상담" />
+
       <div style={{ background: 'linear-gradient(135deg, #1a3d2a 0%, #2d6a4f 100%)', color: 'white', padding: '4rem 1.25rem 3rem' }}>
         <div className="container">
           <div style={{ marginBottom: '1.25rem' }}>
