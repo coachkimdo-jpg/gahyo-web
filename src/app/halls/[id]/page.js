@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from 'next/navigation';
 import funeralHalls from '@/lib/realData.json';
 import { regions } from '@/lib/mockDb';
 import { getSlug } from '@/lib/utils';
+import HallStickyBar from '@/components/HallStickyBar';
 
 
 
@@ -171,6 +172,8 @@ export default async function HallDetailPage({ params }) {
           <span style={{ color: 'var(--navy)', fontWeight: '600' }}>{hall.name}</span>
         </div>
       </div>
+
+      <HallStickyBar hallName={hall.name} />
 
       <div className="container" style={{ padding: '2.5rem 1.25rem 5rem', maxWidth: '840px' }}>
         
@@ -355,26 +358,24 @@ export default async function HallDetailPage({ params }) {
 
 
 
-        {/* 전환 유도 콜투액션 (CTA) */}
-        {facilityInfo.consultEnabled && (
-          <section style={{ padding: '2.5rem 1.5rem', background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', color: 'white', textAlign: 'center', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '1rem', lineHeight: 1.4, wordBreak: 'keep-all' }}>
-              {hall.name} 장례 준비,<br/>
-              거품 없는 가격으로 완벽하게 모십니다.
-            </h2>
-            <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem' }}>
-              가효상조의 전담 장례지도사가 빈소 수배부터 화장장 예약, 고품격 장의차량 배차까지 내 가족의 일처럼 투명하게 대행해 드립니다.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '360px', margin: '0 auto' }}>
-              <a href="tel:1551-5718" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', padding: '1.25rem', background: 'var(--gold)', color: '#0f172a', fontSize: '1.2rem', fontWeight: '800', borderRadius: '8px', boxShadow: '0 4px 14px rgba(212, 175, 55, 0.4)', textDecoration: 'none' }}>
-                <span style={{ fontSize: '1.3rem' }}>📞</span> 1551-5718 
-              </a>
-              <Link href="/estimate" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.05rem', fontWeight: '600', borderRadius: '8px', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)' }}>
-                빠른 AI 장례 견적 받기
-              </Link>
-            </div>
-          </section>
-        )}
+        {/* 전환 유도 콜투액션 (CTA) — consultEnabled 조건 제거, 모든 페이지에 노출 */}
+        <section style={{ padding: '2.5rem 1.5rem', background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', color: 'white', textAlign: 'center', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '1rem', lineHeight: 1.4, wordBreak: 'keep-all' }}>
+            {hall.name} 장례 준비,<br/>
+            거품 없는 가격으로 완벽하게 모십니다.
+          </h2>
+          <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem' }}>
+            가효상조의 전담 장례지도사가 빈소 수배부터 화장장 예약, 고품격 장의차량 배차까지 내 가족의 일처럼 투명하게 대행해 드립니다.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '360px', margin: '0 auto' }}>
+            <a href="tel:1551-5718" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', padding: '1.25rem', background: 'var(--gold)', color: '#0f172a', fontSize: '1.2rem', fontWeight: '800', borderRadius: '8px', boxShadow: '0 4px 14px rgba(212, 175, 55, 0.4)', textDecoration: 'none' }}>
+              <span style={{ fontSize: '1.3rem' }}>📞</span> 1551-5718
+            </a>
+            <Link href="/estimate" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.05rem', fontWeight: '600', borderRadius: '8px', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)' }}>
+              빠른 AI 장례 견적 받기
+            </Link>
+          </div>
+        </section>
 
         <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)', paddingBottom: '2rem' }}>
           <Link href="/halls" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', color: 'var(--navy)', fontWeight: '600', fontSize: '0.9375rem' }}>
