@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import HallStickyBar from '@/components/HallStickyBar';
 
 export const metadata = {
   title: '후불제상조상품 비교 및 가격 안내 | 가효상조',
@@ -146,6 +147,7 @@ export default function ProductsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <HallStickyBar subtitle="상품 무료 상담" />
 
       {/* Hero 영역 (H1은 하나만 유지) */}
       <header className="page-hero" style={{ background: 'linear-gradient(135deg, var(--navy), var(--navy-light))', padding: '5rem 0', color: 'white', textAlign: 'center' }}>
@@ -487,10 +489,10 @@ export default function ProductsPage() {
             1BOX가 기본 제공됩니다.
           </p>
           <a href="tel:1551-5718" style={{
-            display: 'inline-block', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
-            color: '#0f172a', padding: '1rem 2.5rem', borderRadius: '999px',
+            display: 'inline-block', background: 'linear-gradient(135deg, #c0392b, #96281b)',
+            color: 'white', padding: '1rem 2.5rem', borderRadius: '999px',
             fontWeight: '900', fontSize: '1.15rem', textDecoration: 'none',
-            boxShadow: '0 4px 20px rgba(201,168,76,0.4)', marginTop: '0.5rem', wordBreak: 'keep-all'
+            boxShadow: '0 4px 20px rgba(192,57,43,0.4)', marginTop: '0.5rem', wordBreak: 'keep-all'
           }}>
             📞 1551-5718 무료 상세 상담받기
           </a>

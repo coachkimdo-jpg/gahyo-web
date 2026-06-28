@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HallStickyBar from '@/components/HallStickyBar';
 
 export const metadata = {
   title: '가효상조 소개 | 100% 후불제 상조 - 추가금 없는 확정가',
@@ -78,6 +79,7 @@ export default function AboutPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
+      <HallStickyBar subtitle="후불제 상조 무료 상담" />
       <div style={{ background: '#f8f9fa', minHeight: '100vh', paddingBottom: '6rem' }}>
 
         {/* ── H1 & BLUF 요약 (최상단 핵심 정의) ── */}
@@ -99,11 +101,13 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* 상조 상품 직접 구성하기 (모바일 접근성 강화 CTA) */}
-            <div style={{ marginBottom: '2rem' }}>
-              <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', maxWidth: '320px', padding: '1rem 1.5rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: '#001a3a', borderRadius: '8px', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 15px rgba(201,168,76,0.3)' }}>
-                <span>🛠️ 상조 상품 직접 구성하기</span>
-                <span style={{ fontSize: '1.2rem', marginLeft: 'auto' }}>→</span>
+            {/* CTA 버튼 2개 */}
+            <div style={{ marginBottom: '2rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '1rem 1.75rem', background: 'linear-gradient(135deg, #c0392b, #96281b)', color: 'white', borderRadius: '8px', fontWeight: '800', fontSize: '1.05rem', textDecoration: 'none', boxShadow: '0 4px 15px rgba(192,57,43,0.35)' }}>
+                📞 지금 바로 전화하기
+              </a>
+              <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '1rem 1.5rem', background: 'white', color: '#001a3a', border: '2px solid #cbd5e1', borderRadius: '8px', fontWeight: '700', fontSize: '0.95rem', textDecoration: 'none' }}>
+                🛠️ 상품 직접 구성하기
               </Link>
             </div>
 
@@ -336,12 +340,12 @@ export default function AboutPage() {
               정해진 예산 안에서 고인의 마지막을 정직하고 품격 있게 모시고 싶으신 분들을 위해 가효상조가 24시간 대기하고 있습니다.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-              <a href="tel:1551-5718" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: '#0f172a', padding: '1.25rem 3rem', width: '100%', maxWidth: '400px', borderRadius: '999px', boxShadow: '0 8px 25px rgba(201,168,76,0.3)', textDecoration: 'none', fontWeight: '900', fontSize: '1.3rem' }}>
+              <a href="tel:1551-5718" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', background: 'linear-gradient(135deg, #c0392b, #96281b)', color: 'white', padding: '1.25rem 3rem', width: '100%', maxWidth: '400px', borderRadius: '999px', boxShadow: '0 8px 25px rgba(192,57,43,0.35)', textDecoration: 'none', fontWeight: '900', fontSize: '1.3rem' }}>
                 📞 1551-5718
-                <span style={{ fontSize: '0.9rem', fontWeight: '600', opacity: 0.8 }}>(24시간 무료 안심 상담)</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: '600', opacity: 0.85 }}>(24시간 무료 안심 상담)</span>
               </a>
-              <a href="http://pf.kakao.com/_ntRdX" target="_blank" rel="noopener noreferrer" style={{ display: 'block', background: '#FEE500', color: '#391B1B', fontWeight: '800', fontSize: '1.1rem', padding: '1rem 3rem', width: '100%', maxWidth: '400px', borderRadius: '999px', textAlign: 'center', textDecoration: 'none' }}>
-                💬 카카오톡 상담하기
+              <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer" style={{ display: 'block', background: '#FEE500', color: '#391B1B', fontWeight: '800', fontSize: '1.1rem', padding: '1rem 3rem', width: '100%', maxWidth: '400px', borderRadius: '999px', textAlign: 'center', textDecoration: 'none' }}>
+                💬 카카오톡 바로 상담하기
               </a>
             </div>
           </div>

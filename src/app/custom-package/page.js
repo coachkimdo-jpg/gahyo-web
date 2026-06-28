@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import HallStickyBar from '@/components/HallStickyBar';
 
 // BASE_PRICE is dynamic based on altar selection
 
@@ -545,6 +546,7 @@ export default function CustomPackagePage() {
 
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '100px' }}>
+      <HallStickyBar subtitle="맞춤 상품 상담" />
       <style>{`
         .hero-section {
           padding: 5rem 1rem;

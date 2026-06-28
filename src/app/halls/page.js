@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getSlug } from '@/lib/utils';
+import HallStickyBar from '@/components/HallStickyBar';
 
 const REGION_DATA = {
   "전체": [],
@@ -86,6 +87,38 @@ export default function HallsPage() {
 
   return (
     <div style={{ background: '#edf2f7', minHeight: '100vh', padding: '2rem 0' }}>
+      <HallStickyBar subtitle="장례식장 무료 문의" />
+
+      {/* 긴급 상담 배너 */}
+      <div style={{
+        background: 'linear-gradient(135deg, #001224 0%, #002C5F 100%)',
+        padding: '1.5rem 1.25rem',
+        marginBottom: '0',
+      }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div>
+            <div style={{ fontSize: '0.8rem', color: 'rgba(201,168,76,0.9)', fontWeight: '700', marginBottom: '0.25rem', letterSpacing: '0.05em' }}>
+              전국 장례식장 즉시 섭외
+            </div>
+            <div style={{ fontSize: 'clamp(1rem, 3vw, 1.3rem)', fontWeight: '800', color: 'white', lineHeight: 1.3, wordBreak: 'keep-all' }}>
+              갑자기 임종하셨나요? <span style={{ color: '#C9A84C' }}>5분 안에 연결됩니다</span>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '0.6rem', flexShrink: 0 }}>
+            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer" style={{
+              padding: '0.7rem 1rem', background: '#FEE500', color: '#000',
+              borderRadius: '8px', fontWeight: '800', fontSize: '0.9rem', textDecoration: 'none',
+              display: 'flex', alignItems: 'center', gap: '0.3rem',
+            }}>💬 카카오</a>
+            <a href="tel:1551-5718" style={{
+              padding: '0.7rem 1.25rem', background: 'linear-gradient(135deg, #c0392b, #96281b)',
+              color: 'white', borderRadius: '8px', fontWeight: '800', fontSize: '0.9rem',
+              textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.3rem',
+            }}>📞 1551-5718</a>
+          </div>
+        </div>
+      </div>
+
       <div className="container" style={{ padding: '0 1.25rem' }}>
 
         {/* 상단 검색 필터 바 */}
@@ -177,6 +210,15 @@ export default function HallsPage() {
             </button>
           </div>
         )}
+
+        {/* 하단 상담 CTA */}
+        <div style={{ marginTop: '3rem', background: 'linear-gradient(135deg, #1e293b, #0f172a)', borderRadius: '16px', padding: '2rem', textAlign: 'center', color: 'white' }}>
+          <div style={{ fontSize: '1.1rem', fontWeight: '800', marginBottom: '0.5rem' }}>원하는 장례식장을 못 찾으셨나요?</div>
+          <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.65)', marginBottom: '1.25rem' }}>전담 장례지도사가 거주지·예산에 맞게 즉시 섭외해 드립니다.</div>
+          <a href="tel:1551-5718" style={{ display: 'inline-block', padding: '0.9rem 2.5rem', background: 'linear-gradient(135deg, #c0392b, #96281b)', color: 'white', borderRadius: '999px', fontWeight: '800', fontSize: '1.05rem', textDecoration: 'none', boxShadow: '0 4px 16px rgba(192,57,43,0.4)' }}>
+            📞 1551-5718 지금 전화하기
+          </a>
+        </div>
       </div>
       <style>{`div::-webkit-scrollbar { display: none; }`}</style>
     </div>

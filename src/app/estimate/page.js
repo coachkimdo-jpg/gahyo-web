@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import HallStickyBar from '@/components/HallStickyBar';
 
 const REGION_DATA = {
   "전체": [],
@@ -261,6 +262,7 @@ export default function EstimatePage() {
 
   return (
     <>
+      <HallStickyBar subtitle="견적 무료 상담" />
       {/* Hero */}
       <div className="page-hero">
         <div className="container">

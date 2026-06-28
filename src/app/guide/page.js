@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HallStickyBar from '@/components/HallStickyBar';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
@@ -107,7 +108,8 @@ export default async function GuidePage(props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
+      <HallStickyBar subtitle="장례 무료 상담" />
+
       <header className="page-hero">
         <div className="container">
           <span className="section-label" style={{ color: 'rgba(201,168,76,0.9)' }}>장례 가이드</span>
@@ -252,7 +254,7 @@ export default async function GuidePage(props) {
         <div style={{ marginTop: '3.5rem', background: 'linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%)', borderRadius: 'var(--radius-xl)', padding: '2.5rem', textAlign: 'center', color: 'white' }}>
           <p style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.75rem' }}>더 궁금한 점이 있으신가요?</p>
           <p style={{ opacity: 0.7, marginBottom: '1.5rem', fontSize: '0.9375rem' }}>24시간 전문 상담원이 친절하게 안내해 드립니다.</p>
-          <a href="tel:1551-5718" className="btn-primary" style={{ display: 'inline-flex' }}>📞 1551-5718 무료 상담</a>
+          <a href="tel:1551-5718" style={{ display: 'inline-flex', padding: '0.9rem 2rem', background: 'linear-gradient(135deg, #c0392b, #96281b)', color: 'white', borderRadius: '999px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 16px rgba(192,57,43,0.4)' }}>📞 1551-5718 지금 전화하기</a>
         </div>
       </div>
     </>

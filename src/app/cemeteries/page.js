@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import HallStickyBar from '@/components/HallStickyBar';
 import { regions } from '@/lib/mockDb';
 import { getSlug, getRegionShortName } from '@/lib/utils';
 
@@ -114,6 +115,7 @@ export default function CemeteriesPage() {
 
   return (
     <>
+      <HallStickyBar subtitle="장지 무료 상담" />
       <header className="page-hero">
         <div className="container">
           <span className="section-label" style={{ color: 'rgba(201,168,76,0.9)' }}>모실곳 찾기</span>
