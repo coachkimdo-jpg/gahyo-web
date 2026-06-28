@@ -3,9 +3,9 @@
 import { useState } from 'react';
 
 const REVIEWS = [
-  { text: '새벽 3시에 임종하셨는데 30분 만에 앰뷸런스가 왔어요. 그 순간 정말 큰 위로가 됐습니다.', name: '최○○', region: '인천 연수구' },
-  { text: '견적과 실제 비용이 거의 똑같았어요. 추가비용 없이 투명하게 진행돼서 믿음이 갔습니다.', name: '이○○', region: '경기 수원시' },
-  { text: '처음부터 끝까지 장례지도사가 옆에서 안내해줘서 당황하지 않고 장례를 마칠 수 있었어요.', name: '김○○', region: '서울 강남구' },
+  { text: '새벽 3시에도 30분 만에 출동해주셨어요. 큰 위로가 됐습니다.', name: '최○○', region: '인천 연수구' },
+  { text: '견적과 실제 비용이 거의 똑같았어요. 추가비용 없이 투명했습니다.', name: '이○○', region: '경기 수원시' },
+  { text: '처음부터 끝까지 장례지도사가 옆에서 안내해줘서 당황하지 않았어요.', name: '김○○', region: '서울 강남구' },
 ];
 
 export default function FreeConsultSection() {
@@ -54,9 +54,9 @@ export default function FreeConsultSection() {
       <div className="container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '3rem',
-          alignItems: 'center',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '2.5rem',
+          alignItems: 'start',
           maxWidth: '900px',
           margin: '0 auto',
         }}>
@@ -89,10 +89,10 @@ export default function FreeConsultSection() {
               <span style={{ color: '#7a5910' }}>5분 안에 전화드립니다</span>
             </h2>
             <p style={{
-              fontSize: '0.95rem',
+              fontSize: '0.9rem',
               color: '#475569',
-              lineHeight: 1.75,
-              marginBottom: '1.5rem',
+              lineHeight: 1.65,
+              marginBottom: '1rem',
               wordBreak: 'keep-all',
             }}>
               가입비 0원 · 월 납입 0원 · 장례 종료 후 결제<br />
@@ -100,22 +100,22 @@ export default function FreeConsultSection() {
             </p>
 
             {/* 실제 후기 3개 */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {REVIEWS.map((r, i) => (
                 <div key={i} style={{
                   background: 'white',
                   borderRadius: '10px',
-                  padding: '0.9rem 1rem',
+                  padding: '0.7rem 0.9rem',
                   borderLeft: '3px solid var(--gold)',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
                 }}>
-                  <div style={{ display: 'flex', gap: '0.1rem', marginBottom: '0.35rem' }}>
-                    {[1,2,3,4,5].map(s => <span key={s} style={{ color: '#C9A84C', fontSize: '0.8rem' }}>★</span>)}
+                  <div style={{ display: 'flex', gap: '0.1rem', marginBottom: '0.25rem' }}>
+                    {[1,2,3,4,5].map(s => <span key={s} style={{ color: '#C9A84C', fontSize: '0.72rem' }}>★</span>)}
                   </div>
-                  <p style={{ fontSize: '0.85rem', color: '#334155', lineHeight: 1.65, margin: '0 0 0.4rem', fontStyle: 'italic' }}>
+                  <p style={{ fontSize: '0.82rem', color: '#334155', lineHeight: 1.55, margin: '0 0 0.3rem', fontStyle: 'italic' }}>
                     "{r.text}"
                   </p>
-                  <div style={{ fontSize: '0.78rem', fontWeight: '700', color: '#64748b' }}>{r.name} · {r.region}</div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: '700', color: '#64748b' }}>{r.name} · {r.region}</div>
                 </div>
               ))}
             </div>
