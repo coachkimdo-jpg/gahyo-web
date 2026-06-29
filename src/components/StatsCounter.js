@@ -57,8 +57,8 @@ export default function StatsCounter() {
           <p style={{ fontSize: '0.88rem', color: '#64748b' }}>신뢰할 수 있는 후불제 장례 전문 기업</p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem' }}>
-          <StatCard end={1200} suffix="건+" label="누적 상담 건수" />
-          <StatCard end={500} suffix="+" label="전국 제휴 장례식장" />
+          <StatCard end={400} suffix="건+" label="누적 상담 건수" />
+          <StatCard end={200} suffix="+" label="전국 제휴 장례식장" />
           <StatCard end={98} suffix="%" label="고객 만족도" />
           <StatCard end={0} suffix="원" label="가입비 · 월 납입금" color="#c0392b" special />
         </div>

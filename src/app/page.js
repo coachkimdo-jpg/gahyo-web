@@ -225,7 +225,7 @@ export default function HomePage() {
               { icon: '📞', label: '장례 접수', sub: '지금 바로 연결', href: 'tel:1551-5718', accent: true },
               { icon: '📋', label: '장례 절차', sub: '단계별 안내', href: '/guide', accent: false },
               { icon: '💰', label: '비용 확인', sub: '투명한 견적', href: '/estimate', accent: false },
-              { icon: '🏥', label: '장례식장', sub: '전국 500+ 제휴', href: '/halls', accent: false },
+              { icon: '🏥', label: '장례식장', sub: '전국 200+ 제휴', href: '/halls', accent: false },
             ].map(item => (
               <a key={item.label} href={item.href} style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
