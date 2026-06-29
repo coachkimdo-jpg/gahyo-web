@@ -71,7 +71,7 @@ export default function FreeConsultSection() {
               borderRadius: '999px',
               fontSize: '0.75rem',
               fontWeight: '700',
-              color: '#92700a',
+              color: '#5c3800',
               letterSpacing: '0.08em',
               marginBottom: '1rem',
             }}>
@@ -169,7 +169,7 @@ export default function FreeConsultSection() {
                   borderRadius: '10px',
                   padding: '0.9rem 1rem',
                 }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: '700', color: '#92700a' }}>가입비 0원 · 월 납입 0원</div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5c3800' }}>가입비 0원 · 월 납입 0원</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: '800', color: '#1e293b', marginTop: '0.1rem' }}>1분 무료 상담받기</div>
                 </div>
 
@@ -196,7 +196,7 @@ export default function FreeConsultSection() {
                 {/* 성함 (선택) */}
                 <div>
                   <label htmlFor="consult-name" style={{ display: 'block', fontWeight: '700', fontSize: '0.9rem', color: '#1e293b', marginBottom: '0.4rem' }}>
-                    성함 <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: '500' }}>(선택)</span>
+                    성함 <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '500' }}>(선택)</span>
                   </label>
                   <input
                     id="consult-name"

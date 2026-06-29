@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   productionBrowserSourceMaps: false,
+
+  // 프로덕션 빌드 최적화
+  compiler: {
+    // 프로덕션에서 console.log 제거 (번들 크기 감소)
+    removeConsole: process.env.NODE_ENV === 'production'
+      ? { exclude: ['error', 'warn'] }
+      : false,
+  },
   async headers() {
     return [
       {

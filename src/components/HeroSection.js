@@ -87,11 +87,12 @@ export default function HeroSection({ today }) {
         position: 'relative',
         overflow: 'hidden',
         minHeight: '520px',
+        contain: 'layout style',
       }}>
-        {/* 배경 글로우 */}
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-          <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '420px', height: '420px', background: 'radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%)', borderRadius: '50%' }} />
-          <div style={{ position: 'absolute', bottom: '5%', left: '-8%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)', borderRadius: '50%' }} />
+        {/* 배경 글로우 — aria-hidden, will-change로 CLS 방지 */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', contain: 'strict' }}>
+          <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '420px', height: '420px', background: 'radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%)', borderRadius: '50%', willChange: 'transform', transform: 'translateZ(0)' }} />
+          <div style={{ position: 'absolute', bottom: '5%', left: '-8%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)', borderRadius: '50%', willChange: 'transform', transform: 'translateZ(0)' }} />
         </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -181,7 +182,7 @@ export default function HeroSection({ today }) {
             </div>
 
             {/* CTA 버튼 — 전화 링크는 항상 빨간 Primary, 나머지는 보조 스타일 */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2.5rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2.5rem', minHeight: '56px', alignItems: 'flex-start' }}>
               <a href={slide.primaryHref} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                 padding: '1rem 2rem', minWidth: '220px',

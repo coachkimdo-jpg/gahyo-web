@@ -83,20 +83,24 @@ export default async function RootLayout({ children }) {
             }
           `
         }} />
-        {/* Google Ads & Analytics (lazyOnload for performance) */}
-        <Script id="gtag-script" strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788" nonce={nonce} />
+        {/* Google Ads & Analytics — afterInteractive: 페이지 인터랙티브 후 로드 */}
+        <Script
+          id="gtag-script"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11204427788"
+          nonce={nonce}
+        />
         <Script
           id="gtag-init"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-11204427788');
-              gtag('config', 'G-4QVQ5GFTLV');
-              gtag('event', 'conversion', {'send_to': 'AW-11204427788/CSo8CLaSwLscENX_194p'});
+              gtag('config', 'AW-11204427788', { send_page_view: true });
+              gtag('config', 'G-4QVQ5GFTLV', { send_page_view: true });
             `,
           }}
         />
