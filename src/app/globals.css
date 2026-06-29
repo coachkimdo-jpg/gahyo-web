@@ -306,6 +306,21 @@ img {
 }
 
 /* ============================
+   혜택 그리드 — 3열 고정 (모바일 2열)
+   ============================ */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================
    상황별 퀵 메뉴 버튼
    ============================ */
 .quick-menu-btn {

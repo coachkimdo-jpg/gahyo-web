@@ -392,7 +392,7 @@ export default function HomePage() {
             </h2>
             <p style={{ color: '#64748b', fontSize: '0.9rem' }}>가입비 0원, 월 납입 0원. 장례가 끝난 뒤에 결제합니다.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2.5rem' }}>
+          <div className="benefits-grid" style={{ marginBottom: '2.5rem' }}>
             {BENEFITS.map((b, i) => (
               <div key={i} style={{
                 padding: '1.75rem 1.5rem',
