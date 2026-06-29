@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import HeroSection from '@/components/HeroSection';
-import FreeConsultSection from '@/components/FreeConsultSection';
-import StatsCounter from '@/components/StatsCounter';
+
+// 폴드 아래 클라이언트 컴포넌트 — JS 청크를 별도로 분리해 초기 번들 크기 절감
+const StatsCounter = dynamic(() => import('@/components/StatsCounter'));
+const FreeConsultSection = dynamic(() => import('@/components/FreeConsultSection'));
 
 export const metadata = {
   title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
