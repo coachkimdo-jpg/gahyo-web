@@ -59,7 +59,7 @@ export default function Header() {
         }}>
           <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '36px' }}>
             <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.8rem', letterSpacing: '-0.02em' }}>
-              <span>경황없는 순간, 가장 든든한 가족이 되어드리겠습니다.</span>
+              <span>경황없는 순간, 비용 걱정 없이 전화 한 통으로 해결됩니다.</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
               <span style={{ color: 'var(--gold-dark)', fontWeight: '700' }}>📞 24시간 무료 상담 1551-5718</span>

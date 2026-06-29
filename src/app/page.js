@@ -5,7 +5,7 @@ import StatsCounter from '@/components/StatsCounter';
 
 export const metadata = {
   title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
-  description: '24시간 즉시 출동하는 100% 후불제 가효상조입니다. 무빈소부터 VIP 장례까지 전국 500여 개 제휴 장례식장에서 정성을 다해 모시겠습니다.',
+  description: '가입비·월납입 0원. 장례 종료 후 결제하는 100% 후불제 상조입니다. 24시간 즉시 출동, 전국 200곳 제휴 장례식장. 지금 바로 무료 상담받으세요.',
   keywords: ['가효상조', '후불제상조', '장례식장', '장례', '상조회사', '장례비용', '24시간상조'],
   openGraph: {
     title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
@@ -217,7 +217,10 @@ export default function HomePage() {
       {/* ══ ① HERO ══ */}
       <HeroSection today={today} />
 
-      {/* ══ ② 빠른 링크 ══ */}
+      {/* ══ ② 숫자 카운터 (히어로 바로 아래) ══ */}
+      <StatsCounter />
+
+      {/* ══ ③ 빠른 링크 ══ */}
       <section style={{ background: 'white', padding: '2rem 0', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
@@ -243,9 +246,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ══ ③ 숫자 카운터 ══ */}
-      <StatsCounter />
 
       {/* ══ ④ 무료 상담 ══ */}
       <FreeConsultSection />
@@ -390,7 +390,7 @@ export default function HomePage() {
             <h2 style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.75rem)', fontWeight: '800', color: '#1e293b', marginBottom: '0.5rem' }}>
               부담 없는 장례, 가효상조가 약속합니다
             </h2>
-            <p style={{ color: '#64748b', fontSize: '0.9rem' }}>가입비·월 납입금 없이, 장례 종료 후 결제</p>
+            <p style={{ color: '#64748b', fontSize: '0.9rem' }}>가입비 0원, 월 납입 0원. 장례가 끝난 뒤에 결제합니다.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2.5rem' }}>
             {BENEFITS.map((b, i) => (
@@ -513,7 +513,7 @@ export default function HomePage() {
         <div style={{ position: 'absolute', top: '-20%', right: '-5%', width: '380px', height: '380px', background: 'radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <h2 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: '800', color: 'white', marginBottom: '0.75rem' }}>
-            지금 바로 전화 한 통으로<br />모든 것이 시작됩니다
+            전화 한 통이면 됩니다.<br />나머지는 저희가 합니다.
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1rem', marginBottom: '2rem' }}>24시간 연중무휴 · 전국 출동 가능 · 선불 없음</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', maxWidth: '600px', margin: '0 auto' }}>

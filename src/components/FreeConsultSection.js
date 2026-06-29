@@ -170,7 +170,7 @@ export default function FreeConsultSection() {
                   padding: '0.9rem 1rem',
                 }}>
                   <div style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5c3800' }}>가입비 0원 · 월 납입 0원</div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: '800', color: '#1e293b', marginTop: '0.1rem' }}>1분 무료 상담받기</div>
+                  <div style={{ fontSize: '1rem', fontWeight: '800', color: '#1e293b', marginTop: '0.1rem', lineHeight: 1.35 }}>30초 입력하면 전담 장례지도사가<br />직접 연락드립니다</div>
                 </div>
 
                 {/* 연락처 (필수) */}
@@ -258,7 +258,7 @@ export default function FreeConsultSection() {
                     fontFamily: 'inherit', letterSpacing: '0.01em',
                   }}
                 >
-                  {status === 'loading' ? '신청 중...' : '📞 무료 상담 신청하기'}
+                  {status === 'loading' ? '신청 중...' : '지금 바로 연결받기 →'}
                 </button>
 
                 {/* 보증 배지 */}
