@@ -8,10 +8,14 @@ export const dynamic = 'force-dynamic';
 export const metadata = {
   title: '장례 가이드 및 정보 | 임종부터 장지까지 완벽 안내 — 가효상조',
   description: '임종 후 처리사항, 부고 보내는 법, 장례 비용 안내, 행정 절차 등 유가족에게 꼭 필요한 실질적인 장례 정보를 전문가의 검수를 거쳐 제공합니다.',
+  alternates: {
+    canonical: 'https://gahyo.co.kr/guide',
+  },
   openGraph: {
     title: '장례 가이드 및 정보 | 가효상조',
     description: '임종부터 장지 선택, 행정 서류까지 장례의 모든 것을 알기 쉽게 안내해 드립니다.',
-  }
+    url: 'https://gahyo.co.kr/guide',
+  },
 };
 
 const CATEGORY_COLORS = {
@@ -69,11 +73,11 @@ export default async function GuidePage(props) {
       '@type': 'CollectionPage',
       'headline': '장례 가이드 및 정보',
       'description': '장례 절차부터 행정 서류, 비용 안내까지 꼭 필요한 정보를 제공합니다.',
-      'url': 'https://gahyo.com/guide',
+      'url': 'https://gahyo.co.kr/guide',
       'publisher': {
         '@type': 'Organization',
         'name': '가효상조',
-        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.com/logo.png' }
+        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.co.kr/logo.png' }
       }
     },
     {

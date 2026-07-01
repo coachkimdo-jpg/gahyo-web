@@ -69,15 +69,16 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 동적 페이지: 장례 가이드 게시물
+  // 동적 페이지: 장례 가이드 게시물 (articles.json 기준)
   let articleUrls = [];
   try {
-    const dbPath = path.join(process.cwd(), 'src', 'lib', 'db.json');
+    const dbPath = path.join(process.cwd(), 'src', 'lib', 'articles.json');
     if (fs.existsSync(dbPath)) {
       const dbContent = fs.readFileSync(dbPath, 'utf8');
       const articles = JSON.parse(dbContent);
       articleUrls = articles.map(article => ({
-        url: `${baseUrl}/guide/${article.id}`,
+        // slug 우선, 없으면 id 사용 (실제 라우팅과 동일)
+        url: `${baseUrl}/guide/${encodeURIComponent(article.slug || article.id)}`,
         lastModified: article.publishedAt ? new Date(article.publishedAt).toISOString() : new Date().toISOString(),
         changeFrequency: 'weekly',
         priority: 0.8,
