@@ -4,6 +4,7 @@ import { db } from '@/lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import Image from 'next/image';
 import parse, { attributesToProps, domToReact } from 'html-react-parser';
+import localArticles from '@/lib/articles.json';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,29 +16,55 @@ const CATEGORY_COLORS = {
   '장례문화': { bg: '#fce4ec', color: '#880e4f' },
 };
 
+const localArticleMap = Object.fromEntries(localArticles.map(a => [a.slug, a]));
+const localArticleById = Object.fromEntries(localArticles.map(a => [String(a.id), a]));
+
+function mergeWithLocal(article) {
+  if (!article) return null;
+  const local = localArticleMap[article.slug] || localArticleById[String(article.id)];
+  if (!local) return article;
+  const hasContent = article.content && (
+    typeof article.content === 'string' ? article.content.trim().length > 0 : article.content.length > 0
+  );
+  if (!hasContent) {
+    return { ...article, content: local.content };
+  }
+  return article;
+}
+
 async function getArticleBySlug(slugParam) {
   if (!slugParam) return null;
   try {
     let decoded = slugParam;
     try { decoded = decodeURIComponent(decoded); } catch(e){}
     try { decoded = decodeURIComponent(decoded); } catch(e){}
-    
+
     // id로 접근했을 경우도 대비 (이전 숫자 형태 URL 호환)
     if (!isNaN(decoded)) {
       const numericId = parseInt(decoded, 10);
       const qId = query(collection(db, 'articles'), where('id', '==', numericId));
       const snapshotId = await getDocs(qId);
-      if (!snapshotId.empty) return snapshotId.docs[0].data();
+      if (!snapshotId.empty) return mergeWithLocal(snapshotId.docs[0].data());
+      // Firebase에 없으면 로컬에서 찾기
+      const localById = localArticleById[decoded];
+      if (localById) return localById;
     }
-    
+
     const qSlug = query(collection(db, 'articles'), where('slug', '==', decoded));
     const snapshotSlug = await getDocs(qSlug);
-    if (!snapshotSlug.empty) return snapshotSlug.docs[0].data();
-    
+    if (!snapshotSlug.empty) return mergeWithLocal(snapshotSlug.docs[0].data());
+
+    // Firebase에 없으면 로컬 articles.json에서 찾기 (fallback)
+    const localBySlug = localArticleMap[decoded];
+    if (localBySlug) return localBySlug;
+
     return null;
   } catch (err) {
     console.error('Error fetching article by slug:', err);
-    return null;
+    // Firebase 오류 시 로컬에서 찾기
+    let decoded = slugParam;
+    try { decoded = decodeURIComponent(decoded); } catch(e){}
+    return localArticleMap[decoded] || localArticleById[decoded] || null;
   }
 }
 

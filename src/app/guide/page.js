@@ -2,6 +2,7 @@ import Link from 'next/link';
 import HallStickyBar from '@/components/HallStickyBar';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import localArticles from '@/lib/articles.json';
 
 export const dynamic = 'force-dynamic';
 
@@ -51,6 +52,24 @@ export default async function GuidePage(props) {
     guideArticles = snapshot.docs.map(doc => doc.data());
   } catch (err) {
     console.error('Failed to read articles from Firebase:', err);
+  }
+
+  // Firebase fallback: Firebase가 비어있으면 로컬 articles.json 사용
+  if (guideArticles.length === 0) {
+    guideArticles = [...localArticles].sort((a, b) => b.id - a.id);
+  } else {
+    // Firebase 데이터에 content가 없으면 로컬 content로 보완
+    const localMap = Object.fromEntries(localArticles.map(a => [a.slug, a]));
+    guideArticles = guideArticles.map(article => {
+      const local = localMap[article.slug];
+      const hasContent = article.content && (
+        typeof article.content === 'string' ? article.content.trim().length > 0 : article.content.length > 0
+      );
+      if (local && !hasContent) {
+        return { ...article, content: local.content };
+      }
+      return article;
+    });
   }
 
   if (selectedCategory) {
