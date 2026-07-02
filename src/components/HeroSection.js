@@ -150,7 +150,7 @@ export default function HeroSection({ today }) {
         </div>
       </div>
 
-      <p style={{ position: 'absolute', top: '1rem', right: '1.25rem', fontSize: '0.72rem', color: 'var(--text-secondary)', opacity: 0.7, margin: 0 }}>
+      <p style={{ position: 'absolute', top: '1rem', right: '1.25rem', fontSize: '0.72rem', color: 'var(--text-secondary)', opacity: 0.7, margin: 0, whiteSpace: 'nowrap' }} className="hero-date">
         최종 업데이트 {today}
       </p>
 
@@ -159,6 +159,7 @@ export default function HeroSection({ today }) {
         @media (max-width: 919px){
           section > .container{ grid-template-columns: 1fr !important; gap: 2.5rem !important; padding-top: 2.5rem !important; }
           .hero-visual .float-card{ display: none !important; }
+          .hero-date{ display: none !important; }
         }
       `}</style>
     </section>

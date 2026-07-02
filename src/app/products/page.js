@@ -188,23 +188,22 @@ export default function ProductsPage() {
         {/* 가효상조 강점 부각 이미지 섹션 */}
         <section style={{ marginBottom: '3.5rem', textAlign: 'center' }}>
           <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto 2rem', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.12)' }}>
-            <Image 
-              src="/images/products/strength-1.jpg" 
-              alt="가효상조만의 투명한 후불제 상조 강점 1" 
-              width={900} 
-              height={1300} 
+            <Image
+              src="/images/products/strength-1.jpg"
+              alt="가효상조만의 투명한 후불제 상조 강점 1"
+              width={768}
+              height={1376}
               style={{ width: '100%', height: 'auto', display: 'block' }}
               priority
             />
           </div>
           <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.12)' }}>
-            <Image 
-              src="/images/products/strength-2.jpg" 
-              alt="가효상조만의 투명한 후불제 상조 강점 2" 
-              width={900} 
-              height={1300} 
+            <Image
+              src="/images/products/strength-2.jpg"
+              alt="가효상조만의 투명한 후불제 상조 강점 2"
+              width={768}
+              height={1376}
               style={{ width: '100%', height: 'auto', display: 'block' }}
-              priority
             />
           </div>
         </section>
