@@ -112,7 +112,8 @@ export default function HeroSection({ today }) {
             boxShadow: '0 30px 60px -30px rgba(30,40,30,0.28)',
           }}>
             <div style={{ background: 'var(--navy-light)', borderRadius: '16px', padding: '2rem 1.5rem' }}>
-              <Image src="/logo.png" alt="가효 서예 인장" width={824} height={1088} sizes="230px" style={{ width: 'min(230px, 60%)', height: 'auto', margin: '0 auto' }} priority />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="가효 서예 인장" width={230} height={304} loading="eager" style={{ width: 'min(230px, 60%)', height: 'auto', margin: '0 auto', display: 'block' }} />
             </div>
             <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', color: 'var(--text-primary)', marginTop: '1.4rem', lineHeight: 1.6 }}>
               슬픔은 정성으로,<br /><span style={{ color: 'var(--gold-dark)' }}>절차는 투명하게.</span>
