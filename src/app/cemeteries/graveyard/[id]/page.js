@@ -67,13 +67,39 @@ export default async function GraveyardPage({ params }) {
     notFound();
   }
 
-  // 가격 아이템을 location(구역)별로 그룹핑
   const groupedPrices = (graveyard.priceItems || []).reduce((acc, item) => {
     const key = item.location || '기타';
     if (!acc[key]) acc[key] = [];
     acc[key].push(item);
     return acc;
   }, {});
+
+  const totalPriceRows = graveyard.priceItems?.length || 0;
+  const groupEntries = Object.entries(groupedPrices);
+  const midPoint = Math.ceil(groupEntries.length / 2);
+
+  const faqItems = [
+    {
+      q: `가효상조를 통하면 ${graveyard.name} 공시 가격보다 얼마나 저렴한가요?`,
+      a: `가효상조 고객에게는 제휴 장지 이용 시 별도 할인 혜택이 적용됩니다. 할인 금액은 시설 및 구역에 따라 다르며, 정확한 금액은 상담 시 안내해 드립니다. 전화 한 통으로 바로 확인 가능합니다.`
+    },
+    {
+      q: `어떤 구역을 선택해야 할지 모르겠습니다. 상담이 가능한가요?`,
+      a: `네, 오히려 상담 후 결정하시는 것을 권장합니다. 예산, 종교, 가족 수, 거주지 거리 등을 고려해 최적의 구역을 추천해 드립니다. 24시간 무료 상담이 가능합니다.`
+    },
+    {
+      q: `장례 당일 바로 이용할 수 있나요? 사전 예약이 필요한가요?`,
+      a: `긴급 상황에서도 가능합니다. 임종 발생 시 1551-5718로 연락 주시면, 장례지도사가 즉시 출동해 장지 예약 및 안치까지 동행합니다. 사전 예약 없이 이용 가능합니다.`
+    },
+    {
+      q: `가효상조와 계약하지 않아도 ${graveyard.name}을 이용할 수 있나요?`,
+      a: `가효상조를 통하지 않아도 시설 직접 이용이 가능합니다. 단, 가효상조를 통할 경우 할인 혜택, 장례지도사 동행, 화장장 예약 대행 등의 서비스를 무료로 제공받으실 수 있습니다.`
+    },
+    {
+      q: `묘지 조성 후 관리비나 추가 비용이 발생하나요?`,
+      a: `시설마다 연간 관리비가 별도로 발생합니다. 페이지 내 가격 안내 또는 상담을 통해 정확한 관리비를 확인해 주세요. 가효상조 상담 시 관리비 포함 전체 예상 비용을 투명하게 안내해 드립니다.`
+    },
+  ];
 
   const jsonLd = [
     {
@@ -97,25 +123,12 @@ export default async function GraveyardPage({ params }) {
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-            name: `${graveyard.name} 묘지 조성 비용은 얼마인가요?`,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: `${graveyard.name}의 비용은 ${graveyard.priceRange} 수준입니다. 가효상조(1551-5718)에 문의하시면 정확한 비용과 할인 혜택을 안내해 드립니다.`
-            }
-          },
-          {
-            '@type': 'Question',
-            name: `${graveyard.name}의 주차 시설은 어떻게 되나요?`,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: `${graveyard.address}에 위치하며 주차 공간은 ${graveyard.parking}입니다.`
-            }
-          }
-        ]
-      }
+      mainEntity: faqItems.map(faq => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a }
+      }))
+    }
   ];
 
   return (
@@ -133,11 +146,9 @@ export default async function GraveyardPage({ params }) {
           </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.25rem', alignItems: 'center' }}>
-            {/* E-E-A-T 배지 */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.8rem', background: 'rgba(255,255,255,0.1)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.2)', fontSize: '0.8rem' }}>
               🛡️ <strong>국가공인 장례지도사 직접 운영 | 검수 완료</strong>
             </div>
-
             <div style={{ display: 'inline-flex', alignItems: 'center', background: 'rgba(201,168,76,0.25)', border: '1px solid rgba(201,168,76,0.5)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.8rem' }}>
               🪦 묘지 시설
             </div>
@@ -147,19 +158,43 @@ export default async function GraveyardPage({ params }) {
             가효상조 - {graveyard.name} 100% 후불제 상조 및 투명한 장례 서비스
           </h1>
 
-          {/* BLUF 핵심 요약 */}
           <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)' }}>
-            <p style={{ margin: 0, fontSize: '0.95rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.9)' }}>
-              가효상조는 선불 납입금 없이 발인 날 결제하는 <strong>100% 후불제 상조</strong>입니다.
-              전국 500여 개 장례식장과 제휴하여 <strong>{graveyard.name}</strong> 이용 시 투명한 비용을 약속드립니다.
+            <p style={{ margin: '0 0 0.5rem', fontSize: '1.05rem', fontWeight: '700', color: 'white', wordBreak: 'keep-all' }}>
+              {graveyard.name}, 가효상조를 통하면 더 저렴하게 모실 수 있습니다.
+            </p>
+            <p style={{ margin: '0 0 0.5rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.85)' }}>
+              공시 가격에서 할인 혜택 적용 · 장례지도사 동행 서비스 무료
+            </p>
+            <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255,255,255,0.75)', wordBreak: 'keep-all' }}>
+              어떤 구역이 맞는지 모르셔도 됩니다. 전화 한 통으로 안내해 드립니다.
             </p>
           </div>
         </div>
       </div>
 
+      {/* 신뢰 배지 바 */}
+      <div style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', padding: '1rem 1.25rem' }}>
+        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+          {[
+            { icon: '👔', title: '국가공인 1급 장례지도사', desc: '10년 이상 경력자만 동행합니다' },
+            { icon: '⏰', title: '24시간 연중무휴', desc: '새벽이든, 주말이든, 공휴일이든' },
+            { icon: '💸', title: '100% 후불제', desc: '장례 후 실사용 금액만 청구합니다' },
+            { icon: '🤝', title: '전국 500개 제휴 장례식장', desc: '어디서나 동일한 품질' },
+          ].map((badge) => (
+            <div key={badge.title} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.5rem 1rem', background: 'white', borderRadius: '8px', border: '1px solid #e2e8f0', minWidth: '200px', flex: '1 1 200px', maxWidth: '260px' }}>
+              <span style={{ fontSize: '1.4rem', flexShrink: 0 }}>{badge.icon}</span>
+              <div>
+                <div style={{ fontSize: '0.82rem', fontWeight: '700', color: 'var(--navy)' }}>{badge.title}</div>
+                <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{badge.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="container" style={{ padding: '2.5rem 1.25rem 5rem' }}>
 
-        {/* 가효상조 강점 부각 배너 (고객 요청) */}
+        {/* 가효상조 강점 부각 배너 */}
         <div style={{ marginBottom: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
           <img src="/images/banners/strength1.jpg" alt="가효상조만의 특별한 강점" style={{ width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
           <img src="/images/banners/strength2.jpg" alt="합리적인 100% 후불제 상조" style={{ width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
@@ -200,8 +235,6 @@ export default async function GraveyardPage({ params }) {
                 </div>
               ))}
             </div>
-
-            {/* 소개글 */}
             {graveyard.intro && (
               <div style={{ marginTop: '1rem', padding: '1.25rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
                 <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '600', marginBottom: '0.5rem' }}>📖 시설 소개</div>
@@ -217,51 +250,71 @@ export default async function GraveyardPage({ params }) {
             <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--navy)', marginBottom: '1rem' }}>가효상조 상담</h2>
             <div style={{ background: 'linear-gradient(135deg, var(--navy-dark), var(--navy))', borderRadius: '12px', padding: '1.75rem', color: 'white', textAlign: 'center' }}>
               <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📞</div>
-              <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '0.25rem' }}>24시간 무료 상담</div>
+              <div style={{ fontWeight: '700', fontSize: '1rem', marginBottom: '0.25rem', color: 'rgba(255,255,255,0.85)' }}>지금 바로 연결하세요. 24시간 무료 상담</div>
               <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--gold)', marginBottom: '0.75rem' }}>1551-5718</div>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.75)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-                100% 후불제 · 선불 납입금 없음<br/>장례지도사 직접 동행 서비스
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.75)', marginBottom: '1.25rem', lineHeight: 1.6, wordBreak: 'keep-all' }}>
+                가효상조 고객 전용 할인 적용<br/>장례지도사 현장 동행 무료
               </p>
               <a href="tel:1551-5718" style={{ display: 'block', background: 'var(--gold)', color: 'var(--navy-dark)', textDecoration: 'none', padding: '0.9rem', borderRadius: '8px', fontWeight: '800', fontSize: '1rem' }}>
                 지금 바로 전화하기
               </a>
               <Link href="/estimate" style={{ display: 'block', marginTop: '0.75rem', color: 'rgba(255,255,255,0.75)', textDecoration: 'none', fontSize: '0.85rem', padding: '0.6rem' }}>
-                온라인 비용 견적 받기 →
+                온라인 견적 받기 →
               </Link>
             </div>
           </section>
         </div>
 
-        {/* 묘지 시설 사용료 및 부대비용 안내 */}
-        {Object.keys(groupedPrices).length > 0 && (
+        {/* 묘지 비용 안내 */}
+        {groupEntries.length > 0 && (
           <section style={{ marginBottom: '2.5rem' }}>
             <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--navy)', marginBottom: '0.5rem' }}>묘지 비용 안내</h2>
             <p style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '1.25rem' }}>
               * 아래 금액은 공시 가격이며, 가효상조 고객은 별도 할인 혜택이 적용될 수 있습니다.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
-              {Object.entries(groupedPrices).map(([location, items]) => (
-                <div key={location} style={{ background: 'white', borderRadius: '10px', border: '1px solid var(--border-color)', overflow: 'hidden', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
-                  <div style={{ background: 'var(--navy)', color: 'white', padding: '0.6rem 1rem', fontWeight: '700', fontSize: '0.9rem' }}>
-                    🪦 {location}
-                  </div>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
-                    <thead>
-                      <tr style={{ background: '#f8fafc' }}>
-                        <th style={{ padding: '0.5rem 1rem', textAlign: 'left', color: '#64748b', fontWeight: '600', borderBottom: '1px solid #e2e8f0' }}>항목</th>
-                        <th style={{ padding: '0.5rem 1rem', textAlign: 'right', color: '#64748b', fontWeight: '600', borderBottom: '1px solid #e2e8f0' }}>금액</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {items.map((item, idx) => (
-                        <tr key={idx} style={{ borderBottom: idx < items.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
-                          <td style={{ padding: '0.6rem 1rem', color: 'var(--text)' }}>{item.detail || '-'}</td>
-                          <td style={{ padding: '0.6rem 1rem', textAlign: 'right', color: 'var(--navy)', fontWeight: '600' }}>{item.priceFormatted}</td>
+              {groupEntries.map(([location, items], groupIdx) => (
+                <>
+                  {totalPriceRows >= 10 && groupIdx === midPoint && (
+                    <div key="mid-cta" style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, #1e293b, #334155)', borderRadius: '12px', padding: '1.5rem 2rem', textAlign: 'center', border: '1px solid rgba(201,168,76,0.3)' }}>
+                      <p style={{ margin: '0 0 0.5rem', fontWeight: '700', fontSize: '1.05rem', color: 'white', wordBreak: 'keep-all' }}>
+                        구역이 너무 많아서 고르기 어려우신가요?
+                      </p>
+                      <p style={{ margin: '0 0 1.25rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)', wordBreak: 'keep-all' }}>
+                        가효상조 장례지도사가 상황에 맞는 구역을 직접 추천해 드립니다.
+                      </p>
+                      <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.7rem 1.4rem', background: 'var(--gold)', color: '#0f172a', borderRadius: '8px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none' }}>
+                          📞 1551-5718 · 지금 무료 상담
+                        </a>
+                        <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.7rem 1.4rem', background: '#FEE500', color: '#000', borderRadius: '8px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none' }}>
+                          💬 카카오 상담
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  <div key={location} style={{ background: 'white', borderRadius: '10px', border: '1px solid var(--border-color)', overflow: 'hidden', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+                    <div style={{ background: 'var(--navy)', color: 'white', padding: '0.6rem 1rem', fontWeight: '700', fontSize: '0.9rem' }}>
+                      🪦 {location}
+                    </div>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
+                      <thead>
+                        <tr style={{ background: '#f8fafc' }}>
+                          <th style={{ padding: '0.5rem 1rem', textAlign: 'left', color: '#64748b', fontWeight: '600', borderBottom: '1px solid #e2e8f0' }}>항목</th>
+                          <th style={{ padding: '0.5rem 1rem', textAlign: 'right', color: '#64748b', fontWeight: '600', borderBottom: '1px solid #e2e8f0' }}>금액</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                      </thead>
+                      <tbody>
+                        {items.map((item, idx) => (
+                          <tr key={idx} style={{ borderBottom: idx < items.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                            <td style={{ padding: '0.6rem 1rem', color: 'var(--text)' }}>{item.detail || '-'}</td>
+                            <td style={{ padding: '0.6rem 1rem', textAlign: 'right', color: 'var(--navy)', fontWeight: '600' }}>{item.priceFormatted}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
               ))}
             </div>
           </section>
@@ -271,30 +324,47 @@ export default async function GraveyardPage({ params }) {
         <section style={{ marginBottom: '2.5rem' }}>
           <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--navy)', marginBottom: '1.25rem' }}>{graveyard.name} 자주 묻는 질문</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {[
-              {
-                q: `${graveyard.name} 이용 가격은 얼마인가요?`,
-                a: `사용료 등 비용은 ${graveyard.priceRange} 수준입니다. 구역과 조성 형태에 따라 달라지며, 가효상조에 문의하시면 정확한 비용과 할인 혜택을 안내해 드립니다.`
-              },
-              {
-                q: `가효상조와 함께하면 어떤 혜택이 있나요?`,
-                a: `가효상조는 100% 후불제로 선불 납입금이 없습니다. 국가공인 장례지도사가 직접 동행하여 장지 조성 절차를 안내드리며, 제휴 시설 이용 시 특별 할인 혜택을 제공합니다.`
-              },
-              {
-                q: `주차는 가능한가요?`,
-                a: `${graveyard.name}의 주차 공간은 ${graveyard.parking}입니다. 성묘 시즌(명절, 한식 등)에는 매우 혼잡할 수 있으니 유의하시기 바랍니다.`
-              }
-            ].map((faq, i) => (
+            {faqItems.map((faq, i) => (
               <details key={i} style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1rem 1.25rem' }}>
                 <summary style={{ fontWeight: '700', cursor: 'pointer', color: 'var(--navy)', fontSize: '0.95rem', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span>Q. {faq.q}</span>
                   <span style={{ fontSize: '1.2rem', flexShrink: 0 }}>＋</span>
                 </summary>
-                <p style={{ marginTop: '0.875rem', marginBottom: 0, color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.9rem', borderTop: '1px solid #f1f5f9', paddingTop: '0.875rem' }}>
+                <p style={{ marginTop: '0.875rem', marginBottom: 0, color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.9rem', borderTop: '1px solid #f1f5f9', paddingTop: '0.875rem', wordBreak: 'keep-all' }}>
                   {faq.a}
                 </p>
               </details>
             ))}
+          </div>
+        </section>
+
+        {/* 하단 CTA */}
+        <section style={{ background: 'linear-gradient(135deg, var(--navy-dark), var(--navy))', borderRadius: '16px', padding: '2.5rem 2rem', textAlign: 'center', color: 'white' }}>
+          <h2 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: '800', marginBottom: '0.75rem', wordBreak: 'keep-all' }}>
+            지금 상담하시면, 오늘 안에 예약까지 가능합니다.
+          </h2>
+          <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', marginBottom: '1.5rem', wordBreak: 'keep-all' }}>
+            할인 금액 확인 · 구역 추천 · 현장 동행 — 모두 무료입니다.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            {['가입비 0원', '월 납입금 0원', '100% 후불제', '24시간 출동'].map((t) => (
+              <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.9rem', background: 'rgba(255,255,255,0.1)', borderRadius: '999px', fontSize: '0.82rem', color: 'rgba(255,255,255,0.9)', border: '1px solid rgba(255,255,255,0.2)' }}>
+                ✔ {t}
+              </span>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: 'var(--gold)', color: '#0f172a', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 14px rgba(201,168,76,0.4)' }}>
+              📞 1551-5718 · 지금 바로 전화하기
+            </a>
+            <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: '#FEE500', color: '#000', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
+              💬 카카오 상담하기
+            </a>
+          </div>
+          <div style={{ marginTop: '1rem' }}>
+            <Link href="/custom-package" style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.85rem', textDecoration: 'none' }}>
+              🧮 AI 견적 먼저 받아보기 →
+            </Link>
           </div>
         </section>
 
