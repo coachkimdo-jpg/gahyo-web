@@ -699,12 +699,10 @@ img {
   display: none !important;
 }
 
-/* PC desktop nav: show horizontal links, hide mobile grid */
+/* PC desktop nav: logo row + nav row below */
 @media (min-width: 920px) {
-  .desktop-nav {
-    display: flex !important;
-    gap: 1.75rem;
-    align-items: center;
+  .desktop-nav-row {
+    display: block !important;
   }
   .desktop-cta {
     display: flex !important;
@@ -713,6 +711,6 @@ img {
     display: none !important;
   }
   .header-spacer {
-    height: 76px;
+    height: 104px; /* 60px logo + 44px nav row */
   }
 }
