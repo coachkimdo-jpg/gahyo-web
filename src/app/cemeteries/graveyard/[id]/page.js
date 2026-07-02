@@ -77,6 +77,10 @@ export default async function GraveyardPage({ params }) {
   const totalPriceRows = graveyard.priceItems?.length || 0;
   const groupEntries = Object.entries(groupedPrices);
   const midPoint = Math.ceil(groupEntries.length / 2);
+  const prices = (graveyard.priceItems || []).map(i => i.price).filter(p => typeof p === 'number' && p > 0);
+  const minPrice = prices.length ? Math.min(...prices) : null;
+  const maxPrice = prices.length ? Math.max(...prices) : null;
+  const formatKRW = (p) => p ? p.toLocaleString('ko-KR') + '원' : '문의';
 
   const faqItems = [
     {
@@ -92,12 +96,12 @@ export default async function GraveyardPage({ params }) {
       a: `긴급 상황에서도 가능합니다. 임종 발생 시 1551-5718로 연락 주시면, 장례지도사가 즉시 출동해 장지 예약 및 안치까지 동행합니다. 사전 예약 없이 이용 가능합니다.`
     },
     {
-      q: `가효상조와 계약하지 않아도 ${graveyard.name}을 이용할 수 있나요?`,
-      a: `가효상조를 통하지 않아도 시설 직접 이용이 가능합니다. 단, 가효상조를 통할 경우 할인 혜택, 장례지도사 동행, 화장장 예약 대행 등의 서비스를 무료로 제공받으실 수 있습니다.`
+      q: `${graveyard.name}은 가족묘나 부부묘 형태도 가능한가요?`,
+      a: `네, 대부분의 공원묘지에서는 가족묘·부부묘·합장 등 다양한 형태로 조성이 가능합니다. 가효상조 장례지도사가 가족 수와 예산에 맞는 최적의 묘지 유형을 안내해 드립니다.`
     },
     {
-      q: `묘지 조성 후 관리비나 추가 비용이 발생하나요?`,
-      a: `시설마다 연간 관리비가 별도로 발생합니다. 페이지 내 가격 안내 또는 상담을 통해 정확한 관리비를 확인해 주세요. 가효상조 상담 시 관리비 포함 전체 예상 비용을 투명하게 안내해 드립니다.`
+      q: `${graveyard.name} 조성 후 이장(이전)이 가능한가요?`,
+      a: `네, 법적 절차에 따라 이장이 가능합니다. 이장 시에는 사전 신고 및 관련 서류 준비가 필요하며, 가효상조 장례지도사가 이장 절차 전반을 대행해 드립니다.`
     },
   ];
 
@@ -154,8 +158,9 @@ export default async function GraveyardPage({ params }) {
             </div>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: '800', lineHeight: 1.35, marginBottom: '1.25rem' }}>
-            가효상조 - {graveyard.name} 100% 후불제 상조 및 투명한 장례 서비스
+          <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: '800', lineHeight: 1.4, marginBottom: '1.25rem' }}>
+            {graveyard.name}에 모시고 싶으신가요?<br />
+            <span style={{ fontSize: '0.75em', fontWeight: '700', opacity: 0.9 }}>가효상조를 통하면 공시가보다 저렴하게, 장례지도사 동행으로 안심하게.</span>
           </h1>
 
           <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)' }}>
@@ -268,6 +273,21 @@ export default async function GraveyardPage({ params }) {
         {/* 묘지 비용 안내 */}
         {groupEntries.length > 0 && (
           <section style={{ marginBottom: '2.5rem' }}>
+          {(minPrice && maxPrice) && (
+            <div style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '10px', padding: '1.25rem 1.5rem', marginBottom: '1.25rem' }}>
+              <div style={{ fontWeight: '700', fontSize: '0.88rem', color: '#0369a1', marginBottom: '0.5rem' }}>📋 묘지 비용 요약</div>
+              <div style={{ fontWeight: '800', fontSize: '1.05rem', color: 'var(--navy)', marginBottom: '0.5rem' }}>
+                최저 {formatKRW(minPrice)} ~ 최고 {formatKRW(maxPrice)}{' '}
+                <span style={{ fontSize: '0.82rem', fontWeight: '500', color: '#64748b' }}>(관리비 별도)</span>
+              </div>
+              <p style={{ margin: '0 0 0.875rem', fontSize: '0.88rem', color: '#475569', wordBreak: 'keep-all' }}>
+                구역이 너무 많아서 고르기 어려우신가요?<br />예산과 상황을 말씀해 주시면 적합한 구역을 바로 추천해 드립니다.
+              </p>
+              <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.55rem 1.1rem', background: 'var(--navy)', color: 'white', borderRadius: '6px', fontWeight: '700', fontSize: '0.88rem', textDecoration: 'none' }}>
+                📞 1551-5718 · 지금 무료 상담
+              </a>
+            </div>
+          )}
             <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--navy)', marginBottom: '0.5rem' }}>묘지 비용 안내</h2>
             <p style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '1.25rem' }}>
               * 아래 금액은 공시 가격이며, 가효상조 고객은 별도 할인 혜택이 적용될 수 있습니다.
@@ -278,17 +298,17 @@ export default async function GraveyardPage({ params }) {
                   {totalPriceRows >= 10 && groupIdx === midPoint && (
                     <div key="mid-cta" style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, #1e293b, #334155)', borderRadius: '12px', padding: '1.5rem 2rem', textAlign: 'center', border: '1px solid rgba(201,168,76,0.3)' }}>
                       <p style={{ margin: '0 0 0.5rem', fontWeight: '700', fontSize: '1.05rem', color: 'white', wordBreak: 'keep-all' }}>
-                        구역이 너무 많아서 고르기 어려우신가요?
+                        아직 구역을 못 고르셨나요?
                       </p>
                       <p style={{ margin: '0 0 1.25rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)', wordBreak: 'keep-all' }}>
-                        가효상조 장례지도사가 상황에 맞는 구역을 직접 추천해 드립니다.
+                        {groupEntries.length}개 구역 중 우리 가족에게 맞는 곳, 장례지도사가 직접 골라드립니다.
                       </p>
                       <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.7rem 1.4rem', background: 'var(--gold)', color: '#0f172a', borderRadius: '8px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none' }}>
-                          📞 1551-5718 · 지금 무료 상담
+                          📞 1551-5718 · 24시간 상담 가능
                         </a>
                         <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.7rem 1.4rem', background: '#FEE500', color: '#000', borderRadius: '8px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none' }}>
-                          💬 카카오 상담
+                          💬 카카오로 문의하기
                         </a>
                       </div>
                     </div>
@@ -341,10 +361,13 @@ export default async function GraveyardPage({ params }) {
         {/* 하단 CTA */}
         <section style={{ background: 'linear-gradient(135deg, var(--navy-dark), var(--navy))', borderRadius: '16px', padding: '2.5rem 2rem', textAlign: 'center', color: 'white' }}>
           <h2 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: '800', marginBottom: '0.75rem', wordBreak: 'keep-all' }}>
-            지금 상담하시면, 오늘 안에 예약까지 가능합니다.
+            {graveyard.name}, 오늘 바로 예약할 수 있습니다.
           </h2>
-          <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', marginBottom: '1.5rem', wordBreak: 'keep-all' }}>
-            할인 금액 확인 · 구역 추천 · 현장 동행 — 모두 무료입니다.
+          <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', marginBottom: '0.4rem', wordBreak: 'keep-all' }}>
+            할인 금액 확인 · 구역 추천 · 현장 동행 — 모두 무료
+          </p>
+          <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', wordBreak: 'keep-all' }}>
+            가효상조가 처음부터 끝까지 함께합니다.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
             {['가입비 0원', '월 납입금 0원', '100% 후불제', '24시간 출동'].map((t) => (
@@ -355,10 +378,10 @@ export default async function GraveyardPage({ params }) {
           </div>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: 'var(--gold)', color: '#0f172a', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 14px rgba(201,168,76,0.4)' }}>
-              📞 1551-5718 · 지금 바로 전화하기
+              📞 1551-5718 · 24시간 전화 가능
             </a>
             <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: '#FEE500', color: '#000', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
-              💬 카카오 상담하기
+              💬 카카오로 편하게 문의하기
             </a>
           </div>
           <div style={{ marginTop: '1rem' }}>

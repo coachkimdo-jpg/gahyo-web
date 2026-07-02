@@ -83,12 +83,12 @@ export default async function NaturalBurialPage({ params }) {
       a: `긴급 상황에서도 가능합니다. 임종 발생 시 1551-5718로 연락 주시면, 장례지도사가 즉시 출동해 장지 예약 및 안치까지 동행합니다. 사전 예약 없이 이용 가능합니다.`
     },
     {
-      q: `가효상조와 계약하지 않아도 ${facility.name}을 이용할 수 있나요?`,
-      a: `가효상조를 통하지 않아도 시설 직접 이용이 가능합니다. 단, 가효상조를 통할 경우 할인 혜택, 장례지도사 동행, 화장장 예약 대행 등의 서비스를 무료로 제공받으실 수 있습니다.`
+      q: `${facility.name}의 자연장 형태는 어떤 종류가 있나요?`,
+      a: `자연장 방식은 수목장, 잔디장, 화초장 등 다양하게 운영됩니다. 시설마다 제공하는 형태가 다르므로, 가효상조 장례지도사와 상담하시면 가족의 상황에 맞는 최적의 자연장 방식을 추천받으실 수 있습니다.`
     },
     {
-      q: `자연장 후 관리비나 추가 비용이 발생하나요?`,
-      a: `시설마다 연간 관리비가 별도로 발생할 수 있습니다. 페이지 내 가격 안내 또는 상담을 통해 정확한 관리비를 확인해 주세요. 가효상조 상담 시 관리비 포함 전체 예상 비용을 투명하게 안내해 드립니다.`
+      q: `자연장 후 고인을 찾아뵐 수 있나요? 관리 체계가 궁금합니다.`,
+      a: `네, 자연장 후에도 표지판 또는 나무 번호로 위치를 확인하고 참배하실 수 있습니다. 시설 관리팀이 정기적으로 부지를 관리하며, 구체적인 방문 방법과 제례 절차는 가효상조 상담 시 안내해 드립니다.`
     },
   ];
 
@@ -146,8 +146,9 @@ export default async function NaturalBurialPage({ params }) {
             </div>
           </div>
 
-          <h1 style={{ fontSize: '1.8rem', fontWeight: '800', lineHeight: 1.4, marginBottom: '1.5rem' }}>
-            가효상조 - {facility.name} 100% 후불제 자연장 서비스
+          <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: '800', lineHeight: 1.4, marginBottom: '1.25rem' }}>
+            {facility.name}에 모시고 싶으신가요?<br />
+            <span style={{ fontSize: '0.75em', fontWeight: '700', opacity: 0.9 }}>가효상조를 통하면 공시가보다 저렴하게, 장례지도사 동행으로 안심하게.</span>
           </h1>
 
           <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)' }}>
@@ -254,6 +255,21 @@ export default async function NaturalBurialPage({ params }) {
 
         {/* 이용 비용 안내 */}
         <div style={{ marginBottom: '3rem' }}>
+          {facility.priceRange && (
+            <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '10px', padding: '1.25rem 1.5rem', marginBottom: '1.25rem' }}>
+              <div style={{ fontWeight: '700', fontSize: '0.88rem', color: '#166534', marginBottom: '0.5rem' }}>📋 이용 비용 요약</div>
+              <div style={{ fontWeight: '800', fontSize: '1.05rem', color: '#166534', marginBottom: '0.5rem' }}>
+                예상 비용: {facility.priceRange}{' '}
+                <span style={{ fontSize: '0.82rem', fontWeight: '500', color: '#64748b' }}>(관리비 별도)</span>
+              </div>
+              <p style={{ margin: '0 0 0.875rem', fontSize: '0.88rem', color: '#475569', wordBreak: 'keep-all' }}>
+                구역이 너무 많아서 고르기 어려우신가요?<br />예산과 상황을 말씀해 주시면 적합한 구역을 바로 추천해 드립니다.
+              </p>
+              <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.55rem 1.1rem', background: '#166534', color: 'white', borderRadius: '6px', fontWeight: '700', fontSize: '0.88rem', textDecoration: 'none' }}>
+                📞 1551-5718 · 지금 무료 상담
+              </a>
+            </div>
+          )}
           <h2 style={{ fontSize: '1.4rem', color: 'var(--navy)', marginBottom: '1rem', fontWeight: '700' }}>이용 비용 안내</h2>
           <div style={{ padding: '1.5rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px' }}>
             <p style={{ margin: '0 0 0.5rem', fontWeight: '700', color: '#166534', fontSize: '1.05rem' }}>
@@ -289,10 +305,13 @@ export default async function NaturalBurialPage({ params }) {
         {/* 하단 CTA */}
         <section style={{ background: 'linear-gradient(135deg, #1a3d2a, #2d6a4f)', borderRadius: '16px', padding: '2.5rem 2rem', textAlign: 'center', color: 'white' }}>
           <h2 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: '800', marginBottom: '0.75rem', wordBreak: 'keep-all' }}>
-            지금 상담하시면, 오늘 안에 예약까지 가능합니다.
+            {facility.name}, 오늘 바로 예약할 수 있습니다.
           </h2>
-          <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', marginBottom: '1.5rem', wordBreak: 'keep-all' }}>
-            할인 금액 확인 · 구역 추천 · 현장 동행 — 모두 무료입니다.
+          <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', marginBottom: '0.4rem', wordBreak: 'keep-all' }}>
+            할인 금액 확인 · 구역 추천 · 현장 동행 — 모두 무료
+          </p>
+          <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', wordBreak: 'keep-all' }}>
+            가효상조가 처음부터 끝까지 함께합니다.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
             {['가입비 0원', '월 납입금 0원', '100% 후불제', '24시간 출동'].map((t) => (
@@ -303,10 +322,10 @@ export default async function NaturalBurialPage({ params }) {
           </div>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: 'var(--gold)', color: '#0f172a', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 14px rgba(201,168,76,0.4)' }}>
-              📞 1551-5718 · 지금 바로 전화하기
+              📞 1551-5718 · 24시간 전화 가능
             </a>
             <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: '#FEE500', color: '#000', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
-              💬 카카오 상담하기
+              💬 카카오로 편하게 문의하기
             </a>
           </div>
           <div style={{ marginTop: '1rem' }}>
