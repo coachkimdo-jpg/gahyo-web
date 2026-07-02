@@ -68,6 +68,34 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="ko">
+      <head>
+        {/* 폰트 preconnect — DNS 미리 연결 */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+
+        {/* Pretendard 동적 서브셋 — 비동기 로딩 (렌더링 비차단) */}
+        <link
+          rel="stylesheet"
+          as="style"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+          onLoad="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+        </noscript>
+
+        {/* Noto Serif KR — 비동기 로딩 */}
+        <link
+          rel="stylesheet"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap"
+          onLoad="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap" />
+        </noscript>
+      </head>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         {/* Trusted Types Default Policy to allow React hydration */}
         <script nonce={nonce} dangerouslySetInnerHTML={{
