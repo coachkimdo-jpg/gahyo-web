@@ -56,7 +56,7 @@ export default function HeroSection({ today }) {
             boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
           }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2E6B4F', boxShadow: '0 0 0 3px #E6F0EA' }} />
-            국가공인 장례지도사 · 24시간 직접 출동
+            가입비 0원 · 월 납입금 0원 · 100% 후불제
           </span>
 
           <h1 style={{
@@ -65,13 +65,12 @@ export default function HeroSection({ today }) {
             letterSpacing: '-0.02em', color: 'var(--text-primary)',
             margin: '1.4rem 0 1.1rem', wordBreak: 'keep-all',
           }}>
-            갑작스러운 이별 앞에서,<br />
-            가장 먼저 <span style={{ color: 'var(--gold-dark)' }}>가효상조</span>를<br />
-            찾아주세요.
+            필요한 것만 골라서,<br />
+            직접 구성하는 <span style={{ color: 'var(--gold-dark)' }}>장례</span>
           </h1>
 
           <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', maxWidth: '480px', marginBottom: '1.9rem', wordBreak: 'keep-all' }}>
-            가입비도, 월 납입금도 없습니다. 장례가 끝난 뒤 실제 사용한 비용만 정산하는 100% 후불제. 전화 한 통이면 됩니다.
+            정해진 패키지는 없습니다. 원하는 서비스만 선택하고, 장례 후 쓴 만큼만 내세요.
           </p>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.6rem' }}>
