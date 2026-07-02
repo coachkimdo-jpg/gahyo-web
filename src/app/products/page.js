@@ -195,6 +195,7 @@ export default function ProductsPage() {
               height={1376}
               style={{ width: '100%', height: 'auto', display: 'block' }}
               priority
+              unoptimized
             />
           </div>
           <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.12)' }}>
@@ -204,6 +205,7 @@ export default function ProductsPage() {
               width={768}
               height={1376}
               style={{ width: '100%', height: 'auto', display: 'block' }}
+              unoptimized
             />
           </div>
         </section>
