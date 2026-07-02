@@ -73,9 +73,9 @@ export default function HeroSection({ today }) {
             정해진 패키지는 없습니다. 원하는 서비스만 선택하고, 장례 후 쓴 만큼만 내세요.
           </p>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.6rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.6rem' }}>
             <a href="tel:1551-5718" style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.55rem',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.55rem',
               padding: '1.05rem 2rem', background: 'var(--gold)', color: '#fff',
               borderRadius: '12px', fontWeight: '700', fontSize: '1.08rem', textDecoration: 'none',
               boxShadow: '0 8px 22px -8px rgba(133,90,28,0.7)',
@@ -84,10 +84,10 @@ export default function HeroSection({ today }) {
               1551-5718 · 지금 전화하기
             </a>
             <Link href="/custom-package" style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-              padding: '1.05rem 1.75rem', background: 'transparent', color: 'var(--text-primary)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+              padding: '1.05rem 2rem', background: 'transparent', color: 'var(--text-primary)',
               border: '1.5px solid var(--border-color)', borderRadius: '12px',
-              fontWeight: '700', fontSize: '1rem', textDecoration: 'none',
+              fontWeight: '700', fontSize: '1.08rem', textDecoration: 'none',
             }}>
               <DocIcon width="1.15em" height="1.15em" />
               상조 직접 구성하기
