@@ -590,6 +590,20 @@ export default function CustomPackagePage() {
       {/* Header Spacer */}
       <div style={{ height: '76px' }} />
 
+      {/* 긴급 전화 CTA 배너 — 위저드 위 */}
+      {!isFinished && (
+        <div style={{ background: '#1e293b', borderBottom: '3px solid #C9A84C', padding: '1rem 1.25rem', textAlign: 'center' }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+            <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem', wordBreak: 'keep-all' }}>
+              경황없으신 분은 직접 구성하지 않으셔도 됩니다.
+            </span>
+            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.6rem 1.4rem', background: '#C9A84C', color: '#0f172a', borderRadius: '8px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              📞 1551-5718 · 지금 전화하기
+            </a>
+          </div>
+        </div>
+      )}
+
       {/* Landing Hero Section */}
       {!isFinished && (
         <div className="hero-section" style={{ background: 'linear-gradient(135deg, #f8fafc, #f1f5f9)', color: 'var(--text-primary)', textAlign: 'center' }}>
@@ -744,12 +758,12 @@ export default function CustomPackagePage() {
 
         {/* 이전/다음 버튼 */}
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'space-between' }}>
-          <button 
-            onClick={handlePrev} 
+          <button
+            onClick={handlePrev}
             disabled={currentStep === 0}
-            style={{ 
+            style={{
               padding: '1rem 2rem', borderRadius: '8px', fontWeight: '700', fontSize: '1rem',
-              background: currentStep === 0 ? '#f1f5f9' : 'white', 
+              background: currentStep === 0 ? '#f1f5f9' : 'white',
               color: currentStep === 0 ? '#cbd5e1' : '#475569',
               border: '1px solid #e2e8f0', cursor: currentStep === 0 ? 'not-allowed' : 'pointer',
               flex: 1
@@ -757,13 +771,20 @@ export default function CustomPackagePage() {
           >
             이전 단계
           </button>
-          <button 
+          <button
             onClick={handleNext}
             className="btn-primary"
             style={{ padding: '1rem 2rem', borderRadius: '8px', fontSize: '1.05rem', border: 'none', flex: 2 }}
           >
             {currentStep === STEPS.length - 1 ? '구성 완료 및 견적 보기' : '다음 단계'}
           </button>
+        </div>
+
+        {/* 각 단계 하단 전화 탈출구 */}
+        <div style={{ marginTop: '1.25rem', textAlign: 'center' }}>
+          <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#475569', fontSize: '0.88rem', fontWeight: '600', textDecoration: 'none' }}>
+            📞 직접 구성이 어려우시면 전화로 상담하세요 — 1551-5718
+          </a>
         </div>
 
       </div>
