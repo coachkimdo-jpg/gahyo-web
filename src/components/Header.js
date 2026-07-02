@@ -242,7 +242,7 @@ export default function Header() {
       </div>
 
       {/* 헤더 공간 보상용 스페이서 */}
-      <div className="header-spacer" style={{ height: scrolled ? '44px' : '80px', transition: 'height 0.3s' }} />
+      <div className="header-spacer" />
     </>
   );
 }
