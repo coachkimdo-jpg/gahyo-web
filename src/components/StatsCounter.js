@@ -60,7 +60,7 @@ export default function StatsCounter() {
           <StatCard end={400} suffix="건+" label="누적 상담 건수" />
           <StatCard end={200} suffix="+" label="전국 제휴 장례식장" />
           <StatCard end={98} suffix="%" label="고객 만족도" />
-          <StatCard end={0} suffix="원" label="가입비 · 월 납입금" color="var(--gold-dark)" special />
+          <StatCard end={0} suffix="원" label="가입비" special={true} />
         </div>
       </div>
     </section>
