@@ -83,7 +83,7 @@ export default function Header() {
             {/* 로고 */}
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
               <div style={{ width: '42px', height: '42px', overflow: 'hidden', borderRadius: '8px', display: 'flex', alignItems: 'flex-start' }}>
-                <Image src="/logo.webp" alt="가효상조 심볼" width={42} height={55} style={{ width: '100%', height: 'auto', objectFit: 'contain', objectPosition: 'top' }} priority />
+                <Image src="/logo.png" alt="가효상조 심볼" width={42} height={55} style={{ width: '100%', height: 'auto', objectFit: 'contain', objectPosition: 'top' }} priority />
               </div>
               <div>
                 <div style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-serif)', fontWeight: '700', fontSize: '1.3rem', lineHeight: 1.1, letterSpacing: '-0.03em' }}>가효상조</div>
