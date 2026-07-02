@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import HallStickyBar from '@/components/HallStickyBar';
 
 export const metadata = {
@@ -13,504 +12,322 @@ export const metadata = {
 const PRODUCTS = [
   {
     id: '120',
-    name: '가효 무빈소 120',
-    price: '1,200,000',
     badge: '실속 장례',
-    desc: '빈소없이 조용히 가족끼리 조용히 모시고 싶은 분',
-    accent: '#4b5563',
-    accentLight: '#f3f4f6',
-    borderColor: '#d1d5db',
+    name: '가효 무빈소 120',
+    price: '1,200,000원',
+    desc: '빈소 없이, 가족끼리 조용히 모시고 싶은 분을 위한 선택',
+    highlight: false,
     rows: [
-      { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명\n입관지도사 | 1명\n장례도우미 | 미지원' },
-      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 필요시 별도 선택\n장의 버스 | 8인승 / 150km(왕복)\n전용 리무진 | 미지원\n추가 혜택 | 미지원' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관\n봉안함 | 도자기봉안함(화장)\n수의 | 면수의\n대렴 | 미지원' },
-      { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 필요시 별도 선택' },
-      { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
+      { label: '인력 지원', value: '장례지도사 1명 · 입관지도사 1명 · 장례도우미 미지원' },
+      { label: '의전 차량', value: '앰뷸런스 필요시 별도 선택 · 장의버스 8인승/150km(왕복) · 전용 리무진 미지원' },
+      { label: '고인 용품', value: '오동나무 화장 규격관 · 도자기 봉안함 · 면수의 · 대렴 미지원' },
+      { label: '입관 용품', value: '풀세트 포함' },
+      { label: '상복', value: '완장·리본·장갑 제공 / 상복 별도 선택' },
+      { label: '특화 서비스', value: '장례식장 예약 · 화장장 예약 · 장지 할인 · 유품 정리 할인 · 산재·재산·상속 법률 상담 무료' },
     ],
   },
   {
     id: '265',
-    name: '가효 265',
-    price: '2,650,000',
     badge: '추천 상품',
-    desc: '합리적인 비용으로 치르는 표준 3일장',
-    accent: '#002C5F',
-    accentLight: '#e6eef8',
-    borderColor: '#93b3d8',
+    name: '가효 265',
+    price: '2,650,000원',
+    desc: '부담 없는 비용으로 예를 갖춘 표준 3일장',
+    highlight: false,
     rows: [
-      { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명\n입관지도사 | 1명\n장례도우미 | 3명(총30시간)' },
-      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 지원\n장의 버스 | 45인승 / 200km(왕복)\n전용 리무진 | 미지원\n추가 혜택 | 미지원' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관\n봉안함 | 도자기봉안함(화장)\n수의 | 친환경 전통한지수의\n대렴 | 전통 상례 궁중 한지대렴(국화)' },
-      { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 남자상복 2벌<br/>여자상복 2벌' },
-      { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
+      { label: '인력 지원', value: '장례지도사 1명 · 입관지도사 1명 · 장례도우미 3명(총 30시간)' },
+      { label: '의전 차량', value: '앰뷸런스 지원 · 장의버스 45인승/200km(왕복) · 전용 리무진 미지원' },
+      { label: '고인 용품', value: '오동나무 화장 규격관 · 도자기 봉안함 · 친환경 전통한지수의 · 전통 상례 궁중 한지대렴(국화)' },
+      { label: '입관 용품', value: '풀세트 포함' },
+      { label: '상복', value: '남자상복 2벌 · 여자상복 2벌' },
+      { label: '특화 서비스', value: '장례식장 예약 · 화장장 예약 · 장지 할인 · 유품 정리 할인 · 산재·재산·상속 법률 상담 무료' },
     ],
   },
   {
     id: '334',
+    badge: '⭐ 가장 많이 찾는 상품',
     name: '가효 334',
-    price: '3,340,000',
-    badge: '가장 많이 찾는',
-    desc: '리무진이 포함된 품격 있는 3일장',
-    accent: '#92520a',
-    accentLight: '#fdf3e0',
-    borderColor: '#d4a843',
-    popular: true,
+    price: '3,340,000원',
+    desc: '전용 리무진까지, 격식을 갖춘 3일장의 기준',
+    highlight: true,
     rows: [
-      { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명\n입관지도사 | 1명\n장례도우미 | 4명(총40시간)' },
-      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 지원\n장의 버스 | 45인승 / 200km(왕복)\n전용 리무진 | 200km(왕복)\n추가 혜택 | 선두 차량용 종교별 리본' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관\n봉안함 | 도자기봉안함(화장)\n수의 | 저마수의\n대렴 | 전통 상례 궁중 한지대렴(국화)' },
-      { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 남자상복 3벌<br/>여자상복 3벌' },
-      { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
+      { label: '인력 지원', value: '장례지도사 1명 · 입관지도사 1명 · 장례도우미 4명(총 40시간)' },
+      { label: '의전 차량', value: '앰뷸런스 지원 · 장의버스 45인승/200km(왕복) · 전용 리무진 200km(왕복) + 종교별 리본' },
+      { label: '고인 용품', value: '오동나무 화장 규격관 · 도자기 봉안함 · 저마수의 · 전통 상례 궁중 한지대렴(국화)' },
+      { label: '입관 용품', value: '풀세트 포함' },
+      { label: '상복', value: '남자상복 3벌 · 여자상복 3벌' },
+      { label: '특화 서비스', value: '장례식장 예약 · 화장장 예약 · 장지 할인 · 유품 정리 할인 · 산재·재산·상속 법률 상담 무료' },
     ],
   },
   {
     id: '363',
-    name: '가효 363',
-    price: '3,630,000',
     badge: '프리미엄 VIP',
-    desc: '장거리 이동이 가능한 최고급 프리미엄 장례',
-    accent: '#1d4a3a',
-    accentLight: '#e8f2ee',
-    borderColor: '#5a9e80',
+    name: '가효 363',
+    price: '3,630,000원',
+    desc: '장거리 이동과 최고급 의전이 필요한 분을 위한 상품',
+    highlight: false,
     rows: [
-      { icon: '👥', label: '인력 지원', value: '장례지도사 | 1명\n입관지도사 | 1명\n장례도우미 | 5명(총50시간)' },
-      { icon: '🚗', label: '의전 차량', value: '앰뷸런스 | 지원\n장의 버스 | 45인승 / 400km(왕복)\n전용 리무진 | 400km(왕복)\n추가 혜택 | 선두 차량용 종교별 리본' },
-      { icon: '⚰️', label: '고인 용품', value: '관 | 오동나무 화장 규격관\n봉안함 | 도자기봉안함(화장)\n수의 | 대마수의\n대렴 | 전통 상례 궁중 한지대렴(국화)' },
-      { icon: '🌸', label: '입관 용품', value: '관, 관보, 결관바, 습신, 탈지면, 염지, 알코올, 예단, 기독경, 천주경, 다라니경, 탈지면, 알코올, 멧베, 천금, 지금, 장매, 보공, 한지,베게, 수시포' },
-      { icon: '👔', label: '상복 제공', value: '상주 용품 | 완장, 리본, 장갑 제공\n상복 지원 | 남자상복 4벌<br/>여자상복 4벌' },
-      { icon: '✨', label: '특화 서비스', value: '장례식장 빈소(안치실) 예약 / 화장장 예약 / 장지(모실곳)할인 및 예약 / 유품 정리 할인 / 산재, 재산 및 상속 법률 상담 무료' },
+      { label: '인력 지원', value: '장례지도사 1명 · 입관지도사 1명 · 장례도우미 5명(총 50시간)' },
+      { label: '의전 차량', value: '앰뷸런스 지원 · 장의버스 45인승/400km(왕복) · 전용 리무진 400km(왕복) + 종교별 리본' },
+      { label: '고인 용품', value: '오동나무 화장 규격관 · 도자기 봉안함 · 대마수의 · 전통 상례 궁중 한지대렴(국화)' },
+      { label: '입관 용품', value: '풀세트 포함' },
+      { label: '상복', value: '남자상복 4벌 · 여자상복 4벌' },
+      { label: '특화 서비스', value: '장례식장 예약 · 화장장 예약 · 장지 할인 · 유품 정리 할인 · 산재·재산·상속 법률 상담 무료' },
     ],
   },
 ];
 
+const FAQS = [
+  {
+    q: '미리 가입하지 않아도 되나요?',
+    a: '가입비나 월 납입금, 중도 해지 위약금이 일절 없습니다. 임종 발생 시 1551-5718로 전화 한 통만 주시면 바로 출동합니다. 모든 절차가 끝난 발인 날에 약정된 상품 금액만 결제하시면 됩니다.',
+  },
+  {
+    q: '가격이 저렴하면 서비스 품질도 낮은 것 아닌가요?',
+    a: '그렇지 않습니다. 가효상조는 전국 500개 제휴 장례식장에서 표준화된 1등급 정품 장례 용품만을 사용하며, 10년 이상 경력의 국가공인 1급 장례지도사가 직접 진행합니다. 저렴한 이유는 불필요한 광고비와 영업 수당을 없앴기 때문입니다.',
+  },
+  {
+    q: '장례 후 추가 비용이 청구되지 않나요?',
+    a: '상품 내역에 포함된 의전 서비스(지도사, 도우미, 차량, 고인용품)는 100% 추가 비용 없이 제공됩니다. 단, 장례식장 빈소 대여료·조문객 식대·화장장 이용료는 상조 상품과 무관한 실비이며, 사전 상담 시 분리하여 투명하게 안내합니다.',
+  },
+  {
+    q: '후불제 상조는 왜 선불식보다 저렴한가요?',
+    a: '선불식 상조는 막대한 TV 광고비, 영업사원 수당, 결합 가전 비용을 납입금에 포함시킵니다. 가효상조는 장례 서비스 본질에만 집중하므로 동일한 구성이라도 100~200만 원 이상 저렴하게 제공합니다.',
+  },
+  {
+    q: '상품을 고르기가 어려운데 상담으로 도움받을 수 있나요?',
+    a: '네, 오히려 상담 후 결정하시는 것을 권장합니다. 상황과 가족 구성, 장례 방식에 따라 맞는 상품이 다릅니다. 전화 한 통으로 24시간 무료 상담을 받으실 수 있습니다.',
+  },
+];
+
 export default function ProductsPage() {
-  const today = new Date().toISOString().split('T')[0];
-
-  const jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'item': { '@id': 'https://gahyo.co.kr/', 'name': '홈' } },
-        { '@type': 'ListItem', 'position': 2, 'item': { '@id': 'https://gahyo.co.kr/products', 'name': '장례 상품 안내' } }
-      ]
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      'headline': '거품 없는 100% 후불제상조상품 비교 가이드',
-      'author': {
-        '@type': 'Person',
-        'name': '가효상조 수석 장례지도사',
-        'url': 'https://gahyo.co.kr/about'
-      },
-      'dateModified': today,
-      'datePublished': '2023-01-01',
-      'publisher': {
-        '@type': 'Organization',
-        'name': '가효상조',
-        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.co.kr/logo.png' }
-      }
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      'mainEntity': [
-        {
-          '@type': 'Question',
-          'name': '후불제 상조는 왜 선불식 상조보다 저렴한가요?',
-          'acceptedAnswer': { '@type': 'Answer', 'text': '선불식 상조회사의 막대한 영업비와 광고비를 모두 빼고 장례 서비스 본질에만 집중하기 때문에 동일 구성이라도 100~200만 원 이상 저렴합니다.' }
-        },
-        {
-          '@type': 'Question',
-          'name': '가격이 싸면 장례 용품의 품질이 안 좋나요?',
-          'acceptedAnswer': { '@type': 'Answer', 'text': '가효상조는 전국 500여 제휴 장례식장에서 표준화된 1등급 장례 용품(오동나무 관, 전통한지 수의 등)만을 100% 투명하게 사용합니다.' }
-        }
-      ]
-    },
-    ...PRODUCTS.map(p => ({
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': p.name,
-      'image': 'https://gahyo.co.kr/og-image.png',
-      'description': p.desc,
-      'brand': { '@type': 'Brand', 'name': '가효상조' },
-      'offers': {
-        '@type': 'Offer',
-        'price': p.price.replace(/,/g, ''),
-        'priceCurrency': 'KRW',
-        'url': 'https://gahyo.co.kr/products'
-      }
-    }))
-  ];
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <HallStickyBar subtitle="상품 무료 상담" />
 
-      {/* Hero 영역 (H1은 하나만 유지) */}
-      <header className="page-hero" style={{ background: 'linear-gradient(135deg, var(--navy), var(--navy-light))', padding: '5rem 0', color: 'white', textAlign: 'center' }}>
-        <div className="container">
-          <span style={{ display: 'inline-block', background: 'rgba(201,168,76,0.2)', color: 'var(--gold)', padding: '0.4rem 1rem', borderRadius: '999px', fontSize: '0.9rem', fontWeight: '800', marginBottom: '1rem' }}>
-            거품 없는 정직한 상조
+      {/* ── 섹션 1: 히어로 ── */}
+      <header style={{ background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', padding: '5rem 1.25rem 4rem', color: 'white', textAlign: 'center' }}>
+        <div className="container" style={{ maxWidth: '720px' }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(201,168,76,0.15)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)', padding: '0.45rem 1.1rem', borderRadius: '999px', fontSize: '0.85rem', fontWeight: '700', marginBottom: '1.5rem' }}>
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2E6B4F', boxShadow: '0 0 0 3px rgba(46,107,79,0.3)' }} />
+            국가공인 장례지도사 · 24시간 직접 출동
           </span>
-          <h1 style={{ fontSize: 'clamp(1.35rem, 5vw, 3rem)', fontWeight: '900', marginBottom: '1rem', letterSpacing: '-0.03em', whiteSpace: 'nowrap' }}>
-            투명한 후불제상조상품 비교
+          <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', fontWeight: '900', lineHeight: 1.3, letterSpacing: '-0.03em', marginBottom: '1.25rem', wordBreak: 'keep-all' }}>
+            지금 당장 필요한 것만,<br />
+            직접 고르고 <span style={{ color: '#C9A84C' }}>장례 후에 내세요.</span>
           </h1>
-          <p style={{ fontSize: '1.1rem', opacity: 0.9, lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
-            미리 돈을 내실 필요가 전혀 없습니다.<br />장례가 모두 끝난 후, 선택하신 상품 금액만 결제하세요.
+          <p style={{ fontSize: '1.05rem', opacity: 0.85, lineHeight: 1.75, marginBottom: '2rem', wordBreak: 'keep-all' }}>
+            가입비도, 월 납입금도 없습니다.<br />
+            장례가 끝난 뒤 실제 사용한 비용만 정산하는 100% 후불제.<br />
+            지금 전화 한 통으로 시작하세요.
           </p>
-
-          {/* E-E-A-T 저자 및 신뢰도 블록 */}
-          <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', marginTop: '2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.2rem' }}>👔</span>
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}>작성 및 검수</div>
-                <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>가효상조 수석 장례지도사</div>
-              </div>
-            </div>
-            <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}>최종 요금 업데이트</div>
-              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>{today}</div>
-            </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center', marginBottom: '2rem' }}>
+            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 2rem', background: '#C9A84C', color: '#0f172a', borderRadius: '10px', fontWeight: '800', fontSize: '1.05rem', textDecoration: 'none' }}>
+              📞 1551-5718 · 지금 전화하기
+            </a>
+            <Link href="/estimate" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.75rem', background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid rgba(255,255,255,0.25)', borderRadius: '10px', fontWeight: '700', fontSize: '1rem', textDecoration: 'none' }}>
+              🧮 무료 견적 확인
+            </Link>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>
+            {['✔ 가입비 0원', '✔ 추가 비용 없음', '✔ 전국 즉시 출동'].map(t => <span key={t}>{t}</span>)}
           </div>
         </div>
       </header>
 
-      <div className="container" style={{ padding: '3rem 1.25rem 4rem' }}>
-        
-        {/* 가효상조 강점 부각 이미지 섹션 */}
-        <section style={{ marginBottom: '3.5rem', textAlign: 'center' }}>
-          <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto 2rem', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.12)' }}>
-            <Image
-              src="/images/products/strength-1.jpg"
-              alt="가효상조만의 투명한 후불제 상조 강점 1"
-              width={768}
-              height={1376}
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-              priority
-              unoptimized
-            />
-          </div>
-          <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.12)' }}>
-            <Image
-              src="/images/products/strength-2.jpg"
-              alt="가효상조만의 투명한 후불제 상조 강점 2"
-              width={768}
-              height={1376}
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-              unoptimized
-            />
-          </div>
-        </section>
-
-        {/* BLUF (핵심 요약) - AI 검색 친화적 문장 배치 */}
-        <section style={{ marginBottom: '3rem', padding: '1.75rem', background: '#f8fafc', borderLeft: '4px solid var(--gold)', borderRadius: '0 8px 8px 0' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.75rem' }}>
-            💡 상조 상품, 핵심만 요약해 드립니다.
-          </h2>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: '#334155', fontWeight: '600' }}>
-            가효상조의 상조 상품은 선불식 상조 대비 <strong>약 100~200만 원 이상 저렴한 100% 후불제 상품</strong>입니다.
-          </p>
-          <ul style={{ marginTop: '0.75rem', paddingLeft: '1.25rem', color: '#475569', fontSize: '0.95rem', lineHeight: 1.7 }}>
-            <li>월 납입금, 가입비, 중간 해지 위약금이 전혀 없습니다.</li>
-            <li>투명하게 공개된 4가지 패키지(무빈소 120 ~ VIP 363) 중 상황에 맞게 선택할 수 있습니다.</li>
-            <li>상품 금액에는 장례지도사, 수의, 관, 리무진, 입관 용품 등 핵심 의전 서비스가 모두 포함되어 있습니다.</li>
-          </ul>
-        </section>
-
-        {/* H2: 상품 안내 섹션 */}
-        <section style={{ marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: '800', color: 'var(--navy)', textAlign: 'center', marginBottom: '2.5rem' }}>
-            1. 맞춤형 장례 상품 안내
-          </h2>
-
-          {/* ── 모바일/태블릿 세로 카드 ── */}
-          <div className="products-mobile-view">
-            {PRODUCTS.map((p) => (
-              <article
-                key={p.id}
-                style={{
-                  borderRadius: '1.25rem', overflow: 'hidden', border: `2px solid ${p.borderColor}`,
-                  boxShadow: p.popular ? `0 8px 40px ${p.accent}30` : '0 4px 20px rgba(0,0,0,0.07)',
-                  marginBottom: '2.5rem', background: 'white'
-                }}
-              >
-                <div style={{ background: `linear-gradient(135deg, ${p.accent} 0%, ${p.accent}cc 100%)`, padding: '1.5rem 1.75rem' }}>
-                  <div style={{ display: 'inline-block', background: 'rgba(255,255,255,0.22)', color: 'white', borderRadius: '999px', padding: '0.25rem 0.85rem', fontSize: '0.8rem', fontWeight: '700', marginBottom: '0.5rem' }}>
-                    {p.popular && '⭐ '}{p.badge}
-                  </div>
-                  <h3 style={{ color: 'white', fontWeight: '900', fontSize: '1.65rem', margin: 0 }}>{p.name}</h3>
-                  <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.9rem', marginTop: '0.3rem' }}>{p.desc}</p>
-                </div>
-                <div style={{ background: p.accentLight, padding: '1.25rem 1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${p.borderColor}40` }}>
-                  <span style={{ fontSize: '0.9rem', color: '#4b5563', fontWeight: '600' }}>상품 확정가</span>
-                  <span style={{ fontSize: '1.85rem', fontWeight: '900', color: p.accent }}>{p.price}<span style={{ fontSize: '1rem', fontWeight: '700', marginLeft: '0.2rem' }}>원</span></span>
-                </div>
-                <div style={{ padding: '0.5rem 0' }}>
-                  {p.rows.map((row, idx) => (
-                    <div key={row.label} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '0.95rem 1.75rem', borderBottom: idx < p.rows.length - 1 ? '1px solid #f0f0f0' : 'none' }}>
-                      <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: p.accentLight, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.15rem', flexShrink: 0 }}>{row.icon}</div>
-                      <div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#6b7280', marginBottom: '0.2rem' }}>{row.label}</div>
-                        <div style={{ fontSize: '0.95rem', color: '#1a1a2e' }}>
-                          {row.value.split('\n').map((line, i, arr) => {
-                            if (line.includes('|')) {
-                              const [left, right] = line.split('|');
-                              return (
-                                <div key={i} style={{ display: 'flex', padding: '0.6rem 0', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
-                                  <div style={{ flex: '0 0 32%', fontWeight: '700', color: p.accent, paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
-                                  <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>
-                                    {right.includes('<br/>') ? right.split('<br/>').map((rLine, j) => <div key={j}>{rLine.trim()}</div>) : right.trim()}
-                                  </div>
-                                </div>
-                              );
-                            }
-                            return (
-                              <div key={i} style={{ padding: '0.6rem 0', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
-                                {line}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </article>
+      {/* ── 섹션 2: 신뢰 지표 바 ── */}
+      <section style={{ background: 'white', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container" style={{ maxWidth: '900px', padding: '2.5rem 1.25rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1.5rem' }}>
+            {[
+              { icon: '👔', title: '국가공인 1급 장례지도사', sub: '10년 이상 경력자만 출동합니다' },
+              { icon: '⏰', title: '24시간 연중무휴', sub: '새벽이든, 주말이든, 공휴일이든' },
+              { icon: '💸', title: '100% 후불제', sub: '장례 후 실사용 금액만 청구합니다' },
+              { icon: '🤝', title: '전국 500개 제휴 장례식장', sub: '어디서나 동일한 품질' },
+            ].map(item => (
+              <div key={item.title} style={{ textAlign: 'center', padding: '1rem' }}>
+                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{item.icon}</div>
+                <div style={{ fontWeight: '800', color: '#1e293b', fontSize: '0.95rem', marginBottom: '0.3rem', wordBreak: 'keep-all' }}>{item.title}</div>
+                <div style={{ fontSize: '0.82rem', color: '#64748b', wordBreak: 'keep-all' }}>{item.sub}</div>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* ── 데스크탑 비교 테이블 ── */}
-          <div className="products-desktop-view">
-            <div style={{ overflowX: 'auto', borderRadius: '1.25rem', boxShadow: '0 8px 40px rgba(0,44,95,0.12)', border: '1px solid var(--border-color)', background: 'white' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', minWidth: '720px' }}>
-                <thead>
-                  <tr>
-                    <th style={{ background: '#1a1a2e', color: 'rgba(255,255,255,0.55)', padding: '1.25rem 1.5rem', width: '14%', textAlign: 'left', fontSize: '0.85rem', fontWeight: '600' }}>구분</th>
-                    {PRODUCTS.map(p => (
-                      <th key={p.id} style={{ background: `linear-gradient(160deg, ${p.accent} 0%, ${p.accent}dd 100%)`, color: 'white', padding: '1.5rem 1.25rem', textAlign: 'center', borderLeft: '1px solid rgba(255,255,255,0.15)', position: 'relative' }}>
-                        {p.popular && <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', background: '#f59e0b', color: 'white', fontSize: '0.72rem', fontWeight: '800', padding: '0.2rem 0.75rem', borderRadius: '0 0 8px 8px', whiteSpace: 'nowrap' }}>⭐ 가장 많이 선택</div>}
-                        <div style={{ fontSize: '0.75rem', opacity: 0.75, marginBottom: '0.3rem', marginTop: p.popular ? '0.75rem' : 0, fontWeight: '600' }}>{p.badge}</div>
-                        <h3 style={{ fontSize: '1.35rem', fontWeight: '900', letterSpacing: '-0.02em', margin: 0 }}>{p.name}</h3>
-                      </th>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td style={{ background: '#f9fafb', padding: '1rem 1.5rem', fontWeight: '700', color: '#374151', fontSize: '0.9rem', borderBottom: '2px solid var(--border-color)' }}>가격</td>
-                    {PRODUCTS.map(p => (
-                      <td key={`price-${p.id}`} style={{ background: p.accentLight, padding: '1rem 1.25rem', textAlign: 'center', borderLeft: `1px solid ${p.borderColor}40`, borderBottom: `2px solid ${p.borderColor}` }}>
-                        <span style={{ fontSize: '1.6rem', fontWeight: '900', color: p.accent }}>{p.price}</span><span style={{ fontSize: '0.9rem', color: '#374151', marginLeft: '0.2rem' }}>원</span>
-                      </td>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {['인력 지원', '의전 차량', '고인 용품', '입관 용품', '상복 제공', '특화 서비스'].map((label, rowIdx) => {
-                    const allSame = PRODUCTS.every(p => p.rows[rowIdx].value === PRODUCTS[0].rows[rowIdx].value);
-                    return (
-                      <tr key={label} style={{ background: rowIdx % 2 === 0 ? 'white' : '#fafafa' }}>
-                        <td style={{ padding: '1.1rem 1.5rem', fontWeight: '700', color: '#374151', fontSize: '0.9rem', borderBottom: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)', verticalAlign: 'middle' }}>
-                          {PRODUCTS[0].rows[rowIdx].icon} {label}
-                        </td>
-                        {allSame ? (
-                          <td colSpan={PRODUCTS.length} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', verticalAlign: 'top', textAlign: 'center', background: '#fdfdfd', height: '1px' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                              {PRODUCTS[0].rows[rowIdx].value.split('\n').map((line, i, arr) => {
-                                if (line.includes('|')) {
-                                  const [left, right] = line.split('|');
-                                  return (
-                                    <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '1.1rem 1.25rem', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
-                                      <div style={{ flex: '0 0 28%', fontWeight: '700', color: '#4b5563', paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
-                                      <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>
-                                        {right.includes('<br/>') ? right.split('<br/>').map((rLine, j) => <div key={j}>{rLine.trim()}</div>) : right.trim()}
-                                      </div>
-                                    </div>
-                                  );
-                                }
-                                return (
-                                  <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.1rem 1.25rem', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
-                                    {line}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          </td>
-                        ) : (
-                          PRODUCTS.map(p => (
-                            <td key={`${p.id}-${label}`} style={{ padding: '0', fontSize: '0.92rem', color: '#1a1a2e', borderBottom: '1px solid var(--border-color)', borderLeft: `1px solid ${p.borderColor}30`, verticalAlign: 'top', height: '1px' }}>
-                              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                {p.rows[rowIdx].value.split('\n').map((line, i, arr) => {
-                                  if (line.includes('|')) {
-                                    const [left, right] = line.split('|');
-                                    return (
-                                      <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '1.1rem 1.25rem', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none', textAlign: 'left' }}>
-                                        <div style={{ flex: '0 0 28%', fontWeight: '700', color: p.accent, paddingRight: '0.5rem', opacity: 0.85, wordBreak: 'keep-all' }}>{left.trim()}</div>
-                                        <div style={{ flex: '1', lineHeight: '1.6', wordBreak: 'keep-all' }}>
-                                          {right.includes('<br/>') ? right.split('<br/>').map((rLine, j) => <div key={j}>{rLine.trim()}</div>) : right.trim()}
-                                        </div>
-                                      </div>
-                                    );
-                                  }
-                                  return (
-                                    <div key={i} style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '1.1rem 1.25rem', lineHeight: '1.8', borderBottom: i < arr.length - 1 ? '1px dashed rgba(0,0,0,0.1)' : 'none' }}>
-                                      {line}
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </td>
-                          ))
-                        )}
-                      </tr>
-                    );
-                  })}
-                  <tr>
-                    <td style={{ padding: '1.25rem 1.5rem', fontWeight: '700', color: '#374151', fontSize: '0.9rem', borderRight: '1px solid var(--border-color)' }}>빠른 상담</td>
-                    {PRODUCTS.map(p => (
-                      <td key={`cta-${p.id}`} style={{ padding: '1.25rem', borderLeft: `1px solid ${p.borderColor}30`, background: p.accentLight }}>
-                        <a href="tel:1551-5718" style={{ display: 'block', textAlign: 'center', padding: '0.75rem', background: p.accent, color: 'white', borderRadius: '0.6rem', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none', marginBottom: '0.5rem' }}>📞 상담하기</a>
-                        <Link href="/halls" style={{ display: 'block', textAlign: 'center', padding: '0.7rem', background: 'white', color: p.accent, border: `2px solid ${p.borderColor}`, borderRadius: '0.6rem', fontWeight: '700', fontSize: '0.9rem', textDecoration: 'none' }}>🏥 장례식장 찾기</Link>
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* H2: 선불식 vs 후불제 비교 (표 및 가독성 개선) */}
-        <section style={{ marginBottom: '4rem' }}>
-          <h2 style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1.6rem', marginBottom: '1.5rem', textAlign: 'center' }}>
-            2. 유명 선불식 상조와 비교해 보세요
+      {/* ── 섹션 3: 가격 앵커링 — 경쟁사 비교 ── */}
+      <section style={{ background: '#f8fafc', padding: '4rem 1.25rem' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: '900', color: '#1e293b', textAlign: 'center', marginBottom: '0.75rem', wordBreak: 'keep-all' }}>
+            같은 장례, 왜 가효상조가 더 저렴할까요?
           </h2>
-          <p style={{ color: '#475569', fontSize: '1rem', lineHeight: 1.6, textAlign: 'center', marginBottom: '2.5rem' }}>
-            국내 대형 선불 상조업체(A사, B사)의 상품과 <strong>구성은 같거나 더 우수하지만, 발생 비용은 훨씬 저렴</strong>합니다.
+          <p style={{ textAlign: 'center', color: '#475569', lineHeight: 1.75, marginBottom: '2.5rem', wordBreak: 'keep-all' }}>
+            대형 선불식 상조회사는 TV 광고비, 영업사원 수당, 결합 가전 비용을 납입금에 포함시킵니다.<br />
+            가효상조는 그 거품을 모두 빼고 장례 서비스 본질에만 집중합니다.
           </p>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-            <div style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-              <div style={{ background: '#f8fafc', padding: '1.25rem', textAlign: 'center', borderBottom: '1px solid #e2e8f0' }}>
-                <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '800', color: '#1e293b' }}>표준 3일장 구성 비교</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.25rem', marginBottom: '1.75rem' }}>
+            {[
+              {
+                label: '비교 ① 표준 3일장',
+                rows: [
+                  { name: 'A사 선불식 상조', price: '3,600,000원', sub: '매월 납입 의무 + 중도 해지 위약금', highlight: false },
+                  { name: '가효상조 265', price: '2,650,000원', sub: '→ 약 90만 원 절약', highlight: true },
+                ],
+              },
+              {
+                label: '비교 ② 리무진 포함 3일장',
+                rows: [
+                  { name: 'A·B사 선불식 상조', price: '4,900,000원대', sub: '가입 필수 + 패키지 강요', highlight: false },
+                  { name: '가효상조 334', price: '3,340,000원', sub: '→ 약 160만 원 절약', highlight: true },
+                ],
+              },
+            ].map(group => (
+              <div key={group.label} style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '14px', overflow: 'hidden' }}>
+                <div style={{ background: '#1e293b', color: 'white', padding: '0.75rem 1.25rem', fontWeight: '700', fontSize: '0.9rem' }}>{group.label}</div>
+                {group.rows.map(row => (
+                  <div key={row.name} style={{ padding: '1rem 1.25rem', borderBottom: '1px solid #f1f5f9', background: row.highlight ? '#fffbeb' : 'white' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                      <span style={{ fontWeight: '700', color: row.highlight ? '#92400e' : '#475569', fontSize: '0.95rem' }}>{row.name}</span>
+                      <span style={{ fontWeight: '900', color: row.highlight ? '#C9A84C' : '#94a3b8', fontSize: '1.05rem' }}>{row.price}</span>
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: row.highlight ? '#b45309' : '#94a3b8' }}>{row.sub}</div>
+                  </div>
+                ))}
               </div>
-              <div style={{ display: 'flex' }}>
-                <div style={{ flex: 1, padding: '1.5rem', textAlign: 'center', borderRight: '1px solid #e2e8f0' }}>
-                  <div style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '0.5rem' }}>A사 선불식 상조</div>
-                  <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#94a3b8', textDecoration: 'line-through' }}>3,600,000원</div>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.75rem' }}>매월 납입 의무</div>
-                </div>
-                <div style={{ flex: 1, padding: '1.5rem', textAlign: 'center', background: '#e6eef8' }}>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--navy)', fontWeight: '700', marginBottom: '0.5rem' }}>가효상조 265</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#c0392b' }}>2,650,000원</div>
-                  <div style={{ fontSize: '0.85rem', color: '#c0392b', fontWeight: '800', marginTop: '0.75rem', background: 'white', padding: '0.25rem 0', borderRadius: '4px' }}>90만원 절약</div>
-                </div>
-              </div>
-            </div>
-            
-            <div style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-              <div style={{ background: '#f8fafc', padding: '1.25rem', textAlign: 'center', borderBottom: '1px solid #e2e8f0' }}>
-                <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '800', color: '#1e293b' }}>리무진 포함 구성 비교</h3>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <div style={{ flex: 1, padding: '1.5rem', textAlign: 'center', borderRight: '1px solid #e2e8f0' }}>
-                  <div style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '0.5rem' }}>A·B사 선불식 상조</div>
-                  <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#94a3b8', textDecoration: 'line-through' }}>4,900,000원 대</div>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.75rem' }}>중도 해지 위약금</div>
-                </div>
-                <div style={{ flex: 1, padding: '1.5rem', textAlign: 'center', background: '#fdf3e0' }}>
-                  <div style={{ fontSize: '0.85rem', color: '#92520a', fontWeight: '700', marginBottom: '0.5rem' }}>가효상조 334</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#c0392b' }}>3,340,000원</div>
-                  <div style={{ fontSize: '0.85rem', color: '#c0392b', fontWeight: '800', marginTop: '0.75rem', background: 'white', padding: '0.25rem 0', borderRadius: '4px' }}>약 160만원 절약</div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
-        </section>
+          <p style={{ textAlign: 'center', color: '#1e293b', fontWeight: '700', fontSize: '0.95rem', background: 'white', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '1rem' }}>
+            구성 품질은 같거나 더 우수합니다. 차이는 거품 유무입니다.
+          </p>
+        </div>
+      </section>
 
-        {/* H2/H3: 롱테일 질문형 고객 Q&A 섹션 (SEO 최적화) */}
-        <section style={{ marginBottom: '4rem' }}>
-          <h2 style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1.6rem', marginBottom: '2rem', textAlign: 'center' }}>
-            3. 후불제 상조, 자주 묻는 질문 (FAQ)
+      {/* ── 섹션 4: 상품 소개 ── */}
+      <section style={{ background: 'white', padding: '4rem 1.25rem' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
+          <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: '900', color: '#1e293b', textAlign: 'center', marginBottom: '0.5rem', wordBreak: 'keep-all' }}>
+            4가지 상품 중 상황에 맞게 선택하세요
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <article style={{ background: 'white', borderRadius: '12px', padding: '1.75rem', boxShadow: '0 2px 12px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', display: 'flex', gap: '0.5rem' }}>
-                <span style={{ color: '#c0392b' }}>Q.</span> 후불제 상조는 왜 선불식 상조보다 저렴한가요?
-              </h3>
-              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.7, paddingLeft: '1.7rem', margin: 0 }}>
-                <strong style={{ color: 'var(--gold-dark)', fontSize: '1.1rem', marginRight: '0.3rem' }}>A.</strong> 
-                선불식 상조회사는 막대한 TV 광고비, 영업사원 수당, 결합 가전제품 비용을 납입금에 포함시킵니다. 가효상조는 이런 거품을 모두 빼고 장례 서비스 본질에만 집중하므로 동일한 구성이라도 100~200만 원 이상 저렴하게 제공할 수 있습니다.
-              </p>
-            </article>
-
-            <article style={{ background: 'white', borderRadius: '12px', padding: '1.75rem', boxShadow: '0 2px 12px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', display: 'flex', gap: '0.5rem' }}>
-                <span style={{ color: '#c0392b' }}>Q.</span> 가격이 싸면 서비스나 장례 용품의 품질이 안 좋은 것 아닌가요?
-              </h3>
-              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.7, paddingLeft: '1.7rem', margin: 0 }}>
-                <strong style={{ color: 'var(--gold-dark)', fontSize: '1.1rem', marginRight: '0.3rem' }}>A.</strong> 
-                절대 그렇지 않습니다. 가효상조는 전국 500개 제휴 장례식장에서 표준화된 1등급 정품 장례 용품(오동나무 관, 친환경 수의 등)만을 사용하며, 10년 이상 경력의 1급 장례지도사가 책임지고 진행합니다.
-              </p>
-            </article>
-
-            <article style={{ background: 'white', borderRadius: '12px', padding: '1.75rem', boxShadow: '0 2px 12px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', display: 'flex', gap: '0.5rem' }}>
-                <span style={{ color: '#c0392b' }}>Q.</span> 정말 장례가 끝난 후에 추가 비용을 요구하지 않나요?
-              </h3>
-              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.7, paddingLeft: '1.7rem', margin: 0 }}>
-                <strong style={{ color: 'var(--gold-dark)', fontSize: '1.1rem', marginRight: '0.3rem' }}>A.</strong> 
-                가효상조 상품 내역에 포함된 의전 서비스(지도사, 도우미, 차량, 고인용품 등)에 대해서는 100% 추가 비용이 발생하지 않습니다. 단, [장례식장 빈소 대여료], [조문객 식대], [화장장 이용료]는 상조 상품과 무관한 실비이며 사전 상담 시 투명하게 분리하여 안내해 드립니다.
-              </p>
-            </article>
-
-            <article style={{ background: 'white', borderRadius: '12px', padding: '1.75rem', boxShadow: '0 2px 12px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', display: 'flex', gap: '0.5rem' }}>
-                <span style={{ color: '#c0392b' }}>Q.</span> 미리 가입하거나 매월 돈을 내야 상조 혜택을 받나요?
-              </h3>
-              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.7, paddingLeft: '1.7rem', margin: 0 }}>
-                <strong style={{ color: 'var(--gold-dark)', fontSize: '1.1rem', marginRight: '0.3rem' }}>A.</strong> 
-                가입비나 월 납입금, 중도 해지 위약금이 일절 없습니다. 임종 발생 시 언제든 1551-5718로 전화 한 통만 주시면 바로 출동하며, 모든 절차가 끝난 발인 날에 약정된 상품 금액만 안전하게 결제하시면 됩니다.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        {/* Info Banner (결론/CTA) */}
-        <section style={{ background: 'var(--navy)', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1rem', color: 'white', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}>
-          <div style={{ fontSize: '2.5rem' }}>✨</div>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0, wordBreak: 'keep-all' }}>안심하고 맡길 수 있는<br />가효상조</h2>
-          <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: 1.75, maxWidth: '600px', margin: 0, wordBreak: 'keep-all' }}>
-            가효상조는 사전 결제를 유도하지 않는<br />
-            <strong style={{ color: 'var(--gold)' }}>100% 후불제 상조</strong>입니다.<br />
-            모든 상품에는 입관 수시용품과 장례편의용품<br />
-            1BOX가 기본 제공됩니다.
+          <p style={{ textAlign: 'center', color: '#475569', marginBottom: '2.5rem', fontSize: '1rem' }}>
+            모든 상품은 100% 후불제입니다. 장례가 끝난 뒤, 선택하신 상품 금액만 결제하세요.
           </p>
-          <a href="tel:1551-5718" style={{
-            display: 'inline-block', background: 'linear-gradient(135deg, #c0392b, #96281b)',
-            color: 'white', padding: '1rem 2.5rem', borderRadius: '999px',
-            fontWeight: '900', fontSize: '1.15rem', textDecoration: 'none',
-            boxShadow: '0 4px 20px rgba(192,57,43,0.4)', marginTop: '0.5rem', wordBreak: 'keep-all'
-          }}>
-            📞 1551-5718 무료 상세 상담받기
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {PRODUCTS.map(p => (
+              <div key={p.id} style={{
+                border: p.highlight ? '2px solid #C9A84C' : '1px solid #e2e8f0',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: p.highlight ? '0 8px 30px rgba(201,168,76,0.18)' : '0 2px 8px rgba(0,0,0,0.06)',
+                position: 'relative',
+              }}>
+                {p.highlight && (
+                  <div style={{ background: '#C9A84C', color: '#0f172a', textAlign: 'center', padding: '0.4rem', fontWeight: '800', fontSize: '0.85rem' }}>
+                    ⭐ 가장 많이 찾는 상품
+                  </div>
+                )}
+                <div style={{ padding: '1.5rem 1.75rem', borderBottom: '1px solid #f1f5f9' }}>
+                  {!p.highlight && (
+                    <span style={{ display: 'inline-block', background: '#f1f5f9', color: '#475569', borderRadius: '999px', padding: '0.25rem 0.85rem', fontSize: '0.8rem', fontWeight: '700', marginBottom: '0.75rem' }}>
+                      {p.badge}
+                    </span>
+                  )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <div>
+                      <h3 style={{ fontSize: '1.3rem', fontWeight: '900', color: '#1e293b', margin: '0 0 0.35rem' }}>{p.name}</h3>
+                      <p style={{ color: '#475569', fontSize: '0.95rem', margin: 0, wordBreak: 'keep-all' }}>{p.desc}</p>
+                    </div>
+                    <div style={{ fontSize: '1.6rem', fontWeight: '900', color: p.highlight ? '#C9A84C' : '#1e293b', whiteSpace: 'nowrap' }}>{p.price}</div>
+                  </div>
+                </div>
+                <div style={{ padding: '1.25rem 1.75rem', background: p.highlight ? '#fffdf5' : '#fafafa' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                    <tbody>
+                      {p.rows.map(row => (
+                        <tr key={row.label} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                          <td style={{ padding: '0.6rem 0.5rem 0.6rem 0', color: '#64748b', fontWeight: '700', whiteSpace: 'nowrap', verticalAlign: 'top', width: '90px' }}>{row.label}</td>
+                          <td style={{ padding: '0.6rem 0 0.6rem 0.5rem', color: '#1e293b', lineHeight: 1.5, wordBreak: 'keep-all' }}>{row.value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div style={{ padding: '1.25rem 1.75rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap', background: 'white', borderTop: '1px solid #f1f5f9' }}>
+                  <a href="tel:1551-5718" style={{ flex: 1, minWidth: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.85rem 1.25rem', background: p.highlight ? '#C9A84C' : '#1e293b', color: p.highlight ? '#0f172a' : 'white', borderRadius: '9px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none' }}>
+                    📞 지금 상담하기
+                  </a>
+                  <Link href="/halls" style={{ flex: 1, minWidth: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.85rem 1.25rem', background: 'white', color: '#1e293b', border: '1.5px solid #e2e8f0', borderRadius: '9px', fontWeight: '700', fontSize: '0.95rem', textDecoration: 'none' }}>
+                    🏥 장례식장 찾기
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 섹션 5: 어떤 상품이 맞을지 모르겠다면? ── */}
+      <section style={{ background: '#f0fdf4', padding: '3.5rem 1.25rem', borderTop: '1px solid #bbf7d0', borderBottom: '1px solid #bbf7d0' }}>
+        <div className="container" style={{ maxWidth: '640px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.6rem)', fontWeight: '900', color: '#1e293b', marginBottom: '1rem', wordBreak: 'keep-all', lineHeight: 1.4 }}>
+            어떤 상품을 골라야 할지 모르겠다면,<br />전화 한 통으로 물어보세요.
+          </h2>
+          <p style={{ color: '#475569', lineHeight: 1.8, marginBottom: '1.75rem', wordBreak: 'keep-all' }}>
+            경황없는 순간에 혼자 결정하실 필요 없습니다.<br />
+            상담사가 상황을 들어보고 가장 적합한 상품을 안내해 드립니다.<br />
+            강요도, 추가 설명 없는 세일즈도 없습니다.
+          </p>
+          <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '1.1rem 2.5rem', background: '#1e293b', color: 'white', borderRadius: '10px', fontWeight: '800', fontSize: '1.05rem', textDecoration: 'none' }}>
+            📞 1551-5718 · 24시간 무료 상담
           </a>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <style>{`
-        .products-mobile-view { display: block; }
-        .products-desktop-view { display: none; }
-        @media (min-width: 992px) {
-          .products-mobile-view { display: none; }
-          .products-desktop-view { display: block; }
-        }
-      `}</style>
+      {/* ── 섹션 6: FAQ ── */}
+      <section style={{ background: 'white', padding: '4rem 1.25rem' }}>
+        <div className="container" style={{ maxWidth: '760px' }}>
+          <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: '900', color: '#1e293b', marginBottom: '2rem', textAlign: 'center' }}>
+            결정 전에 확인하세요
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {FAQS.map((faq, i) => (
+              <div key={i} style={{ border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden' }}>
+                <div style={{ background: '#f8fafc', padding: '1rem 1.25rem', fontWeight: '800', color: '#1e293b', fontSize: '0.97rem', wordBreak: 'keep-all' }}>
+                  Q{i + 1}. {faq.q}
+                </div>
+                <div style={{ padding: '1rem 1.25rem', color: '#475569', lineHeight: 1.75, fontSize: '0.93rem', wordBreak: 'keep-all' }}>
+                  {faq.a}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 섹션 7: 하단 CTA ── */}
+      <section style={{ background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', padding: '5rem 1.25rem', textAlign: 'center', color: 'white' }}>
+        <div className="container" style={{ maxWidth: '620px' }}>
+          <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: '900', marginBottom: '0.75rem', wordBreak: 'keep-all' }}>
+            전화 한 통이면 됩니다.
+          </h2>
+          <p style={{ fontSize: '1.05rem', opacity: 0.85, lineHeight: 1.75, marginBottom: '2rem', wordBreak: 'keep-all' }}>
+            지금 이 순간, 혼자 결정하지 않아도 됩니다.<br />
+            가효상조가 처음부터 끝까지 함께합니다.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.75)', fontWeight: '600', marginBottom: '2rem' }}>
+            {['✔ 가입비 0원', '✔ 월 납입금 0원', '✔ 100% 후불제', '✔ 24시간 출동'].map(t => <span key={t}>{t}</span>)}
+          </div>
+          <a href="tel:1551-5718" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem', padding: '1.25rem 2.5rem', background: '#C9A84C', color: '#0f172a', borderRadius: '12px', fontWeight: '900', fontSize: '1.2rem', textDecoration: 'none', marginBottom: '1rem' }}>
+            📞 1551-5718 · 지금 바로 전화하기
+          </a>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center' }}>
+            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.85rem 1.5rem', background: '#FEE500', color: '#391B1B', borderRadius: '10px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none' }}>
+              💬 카카오 상담하기
+            </a>
+            <Link href="/estimate" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.85rem 1.5rem', background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid rgba(255,255,255,0.25)', borderRadius: '10px', fontWeight: '700', fontSize: '0.95rem', textDecoration: 'none' }}>
+              🧮 AI 견적 먼저 받아보기
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
