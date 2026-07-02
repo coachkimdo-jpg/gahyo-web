@@ -314,4 +314,16 @@ export default async function NaturalBurialPage({ params }) {
               </span>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: '0.75rem', justi
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.9rem 2rem', background: 'white', color: 'var(--navy)', borderRadius: '12px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
+              📞 1551-5718 · 24시간 전화 가능
+            </a>
+            <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.9rem 2rem', background: '#FEE500', color: '#000', borderRadius: '12px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
+              💬 카카오로 편하게 문의하기
+            </a>
+          </div>
+        </section>
+      </div>
+  </>
+  );
+}

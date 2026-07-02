@@ -278,4 +278,8 @@ export default async function GuidePage(props) {
           <p style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.75rem' }}>더 궁금한 점이 있으신가요?</p>
           <p style={{ opacity: 0.7, marginBottom: '1.5rem', fontSize: '0.9375rem' }}>24시간 전문 상담원이 친절하게 안내해 드립니다.</p>
           <a href="tel:1551-5718" style={{ display: 'inline-flex', padding: '0.9rem 2rem', background: '#22453A', color: 'white', borderRadius: '999px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 16px rgba(34,69,58,0.35)' }}>📞 1551-5718 지금 전화하기</a>
-        </div
+        </div>
+      </div>
+    </>
+  );
+}

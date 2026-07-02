@@ -124,4 +124,7 @@ export default function Footer() {
             © 2025 가효상조. All rights reserved.
           </p>
         </div>
-  
+      </div>
+    </footer>
+  );
+}

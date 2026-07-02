@@ -91,4 +91,6 @@ export default function HallStickyBar({ hallName, subtitle = '장례 준비' }) 
 
       {/* Hall 상세 페이지에서는 EmergencyFloat 숨김 (스티키 바가 동일 역할) */}
       <style>{`.emergency-float { display: none !important; }`}</style>
-  
+    </>
+  );
+}

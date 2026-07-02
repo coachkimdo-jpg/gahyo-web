@@ -367,4 +367,21 @@ export default async function OssuaryPage({ params }) {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
             {['가입비 0원', '월 납입금 0원', '100% 후불제', '24시간 출동'].map((t) => (
-              <span key={t} style={{ display: 'in
+              <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.9rem', background: 'rgba(255,255,255,0.15)', color: 'white', borderRadius: '999px', fontSize: '0.8rem', fontWeight: '600' }}>
+                ✔ {t}
+              </span>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.9rem 2rem', background: 'white', color: 'var(--navy)', borderRadius: '12px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
+              📞 1551-5718 · 24시간 전화 가능
+            </a>
+            <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.9rem 2rem', background: '#FEE500', color: '#000', borderRadius: '12px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
+              💬 카카오로 편하게 문의하기
+            </a>
+          </div>
+        </section>
+      </div>
+  </>
+  );
+}
