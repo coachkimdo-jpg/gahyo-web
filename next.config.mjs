@@ -54,11 +54,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    // .browserslistrc의 modern browser 타겟을 SWC 컴파일러에 전달
-    // → Array.prototype.at 등 불필요한 레거시 폴리필 14KiB 제거
-    browsersListForSwc: true,
-  },
 };
 
 export default nextConfig;
