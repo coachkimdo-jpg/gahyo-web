@@ -312,7 +312,7 @@ export default function ProductsPage() {
             지금 이 순간, 혼자 결정하지 않아도 됩니다.<br />
             가효상조가 처음부터 끝까지 함께합니다.
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.75)', fontWeight: '600', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.92)', fontWeight: '600', marginBottom: '2rem' }}>
             {['✔ 가입비 0원', '✔ 월 납입금 0원', '✔ 100% 후불제', '✔ 24시간 출동'].map(t => <span key={t}>{t}</span>)}
           </div>
           <a href="tel:1551-5718" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem', padding: '1.25rem 2.5rem', background: '#C9A84C', color: '#0f172a', borderRadius: '12px', fontWeight: '900', fontSize: '1.2rem', textDecoration: 'none', marginBottom: '1rem' }}>

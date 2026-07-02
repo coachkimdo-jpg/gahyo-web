@@ -143,7 +143,7 @@ export default function HomePage() {
                 }}>
                   <Ic width="1.5rem" height="1.5rem" style={{ color: item.accent ? '#fff' : 'var(--gold-dark)' }} />
                   <div style={{ fontWeight: '700', fontSize: '0.95rem', color: item.accent ? 'white' : 'var(--text-primary)' }}>{item.label}</div>
-                  <div style={{ fontSize: '0.78rem', color: item.accent ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)' }}>{item.sub}</div>
+                  <div style={{ fontSize: '0.78rem', color: item.accent ? 'rgba(255,255,255,0.92)' : 'var(--text-secondary)' }}>{item.sub}</div>
                 </a>
               );
             })}
@@ -172,7 +172,7 @@ export default function HomePage() {
                 <div style={{ padding: '1.5rem 1.4rem 1.3rem', textAlign: 'center', background: col.highlight ? 'var(--gold)' : 'var(--gray-bg)', borderBottom: col.highlight ? 'none' : '1px solid var(--border-color)' }}>
                   <div style={{ fontSize: '0.78rem', fontWeight: '700', color: col.highlight ? 'rgba(255,255,255,0.85)' : 'var(--text-secondary)' }}>{col.type}</div>
                   <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.7rem', fontWeight: '700', color: col.highlight ? '#fff' : 'var(--text-primary)', marginTop: '0.5rem', letterSpacing: '-0.02em' }}>{col.price}</div>
-                  <div style={{ fontSize: '0.74rem', color: col.highlight ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)', marginTop: '0.2rem' }}>{col.note}</div>
+                  <div style={{ fontSize: '0.74rem', color: col.highlight ? 'rgba(255,255,255,0.92)' : 'var(--text-secondary)', marginTop: '0.2rem' }}>{col.note}</div>
                 </div>
                 <div style={{ padding: '0.6rem 1.4rem 1rem' }}>
                   {col.checks.map(([k, v]) => (
@@ -186,7 +186,7 @@ export default function HomePage() {
                 </div>
                 {col.highlight && (
                   <div style={{ padding: '0 1.4rem 1.4rem' }}>
-                    <a href="tel:1551-5718" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.95rem', background: 'var(--gold)', color: '#fff', borderRadius: '12px', fontWeight: '700', fontSize: '0.98rem', textDecoration: 'none' }}>
+                    <a href="tel:1551-5718" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.95rem', background: '#22453A', color: '#fff', borderRadius: '12px', fontWeight: '700', fontSize: '0.98rem', textDecoration: 'none' }}>
                       <IcPhone width="1.1em" height="1.1em" />지금 바로 상담하기
                     </a>
                   </div>
@@ -260,7 +260,7 @@ export default function HomePage() {
             })}
           </div>
           <div style={{ textAlign: 'center', marginTop: '2.6rem' }}>
-            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', padding: '1.05rem 2.4rem', background: 'var(--gold)', color: '#fff', borderRadius: '12px', fontWeight: '700', fontSize: '1.05rem', textDecoration: 'none', boxShadow: '0 8px 22px -8px rgba(133,90,28,0.7)' }}>
+            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', padding: '1.05rem 2.4rem', background: '#22453A', color: '#fff', borderRadius: '12px', fontWeight: '700', fontSize: '1.05rem', textDecoration: 'none', boxShadow: '0 8px 22px -8px rgba(34,69,58,0.5)' }}>
               <IcPhone width="1.15em" height="1.15em" />지금 무료 상담 신청하기
             </a>
           </div>
@@ -329,10 +329,10 @@ export default function HomePage() {
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: '700', color: 'white', lineHeight: 1.35, marginBottom: '0.9rem' }}>
             전화 한 통이면 됩니다.<br />나머지는 저희가 합니다.
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.68)', fontSize: '1.05rem', marginBottom: '1.6rem' }}>24시간 연중무휴 · 전국 출동 가능 · 선불 없음</p>
+          <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '1.05rem', marginBottom: '1.6rem' }}>24시간 연중무휴 · 전국 출동 가능 · 선불 없음</p>
           <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: '700', color: '#fff', marginBottom: '1.6rem', letterSpacing: '0.02em' }}>1551-5718</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.9rem', justifyContent: 'center' }}>
-            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', padding: '1rem 2rem', background: 'var(--gold)', color: '#fff', borderRadius: '12px', fontWeight: '700', fontSize: '1.05rem', textDecoration: 'none' }}>
+            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem', padding: '1rem 2rem', background: '#22453A', color: '#fff', borderRadius: '12px', fontWeight: '700', fontSize: '1.05rem', textDecoration: 'none' }}>
               <IcPhone width="1.15em" height="1.15em" />지금 전화하기
             </a>
             <Link href="/estimate" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 2rem', background: 'rgba(255,255,255,0.08)', color: '#fff', border: '1.5px solid rgba(255,255,255,0.3)', borderRadius: '12px', fontWeight: '700', fontSize: '1rem', textDecoration: 'none' }}>
@@ -344,3 +344,4 @@ export default function HomePage() {
     </>
   );
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

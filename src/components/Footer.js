@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer role="contentinfo" style={{
       background: 'linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%)',
-      color: 'rgba(255,255,255,0.75)',
+      color: 'rgba(255,255,255,0.92)',
       paddingTop: '3.5rem',
       paddingBottom: '2rem',
       marginTop: 'auto',
@@ -124,7 +124,4 @@ export default function Footer() {
             © 2025 가효상조. All rights reserved.
           </p>
         </div>
-      </div>
-    </footer>
-  );
-}
+  

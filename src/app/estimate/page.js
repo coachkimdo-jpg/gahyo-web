@@ -284,13 +284,13 @@ export default function EstimatePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '1.1rem' }}>🏢</span>
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>데이터 수집 및 검수</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>데이터 수집 및 검수</div>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>가효상조 수석 장례지도사</div>
                 </div>
               </div>
               <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>최종 업데이트</div>
+                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>최종 업데이트</div>
                 <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>{today}</div>
               </div>
             </div>
@@ -739,11 +739,9 @@ export default function EstimatePage() {
           <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '520px', margin: '0 auto 1.75rem' }}>
             AI 견적은 참고용입니다. 1:1 전담 장례지도사 상담을 통해 우리 가족에게 꼭 맞는 정확한 비용을 투명하게 안내받으세요.
           </p>
-          <a href="tel:1551-5718" style={{ display: 'inline-block', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: '#fff', padding: '1rem 2.5rem', borderRadius: '999px', fontWeight: '900', fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 20px rgba(133,90,28,0.4)' }}>
+          <a href="tel:1551-5718" style={{ display: 'inline-block', background: '#22453A', color: '#fff', padding: '1rem 2.5rem', borderRadius: '999px', fontWeight: '900', fontSize: '1.1rem', textDecoration: 'none', boxShadow: '0 4px 20px rgba(133,90,28,0.4)' }}>
             📞 1551-5718 무료 상담
           </a>
         </section>
       </div>
-    </>
-  );
-}
+    <

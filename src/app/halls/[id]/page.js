@@ -249,7 +249,7 @@ export default async function HallDetailPage({ params }) {
             빈소·상복·차량·도우미·수의·납골함까지, 우리 가족에게 필요한 것만 고르면<br />
             <strong style={{ color: 'var(--gold)' }}>합계가 실시간으로 표시됩니다.</strong>{' '}상담 없이 지금 직접 확인해 보세요.
           </p>
-          <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.9rem 2rem', background: 'var(--gold)', color: '#0f172a', fontWeight: '800', fontSize: '1rem', borderRadius: '999px', textDecoration: 'none' }}>
+          <Link href="/custom-package" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.9rem 2rem', background: '#22453A', color: 'white', fontWeight: '800', fontSize: '1rem', borderRadius: '999px', textDecoration: 'none' }}>
             내게 맞는 상조 직접 구성하기 →
           </Link>
         </section>

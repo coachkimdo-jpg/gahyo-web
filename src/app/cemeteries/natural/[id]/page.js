@@ -132,7 +132,7 @@ export default async function NaturalBurialPage({ params }) {
       <div style={{ background: 'linear-gradient(135deg, #1a3d2a 0%, #2d6a4f 100%)', color: 'white', padding: '4rem 1.25rem 3rem' }}>
         <div className="container">
           <div style={{ marginBottom: '1.25rem' }}>
-            <Link href="/cemeteries" style={{ color: 'rgba(255,255,255,0.65)', textDecoration: 'none', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            <Link href="/cemeteries" style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
               ← 모실곳 찾기 목록으로
             </Link>
           </div>
@@ -158,7 +158,7 @@ export default async function NaturalBurialPage({ params }) {
             <p style={{ margin: '0 0 0.5rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.85)' }}>
               공시 가격에서 할인 혜택 적용 · 장례지도사 동행 서비스 무료
             </p>
-            <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255,255,255,0.75)', wordBreak: 'keep-all' }}>
+            <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255,255,255,0.92)', wordBreak: 'keep-all' }}>
               어떤 구역이 맞는지 모르셔도 됩니다. 전화 한 통으로 안내해 드립니다.
             </p>
           </div>
@@ -234,13 +234,13 @@ export default async function NaturalBurialPage({ params }) {
               <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📞</div>
               <div style={{ fontWeight: '700', fontSize: '1rem', marginBottom: '0.25rem', color: 'rgba(255,255,255,0.85)' }}>지금 바로 연결하세요. 24시간 무료 상담</div>
               <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--gold)', marginBottom: '0.75rem' }}>1551-5718</div>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.75)', marginBottom: '1.25rem', lineHeight: 1.6, wordBreak: 'keep-all' }}>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.92)', marginBottom: '1.25rem', lineHeight: 1.6, wordBreak: 'keep-all' }}>
                 가효상조 고객 전용 할인 적용<br/>장례지도사 현장 동행 무료
               </p>
-              <a href="tel:1551-5718" style={{ display: 'block', background: 'var(--gold)', color: 'var(--navy-dark)', textDecoration: 'none', padding: '0.9rem', borderRadius: '8px', fontWeight: '800', fontSize: '1rem' }}>
+              <a href="tel:1551-5718" style={{ display: 'block', background: '#22453A', color: 'white', textDecoration: 'none', padding: '0.9rem', borderRadius: '8px', fontWeight: '800', fontSize: '1rem' }}>
                 지금 바로 전화하기
               </a>
-              <Link href="/estimate" style={{ display: 'block', marginTop: '0.75rem', color: 'rgba(255,255,255,0.75)', textDecoration: 'none', fontSize: '0.85rem', padding: '0.6rem' }}>
+              <Link href="/estimate" style={{ display: 'block', marginTop: '0.75rem', color: 'rgba(255,255,255,0.92)', textDecoration: 'none', fontSize: '0.85rem', padding: '0.6rem' }}>
                 온라인 견적 받기 →
               </Link>
             </div>
@@ -314,22 +314,4 @@ export default async function NaturalBurialPage({ params }) {
               </span>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: 'var(--gold)', color: '#0f172a', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 14px rgba(201,168,76,0.4)' }}>
-              📞 1551-5718 · 24시간 전화 가능
-            </a>
-            <a href="https://open.kakao.com/o/s6oRdRhg" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '1rem 1.75rem', background: '#FEE500', color: '#000', borderRadius: '10px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none' }}>
-              💬 카카오로 편하게 문의하기
-            </a>
-          </div>
-          <div style={{ marginTop: '1rem' }}>
-            <Link href="/custom-package" style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.85rem', textDecoration: 'none' }}>
-              🧮 AI 견적 먼저 받아보기 →
-            </Link>
-          </div>
-        </section>
-
-      </div>
-    </>
-  );
-}
+          <div style={{ display: 'flex', gap: '0.75rem', justi

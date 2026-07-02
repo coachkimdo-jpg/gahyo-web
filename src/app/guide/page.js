@@ -153,13 +153,13 @@ export default async function GuidePage(props) {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '1.1rem' }}>🎓</span>
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>콘텐츠 작성 및 감수</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>콘텐츠 작성 및 감수</div>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>가효상조 국가공인 장례지도사</div>
                 </div>
               </div>
               <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>최종 업데이트</div>
+                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>최종 업데이트</div>
                 <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>{today}</div>
               </div>
             </div>
@@ -277,9 +277,5 @@ export default async function GuidePage(props) {
         <div style={{ marginTop: '3.5rem', background: 'linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%)', borderRadius: 'var(--radius-xl)', padding: '2.5rem', textAlign: 'center', color: 'white' }}>
           <p style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.75rem' }}>더 궁금한 점이 있으신가요?</p>
           <p style={{ opacity: 0.7, marginBottom: '1.5rem', fontSize: '0.9375rem' }}>24시간 전문 상담원이 친절하게 안내해 드립니다.</p>
-          <a href="tel:1551-5718" style={{ display: 'inline-flex', padding: '0.9rem 2rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))', color: 'white', borderRadius: '999px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 16px rgba(133,90,28,0.4)' }}>📞 1551-5718 지금 전화하기</a>
-        </div>
-      </div>
-    </>
-  );
-}
+          <a href="tel:1551-5718" style={{ display: 'inline-flex', padding: '0.9rem 2rem', background: '#22453A', color: 'white', borderRadius: '999px', fontWeight: '800', fontSize: '1rem', textDecoration: 'none', boxShadow: '0 4px 16px rgba(34,69,58,0.35)' }}>📞 1551-5718 지금 전화하기</a>
+        </div

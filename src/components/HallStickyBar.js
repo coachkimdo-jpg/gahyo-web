@@ -69,8 +69,8 @@ export default function HallStickyBar({ hallName, subtitle = '장례 준비' }) 
                 justifyContent: 'center',
                 gap: '0.15rem',
                 padding: '0.7rem 1rem',
-                background: 'var(--gold)',
-                color: '#0f172a',
+                background: '#22453A',
+                color: 'white',
                 fontWeight: '800',
                 borderRadius: '10px',
                 textDecoration: 'none',
@@ -91,6 +91,4 @@ export default function HallStickyBar({ hallName, subtitle = '장례 준비' }) 
 
       {/* Hall 상세 페이지에서는 EmergencyFloat 숨김 (스티키 바가 동일 역할) */}
       <style>{`.emergency-float { display: none !important; }`}</style>
-    </>
-  );
-}
+  

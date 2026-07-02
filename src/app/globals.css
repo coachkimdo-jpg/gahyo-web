@@ -154,7 +154,7 @@ img {
 .mobile-bar-btn:active { opacity: 0.82; }
 
 .mobile-bar-call {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  background: #22453A;
 }
 
 .mobile-bar-estimate {
@@ -189,19 +189,19 @@ img {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  background: #22453A;
   color: var(--white);
   font-weight: 600;
   font-size: 0.9375rem;
   border-radius: var(--radius-sm);
   transition: var(--transition);
-  box-shadow: 0 2px 8px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 2px 8px rgba(34, 69, 58, 0.35);
   white-space: nowrap;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.5);
+  box-shadow: 0 6px 20px rgba(34, 69, 58, 0.45);
 }
 
 .btn-secondary {
@@ -284,13 +284,13 @@ img {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  background: #22453A;
   color: white;
   font-weight: 800;
   font-size: 1rem;
   padding: 0.9rem 1.4rem;
   border-radius: 999px;
-  box-shadow: 0 6px 24px rgba(133, 90, 28, 0.5);
+  box-shadow: 0 6px 24px rgba(34, 69, 58, 0.45);
   white-space: nowrap;
   text-decoration: none;
   position: relative;
@@ -698,32 +698,4 @@ img {
   height: 152px;
 }
 .top-bar {
-  display: none !important;
-}
-
-@media (min-width: 1024px) {
-  /* 데스크탑 뷰 */
-  .top-bar {
-    display: block !important;
-  }
-  .header-spacer {
-    height: 112px; /* 36px + 76px */
-  }
-  .desktop-nav {
-    display: flex !important;
-    gap: clamp(1rem, 2.5vw, 2.5rem);
-    margin: 0 auto;
-    justify-content: center;
-    flex: 1;
-    padding: 0 2rem;
-  }
-  .mobile-scroll-nav {
-    display: none !important;
-  }
-  #mobile-menu-toggle {
-    display: none !important;
-  }
-  .desktop-cta {
-    display: inline-flex !important;
-  }
-}
+  display: none !impor

@@ -141,7 +141,7 @@ export default function FreeConsultSection() {
                 </div>
                 <a href="tel:1551-5718" style={{
                   display: 'block', padding: '0.9rem', marginBottom: '0.75rem',
-                  background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
+                  background: '#22453A',
                   color: 'white', borderRadius: '10px', fontWeight: '800',
                   fontSize: '1.05rem', textDecoration: 'none', textAlign: 'center',
                 }}>
@@ -280,9 +280,4 @@ export default function FreeConsultSection() {
 
               </form>
             )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+         

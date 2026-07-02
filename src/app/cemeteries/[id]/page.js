@@ -128,13 +128,13 @@ export default async function CemeteryDetailPage({ params }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span>🏢</span>
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>정보 수집 및 검수</div>
+                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>정보 수집 및 검수</div>
                 <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>가효상조 수석 장례지도사</div>
               </div>
             </div>
             <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
             <div>
-              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>최종 업데이트</div>
+              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>최종 업데이트</div>
               <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>{today}</div>
             </div>
           </div>
@@ -297,7 +297,7 @@ export default async function CemeteryDetailPage({ params }) {
                 </ul>
               </div>
 
-              <a href="tel:1551-5718" className="btn-primary" style={{ display: 'block', width: '100%', textAlign: 'center', background: 'var(--gold)', color: 'white', border: 'none', padding: '1rem', fontSize: '1.1rem', fontWeight: '800', borderRadius: '8px', textDecoration: 'none' }}>
+              <a href="tel:1551-5718" className="btn-primary" style={{ display: 'block', width: '100%', textAlign: 'center', background: '#22453A', color: 'white', border: 'none', padding: '1rem', fontSize: '1.1rem', fontWeight: '800', borderRadius: '8px', textDecoration: 'none' }}>
                 📞 1551-5718 상담하기
               </a>
               <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', marginTop: '0.75rem' }}>

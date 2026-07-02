@@ -136,7 +136,7 @@ export default function CemeteriesPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '1.1rem' }}>🏢</span>
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>데이터 수집 및 검수</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>데이터 수집 및 검수</div>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>가효상조 수석 장례지도사</div>
                 </div>
               </div>

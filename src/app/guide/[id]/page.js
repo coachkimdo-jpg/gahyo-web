@@ -245,7 +245,7 @@ export default async function GuideDetailPage({ params }) {
                 {Array.isArray(article.content) && article.content.map((step) => (
                   <div key={step.step}>
                     <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <span style={{ width: '28px', height: '28px', background: 'var(--gold)', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem' }}>{step.step}</span>
+                      <span style={{ width: '28px', height: '28px', background: '#22453A', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem' }}>{step.step}</span>
                       {step.title}
                     </h3>
                     <p style={{ color: '#475569', lineHeight: 1.7, fontSize: '0.95rem', paddingLeft: '2.5rem', margin: 0 }}>
@@ -327,7 +327,7 @@ export default async function GuideDetailPage({ params }) {
             당황스러운 순간, 가효상조가 곁에서 힘이 되어 드리겠습니다.<br />
             24시간 언제든 연락해 주세요.
           </p>
-          <a href="tel:1551-5718" className="btn-primary" style={{ display: 'inline-block', background: 'var(--gold)', color: 'white', border: 'none', padding: '1rem 2.5rem', fontSize: '1.1rem', fontWeight: '800', borderRadius: '999px', textDecoration: 'none' }}>
+          <a href="tel:1551-5718" className="btn-primary" style={{ display: 'inline-block', background: '#22453A', color: 'white', border: 'none', padding: '1rem 2.5rem', fontSize: '1.1rem', fontWeight: '800', borderRadius: '999px', textDecoration: 'none' }}>
             📞 1551-5718 긴급 전화상담
           </a>
         </div>

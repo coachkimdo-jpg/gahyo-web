@@ -119,13 +119,13 @@ export default function AboutPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '1.1rem' }}>🏢</span>
                 <div>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>작성 및 관리</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>작성 및 관리</div>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700' }}>가효상조 공식 운영팀</div>
                 </div>
               </div>
               <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
               <div>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>최종 업데이트</div>
+                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>최종 업데이트</div>
                 <div style={{ fontSize: '0.9rem', fontWeight: '700' }}>{today}</div>
               </div>
             </div>

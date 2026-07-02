@@ -42,8 +42,8 @@ export default function EmergencyFloat() {
         aria-label="전화 상담 1551-5718"
         style={{
           borderRadius: '36px',
-          background: 'var(--gold)',
-          color: '#0f172a',
+          background: '#22453A',
+          color: 'white',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -56,7 +56,7 @@ export default function EmergencyFloat() {
         }}
       >
         <span style={{ fontSize: '1.7rem', lineHeight: 1 }}>📞</span>
-        <span style={{ fontSize: '0.85rem', fontWeight: '900', color: '#0f172a', lineHeight: 1.2, whiteSpace: 'nowrap' }}>1551-5718</span>
+        <span style={{ fontSize: '0.85rem', fontWeight: '900', color: 'white', lineHeight: 1.2, whiteSpace: 'nowrap' }}>1551-5718</span>
       </a>
     </div>
   );
