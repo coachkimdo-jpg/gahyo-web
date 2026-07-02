@@ -351,3 +351,10 @@ export default function AboutPage() {
                 💬 카카오톡 바로 상담하기
               </a>
             </div>
+          </div>
+        </section>
+
+      </div>
+    </>
+  );
+}
