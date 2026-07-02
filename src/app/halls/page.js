@@ -89,36 +89,6 @@ export default function HallsPage() {
     <div style={{ background: 'var(--gray-bg)', minHeight: '100vh', padding: '2rem 0' }}>
       <HallStickyBar subtitle="장례식장 무료 문의" />
 
-      {/* 긴급 상담 배너 */}
-      <div style={{
-        background: 'linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%)',
-        padding: '1.5rem 1.25rem',
-        marginBottom: '0',
-      }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-          <div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--gold)', fontWeight: '700', marginBottom: '0.25rem', letterSpacing: '0.05em' }}>
-              전국 장례식장 즉시 섭외
-            </div>
-            <div style={{ fontSize: 'clamp(1rem, 3vw, 1.3rem)', fontWeight: '800', color: 'white', lineHeight: 1.3, wordBreak: 'keep-all' }}>
-              갑자기 임종하셨나요? <span style={{ color: 'var(--gold)' }}>5분 안에 연결됩니다</span>
-            </div>
-          </div>
-          <div style={{ display: 'flex', gap: '0.6rem', flexShrink: 0 }}>
-            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer" style={{
-              padding: '0.7rem 1rem', background: '#FEE500', color: '#000',
-              borderRadius: '8px', fontWeight: '800', fontSize: '0.9rem', textDecoration: 'none',
-              display: 'flex', alignItems: 'center', gap: '0.3rem',
-            }}>💬 카카오</a>
-            <a href="tel:1551-5718" style={{
-              padding: '0.7rem 1.25rem', background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
-              color: 'white', borderRadius: '8px', fontWeight: '800', fontSize: '0.9rem',
-              textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.3rem',
-            }}>📞 1551-5718</a>
-          </div>
-        </div>
-      </div>
-
       <div className="container" style={{ padding: '0 1.25rem' }}>
 
         {/* 상단 검색 필터 바 */}
