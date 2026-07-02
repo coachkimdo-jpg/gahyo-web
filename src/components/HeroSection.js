@@ -83,14 +83,14 @@ export default function HeroSection({ today }) {
               <PhoneIcon width="1.15em" height="1.15em" />
               1551-5718 · 지금 전화하기
             </a>
-            <Link href="/estimate" style={{
+            <Link href="/custom-package" style={{
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
               padding: '1.05rem 1.75rem', background: 'transparent', color: 'var(--text-primary)',
               border: '1.5px solid var(--border-color)', borderRadius: '12px',
               fontWeight: '700', fontSize: '1rem', textDecoration: 'none',
             }}>
               <DocIcon width="1.15em" height="1.15em" />
-              무료 견적 확인
+              상조 직접 구성하기
             </Link>
           </div>
 
