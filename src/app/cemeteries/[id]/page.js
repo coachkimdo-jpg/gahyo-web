@@ -53,14 +53,14 @@ export default async function CemeteryDetailPage({ params }) {
       'author': {
         '@type': 'Organization',
         'name': '가효상조',
-        'url': 'https://gahyo.com'
+        'url': 'https://gahyo.co.kr'
       },
       'dateModified': today,
       'datePublished': '2023-01-01',
       'publisher': {
         '@type': 'Organization',
         'name': '가효상조',
-        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.com/logo.png' }
+        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.co.kr/logo.png' }
       }
     },
     {

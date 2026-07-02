@@ -4,6 +4,9 @@ import HallStickyBar from '@/components/HallStickyBar';
 export const metadata = {
   title: '가효상조 소개 | 100% 후불제 상조 - 추가금 없는 확정가',
   description: '가효상조는 장례 완료 후 결제하는 100% 후불제 상조입니다. 상품 구성 임의 제외, 저질 용품 끼워넣기, 업그레이드 유도를 일절 하지 않습니다.',
+  alternates: {
+    canonical: 'https://gahyo.co.kr/about',
+  },
 };
 
 export default function AboutPage() {
@@ -25,14 +28,14 @@ export default function AboutPage() {
       'author': {
         '@type': 'Organization',
         'name': '가효상조',
-        'url': 'https://gahyo.com'
+        'url': 'https://gahyo.co.kr'
       },
       'dateModified': today,
       'datePublished': '2023-01-01',
       'publisher': {
         '@type': 'Organization',
         'name': '가효상조',
-        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.com/logo.png' }
+        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.co.kr/logo.png' }
       },
       'about': {
         '@type': 'Thing',
@@ -64,7 +67,7 @@ export default function AboutPage() {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       'name': '가효상조',
-      'url': 'https://gahyo.com',
+      'url': 'https://gahyo.co.kr',
       'contactPoint': {
         '@type': 'ContactPoint',
         'telephone': '1551-5718',
@@ -348,10 +351,3 @@ export default function AboutPage() {
                 💬 카카오톡 바로 상담하기
               </a>
             </div>
-          </div>
-        </section>
-
-      </div>
-    </>
-  );
-}

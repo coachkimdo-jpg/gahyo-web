@@ -79,9 +79,9 @@ export default async function OssuaryPage({ params }) {
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      '@id': 'https://gahyo.com/#organization',
+      '@id': 'https://gahyo.co.kr/#organization',
       name: '가효상조',
-      url: 'https://gahyo.com',
+      url: 'https://gahyo.co.kr',
       telephone: '1551-5718',
       description: '100% 후불제 상조 서비스'
     },
@@ -89,7 +89,7 @@ export default async function OssuaryPage({ params }) {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
         name: ossuary.name,
-        image: ossuary.photos?.[0] ? `https://gahyo.com${ossuary.photos[0]}` : undefined,
+        image: ossuary.photos?.[0] ? `https://gahyo.co.kr${ossuary.photos[0]}` : undefined,
         address: { '@type': 'PostalAddress', streetAddress: ossuary.address, addressCountry: 'KR' },
         telephone: ossuary.phone,
         description: ossuary.intro || `${ossuary.name} 봉안당 시설 안내`

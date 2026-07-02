@@ -5,6 +5,9 @@ import HallStickyBar from '@/components/HallStickyBar';
 export const metadata = {
   title: '후불제상조상품 비교 및 가격 안내 | 가효상조',
   description: '투명하고 정직한 가효상조의 4가지 후불제상조상품(무빈소 120, 가효 265, 가효 334, 가효 363)을 비교해 보세요. 전문가가 검증한 합리적인 장례비용입니다.',
+  alternates: {
+    canonical: 'https://gahyo.co.kr/products',
+  },
 };
 
 const PRODUCTS = [

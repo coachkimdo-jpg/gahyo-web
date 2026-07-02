@@ -73,18 +73,18 @@ export default async function NaturalBurialPage({ params }) {
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      '@id': 'https://gahyo.com/#organization',
+      '@id': 'https://gahyo.co.kr/#organization',
       name: '가효상조',
-      url: 'https://gahyo.com',
+      url: 'https://gahyo.co.kr',
       telephone: '1551-5718',
       description: '100% 후불제 상조 서비스'
     },
     {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      '@id': `https://gahyo.com/cemeteries/natural/${id}#business`,
+      '@id': `https://gahyo.co.kr/cemeteries/natural/${id}#business`,
       'name': facility.name,
-      'image': facility.photos?.[0] ? `https://gahyo.com${facility.photos[0]}` : undefined,
+      'image': facility.photos?.[0] ? `https://gahyo.co.kr${facility.photos[0]}` : undefined,
       'address': {
         '@type': 'PostalAddress',
         'streetAddress': facility.address,

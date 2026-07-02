@@ -4,7 +4,10 @@ export const metadata = {
   openGraph: {
     title: 'AI 장례 견적 계산기 | 가효상조',
     description: '지역과 장례식장을 선택하면 즉시 맞춤형 장례비용 견적을 무료로 확인할 수 있습니다.',
-  }
+  },
+  alternates: {
+    canonical: 'https://gahyo.co.kr/estimate',
+  },
 };
 
 export default function EstimateLayout({ children }) {
@@ -23,7 +26,7 @@ export default function EstimateLayout({ children }) {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
       'name': '가효상조 AI 장례 견적 계산기',
-      'url': 'https://gahyo.com/estimate',
+      'url': 'https://gahyo.co.kr/estimate',
       'description': '지역, 장례식장, 조문객 수를 입력하면 맞춤형 장례비용 예상 견적을 무료로 즉시 계산합니다.',
       'applicationCategory': 'LifestyleApplication',
       'operatingSystem': 'All',
@@ -31,7 +34,7 @@ export default function EstimateLayout({ children }) {
       'provider': {
         '@type': 'Organization',
         'name': '가효상조',
-        'url': 'https://gahyo.com',
+        'url': 'https://gahyo.co.kr',
         'telephone': '1551-5718'
       }
     },
@@ -42,14 +45,14 @@ export default function EstimateLayout({ children }) {
       'author': {
         '@type': 'Organization',
         'name': '가효상조',
-        'url': 'https://gahyo.com'
+        'url': 'https://gahyo.co.kr'
       },
       'dateModified': today,
       'datePublished': '2023-01-01',
       'publisher': {
         '@type': 'Organization',
         'name': '가효상조',
-        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.com/logo.png' }
+        'logo': { '@type': 'ImageObject', 'url': 'https://gahyo.co.kr/logo.png' }
       }
     },
     {
@@ -91,9 +94,4 @@ export default function EstimateLayout({ children }) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </>
-  );
-}
+        dangerouslySetInnerHTML={{ __html
