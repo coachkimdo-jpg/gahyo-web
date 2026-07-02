@@ -18,35 +18,35 @@ const STEPS = [
 
 const OPTIONS = {
   altar: [
-    { id: 'a_none', title: '빈소 없이 간소하게 (무빈소)', desc: '장례식장 빈소를 대여하지 않고 조용히 모십니다.', price: 0, type: 'radio' },
-    { id: 'a_traditional', title: '빈소를 차려 전통대로', desc: '조문객을 맞이하고 제례를 지낼 빈소를 마련합니다.', price: 0, type: 'radio', recommended: true },
+    { id: 'a_none', title: '빈소 없이 간소하게 (무빈소)', desc: '장례식장 빈소를 대여하지 않고 조용히 모십니다.', price: 0, type: 'radio', hint: '✓ 조용하고 경제적인 방식입니다. 최근 많은 가정이 선택하는 트렌드예요.' },
+    { id: 'a_traditional', title: '빈소를 차려 전통대로', desc: '조문객을 맞이하고 제례를 지낼 빈소를 마련합니다.', price: 0, type: 'radio', recommended: true, hint: '✓ 조문객을 정성껏 맞이할 수 있는 가장 일반적인 선택입니다.' },
   ],
   clothes: [
     { id: 'c_m', title: '남자 상복', desc: '1벌 기준 (Y셔츠, 넥타이 포함)', price: 50000, type: 'counter' },
     { id: 'c_f', title: '여자 상복', desc: '1벌 기준', price: 20000, type: 'counter' },
   ],
   vehicles: [
-    { id: 'v_amb', title: '앰블런스', desc: '자택이나 요양원, 요양병원처럼 장례식장이 함께 있지 않은 곳에서 임종하신 경우 필요한 서비스입니다. 고인을 장례식장 안치실까지 편안하게 모실 수 있도록 전용 앰뷸런스를 배차해 드립니다.', price: 100000, type: 'checkbox' },
-    { id: 'v_sprinter', title: '스프린터(8인승)', desc: '소규모 가족 이동에 적합', price: 300000, type: 'checkbox' },
-    { id: 'v_limo', title: '리무진', desc: '최고급 고인 전용 차량', price: 400000, type: 'checkbox' },
-    { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', note: '💡 장의버스 자체에 고인 이송 공간이 포함되어 있어, 버스 한 대로 고인과 유족이 함께 정중히 이동하실 수 있습니다. 리무진은 꼭 선택하지 않으셔도 됩니다.', price: 450000, type: 'checkbox' },
+    { id: 'v_amb', title: '앰블런스', desc: '자택이나 요양원, 요양병원처럼 장례식장이 함께 있지 않은 곳에서 임종하신 경우 필요한 서비스입니다. 고인을 장례식장 안치실까지 편안하게 모실 수 있도록 전용 앰뷸런스를 배차해 드립니다.', price: 100000, type: 'checkbox', hint: '✓ 요양원·요양병원에서 임종하신 경우 꼭 필요한 선택입니다.' },
+    { id: 'v_sprinter', title: '스프린터(8인승)', desc: '소규모 가족 이동에 적합', price: 300000, type: 'checkbox', hint: '✓ 소규모 가족 이동에 가장 합리적인 선택입니다.' },
+    { id: 'v_limo', title: '리무진', desc: '최고급 고인 전용 차량', price: 400000, type: 'checkbox', hint: '✓ 고인을 최고급으로 정중히 모시는 선택입니다.' },
+    { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', note: '💡 장의버스 자체에 고인 이송 공간이 포함되어 있어, 버스 한 대로 고인과 유족이 함께 정중히 이동하실 수 있습니다. 리무진은 꼭 선택하지 않으셔도 됩니다.', price: 450000, type: 'checkbox', hint: '✓ 고인과 유족이 함께 이동할 수 있는 효율적인 선택입니다. 리무진을 따로 추가하지 않아도 됩니다.' },
   ],
   staff: [
     { id: 's_count', title: '접객 도우미', desc: '1명당 총 10시간 지원 (2명 추가 시 총 20시간 지원)', note: '💡 무빈소의 경우, 접객 도우미가 필요하지 않습니다. 일반 장례 시에도 필요 시 현장에서 추가하실 수 있습니다.', price: 120000, type: 'counter' },
   ],
   shroud: [
-    { id: 'sh_none', title: '선택 안 함 (개인 준비)', desc: '사전에 준비하신 경우', price: 0, type: 'radio' },
-    { id: 'sh_cotton', title: '면수의', desc: '기본 면 100%', price: 100000, type: 'radio' },
-    { id: 'sh_hanji', title: '친환경 전통한지수의', desc: '자연 친화적 소재', price: 300000, type: 'radio' },
-    { id: 'sh_jeoma', title: '저마수의', desc: '고급 모시 재질', price: 400000, type: 'radio' },
-    { id: 'sh_daema', title: '대마수의', desc: '최고급 대마', price: 500000, type: 'radio' },
-    { id: 'sh_hanbok', title: '한복수의', desc: '전통 예절을 다하는 궁중 한복', price: 600000, type: 'radio' },
+    { id: 'sh_none', title: '선택 안 함 (개인 준비)', desc: '사전에 준비하신 경우', price: 0, type: 'radio', hint: '미리 준비하셨군요. 비용 절감에 도움이 됩니다.' },
+    { id: 'sh_cotton', title: '면수의', desc: '기본 면 100%', price: 100000, type: 'radio', hint: '✓ 가장 많이 선택되는 수의입니다. 합리적인 결정이에요.' },
+    { id: 'sh_hanji', title: '친환경 전통한지수의', desc: '자연 친화적 소재', price: 300000, type: 'radio', hint: '✓ 자연 친화적이고 정갈한 선택입니다.' },
+    { id: 'sh_jeoma', title: '저마수의', desc: '고급 모시 재질', price: 400000, type: 'radio', hint: '✓ 고급 모시 재질로 고인을 정중히 모시는 선택입니다.' },
+    { id: 'sh_daema', title: '대마수의', desc: '최고급 대마', price: 500000, type: 'radio', hint: '✓ 최고급 수의를 선택하셨습니다. 고인께 최선을 다하시는 마음이 느껴집니다.' },
+    { id: 'sh_hanbok', title: '한복수의', desc: '전통 예절을 다하는 궁중 한복', price: 600000, type: 'radio', hint: '✓ 전통 예를 갖추는 특별한 선택입니다. 고인의 마지막을 고귀하게 모실 수 있습니다.' },
   ],
   urn: [
-    { id: 'u_none', title: '선택 안 함 (개인 준비 등)', desc: '유골함을 별도 준비하시거나 매장하시는 경우', price: 0, type: 'radio' },
-    { id: 'u_wood', title: '오동나무 목함', desc: '수목장, 자연장에 적합', price: 30000, type: 'radio' },
-    { id: 'u_ceramic', title: '도자기 기본 유골함', desc: '습기에 강한 기본 도자기함', price: 150000, type: 'radio' },
-    { id: 'u_religion', title: '종교별 도자기 유골함', desc: '천주교, 기독교, 불교 맞춤 각인', price: 700000, type: 'radio' },
+    { id: 'u_none', title: '선택 안 함 (개인 준비 등)', desc: '유골함을 별도 준비하시거나 매장하시는 경우', price: 0, type: 'radio', hint: '별도 준비하신 경우 비용이 절감됩니다.' },
+    { id: 'u_wood', title: '오동나무 목함', desc: '수목장, 자연장에 적합', price: 30000, type: 'radio', hint: '✓ 수목장·자연장에 가장 적합한 합리적인 선택입니다.' },
+    { id: 'u_ceramic', title: '도자기 기본 유골함', desc: '습기에 강한 기본 도자기함', price: 150000, type: 'radio', hint: '✓ 가장 대중적이고 실용적인 유골함입니다.' },
+    { id: 'u_religion', title: '종교별 도자기 유골함', desc: '천주교, 기독교, 불교 맞춤 각인', price: 700000, type: 'radio', hint: '✓ 고인의 신앙에 맞춰 각인된 정성스러운 선택입니다.' },
   ]
 };
 
@@ -63,7 +63,7 @@ export default function CustomPackagePage() {
   const [isFinished, setIsFinished] = useState(false);
   const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
   const [consultForm, setConsultForm] = useState({ name: '', phone: '' });
-  const [consents, setConsents] = useState({ terms: false, privacy: false, night: false });
+  const [allConsent, setAllConsent] = useState(true);
   const [activeTermsModal, setActiveTermsModal] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -153,8 +153,8 @@ export default function CustomPackagePage() {
       alert('올바른 핸드폰 번호(010으로 시작)를 입력해주세요.');
       return;
     }
-    if (!consents.terms || !consents.privacy || !consents.night) {
-      alert('필수 이용약관 및 동의 항목에 모두 동의해주세요.');
+    if (!allConsent) {
+      alert('필수 이용약관에 동의해주세요.');
       return;
     }
 
@@ -370,7 +370,7 @@ export default function CustomPackagePage() {
               className="btn-primary" 
               style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.2rem', borderRadius: '12px', width: '100%', border: 'none', cursor: 'pointer' }}
             >
-              위 구성으로 상담 예약하기
+              이 구성을 장례지도사에게 바로 전달하기 — 10분 내 연락드립니다
             </button>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <button onClick={() => setIsFinished(false)} style={{ flex: 1, padding: '1rem', background: 'white', color: 'var(--navy)', border: '1px solid #cbd5e1', borderRadius: '12px', fontWeight: '700', cursor: 'pointer' }}>
@@ -392,9 +392,9 @@ export default function CustomPackagePage() {
               >
                 ✕
               </button>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', lineHeight: '1.3' }}>막막한 장례,<br/>한번에 알아보세요.</h2>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.75rem', lineHeight: '1.3' }}>구성하신 내용을<br/>지금 바로 전달드립니다</h2>
               <p style={{ fontSize: '0.95rem', color: '#64748b', marginBottom: '2.5rem', wordBreak: 'keep-all', lineHeight: '1.5' }}>
-                장례식장 빈소 할인, 장지 상담, 맞춤형 견적까지 전문 장례지도사가 고객님을 도와드립니다.
+                연락처 입력 후 10분 내 전문 장례지도사가 직접 전화드립니다. 빈소 할인·장지 상담·최종 견적까지 한 번에 확인하세요.
               </p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -419,61 +419,24 @@ export default function CustomPackagePage() {
               </div>
 
               <div style={{ marginBottom: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#334155', display: 'block', marginBottom: '1rem' }}>서비스 이용약관 및 동의 항목</span>
-                
-                <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', paddingBottom: '0.75rem', borderBottom: '1px solid #e2e8f0' }}>
-                    <input 
-                      type="checkbox" 
-                      checked={consents.terms && consents.privacy && consents.night}
-                      onChange={(e) => {
-                        const checked = e.target.checked;
-                        setConsents({ terms: checked, privacy: checked, night: checked });
-                      }}
-                      style={{ width: '1.25rem', height: '1.25rem', accentColor: '#f97316' }}
-                    />
-                    <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: '800' }}>전체 동의하기</span>
-                  </label>
-
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                      <input 
-                        type="checkbox" 
-                        checked={consents.terms}
-                        onChange={(e) => setConsents({...consents, terms: e.target.checked})}
-                        style={{ width: '1.1rem', height: '1.1rem', accentColor: '#f97316' }}
-                      />
-                      <span style={{ fontSize: '0.85rem', color: '#475569' }}>[필수] 서비스 이용약관</span>
-                    </label>
-                    <button onClick={() => setActiveTermsModal('terms')} style={{ background: 'none', border: 'none', fontSize: '0.8rem', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer' }}>보기</button>
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', cursor: 'pointer' }}>
+                  <input
+                    type="checkbox"
+                    checked={allConsent}
+                    onChange={(e) => setAllConsent(e.target.checked)}
+                    style={{ width: '1.25rem', height: '1.25rem', accentColor: '#f97316', marginTop: '2px', flexShrink: 0 }}
+                  />
+                  <div>
+                    <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: '700' }}>
+                      [필수] 서비스 이용약관, 개인정보 처리, 야간 수신에 전체 동의합니다
+                    </span>
+                    <div style={{ marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
+                      <button onClick={() => setActiveTermsModal('terms')} style={{ background: 'none', border: 'none', fontSize: '0.78rem', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer', padding: 0 }}>이용약관</button>
+                      <button onClick={() => setActiveTermsModal('privacy')} style={{ background: 'none', border: 'none', fontSize: '0.78rem', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer', padding: 0 }}>개인정보처리방침</button>
+                      <button onClick={() => setActiveTermsModal('night')} style={{ background: 'none', border: 'none', fontSize: '0.78rem', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer', padding: 0 }}>야간수신동의</button>
+                    </div>
                   </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                      <input 
-                        type="checkbox" 
-                        checked={consents.privacy}
-                        onChange={(e) => setConsents({...consents, privacy: e.target.checked})}
-                        style={{ width: '1.1rem', height: '1.1rem', accentColor: '#f97316' }}
-                      />
-                      <span style={{ fontSize: '0.85rem', color: '#475569' }}>[필수] 개인정보 수집, 이용, 제공 동의</span>
-                    </label>
-                    <button onClick={() => setActiveTermsModal('privacy')} style={{ background: 'none', border: 'none', fontSize: '0.8rem', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer' }}>보기</button>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                      <input 
-                        type="checkbox" 
-                        checked={consents.night}
-                        onChange={(e) => setConsents({...consents, night: e.target.checked})}
-                        style={{ width: '1.1rem', height: '1.1rem', accentColor: '#f97316' }}
-                      />
-                      <span style={{ fontSize: '0.85rem', color: '#475569' }}>[필수] 긴급 상황 시 수신 동의(야간)</span>
-                    </label>
-                    <button onClick={() => setActiveTermsModal('night')} style={{ background: 'none', border: 'none', fontSize: '0.8rem', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer' }}>보기</button>
-                  </div>
-                </div>
+                </label>
               </div>
 
               <button 
@@ -481,7 +444,7 @@ export default function CustomPackagePage() {
                 disabled={isSubmitting}
                 style={{ width: '100%', padding: '1.25rem', background: isSubmitting ? '#cbd5e1' : '#f97316', color: 'white', border: 'none', borderRadius: '8px', fontSize: '1.1rem', fontWeight: '800', cursor: isSubmitting ? 'not-allowed' : 'pointer', transition: 'background 0.2s' }}
               >
-                {isSubmitting ? '전송 중...' : '문의하기'}
+                {isSubmitting ? '전달 중...' : '지금 바로 전달하기'}
               </button>
 
               {activeTermsModal && (
@@ -589,20 +552,6 @@ export default function CustomPackagePage() {
 
       {/* Header Spacer */}
       <div style={{ height: '76px' }} />
-
-      {/* 긴급 전화 CTA 배너 — 위저드 위 */}
-      {!isFinished && (
-        <div style={{ background: '#1e293b', borderBottom: '3px solid #C9A84C', padding: '1rem 1.25rem', textAlign: 'center' }}>
-          <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem', wordBreak: 'keep-all' }}>
-              경황없으신 분은 직접 구성하지 않으셔도 됩니다.
-            </span>
-            <a href="tel:1551-5718" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.6rem 1.4rem', background: '#C9A84C', color: '#0f172a', borderRadius: '8px', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-              📞 1551-5718 · 지금 전화하기
-            </a>
-          </div>
-        </div>
-      )}
 
       {/* Landing Hero Section */}
       {!isFinished && (
@@ -730,6 +679,11 @@ export default function CustomPackagePage() {
                       {opt.note && (
                         <div style={{ fontSize: '0.8rem', color: '#0369a1', background: '#f0f9ff', padding: '0.6rem 0.8rem', borderRadius: '6px', marginTop: '0.6rem', lineHeight: '1.4', wordBreak: 'keep-all' }}>
                           {opt.note}
+                        </div>
+                      )}
+                      {opt.hint && isSelected && (
+                        <div style={{ fontSize: '0.83rem', color: '#16a34a', background: '#f0fdf4', padding: '0.5rem 0.75rem', borderRadius: '6px', marginTop: '0.5rem', fontWeight: '600', wordBreak: 'keep-all' }}>
+                          {opt.hint}
                         </div>
                       )}
                     </div>
