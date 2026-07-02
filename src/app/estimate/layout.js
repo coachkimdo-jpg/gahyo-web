@@ -94,4 +94,9 @@ export default function EstimateLayout({ children }) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
+}
