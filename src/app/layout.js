@@ -5,6 +5,16 @@ import EmergencyFloat from '@/components/EmergencyFloat';
 
 import Script from 'next/script';
 import { headers } from 'next/headers';
+import { Noto_Serif_KR } from 'next/font/google';
+
+// Noto Serif KR — next/font으로 자체 호스팅 (렌더 차단 없음)
+const notoSerifKR = Noto_Serif_KR({
+  weight: ['600', '700', '900'],
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+  preload: false,
+});
 
 export const metadata = {
   metadataBase: new URL('https://gahyo.co.kr'),
@@ -67,36 +77,16 @@ export default async function RootLayout({ children }) {
   const nonce = headersList.get('x-nonce') || '';
 
   return (
-    <html lang="ko">
-      <head>
-        {/* 폰트 preconnect — DNS 미리 연결 */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-
-        {/* Pretendard 동적 서브셋 — 비동기 로딩 (렌더링 비차단) */}
-        <link
-          rel="stylesheet"
-          as="style"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
-        <noscript>
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-        </noscript>
-
-        {/* Noto Serif KR — 비동기 로딩 */}
-        <link
-          rel="stylesheet"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap"
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
-        <noscript>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap" />
-        </noscript>
-      </head>
+    <html lang="ko" className={notoSerifKR.variable}>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        {/* Pretendard — afterInteractive로 비동기 로딩 (렌더 차단 없음) */}
+        <Script
+          id="pretendard-font"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css';document.head.appendChild(l);`
+          }}
+        />
         {/* Trusted Types Default Policy to allow React hydration */}
         <script nonce={nonce} dangerouslySetInnerHTML={{
           __html: `
