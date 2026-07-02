@@ -158,7 +158,7 @@ export default function ProductsPage() {
           <span style={{ display: 'inline-block', background: 'rgba(201,168,76,0.2)', color: 'var(--gold)', padding: '0.4rem 1rem', borderRadius: '999px', fontSize: '0.9rem', fontWeight: '800', marginBottom: '1rem' }}>
             거품 없는 정직한 상조
           </span>
-          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '900', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
+          <h1 style={{ fontSize: 'clamp(1.35rem, 5vw, 3rem)', fontWeight: '900', marginBottom: '1rem', letterSpacing: '-0.03em', whiteSpace: 'nowrap' }}>
             투명한 후불제상조상품 비교
           </h1>
           <p style={{ fontSize: '1.1rem', opacity: 0.9, lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
