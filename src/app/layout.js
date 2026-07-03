@@ -72,6 +72,53 @@ export const metadata = {
   },
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: '가효상조',
+  legalName: '주식회사 가효상조',
+  url: 'https://gahyo.co.kr',
+  logo: 'https://gahyo.co.kr/logo.png',
+  telephone: '1551-5718',
+  email: 'gahyofuneral@naver.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'KR',
+    addressRegion: '경기도',
+    addressLocality: '시흥시',
+    streetAddress: '은행로167번길 3, 6층 601-b21호(대야동, 대원빌딩)',
+    postalCode: '15022',
+  },
+  founder: {
+    '@type': 'Person',
+    name: '김도훈',
+    jobTitle: '대표 / 국가공인 장례지도사 1급',
+    url: 'https://gahyo.co.kr/authors/kim-do-hun',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '1551-5718',
+    contactType: 'customer service',
+    availableLanguage: 'Korean',
+    hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+  },
+  sameAs: [
+    'https://pf.kakao.com/_ntRdX',
+  ],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '가효상조',
+  url: 'https://gahyo.co.kr',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: { '@type': 'EntryPoint', urlTemplate: 'https://gahyo.co.kr/halls?q={search_term_string}' },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
 export default async function RootLayout({ children }) {
   const headersList = await headers();
   const nonce = headersList.get('x-nonce') || '';
@@ -79,6 +126,8 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="ko" className={notoSerifKR.variable}>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        {/* Organization + WebSite JSON-LD — E-E-A-T 신뢰도 신호 */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationJsonLd, websiteJsonLd]) }} />
         {/* Pretendard — afterInteractive로 비동기 로딩 (렌더 차단 없음) */}
         <Script
           id="pretendard-font"

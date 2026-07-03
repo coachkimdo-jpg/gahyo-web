@@ -107,9 +107,11 @@ export default async function GuideDetailPage({ params }) {
       'headline': article.title,
       'description': article.summary,
       'author': {
-        '@type': 'Organization',
-        'name': '가효상조',
-        'url': 'https://gahyo.co.kr'
+        '@type': 'Person',
+        'name': '김도훈',
+        'jobTitle': '국가공인 장례지도사 1급',
+        'url': 'https://gahyo.co.kr/authors/kim-do-hun',
+        'worksFor': { '@type': 'Organization', 'name': '가효상조', 'url': 'https://gahyo.co.kr' }
       },
       'datePublished': article.publishedAt,
       'dateModified': today,
@@ -171,13 +173,14 @@ export default async function GuideDetailPage({ params }) {
 
           {/* E-E-A-T 배지 */}
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', color: 'white' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <Link href="/authors/kim-do-hun" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'inherit' }}>
               <div style={{ width: '40px', height: '40px', background: 'var(--gold)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>👨‍💼</div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}>작성 및 감수</div>
-                <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>가효상조 수석 장례지도사</div>
+                <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>국가공인 장례지도사 1급 김도훈</div>
+                <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.55)' }}>제 서울-2026-00016호</div>
               </div>
-            </div>
+            </Link>
             <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.2)' }} />
             <div style={{ textAlign: 'left' }}>
               <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}>게시일</div>

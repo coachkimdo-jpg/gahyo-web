@@ -115,12 +115,15 @@ export default function Footer() {
           paddingTop: '1.75rem',
           display: 'flex',
           flexDirection: 'column',
-          gap: '0.5rem',
+          gap: '0.4rem',
         }}>
           <p style={{ fontSize: '0.8rem', lineHeight: 1.7 }}>
-            (주)가효상조 | 사업자등록번호: 733-32-01721 | 고객센터: 1551-5718 | 이메일: gahyofuneral@naver.com
+            (주)가효상조 | 대표: 김도훈 | 사업자등록번호: 733-32-01721
           </p>
-          <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>
+          <p style={{ fontSize: '0.8rem', lineHeight: 1.7 }}>
+            주소: 경기도 시흥시 은행로167번길 3, 6층 601-b21호(대야동, 대원빌딩) | 고객센터: 1551-5718 | 이메일: gahyofuneral@naver.com
+          </p>
+          <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', marginTop: '0.25rem' }}>
             © 2025 가효상조. All rights reserved.
           </p>
         </div>

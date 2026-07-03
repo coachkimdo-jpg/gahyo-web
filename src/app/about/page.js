@@ -115,20 +115,21 @@ export default function AboutPage() {
             </div>
 
             {/* 저자 및 업데이트 정보 (E-E-A-T) */}
-            <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', padding: '0.75rem 1.25rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)' }}>
+            <Link href="/authors/kim-do-hun" style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', padding: '0.75rem 1.25rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', textDecoration: 'none', color: 'inherit' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '1.1rem' }}>🏢</span>
+                <span style={{ fontSize: '1.1rem' }}>👨‍💼</span>
                 <div>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>작성 및 관리</div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: '700' }}>가효상조 공식 운영팀</div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>작성 및 감수</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--navy)' }}>김도훈 · 국가공인 장례지도사 1급</div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b' }}>제 서울-2026-00016호</div>
                 </div>
               </div>
-              <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
+              <div style={{ width: '1px', height: '20px', background: '#e2e8f0' }} />
               <div>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>최종 업데이트</div>
-                <div style={{ fontSize: '0.9rem', fontWeight: '700' }}>{today}</div>
+                <div style={{ fontSize: '0.75rem', color: '#64748b' }}>최종 업데이트</div>
+                <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--navy)' }}>{today}</div>
               </div>
-            </div>
+            </Link>
           </div>
         </header>
 
@@ -274,6 +275,38 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ── H2 섹션 3.5: 전문가 소개 (E-E-A-T) ── */}
+        <section style={{ padding: '4rem 1rem', background: '#f0f4f8' }}>
+          <div className="container" style={{ maxWidth: '800px' }}>
+            <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.5rem', paddingBottom: '0.75rem', borderBottom: '3px solid var(--gold)' }}>
+              가효상조를 이끄는 전문가
+            </h2>
+            <p style={{ color: '#475569', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>
+              가효상조의 모든 장례 가이드와 서비스는 국가공인 장례지도사가 직접 작성·감수·집행합니다.
+            </p>
+            <Link href="/authors/kim-do-hun" style={{ display: 'flex', gap: '1.5rem', background: 'white', borderRadius: '14px', padding: '2rem', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', border: '1px solid #e2e8f0', textDecoration: 'none', color: 'inherit', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+              <div style={{ width: '72px', height: '72px', background: 'linear-gradient(135deg, var(--navy), var(--navy-dark))', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', flexShrink: 0 }}>
+                👨‍💼
+              </div>
+              <div style={{ flex: 1, minWidth: '220px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '1.2rem', fontWeight: '900', color: 'var(--navy)' }}>김도훈</span>
+                  <span style={{ background: '#e6eef8', color: 'var(--navy)', fontSize: '0.75rem', fontWeight: '700', padding: '0.2rem 0.6rem', borderRadius: '999px' }}>대표</span>
+                </div>
+                <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: 1.6, marginBottom: '0.75rem' }}>
+                  보건복지부 국가공인 장례지도사 1급 (자격증 제 서울-2026-00016호). 장례 서비스 현장의 불투명한 관행을 직접 경험하고, 유가족이 경황없는 순간에도 속지 않는 투명한 장례를 받을 수 있도록 가효상조를 설립.
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {['국가공인 장례지도사 1급', '제 서울-2026-00016호', '보건복지부 인가'].map(tag => (
+                    <span key={tag} style={{ background: '#f1f5f9', color: '#334155', padding: '0.3rem 0.7rem', borderRadius: '999px', fontSize: '0.78rem', fontWeight: '600' }}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--gold-dark)', fontWeight: '700', alignSelf: 'center', flexShrink: 0 }}>프로필 보기 →</div>
+            </Link>
           </div>
         </section>
 
