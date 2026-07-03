@@ -13,6 +13,12 @@ export const metadata = {
     locale: 'ko_KR',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: '장례 가이드 | 가효상조',
+    description: '장례 절차, 비용, 예절을 전문가가 쉽게 설명합니다. 임종 후 해야 할 일부터 장지 선택까지.',
+    images: ['https://gahyo.co.kr/og-image.png'],
+  },
 };
 
 const jsonLd = [
@@ -23,6 +29,12 @@ const jsonLd = [
     url: 'https://gahyo.co.kr/guide',
     description: '투명하고 올바른 장례 문화를 위한 가효상조 장례 가이드. 복잡한 절차와 비용, 예절을 전문가가 쉽게 설명합니다.',
     publisher: { '@type': 'Organization', name: '가효상조', url: 'https://gahyo.co.kr' },
+    author: {
+      '@type': 'Person',
+      name: '김도훈',
+      jobTitle: '국가공인 장례지도사 1급',
+      url: 'https://gahyo.co.kr/authors/kim-do-hun',
+    },
   },
   {
     '@context': 'https://schema.org',

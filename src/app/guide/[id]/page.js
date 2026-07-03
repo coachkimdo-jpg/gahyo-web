@@ -77,10 +77,21 @@ export async function generateMetadata({ params }) {
   return {
     title: `${article.title} | 가효상조 장례 가이드`,
     description: article.summary,
-    keywords: [article.category, '장례가이드', '가효상조', ...article.title.split(' ')],
+    keywords: [article.category, '장례가이드', '가효상조', ...article.title.split(' ').map(w => w.replace(/[?!:.,'"~()[\]]/g, '').trim()).filter(w => w.length > 0)],
     openGraph: {
       title: `${article.title} | 가효상조 장례 가이드`,
       description: article.summary,
+      url: `https://gahyo.co.kr/guide/${encodeURIComponent(article.slug || article.id)}`,
+      siteName: '후불제상조 가효상조',
+      images: [{ url: 'https://gahyo.co.kr/og-image.png', width: 1200, height: 630 }],
+      locale: 'ko_KR',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${article.title} | 가효상조 장례 가이드`,
+      description: article.summary,
+      images: ['https://gahyo.co.kr/og-image.png'],
     },
     alternates: {
       canonical: `/guide/${encodeURIComponent(article.slug || article.id)}`,

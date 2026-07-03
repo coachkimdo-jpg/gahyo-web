@@ -149,20 +149,21 @@ export default async function GuidePage(props) {
             </div>
 
             {/* E-E-A-T 신뢰도 배지 */}
-            <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', padding: '0.7rem 1.25rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)' }}>
+            <Link href="/authors/kim-do-hun" style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', padding: '0.7rem 1.25rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', textDecoration: 'none', color: 'inherit' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '1.1rem' }}>🎓</span>
+                <span style={{ fontSize: '1.1rem' }}>👨‍💼</span>
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>콘텐츠 작성 및 감수</div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>가효상조 국가공인 장례지도사</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)' }}>콘텐츠 작성 및 감수</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>국가공인 장례지도사 1급 김도훈</div>
+                  <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.55)' }}>제 서울-2026-00016호</div>
                 </div>
               </div>
               <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>최종 업데이트</div>
+                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)' }}>최종 업데이트</div>
                 <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'white' }}>{today}</div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </header>
