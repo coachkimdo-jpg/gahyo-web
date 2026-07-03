@@ -22,6 +22,10 @@ export default async function sitemap() {
     '/products',
     '/estimate',
     '/cemeteries',
+    '/halls',
+    '/authors/kim-do-hun',
+    '/qna',
+    '/reviews',
   ];
 
   // 정적 페이지의 lastmod는 해당 페이지 소스 코드의 수정 날짜를 추적하거나 빌드 시점 활용
