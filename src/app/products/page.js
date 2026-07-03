@@ -99,9 +99,58 @@ const FAQS = [
   },
 ];
 
+const productsJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: '가효상조 후불제 상조 상품 목록',
+    url: 'https://gahyo.co.kr/products',
+    numberOfItems: 4,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '가효 무빈소 120', url: 'https://gahyo.co.kr/products' },
+      { '@type': 'ListItem', position: 2, name: '가효 265', url: 'https://gahyo.co.kr/products' },
+      { '@type': 'ListItem', position: 3, name: '가효 334', url: 'https://gahyo.co.kr/products' },
+      { '@type': 'ListItem', position: 4, name: '가효 363', url: 'https://gahyo.co.kr/products' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: '가효상조 후불제 장례 서비스',
+    provider: { '@type': 'Organization', name: '가효상조', url: 'https://gahyo.co.kr' },
+    serviceType: '장례 서비스',
+    areaServed: { '@type': 'Country', name: 'KR' },
+    description: '가입비·월납입금 없는 100% 후불제 장례 서비스. 무빈소 120만원부터 VIP 363만원까지 4가지 상조 상품.',
+    offers: [
+      { '@type': 'Offer', name: '가효 무빈소 120', price: '1200000', priceCurrency: 'KRW', description: '무빈소 간소 장례, 가족장' },
+      { '@type': 'Offer', name: '가효 265', price: '2650000', priceCurrency: 'KRW', description: '표준 3일장, 도우미 3명' },
+      { '@type': 'Offer', name: '가효 334', price: '3340000', priceCurrency: 'KRW', description: '격식 3일장, 리무진 포함' },
+      { '@type': 'Offer', name: '가효 363', price: '3630000', priceCurrency: 'KRW', description: 'VIP 3일장, 장거리 리무진' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '홈', item: 'https://gahyo.co.kr' },
+      { '@type': 'ListItem', position: 2, name: '후불제 상조 상품', item: 'https://gahyo.co.kr/products' },
+    ],
+  },
+];
+
 export default function ProductsPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productsJsonLd) }} />
       <HallStickyBar subtitle="상품 무료 상담" />
 
       {/* ── 섹션 1: 히어로 ── */}

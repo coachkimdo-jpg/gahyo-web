@@ -6,7 +6,7 @@ export const metadata = {
     description: '가효상조 고객 전용 할인 혜택이 적용되는 전국 장지 정보를 지역별로 검색하세요.',
   },
   alternates: {
-    canonical: '/cemeteries',
+    canonical: 'https://gahyo.co.kr/cemeteries',
   },
 };
 
