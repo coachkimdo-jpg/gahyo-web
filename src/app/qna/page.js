@@ -49,6 +49,14 @@ export default function QnaPage() {
       });
       
       if (res.ok) {
+        // NAVER 상담신청 완료(lead) 전환 이벤트
+        try {
+          if (window.wcs) {
+            if (!window.wcs_add) window.wcs_add = {};
+            window.wcs_add['wa'] = 's_4f49c7e0fd2c';
+            window.wcs.trans({ type: 'lead' });
+          }
+        } catch (e) {}
         setTitle(''); setAuthor(''); setEmail(''); setPhone(''); setPassword(''); setContent(''); setIsSecret(false);
         alert('문의글이 성공적으로 등록되었습니다.');
         setView('list');

@@ -122,6 +122,28 @@ export default async function RootLayout({ children }) {
             `,
           }}
         />
+        {/* NAVER 공통 스크립트 — PV 이벤트 (전환 추적) */}
+        <Script
+          id="naver-wcs"
+          strategy="afterInteractive"
+          nonce={nonce}
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                var s=document.createElement('script');
+                s.type='text/javascript';
+                s.src='//wcs.naver.net/wcslog.js';
+                s.onload=function(){
+                  if(!window.wcs_add) window.wcs_add={};
+                  window.wcs_add['wa']='s_4f49c7e0fd2c';
+                  if(window.wcs) window.wcs.inflow('gahyo.co.kr');
+                  window.wcs_do();
+                };
+                document.head.appendChild(s);
+              })();
+            `,
+          }}
+        />
         <Header />
         <main role="main" style={{ flex: 1 }}>
           {children}
