@@ -4,6 +4,8 @@ import ossuaries from '@/lib/ossuaries.json';
 import naturalBurials from '@/lib/naturalBurials.json';
 import graveyards from '@/lib/graveyards.json';
 import { getSlug } from '@/lib/utils';
+import { db } from '@/lib/firebase';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
 export const dynamic = 'force-dynamic'; // 항상 최신 데이터를 반영하도록 설정
 
@@ -69,21 +71,42 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 동적 페이지: 장례 가이드 게시물 (articles.json 기준)
+  // 동적 페이지: 장례 가이드 게시물 (Firebase 우선 → articles.json fallback)
   let articleUrls = [];
   try {
-    const dbPath = path.join(process.cwd(), 'src', 'lib', 'articles.json');
-    if (fs.existsSync(dbPath)) {
-      const dbContent = fs.readFileSync(dbPath, 'utf8');
-      const articles = JSON.parse(dbContent);
-      articleUrls = articles.map(article => ({
-        // slug 우선, 없으면 id 사용 (실제 라우팅과 동일)
+    // 1. Firebase에서 전체 아티클 가져오기
+    let allArticles = [];
+    try {
+      const q = query(collection(db, 'articles'), orderBy('id', 'desc'));
+      const snapshot = await getDocs(q);
+      allArticles = snapshot.docs.map(doc => doc.data());
+    } catch (fbErr) {
+      console.warn('Firebase fetch failed for sitemap, using local fallback:', fbErr.message);
+    }
+
+    // 2. Firebase가 비어있으면 articles.json fallback
+    if (allArticles.length === 0) {
+      const dbPath = path.join(process.cwd(), 'src', 'lib', 'articles.json');
+      if (fs.existsSync(dbPath)) {
+        allArticles = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      }
+    }
+
+    // 3. slug 기준 중복 제거 후 URL 생성
+    const seen = new Set();
+    articleUrls = allArticles
+      .filter(article => {
+        const key = article.slug || String(article.id);
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .map(article => ({
         url: `${baseUrl}/guide/${encodeURIComponent(article.slug || article.id)}`,
         lastModified: article.publishedAt ? new Date(article.publishedAt).toISOString() : new Date().toISOString(),
         changeFrequency: 'weekly',
         priority: 0.8,
       }));
-    }
   } catch (e) {
     console.error('Failed to generate article sitemap:', e);
   }
