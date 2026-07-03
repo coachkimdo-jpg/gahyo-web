@@ -91,6 +91,14 @@ export default function HallsPage() {
 
       <div className="container" style={{ padding: '0 1.25rem' }}>
 
+        {/* SEO H1 */}
+        <h1 style={{ fontSize: 'clamp(1.3rem, 3vw, 1.9rem)', fontWeight: '700', color: 'var(--text-primary)', marginBottom: '1.25rem', letterSpacing: '-0.02em', wordBreak: 'keep-all' }}>
+          전국 장례식장 찾기
+        </h1>
+        <p style={{ fontSize: '0.97rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', wordBreak: 'keep-all' }}>
+          지역을 선택하거나 이름으로 검색해 가까운 제휴 장례식장을 찾아보세요.
+        </p>
+
         {/* 상단 검색 필터 바 */}
         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
           <select
