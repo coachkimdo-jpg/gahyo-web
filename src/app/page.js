@@ -107,9 +107,8 @@ const subSec = { color: 'var(--text-secondary)', fontSize: '1.02rem', marginTop:
 export default function HomePage() {
   const today = new Date().toISOString().split('T')[0];
 
+  // Organization + WebSite는 layout.js에서 전역으로 렌더링 — 중복 방지를 위해 FAQPage만 선언
   const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://gahyo.co.kr', 'name': '가효상조', 'url': 'https://gahyo.co.kr', 'logo': 'https://gahyo.co.kr/logo.png', 'contactPoint': { '@type': 'ContactPoint', 'telephone': '1551-5718', 'contactType': 'customer service', 'areaServed': 'KR', 'availableLanguage': 'Korean' }, 'sameAs': ['https://blog.naver.com/gahyo', 'https://www.instagram.com/gahyo'] },
-    { '@context': 'https://schema.org', '@type': 'WebSite', 'name': '후불제상조 가효상조', 'alternateName': ['가효상조', 'gahyo.co.kr'], 'url': 'https://gahyo.co.kr/', 'description': '100% 후불제 상조 및 투명한 장례 서비스' },
     { '@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
       { '@type': 'Question', 'name': '후불제 상조와 선불제 상조의 가장 큰 차이점은 무엇인가요?', 'acceptedAnswer': { '@type': 'Answer', 'text': '가효상조와 같은 후불제 상조는 매월 납입하는 선불금이나 가입비가 전혀 없습니다. 장례가 모두 끝난 발인 날, 실제 사용한 서비스 비용만 결제하므로 경제적이고 투명합니다.' } },
       { '@type': 'Question', 'name': '한밤중에 임종하셨는데 지금 바로 장례식장 이동이 가능한가요?', 'acceptedAnswer': { '@type': 'Answer', 'text': '네, 가능합니다. 가효상조는 24시간 연중무휴로 운영되며, 임종 즉시 1551-5718로 전화 주시면 앰뷸런스를 배차하여 원하시는 장례식장으로 고인을 모십니다.' } },

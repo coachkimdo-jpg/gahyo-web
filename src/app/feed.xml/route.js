@@ -4,13 +4,14 @@ import path from 'path';
 
 export async function GET() {
   const baseUrl = 'https://gahyo.co.kr';
-  
+
   let articles = [];
   try {
-    const dbPath = path.join(process.cwd(), 'src', 'lib', 'db.json');
-    if (fs.existsSync(dbPath)) {
-      const dbContent = fs.readFileSync(dbPath, 'utf8');
-      articles = JSON.parse(dbContent);
+    // articles.json 사용 (db.json은 더 이상 사용하지 않음)
+    const articlesPath = path.join(process.cwd(), 'src', 'lib', 'articles.json');
+    if (fs.existsSync(articlesPath)) {
+      const content = fs.readFileSync(articlesPath, 'utf8');
+      articles = JSON.parse(content);
     }
   } catch (e) {
     console.error('Failed to load articles for RSS:', e);
@@ -21,16 +22,22 @@ export async function GET() {
     return new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0);
   });
 
-  const rssItemsXml = articles.map(article => `
+  const rssItemsXml = articles.map(article => {
+    // slug 우선, 없으면 id fallback
+    const urlKey = article.slug || article.id;
+    // 네이버 RSS 가이드: description에 전문 본문 필요
+    const fullContent = article.content || article.summary || article.title;
+    return `
     <item>
       <title><![CDATA[${article.title}]]></title>
-      <link>${baseUrl}/guide/${article.id}</link>
-      <guid>${baseUrl}/guide/${article.id}</guid>
+      <link>${baseUrl}/guide/${encodeURIComponent(urlKey)}</link>
+      <guid>${baseUrl}/guide/${encodeURIComponent(urlKey)}</guid>
       <pubDate>${new Date(article.publishedAt || new Date()).toUTCString()}</pubDate>
-      <description><![CDATA[${article.summary || article.title}]]></description>
+      <description><![CDATA[${fullContent}]]></description>
       ${article.category ? `<category>${article.category}</category>` : ''}
     </item>
-  `).join('');
+  `;
+  }).join('');
 
   const rssFeed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

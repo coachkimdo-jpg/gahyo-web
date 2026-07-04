@@ -1,10 +1,11 @@
 export default function robots() {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/admin/', '/api/'],
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+    ],
     sitemap: 'https://gahyo.co.kr/sitemap.xml',
-  }
+  };
 }

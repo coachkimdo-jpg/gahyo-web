@@ -104,6 +104,8 @@ const organizationJsonLd = {
   },
   sameAs: [
     'https://pf.kakao.com/_ntRdX',
+    'https://blog.naver.com/gahyo',
+    'https://www.instagram.com/gahyo',
   ],
 };
 
