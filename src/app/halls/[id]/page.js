@@ -42,19 +42,31 @@ export async function generateMetadata({ params }) {
   const sido = addressParts[0] || '';
   const sigungu = addressParts[1] || '';
 
+  // 메타 디스크립션용 비용 범위 계산
+  let metaPriceStr = '';
+  if (hall.facilityInfo?.pricingEnabled && hall.pricingData?.length > 0) {
+    const prices = hall.pricingData.map(r => Number(r.price)).filter(p => !isNaN(p) && p > 0);
+    if (prices.length > 0) {
+      const pMin = Math.min(...prices).toLocaleString('ko-KR');
+      const pMax = Math.max(...prices).toLocaleString('ko-KR');
+      metaPriceStr = ` 시설 이용료 ${pMin}원~${pMax}원.`;
+    }
+  }
+  const contactStr = hall.contact ? ` 전화: ${hall.contact}.` : '';
+
   return {
-    title: `${hall.name} 상조 | 후불제 · 필요한 것만 — 가효상조`,
-    description: `${hall.name} 장례를 후불제 상조로 준비하세요. 가효상조 전담 장례지도사가 빈소 수배부터 화장장 예약까지 대행하며, 필요한 품목만 직접 구성해 사용한 만큼만 정산합니다. 카카오톡 또는 1551-5718로 무료 상담.`,
+    title: `${hall.name}(${sigungu}) 정보·비용·위치 | 가효상조`,
+    description: `${hall.name} 위치·비용·시설 안내.${metaPriceStr} 주소: ${hall.address}.${contactStr} 가효상조 후불제 상조 24시간 상담 1551-5718.`,
     keywords: [
-      `${hall.name} 상조`, `${hall.name} 장례`, `${sigungu} 장례식장 상조`, `${sido} 후불제 상조`,
-      '후불제상조', '상조회사 추천', '장례 비용', '장례 준비', '가효상조',
+      `${hall.name}`, `${hall.name} 비용`, `${hall.name} 위치`, `${sigungu} 장례식장`, `${sido} 장례식장`,
+      '후불제상조', '장례 비용', '장례식장 정보', '가효상조',
     ],
     openGraph: {
-      title: `${hall.name} 상조 | 가효상조`,
-      description: `${hall.name} 후불제 상조. 필요한 품목만 골라 목돈 없이. 카카오톡 무료 상담.`,
+      title: `${hall.name}(${sigungu}) 정보·비용·위치 | 가효상조`,
+      description: `${hall.name} 위치·비용·시설 안내.${metaPriceStr}${contactStr} 가효상조 후불제 상조.`,
     },
     alternates: {
-      canonical: `/halls/${encodeURIComponent(getSlug(hall.address, hall.name))}`,
+      canonical: `https://gahyo.co.kr/halls/${encodeURIComponent(getSlug(hall.address, hall.name))}`,
     },
   };
 }
@@ -82,6 +94,17 @@ export default async function HallDetailPage({ params }) {
   const hallCount = facilityInfo.hallCount || null;
   const hasPricing = facilityInfo.pricingEnabled && pricingData && pricingData.length > 0;
 
+  // 비용 범위 계산 (페이지 상단 노출 및 JSON-LD 용)
+  let priceMin = null;
+  let priceMax = null;
+  if (hasPricing) {
+    const prices = pricingData.map(r => Number(r.price)).filter(p => !isNaN(p) && p > 0);
+    if (prices.length > 0) {
+      priceMin = Math.min(...prices);
+      priceMax = Math.max(...prices);
+    }
+  }
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -96,16 +119,18 @@ export default async function HallDetailPage({ params }) {
         'addressRegion': sido,
         'addressCountry': 'KR',
       },
-      'description': `${hall.name} 장례식장 — 가효상조 후불제 상조 서비스 안내`,
+      'description': `${hall.name} 장례식장 위치, 비용, 시설 안내`,
+      ...(hall.contact && { 'telephone': hall.contact }),
       ...(photos.length > 0 && { 'image': `https://gahyo.co.kr${photos[0]}` }),
     },
     {
       '@context': 'https://schema.org',
       '@type': 'Article',
-      'headline': `${hall.name} 상조 — 후불제로 필요한 것만`,
-      'description': `${hall.name} 장례를 가효상조 후불제 상조로 준비하는 방법`,
+      'headline': `${hall.name}(${sigungu}) 정보·비용·위치 안내`,
+      'description': `${hall.name} 장례식장 위치, 시설 이용료, 교통 정보 안내`,
       'author': { '@type': 'Organization', 'name': '가효상조', 'url': 'https://gahyo.co.kr' },
-      'datePublished': '2025-01-01',
+      'datePublished': new Date().toISOString().split('T')[0],
+      'dateModified': new Date().toISOString().split('T')[0],
       'publisher': {
         '@type': 'Organization',
         'name': '가효상조',
@@ -131,6 +156,15 @@ export default async function HallDetailPage({ params }) {
           'name': '비싼 상조 패키지를 꼭 계약해야 하나요?',
           'acceptedAnswer': { '@type': 'Answer', 'text': '아닙니다. 필요한 품목만 직접 구성하실 수 있으며, 사용한 항목만 청구됩니다.' },
         },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '홈', item: 'https://gahyo.co.kr' },
+        { '@type': 'ListItem', position: 2, name: '전국 장례식장 찾기', item: 'https://gahyo.co.kr/halls' },
+        { '@type': 'ListItem', position: 3, name: hall.name, item: `https://gahyo.co.kr/halls/${encodeURIComponent(getSlug(hall.address, hall.name))}` },
       ],
     },
   ];
@@ -180,11 +214,32 @@ export default async function HallDetailPage({ params }) {
             <Link href="/halls" style={{ color: 'var(--navy)', textDecoration: 'none', fontSize: '0.875rem' }}>← 장례식장 목록으로</Link>
           </div>
           <p style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--text-secondary)', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-            {hall.name} · 후불제 상조 안내
+            {sigungu} 장례식장 · 후불제 상조 안내
           </p>
-          <h1 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.25rem)', fontWeight: '800', color: 'var(--navy)', marginBottom: '1.25rem', letterSpacing: '-0.02em', lineHeight: 1.35 }}>
-            {hall.name} 상조,<br />필요한 것만 골라 목돈 없이
+          <h1 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.25rem)', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.75rem', letterSpacing: '-0.02em', lineHeight: 1.35 }}>
+            {hall.name}
           </h1>
+
+          {/* 핵심 정보 — 검색 의도에 직접 대응 */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.25rem', padding: '1rem 1.25rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem', color: '#334155' }}>
+              <span style={{ flexShrink: 0 }}>📍</span><span>{hall.address}</span>
+            </div>
+            {hall.contact && (
+              <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem', alignItems: 'center' }}>
+                <span style={{ flexShrink: 0 }}>📞</span>
+                <a href={`tel:${hall.contact}`} style={{ color: 'var(--navy)', fontWeight: '700', textDecoration: 'none' }}>{hall.contact}</a>
+                <span style={{ color: '#94a3b8', fontSize: '0.82rem' }}>장례식장 직통</span>
+              </div>
+            )}
+            {priceMin !== null && priceMax !== null && (
+              <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem', color: '#334155' }}>
+                <span style={{ flexShrink: 0 }}>💰</span>
+                <span>시설 이용료 <strong style={{ color: '#c0392b' }}>{priceMin.toLocaleString('ko-KR')}원 ~ {priceMax.toLocaleString('ko-KR')}원</strong></span>
+              </div>
+            )}
+          </div>
+
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, color: '#334155', marginBottom: '1.75rem' }}>
             갑작스러운 이별 앞에서 무엇부터 해야 할지 막막하실 겁니다.
             {' '}<strong>{hall.name}</strong>에서의 빈소·차량·용품·인력을 가효상조 전담 장례지도사가 대신 준비하되,
