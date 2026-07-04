@@ -27,11 +27,11 @@ export const metadata = {
     default: '가효상조 | 슬픔을 위로하는 기술, 투명한 장례 파트너',
     template: '%s | 가효상조',
   },
-  description: 'AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.',
+  description: '필요한 것만 골라 직접 구성하는 100% 후불제 상조. 가입비·월납입금 0원. 24시간 출동. 전국 200개 제휴 장례식장.',
   keywords: ['가효상조', '장례', '장례식장', '장례 견적', 'AI 장례', '수목장', '봉안당', '장례 가이드'],
   openGraph: {
     title: '가효상조 | AI 기반 투명한 장례 서비스',
-    description: 'AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.',
+    description: '필요한 것만 골라 직접 구성하는 100% 후불제 상조. 가입비·월납입금 0원. 24시간 출동. 전국 200개 제휴 장례식장.',
     url: 'https://gahyo.co.kr',
     siteName: '후불제상조 가효상조',
     images: [
@@ -58,7 +58,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '가효상조 | AI 기반 투명한 장례 서비스',
-    description: 'AI 기반 장례 견적부터 전국 장례식장 검색, 장지 안내까지. 가효상조와 함께 품격 있는 작별을 준비하세요.',
+    description: '필요한 것만 골라 직접 구성하는 100% 후불제 상조. 가입비·월납입금 0원. 24시간 출동. 전국 200개 제휴 장례식장.',
     images: ['https://gahyo.co.kr/og-image.png'],
   },
   verification: {
