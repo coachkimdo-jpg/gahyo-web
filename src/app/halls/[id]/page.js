@@ -45,7 +45,7 @@ export async function generateMetadata({ params }) {
   // 메타 디스크립션용 비용 범위 계산
   let metaPriceStr = '';
   if (hall.facilityInfo?.pricingEnabled && hall.pricingData?.length > 0) {
-    const prices = hall.pricingData.map(r => Number(r.price)).filter(p => !isNaN(p) && p > 0);
+    const prices = hall.pricingData.filter(r => r.itemType === '빈소+접객실').map(r => Number(r.price)).filter(p => !isNaN(p) && p > 0);
     if (prices.length > 0) {
       const pMin = Math.min(...prices).toLocaleString('ko-KR');
       const pMax = Math.max(...prices).toLocaleString('ko-KR');
@@ -98,7 +98,7 @@ export default async function HallDetailPage({ params }) {
   let priceMin = null;
   let priceMax = null;
   if (hasPricing) {
-    const prices = pricingData.map(r => Number(r.price)).filter(p => !isNaN(p) && p > 0);
+    const prices = pricingData.filter(r => r.itemType === '빈소+접객실').map(r => Number(r.price)).filter(p => !isNaN(p) && p > 0);
     if (prices.length > 0) {
       priceMin = Math.min(...prices);
       priceMax = Math.max(...prices);
