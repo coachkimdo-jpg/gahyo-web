@@ -5,6 +5,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import Image from 'next/image';
 import parse, { attributesToProps, domToReact } from 'html-react-parser';
 import localArticles from '@/lib/articles.json';
+import './article.css';
 
 export const dynamic = 'force-dynamic';
 

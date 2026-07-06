@@ -2,6 +2,11 @@
 const nextConfig = {
   productionBrowserSourceMaps: false,
 
+  experimental: {
+    // package.json browserslist 기반 SWC 타겟 설정 — 불필요한 폴리필 제거
+    browsersListForSwc: true,
+  },
+
   // 프로덕션 빌드 최적화
   compiler: {
     // 프로덕션에서 console.log 제거 (번들 크기 감소)
