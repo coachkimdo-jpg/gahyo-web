@@ -81,7 +81,6 @@ export default function Footer() {
                 { label: '회사 소개', href: '/about' },
                 { label: '이용약관', href: '/terms' },
                 { label: '개인정보처리방침', href: '/privacy' },
-                { label: '관리자 페이지', href: '/admin' }
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} style={{ fontSize: '0.9rem', transition: 'color 0.2s' }}>

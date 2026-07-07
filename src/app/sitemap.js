@@ -26,6 +26,12 @@ export default async function sitemap() {
     '/authors/kim-do-hun',
     '/qna',
     '/reviews',
+    '/local',
+    '/local/seoul',
+    '/local/gyeonggi',
+    '/local/incheon',
+    '/local/busan',
+    '/local/daegu',
   ];
 
   // 정적 페이지의 lastmod는 해당 페이지 소스 코드의 수정 날짜를 추적하거나 빌드 시점 활용

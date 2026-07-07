@@ -2,32 +2,34 @@
 import { useEffect, useRef, useState } from 'react';
 
 function StatCard({ end, suffix, label, color, special }) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
+  // SSR/크롤러: 실제 숫자로 초기 렌더링 — JS 로딩 전에도 "0"이 보이지 않도록
+  const [count, setCount] = useState(end);
   const ref = useRef(null);
 
   useEffect(() => {
+    if (special) return; // 가입비 0원 카드는 애니메이션 없음
     const el = ref.current;
     if (!el) return;
+
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setStarted(true); },
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        obs.disconnect();
+        // 뷰포트 진입 시 0부터 카운트 업 애니메이션
+        setCount(0);
+        let cur = 0;
+        const step = end / (1600 / 16);
+        const t = setInterval(() => {
+          cur += step;
+          if (cur >= end) { setCount(end); clearInterval(t); }
+          else setCount(Math.floor(cur));
+        }, 16);
+      },
       { threshold: 0.4 }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started || special) return;
-    let cur = 0;
-    const step = end / (1600 / 16);
-    const t = setInterval(() => {
-      cur += step;
-      if (cur >= end) { setCount(end); clearInterval(t); }
-      else setCount(Math.floor(cur));
-    }, 16);
-    return () => clearInterval(t);
-  }, [started, end, special]);
+  }, [end, special]);
 
   return (
     <div ref={ref} style={{
