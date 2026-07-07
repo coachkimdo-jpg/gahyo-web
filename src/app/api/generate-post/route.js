@@ -36,7 +36,7 @@ export async function POST(req) {
       const pricingMax = roomPrices.length ? Math.max(...roomPrices) : null;
 
       const dbArr = [
-        '[자사 DB 확인 시설 정보 — 아래 정보를 그대로 사용하고 웹 검색 결과보다 반드시 우선 적용할 것]',
+        '[확정 시설 정보 — 이 데이터가 100% 정확한 공식 데이터입니다. 그대로 본문에 사용하세요. 검색 결과와 달라도 이 데이터가 정확합니다. DB와 검색 결과의 비교 과정·메모·주석을 본문에 절대 노출하지 마세요.]',
         '시설명: ' + hallData.name,
         '주소: ' + hallData.address,
         '전화번호: ' + hallData.contact,
@@ -129,6 +129,11 @@ export async function POST(req) {
    - 검색으로 확인해야 할 것: 실제 주소, 전화번호, 빈소 수, 주차 가능 대수, 인근 화장장까지 이동 시간
    - 검색으로 확인해야 할 것: 병원 유형별 특수 사항 (암병원·원자력병원 → 방사성 동위원소 환자 특수 절차 등)
    - 검색 후에도 확인 불가 항목은 섹션 삭제. "문의 바랍니다", "확인하세요" 문구로 대체 금지.
+
+⑩ AI 내부 추론·메모 본문 노출 절대 금지 — 글을 작성하는 과정에서 판단한 내용, DB와 검색 결과 비교 메모, 데이터 출처 설명 등을 본문에 절대 삽입하지 마세요.
+   - 금지: "(관리자 DB 정보와 다름. 웹 검색 결과 확인 필요했으나, DB 정보 우선 적용. 따라서 DB 정보에 따라 6개 빈소로 명시)"
+   - 금지: "(자세한 내용은 직접 확인 필요)", "(직접 확인 필요)", "(검색 결과 기준)"
+   - 제공된 확정 데이터와 검색 결과가 다를 때: 조용히 확정 데이터를 사용하고 그 과정을 본문에 드러내지 마세요.
 
 [관리자 제공 데이터 활용 전략]
 AI 단독으로 100점 글을 만들 수 없는 이유: Google E-E-A-T의 첫 번째 E(Experience)는 AI가 증명할 수 없습니다. 이를 보완하는 방법은 관리자가 실제 데이터를 제공하거나, AI가 웹 검색으로 실제 데이터를 직접 수집하는 것입니다.
@@ -307,6 +312,12 @@ content 내부에는 반드시 웹 표준 HTML 태그만 사용해야 합니다.
 
     // Remove any img tags pointing to local /images/ paths
     finalContent = finalContent.replace(/<img[^>]*src=["'][^"']*\/images\/[^"']*["'][^>]*\/?>/gi, '');
+
+    // AI 내부 추론 누출 자동 제거 (괄호 안에 DB/검색 비교 메모가 들어간 경우)
+    finalContent = finalContent.replace(/\([^)]{0,400}(?:DB 정보|우선 적용|검색 결과 확인 필요|따라서 DB|DB 정보에 따라)[^)]*\)/g, '');
+
+    // 면피성 괄호 표현 자동 제거
+    finalContent = finalContent.replace(/\s*\([^)]{0,120}(?:자세한 내용은 직접 확인|직접 확인 필요|문의하시는 것이 좋|달라질 수 있)[^)]*\)/g, '');
 
     if (finalImageUrl) {
       const imgTag = `<img src="${finalImageUrl}" alt="${imageAlt}" width="800" height="400" loading="eager" style="width:100%;height:auto;border-radius:12px;margin:1.5rem 0;" />`;
