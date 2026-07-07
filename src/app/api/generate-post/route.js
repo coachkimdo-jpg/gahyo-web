@@ -47,6 +47,9 @@ export async function POST(req) {
         fi.quickPoint ? '특징 요약: ' + fi.quickPoint : '',
         (hallData.features || []).length ? '운영 특징: ' + hallData.features.join(', ') : '',
         (pricingMin && pricingMax) ? '빈소 임대료: 24시간 기준 ' + pricingMin.toLocaleString() + '원~' + pricingMax.toLocaleString() + '원' : '',
+        '[필수] 전화번호 ' + hallData.contact + '을(를) 반드시 본문 연락처 안내 섹션에 명시하세요.',
+        '[금지] DB에 없는 지역 주민 할인·특정 계층 감면 등 미확인 혜택을 기재하지 마세요.',
+        '[금지] 총 장례 비용 범위(예: "579만~881만 원")를 AI가 추산하여 기재하지 마세요. DB에 있는 빈소 임대료만 명시하세요.',
       ];
 
       // 원자력병원 전용: RI 환자 특수 절차 자동 주입
@@ -318,6 +321,19 @@ content 내부에는 반드시 웹 표준 HTML 태그만 사용해야 합니다.
 
     // 면피성 괄호 표현 자동 제거
     finalContent = finalContent.replace(/\s*\([^)]{0,120}(?:자세한 내용은 직접 확인|직접 확인 필요|문의하시는 것이 좋|달라질 수 있)[^)]*\)/g, '');
+
+    // 문장 수준 면피성 표현 자동 제거 (괄호 밖 일반 문장)
+    // HTML 태그(<)·마침표·줄바꿈을 경계로 삼아 해당 표현이 포함된 절·문장만 제거
+    const sentenceHedgePatterns = [
+      /[^<。.!?\n]*달라질 수 있습니다[^<。.!?\n]*[。.!?]?/g,
+      /[^<。.!?\n]*달라질 수 있으며[^<。.!?\n]*[。.!?]?/g,
+      /[^<。.!?\n]*달라질 수 있으니[^<。.!?\n]*[。.!?]?/g,
+      /[^<。.!?\n]*변동될 수 있습니다[^<。.!?\n]*[。.!?]?/g,
+      /[^<。.!?\n]*변동될 수 있으며[^<。.!?\n]*[。.!?]?/g,
+    ];
+    for (const pattern of sentenceHedgePatterns) {
+      finalContent = finalContent.replace(pattern, '');
+    }
 
     if (finalImageUrl) {
       const imgTag = `<img src="${finalImageUrl}" alt="${imageAlt}" width="800" height="400" loading="eager" style="width:100%;height:auto;border-radius:12px;margin:1.5rem 0;" />`;
