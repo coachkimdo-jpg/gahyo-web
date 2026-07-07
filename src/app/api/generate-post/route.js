@@ -2,6 +2,19 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
 import { storage } from '@/lib/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import funeralHalls from '@/lib/realData.json';
+
+function findHallByKeyword(keyword) {
+  if (!keyword || !Array.isArray(funeralHalls)) return null;
+  const cleaned = keyword
+    .replace(/장례식장|장례|이용안내|이용 안내|정보|안내|비용|후기|위치|주소|서비스/g, '')
+    .trim();
+  if (cleaned.length < 2) return null;
+  return funeralHalls.find(h => {
+    const coreName = (h.name || '').replace('장례식장', '').trim();
+    return h.name.includes(cleaned) || cleaned.includes(coreName);
+  }) || null;
+}
 
 export async function POST(req) {
   let keyword = '장례식장 비용';
@@ -11,6 +24,33 @@ export async function POST(req) {
     const body = await req.json();
     if (body.keyword) keyword = body.keyword;
     if (body.guideline) guideline = body.guideline;
+
+    // realData.json에서 시설 정보 자동 조회 → 프롬프트에 주입 (검색 결과보다 우선 적용)
+    const hallData = findHallByKeyword(keyword);
+    if (hallData) {
+      const fi = hallData.facilityInfo || {};
+      const roomPrices = (hallData.pricingData || [])
+        .filter(p => p.itemType === '빈소+접객실' && p.price > 100000)
+        .map(p => p.price);
+      const pricingMin = roomPrices.length ? Math.min(...roomPrices) : null;
+      const pricingMax = roomPrices.length ? Math.max(...roomPrices) : null;
+
+      const dbLines = [
+        '[자사 DB 확인 시설 정보 — 아래 정보를 그대로 사용하고 웹 검색 결과보다 반드시 우선 적용할 것]',
+        '시설명: ' + hallData.name,
+        '주소: ' + hallData.address,
+        '전화번호: ' + hallData.contact,
+        fi.hallCount ? '빈소 수: ' + fi.hallCount + '개' : '',
+        fi.structure ? '시설 구조: ' + fi.structure : '',
+        fi.parkingInfo ? '주차: ' + fi.parkingInfo : '',
+        fi.parkingAccess ? '교통/주차 안내: ' + fi.parkingAccess : '',
+        fi.quickPoint ? '특징 요약: ' + fi.quickPoint : '',
+        (hallData.features || []).length ? '운영 특징: ' + hallData.features.join(', ') : '',
+        (pricingMin && pricingMax) ? '빈소 임대료: 24시간 기준 ' + pricingMin.toLocaleString() + '원~' + pricingMax.toLocaleString() + '원' : '',
+      ].filter(Boolean).join('\n');
+
+      guideline = dbLines + (guideline ? '\n\n' + guideline : '');
+    }
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
