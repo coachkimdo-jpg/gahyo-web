@@ -10,6 +10,15 @@ function findHall(decodedSlug) {
   let hall = funeralHalls.find((h) => getSlug(h.address, h.name) === decodedSlug);
   if (hall) return { hall, isLegacy: false };
 
+  // 숫자 facilitycd로 매칭 (예전 URL: /halls/7000001947)
+  if (/^\d+$/.test(decodedSlug)) {
+    const byFcd = funeralHalls.find((h) => {
+      const m = String(h.id).match(/(\d+)$/);
+      return m && m[1] === decodedSlug;
+    });
+    if (byFcd) return { hall: byFcd, isLegacy: true };
+  }
+
   let legacyHall = funeralHalls.find((h) => h.id === decodedSlug);
   if (!legacyHall) {
     legacyHall = funeralHalls.find((h) => {

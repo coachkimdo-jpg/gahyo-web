@@ -13,7 +13,14 @@ export async function generateMetadata({ params }) {
   let burial = naturalBurialsData.find(g => getSlug(g.address, g.name) === decodedSlug);
   
   if (!burial) {
-    let legacyBurial = naturalBurialsData.find((g) => g.id === id || g.id === decodedSlug);
+    // 숫자 facilitycd로 매칭 (예전 URL: /cemeteries/natural/7000002012)
+    let legacyBurial = null;
+    if (/^\d+$/.test(decodedSlug)) {
+      legacyBurial = naturalBurialsData.find((g) => String(g.id) === decodedSlug);
+    }
+    if (!legacyBurial) {
+      legacyBurial = naturalBurialsData.find((g) => String(g.id) === id || String(g.id) === decodedSlug);
+    }
     if (!legacyBurial) {
       legacyBurial = naturalBurialsData.find((g) => {
         if (!g.address) return false;
@@ -47,7 +54,14 @@ export default async function NaturalBurialPage({ params }) {
   let burial = naturalBurialsData.find(g => getSlug(g.address, g.name) === decodedSlug);
   
   if (!burial) {
-    let legacyBurial = naturalBurialsData.find((g) => g.id === id || g.id === decodedSlug);
+    // 숫자 facilitycd로 매칭 (예전 URL: /cemeteries/natural/7000002012)
+    let legacyBurial = null;
+    if (/^\d+$/.test(decodedSlug)) {
+      legacyBurial = naturalBurialsData.find((g) => String(g.id) === decodedSlug);
+    }
+    if (!legacyBurial) {
+      legacyBurial = naturalBurialsData.find((g) => String(g.id) === id || String(g.id) === decodedSlug);
+    }
     if (!legacyBurial) {
       legacyBurial = naturalBurialsData.find((g) => {
         if (!g.address) return false;
