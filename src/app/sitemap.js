@@ -130,7 +130,7 @@ export default async function sitemap() {
       const halls = JSON.parse(hallsContent);
       hallUrls = halls.map(hall => ({
         url: `${baseUrl}/halls/${getSlug(hall.address, hall.name)}`,
-        lastModified: new Date().toISOString(),
+        lastModified: '2025-07-12T00:00:00.000Z',
         changeFrequency: 'monthly',
         priority: 0.7,
       }));

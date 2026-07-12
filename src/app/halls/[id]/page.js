@@ -129,8 +129,8 @@ export default async function HallDetailPage({ params }) {
       'headline': `${hall.name}(${sigungu}) 정보·비용·위치 안내`,
       'description': `${hall.name} 장례식장 위치, 시설 이용료, 교통 정보 안내`,
       'author': { '@type': 'Organization', 'name': '가효상조', 'url': 'https://gahyo.co.kr' },
-      'datePublished': new Date().toISOString().split('T')[0],
-      'dateModified': new Date().toISOString().split('T')[0],
+      'datePublished': '2025-01-01',
+      'dateModified': '2025-07-12',
       'publisher': {
         '@type': 'Organization',
         'name': '가효상조',
@@ -419,8 +419,8 @@ export default async function HallDetailPage({ params }) {
             가효상조를 믿을 수 있는 이유
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
-            <img src="/images/banners/strength1.jpg" alt="가효상조 후불제 상조 서비스 강점" style={{ width: '100%', height: 'auto', borderRadius: '12px' }} />
-            <img src="/images/banners/strength2.jpg" alt="가효상조 100% 후불제, 사용한 만큼만 정산" style={{ width: '100%', height: 'auto', borderRadius: '12px' }} />
+            <Image src="/images/banners/strength1.jpg" alt="가효상조 후불제 상조 서비스 강점" width={768} height={1376} style={{ width: '100%', height: 'auto', borderRadius: '12px' }} sizes="(max-width: 840px) 100vw, 840px" />
+            <Image src="/images/banners/strength2.jpg" alt="가효상조 100% 후불제, 사용한 만큼만 정산" width={768} height={1376} style={{ width: '100%', height: 'auto', borderRadius: '12px' }} sizes="(max-width: 840px) 100vw, 840px" />
           </div>
           <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', padding: 0, margin: 0, listStyle: 'none' }}>
             {trustItems.map((item, i) => (
