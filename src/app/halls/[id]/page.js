@@ -92,6 +92,10 @@ export default async function HallDetailPage({ params }) {
   const parkingInfo = facilityInfo.parkingInfo || null;
   const trafficInfo = facilityInfo.parkingAccess || null;
   const hallCount = facilityInfo.hallCount || null;
+  const facilityDescription = facilityInfo.description || null;
+  const quickPoint = facilityInfo.quickPoint || null;
+  const procedures = facilityInfo.procedures || null;
+  const mortuaryCapacity = facilityInfo.mortuaryCapacity || null;
   const hasPricing = facilityInfo.pricingEnabled && pricingData && pricingData.length > 0;
 
   // 비용 범위 계산 (페이지 상단 노출 및 JSON-LD 용)
@@ -119,7 +123,7 @@ export default async function HallDetailPage({ params }) {
         'addressRegion': sido,
         'addressCountry': 'KR',
       },
-      'description': `${hall.name} 장례식장 위치, 비용, 시설 안내`,
+      'description': facilityDescription || `${hall.name} 장례식장 위치, 비용, 시설 안내`,
       ...(hall.contact && { 'telephone': hall.contact }),
       ...(photos.length > 0 && { 'image': `https://gahyo.co.kr${photos[0]}` }),
     },
@@ -331,6 +335,11 @@ export default async function HallDetailPage({ params }) {
           <h2 style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '1.35rem', marginBottom: '1.25rem', paddingBottom: '0.5rem', borderBottom: '2px solid var(--gold)' }}>
             {hall.name}은 이런 곳입니다
           </h2>
+          {facilityDescription && (
+            <p style={{ fontSize: '1rem', lineHeight: 1.85, color: '#334155', marginBottom: '1.5rem', padding: '1.25rem 1.5rem', background: '#f0f4f8', borderRadius: '10px', borderLeft: '3px solid var(--navy)' }}>
+              {facilityDescription}
+            </p>
+          )}
           {photos && photos.length > 0 && (
             <div style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '0.5rem', scrollSnapType: 'x mandatory' }}>
               {photos.map((photoUrl, idx) => (
@@ -375,7 +384,31 @@ export default async function HallDetailPage({ params }) {
                 </div>
               </div>
             )}
+            {mortuaryCapacity && (
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.1rem', flexShrink: 0, marginTop: '0.1rem' }}>🏥</span>
+                <div>
+                  <span style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '0.9rem' }}>안치 능력</span>
+                  <p style={{ color: '#334155', fontSize: '0.93rem', margin: '0.2rem 0 0' }}>최대 {mortuaryCapacity}구 동시 안치 가능</p>
+                </div>
+              </div>
+            )}
+            {quickPoint && (
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start', paddingTop: '0.75rem', borderTop: '1px solid #e2e8f0', marginTop: '0.25rem' }}>
+                <span style={{ fontSize: '1.1rem', flexShrink: 0, marginTop: '0.1rem' }}>💡</span>
+                <div>
+                  <span style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '0.9rem' }}>한눈에 보기</span>
+                  <p style={{ color: '#334155', fontSize: '0.93rem', margin: '0.2rem 0 0' }}>{quickPoint}</p>
+                </div>
+              </div>
+            )}
           </div>
+          {procedures && (
+            <div style={{ marginTop: '1.25rem', padding: '1.25rem 1.5rem', background: 'white', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.5rem' }}>장례 절차 안내</h3>
+              <p style={{ fontSize: '0.93rem', lineHeight: 1.75, color: '#475569', margin: 0 }}>{procedures}</p>
+            </div>
+          )}
         </section>
 
         {/* ⑥ 요금 안내 */}
