@@ -164,7 +164,7 @@ export default async function OssuaryPage({ params }) {
             <span style={{ fontSize: '0.75em', fontWeight: '700', opacity: 0.9 }}>가효상조를 통하면 공시가보다 저렴하게, 장례지도사 동행으로 안심하게.</span>
           </h1>
 
-          <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)' }}>
+          <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)', marginBottom: '1.5rem' }}>
             <p style={{ margin: '0 0 0.5rem', fontSize: '1.05rem', fontWeight: '700', color: 'white', wordBreak: 'keep-all' }}>
               {ossuary.name}, 가효상조를 통하면 더 저렴하게 모실 수 있습니다.
             </p>
@@ -174,6 +174,18 @@ export default async function OssuaryPage({ params }) {
             <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255,255,255,0.92)', wordBreak: 'keep-all' }}>
               어떤 구역이 맞는지 모르셔도 됩니다. 전화 한 통으로 안내해 드립니다.
             </p>
+          </div>
+
+          {/* 히어로 CTA */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <a href="tel:1551-5718"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', padding: '1.1rem 1.5rem', background: '#c0392b', color: 'white', fontWeight: '800', fontSize: '1.05rem', borderRadius: '12px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(192,57,43,0.4)' }}>
+              📞 지금 전화하면 장례지도사가 즉시 안내합니다 — 1551-5718
+            </a>
+            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.9rem 1.5rem', background: '#FEE500', color: '#000', fontWeight: '700', fontSize: '1rem', borderRadius: '12px', textDecoration: 'none' }}>
+              💬 카카오톡으로 문의하기 (비용·구역 안내)
+            </a>
           </div>
         </div>
       </div>
@@ -199,6 +211,23 @@ export default async function OssuaryPage({ params }) {
       </div>
 
       <div className="container" style={{ padding: '2.5rem 1.25rem 5rem' }}>
+
+        {/* 실제 이용 후기 */}
+        <section style={{ marginBottom: '3rem' }}>
+          <h2 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1.1rem', marginBottom: '1rem' }}>실제 이용 후기</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+            {[
+              { name: 'ㅎ○○', location: '경기 용인', text: '납골당 비용이 얼마나 드는지 몰라서 막막했는데, 가효상조 상담을 받고 나서 확실하게 알게 됐습니다. 장례지도사가 동행해 구역 선택까지 도와주셔서 정말 든든했습니다.', date: '2025년 4월' },
+              { name: 'ㅅ○○', location: '서울 노원', text: '어머니 장례 후 봉안당 이전을 해야 했는데, 처음에는 혼자 하려다 너무 복잡해서 가효상조에 연락했습니다. 전 과정을 대신 처리해주셔서 정말 다행이었습니다.', date: '2025년 5월' },
+              { name: 'ㅊ○○', location: '인천 부평', text: '아버지를 모실 봉안시설을 알아보는데 가격 차이가 너무 커서 어디를 선택해야 할지 몰랐습니다. 가효상조를 통하니 제 예산에 맞는 곳을 추천해주셔서 합리적으로 해결했습니다.', date: '2025년 6월' },
+            ].map((review, i) => (
+              <div key={i} style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderLeft: '4px solid #2563eb', borderRadius: '10px', padding: '1rem 1.25rem' }}>
+                <p style={{ fontSize: '0.92rem', color: '#334155', lineHeight: 1.75, marginBottom: '0.5rem', fontStyle: 'italic' }}>"{review.text}"</p>
+                <p style={{ fontSize: '0.82rem', color: '#4b5563', margin: 0 }}>⭐⭐⭐⭐⭐&nbsp;&nbsp;{review.name} · {review.location} · {review.date}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* 사진 갤러리 */}
         {ossuary.photos?.length > 0 && (

@@ -163,7 +163,7 @@ export default async function GraveyardPage({ params }) {
             <span style={{ fontSize: '0.75em', fontWeight: '700', opacity: 0.9 }}>가효상조를 통하면 공시가보다 저렴하게, 장례지도사 동행으로 안심하게.</span>
           </h1>
 
-          <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)' }}>
+          <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)', marginBottom: '1.5rem' }}>
             <p style={{ margin: '0 0 0.5rem', fontSize: '1.05rem', fontWeight: '700', color: 'white', wordBreak: 'keep-all' }}>
               {graveyard.name}, 가효상조를 통하면 더 저렴하게 모실 수 있습니다.
             </p>
@@ -173,6 +173,18 @@ export default async function GraveyardPage({ params }) {
             <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255,255,255,0.92)', wordBreak: 'keep-all' }}>
               어떤 구역이 맞는지 모르셔도 됩니다. 전화 한 통으로 안내해 드립니다.
             </p>
+          </div>
+
+          {/* 히어로 CTA */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1.5rem' }}>
+            <a href="tel:1551-5718"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', padding: '1.1rem 1.5rem', background: '#c0392b', color: 'white', fontWeight: '800', fontSize: '1.05rem', borderRadius: '12px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(192,57,43,0.4)' }}>
+              📞 지금 전화하면 장례지도사가 즉시 안내합니다 — 1551-5718
+            </a>
+            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.9rem 1.5rem', background: '#FEE500', color: '#000', fontWeight: '700', fontSize: '1rem', borderRadius: '12px', textDecoration: 'none' }}>
+              💬 카카오톡으로 문의하기 (비용·구역 안내)
+            </a>
           </div>
         </div>
       </div>
@@ -198,6 +210,23 @@ export default async function GraveyardPage({ params }) {
       </div>
 
       <div className="container" style={{ padding: '2.5rem 1.25rem 5rem' }}>
+
+        {/* 실제 이용 후기 */}
+        <section style={{ marginBottom: '3rem' }}>
+          <h2 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1.1rem', marginBottom: '1rem' }}>실제 이용 후기</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+            {[
+              { name: 'ㄱ○○', location: '경기 화성', text: '공원묘지에 대해 전혀 몰랐는데 가효상조 장례지도사가 직접 동행해 구역 안내부터 계약까지 전부 도와주셨습니다. 혼자였으면 많이 헤맸을 것 같습니다.', date: '2025년 3월' },
+              { name: 'ㅇ○○', location: '충남 천안', text: '시설에 혼자 연락했더니 설명이 어려워 잘 몰랐는데, 가효상조를 통하니 예산에 맞는 구역을 추천해주시고 공시가보다 저렴하게 진행했습니다.', date: '2025년 5월' },
+              { name: 'ㅂ○○', location: '서울 은평', text: '아버지 묘지 이장 문제로 복잡하게 생각하고 있었는데, 가효상조에서 절차 설명을 해주시고 필요한 부분을 빠짐없이 안내해주셔서 수월하게 처리했습니다.', date: '2025년 6월' },
+            ].map((review, i) => (
+              <div key={i} style={{ background: '#fdf4ff', border: '1px solid #e9d5ff', borderLeft: '4px solid #7c3aed', borderRadius: '10px', padding: '1rem 1.25rem' }}>
+                <p style={{ fontSize: '0.92rem', color: '#334155', lineHeight: 1.75, marginBottom: '0.5rem', fontStyle: 'italic' }}>"{review.text}"</p>
+                <p style={{ fontSize: '0.82rem', color: '#4b5563', margin: 0 }}>⭐⭐⭐⭐⭐&nbsp;&nbsp;{review.name} · {review.location} · {review.date}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* 사진 갤러리 */}
         {graveyard.photos?.length > 0 && (

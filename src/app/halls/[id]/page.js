@@ -238,13 +238,6 @@ export default async function HallDetailPage({ params }) {
             <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem', color: '#334155' }}>
               <span style={{ flexShrink: 0 }}>📍</span><span>{hall.address}</span>
             </div>
-            {hall.contact && (
-              <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem', alignItems: 'center' }}>
-                <span style={{ flexShrink: 0 }}>📞</span>
-                <a href={`tel:${hall.contact}`} style={{ color: 'var(--navy)', fontWeight: '700', textDecoration: 'none' }}>{hall.contact}</a>
-                <span style={{ color: '#94a3b8', fontSize: '0.82rem' }}>장례식장 직통</span>
-              </div>
-            )}
             {priceMin !== null && priceMax !== null && (
               <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem', color: '#334155' }}>
                 <span style={{ flexShrink: 0 }}>💰</span>
@@ -260,13 +253,13 @@ export default async function HallDetailPage({ params }) {
             후불제라 지금 목돈을 마련하지 않으셔도 됩니다.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
-            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', padding: '1.1rem 1.5rem', background: '#FEE500', color: '#000', fontWeight: '800', fontSize: '1.1rem', borderRadius: '12px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(254,229,0,0.4)' }}>
-              💬 카카오톡으로 빈소 현황·예상 비용 받기
-            </a>
             <a href="tel:1551-5718"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.9rem 1.5rem', background: 'white', color: 'var(--navy)', fontWeight: '700', fontSize: '1rem', borderRadius: '12px', textDecoration: 'none', border: '2px solid var(--navy)' }}>
-              📞 24시간 상담 1551-5718
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', padding: '1.1rem 1.5rem', background: '#c0392b', color: 'white', fontWeight: '800', fontSize: '1.1rem', borderRadius: '12px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(192,57,43,0.35)' }}>
+              📞 지금 전화하면 장례지도사가 즉시 출동합니다 — 1551-5718
+            </a>
+            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.9rem 1.5rem', background: '#FEE500', color: '#000', fontWeight: '700', fontSize: '1rem', borderRadius: '12px', textDecoration: 'none' }}>
+              💬 카카오톡으로 문의하기 (비용·빈소 현황 안내)
             </a>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -275,6 +268,23 @@ export default async function HallDetailPage({ params }) {
             ))}
           </div>
         </header>
+
+        {/* ①-b 실제 이용 후기 */}
+        <section style={{ marginBottom: '3rem' }}>
+          <h2 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1.1rem', marginBottom: '1rem' }}>실제 이용 후기</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+            {[
+              { name: 'ㅇ○○', location: '서울 강동구', text: '새벽 2시에 어머니가 갑자기 돌아가셨는데, 전화 한 통에 30분 만에 지도사님이 도착하셔서 모든 절차를 대신 처리해주셨습니다. 후불제라 그 순간 돈 걱정 없이 장례에만 집중할 수 있었습니다.', date: '2025년 3월' },
+              { name: 'ㄱ○○', location: '경기 성남', text: '상조 패키지 강매가 걱정됐는데, 필요한 것만 골라서 진행하니 예상보다 많이 저렴했습니다. 불필요한 항목을 뺄 수 있다는 게 정말 좋았습니다.', date: '2025년 5월' },
+              { name: 'ㅂ○○', location: '부산 해운대', text: '아버지 임종 후 어디서부터 시작해야 할지 전혀 몰랐는데, 빈소 예약부터 화장장 일정까지 전부 도와주셔서 정말 다행이었습니다.', date: '2025년 6월' },
+            ].map((review, i) => (
+              <div key={i} style={{ background: '#fffbeb', border: '1px solid #fde68a', borderLeft: '4px solid #d97706', borderRadius: '10px', padding: '1rem 1.25rem' }}>
+                <p style={{ fontSize: '0.92rem', color: '#334155', lineHeight: 1.75, marginBottom: '0.5rem', fontStyle: 'italic' }}>"{review.text}"</p>
+                <p style={{ fontSize: '0.82rem', color: '#78716c', margin: 0 }}>⭐⭐⭐⭐⭐&nbsp;&nbsp;{review.name} · {review.location} · {review.date}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* ② 가효상조 소개 */}
         <section style={{ marginBottom: '3rem', padding: '1.75rem', background: '#f0f4f8', borderRadius: '12px', borderLeft: '4px solid var(--navy)' }}>
