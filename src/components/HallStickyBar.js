@@ -10,15 +10,15 @@ export default function HallStickyBar({ hallName, subtitle = '장례 준비' }) 
         left: 0,
         right: 0,
         zIndex: 1000,
-        background: 'linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%)',
-        borderTop: '3px solid var(--gold)',
-        boxShadow: '0 -6px 24px rgba(0,0,0,0.35)',
+        background: 'linear-gradient(135deg, #9b1c1c 0%, #c0392b 100%)',
+        borderTop: '3px solid #fbbf24',
+        boxShadow: '0 -4px 20px rgba(192,57,43,0.5)',
       }}>
         {/* 안쪽 컨테이너: 최대 너비 + 중앙 정렬 */}
         <div style={{
           maxWidth: '840px',
           margin: '0 auto',
-          padding: '0.85rem 1.25rem',
+          padding: '0.75rem 1.25rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -26,11 +26,11 @@ export default function HallStickyBar({ hallName, subtitle = '장례 준비' }) 
         }}>
           {/* 왼쪽: 안내 문구 */}
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '600', marginBottom: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.75)', fontWeight: '600', marginBottom: '0.15rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {hallName ? `${hallName} ${subtitle}` : subtitle}
             </div>
-            <div style={{ fontSize: '1rem', color: 'white', fontWeight: '800', lineHeight: 1.3 }}>
-              지금 바로 무료 상담
+            <div style={{ fontSize: '0.92rem', color: 'white', fontWeight: '800', lineHeight: 1.3 }}>
+              📞 지금 전화하면 30분 내 출동
             </div>
           </div>
 
@@ -69,14 +69,15 @@ export default function HallStickyBar({ hallName, subtitle = '장례 준비' }) 
                 justifyContent: 'center',
                 gap: '0.15rem',
                 padding: '0.7rem 1rem',
-                background: '#22453A',
-                color: 'white',
+                background: 'white',
+                color: '#c0392b',
                 fontWeight: '800',
                 borderRadius: '10px',
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
                 lineHeight: 1.2,
                 minWidth: '110px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
               }}
             >
               <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>📞</span>

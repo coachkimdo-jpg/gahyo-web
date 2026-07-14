@@ -244,6 +244,10 @@ export default async function HallDetailPage({ params }) {
                 <span>시설 이용료 <strong style={{ color: '#c0392b' }}>{priceMin.toLocaleString('ko-KR')}원 ~ {priceMax.toLocaleString('ko-KR')}원</strong></span>
               </div>
             )}
+            <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', color: '#15803d', background: '#f0fdf4', padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #bbf7d0', fontWeight: '700' }}>
+              <span style={{ flexShrink: 0 }}>💡</span>
+              <span>가효상조 이용 시 불필요한 패키지 없이 <strong>평균 30~100만 원 절약</strong> 가능</span>
+            </div>
           </div>
 
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, color: '#334155', marginBottom: '1.75rem' }}>
@@ -252,15 +256,24 @@ export default async function HallDetailPage({ params }) {
             남이 정해준 패키지가 아니라 <strong>우리 가족에게 꼭 필요한 품목만 직접 고르실 수 있습니다.</strong>{' '}
             후불제라 지금 목돈을 마련하지 않으셔도 됩니다.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
-            <a href="tel:1551-5718"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', padding: '1.1rem 1.5rem', background: '#c0392b', color: 'white', fontWeight: '800', fontSize: '1.1rem', borderRadius: '12px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(192,57,43,0.35)' }}>
-              📞 지금 전화하면 장례지도사가 즉시 출동합니다 — 1551-5718
-            </a>
-            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.9rem 1.5rem', background: '#FEE500', color: '#000', fontWeight: '700', fontSize: '1rem', borderRadius: '12px', textDecoration: 'none' }}>
-              💬 카카오톡으로 문의하기 (비용·빈소 현황 안내)
-            </a>
+          {/* B안: 방문자 상황 선택지 */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.5rem' }}>
+            <div style={{ background: '#fef2f2', border: '2px solid #c0392b', borderRadius: '14px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+              <p style={{ fontSize: '0.82rem', fontWeight: '800', color: '#7f1d1d', lineHeight: 1.35, margin: 0 }}>🚨 지금 임종·장례 상황이신가요?</p>
+              <a href="tel:1551-5718"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0.875rem 0.5rem', background: '#c0392b', color: 'white', fontWeight: '800', fontSize: '1rem', borderRadius: '10px', textDecoration: 'none', boxShadow: '0 4px 12px rgba(192,57,43,0.35)', textAlign: 'center', lineHeight: 1.35 }}>
+                <span>📞 1551-5718</span>
+                <span style={{ fontSize: '0.72rem', fontWeight: '600', opacity: 0.9, marginTop: '0.15rem' }}>즉시 전화 · 30분 내 출동</span>
+              </a>
+            </div>
+            <div style={{ background: '#fefce8', border: '2px solid #ca8a04', borderRadius: '14px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+              <p style={{ fontSize: '0.82rem', fontWeight: '800', color: '#713f12', lineHeight: 1.35, margin: 0 }}>📋 미리 알아보고 계신가요?</p>
+              <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0.875rem 0.5rem', background: '#FEE500', color: '#000', fontWeight: '800', fontSize: '1rem', borderRadius: '10px', textDecoration: 'none', textAlign: 'center', lineHeight: 1.35 }}>
+                <span>💬 카카오 상담</span>
+                <span style={{ fontSize: '0.72rem', fontWeight: '600', opacity: 0.7, marginTop: '0.15rem' }}>비용·절차 무료 안내</span>
+              </a>
+            </div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {['후불제', '사용한 품목만 정산', '강매 없음', '연중무휴 24시간'].map((badge) => (

@@ -169,23 +169,31 @@ export default async function OssuaryPage({ params }) {
               {ossuary.name}, 가효상조를 통하면 더 저렴하게 모실 수 있습니다.
             </p>
             <p style={{ margin: '0 0 0.5rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.85)' }}>
-              공시 가격에서 할인 혜택 적용 · 장례지도사 동행 서비스 무료
+              공시 가격 대비 <strong style={{ color: '#fbbf24' }}>평균 10~20% 절약</strong> · 장례지도사 동행 서비스 무료
             </p>
             <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255,255,255,0.92)', wordBreak: 'keep-all' }}>
               어떤 구역이 맞는지 모르셔도 됩니다. 전화 한 통으로 안내해 드립니다.
             </p>
           </div>
 
-          {/* 히어로 CTA */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <a href="tel:1551-5718"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', padding: '1.1rem 1.5rem', background: '#c0392b', color: 'white', fontWeight: '800', fontSize: '1.05rem', borderRadius: '12px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(192,57,43,0.4)' }}>
-              📞 지금 전화하면 장례지도사가 즉시 안내합니다 — 1551-5718
-            </a>
-            <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.9rem 1.5rem', background: '#FEE500', color: '#000', fontWeight: '700', fontSize: '1rem', borderRadius: '12px', textDecoration: 'none' }}>
-              💬 카카오톡으로 문의하기 (비용·구역 안내)
-            </a>
+          {/* B안: 방문자 상황 선택지 */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+            <div style={{ background: 'rgba(239,68,68,0.15)', border: '2px solid rgba(239,68,68,0.65)', borderRadius: '14px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+              <p style={{ fontSize: '0.82rem', fontWeight: '800', color: '#fca5a5', lineHeight: 1.35, margin: 0 }}>🚨 지금 임종·장례 상황이신가요?</p>
+              <a href="tel:1551-5718"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0.875rem 0.5rem', background: '#c0392b', color: 'white', fontWeight: '800', fontSize: '1rem', borderRadius: '10px', textDecoration: 'none', boxShadow: '0 4px 12px rgba(192,57,43,0.4)', textAlign: 'center', lineHeight: 1.35 }}>
+                <span>📞 1551-5718</span>
+                <span style={{ fontSize: '0.72rem', fontWeight: '600', opacity: 0.9, marginTop: '0.15rem' }}>즉시 전화 · 30분 내 출동</span>
+              </a>
+            </div>
+            <div style={{ background: 'rgba(251,191,36,0.12)', border: '2px solid rgba(251,191,36,0.45)', borderRadius: '14px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+              <p style={{ fontSize: '0.82rem', fontWeight: '800', color: '#fde68a', lineHeight: 1.35, margin: 0 }}>📋 미리 알아보고 계신가요?</p>
+              <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0.875rem 0.5rem', background: '#FEE500', color: '#000', fontWeight: '800', fontSize: '1rem', borderRadius: '10px', textDecoration: 'none', textAlign: 'center', lineHeight: 1.35 }}>
+                <span>💬 카카오 상담</span>
+                <span style={{ fontSize: '0.72rem', fontWeight: '600', opacity: 0.7, marginTop: '0.15rem' }}>비용·절차 무료 안내</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
