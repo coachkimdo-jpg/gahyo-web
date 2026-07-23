@@ -170,40 +170,6 @@
     }
   },
   {
-    "id": "cem_7",
-    "name": "에덴의정원 수목장",
-    "regionCode": "jeonbuk",
-    "address": "전라북도 전주시 완산구 콩쥐팥쥐로 1705-62 (효자동3가)",
-    "contact": "063-226-0107",
-    "type": "수목장",
-    "typeLabel": "자연장지",
-    "description": "지도\n250m\n자가교통이용\n전주효자공원묘지 도보로 3분거리! 서전주 IC에서 차량으로 5분거리! 전주대학교에서 차량으로 3분거리!\n전주 전시내권 초인접!\n대중교통이용",
-    "benefits": [
-      "가효상조 고객 특별 할인",
-      "무료 사전 답사 지원",
-      "연중 무휴 상담"
-    ],
-    "priceRange": "436만원 ~ 933만원",
-    "photos": [
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_0.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_1.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_2.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_3.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_4.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_5.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_6.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_7.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_8.jpg",
-      "/images/cemeteries/_EC_97_90_EB_8D_B4_EC_9D_98_EC_A0_95_EC_9B_90_EC_88_98_EB_AA_A9_EC_9E_A5_9.jpg"
-    ],
-    "facilityInfo": {
-      "burialCapacity": "12,000 개",
-      "parkingCount": "22 대",
-      "mapText": "지도\n250m\n자가교통이용\n전주효자공원묘지 도보로 3분거리! 서전주 IC에서 차량으로 5분거리! 전주대학교에서 차량으로 3분거리!\n전주 전시내권 초인접!\n대중교통이용",
-      "etcIntro": "누구나 기다려오던 명품수목장이 여러분 곁으로 다가왔습니다! 행복한 기억 평안한 쉼 에덴의정원\n사설에덴의정원 수목장 전화전화팩스팩스\n주소 전라북도 전주시 완산구 콩쥐팥쥐로 1705-62 (효자동3가)\n전화번호 063-226-0107\n팩스번호 -\n안치가능 12,000 개\n주차가능대수 22 대\n편의시설\n업데이트 12개월전\n업데이트 에덴의정원 수목장전라북도 전주시 완산구 콩쥐팥쥐로 1705-62 (효자동3가)063-226-010712개월전\n업데이트"
-    }
-  },
-  {
     "id": "cem_8",
     "name": "정안수목장",
     "regionCode": "chungnam",
