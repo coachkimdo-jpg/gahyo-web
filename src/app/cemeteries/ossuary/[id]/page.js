@@ -86,7 +86,7 @@ export default async function OssuaryPage({ params }) {
   const faqItems = [
     {
       q: `가효상조를 통하면 ${ossuary.name} 공시 가격보다 얼마나 저렴한가요?`,
-      a: `가효상조 고객에게는 제휴 장지 이용 시 별도 할인 혜택이 적용됩니다. 할인 금액은 시설 및 구역에 따라 다르며, 정확한 금액은 상담 시 안내해 드립니다. 전화 한 통으로 바로 확인 가능합니다.`
+      a: `가효상조 고객에게는 제휴 장지 이용 시 전문 장례지도사의 1:1 맞춤 컨설팅이 무료로 제공됩니다. 원하시는 조건과 예산에 맞춰 가장 적합한 구역을 찾아드리며, 정확한 비용은 상담 시 투명하게 안내해 드립니다. 전화 한 통으로 바로 확인 가능합니다.`
     },
     {
       q: `어떤 구역을 선택해야 할지 모르겠습니다. 상담이 가능한가요?`,
@@ -322,7 +322,7 @@ export default async function OssuaryPage({ params }) {
           )}
           <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--navy)', marginBottom: '0.5rem' }}>안치 비용 안내</h2>
             <p style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '1.25rem' }}>
-              * 아래 금액은 시설 공시 가격이며, 가효상조 고객은 별도 할인 혜택이 적용됩니다.
+              * 아래 금액은 시설 공시 가격이며, 정확한 비용은 가효상조 맞춤 컨설팅을 통해 안내받으실 수 있습니다.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
               {groupEntries.map(([location, items], groupIdx) => (

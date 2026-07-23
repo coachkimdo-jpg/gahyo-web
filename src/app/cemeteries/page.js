@@ -127,7 +127,7 @@ export default function CemeteriesPage() {
             <div style={{ maxWidth: '680px', padding: '1rem 1.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.18)', textAlign: 'left' }}>
               <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
                 <strong style={{ color: 'var(--gold)' }}>이 페이지는 가효상조가 직접 수집한 전국 장지 정보를 통합하여 제공합니다.</strong><br />
-                가효상조 고객은 제휴 장지 이용 시 <strong>할인 혜택 및 장례지도사 동행 서비스</strong>를 무료로 제공받으실 수 있습니다.
+                가효상조 고객은 제휴 장지 이용 시 <strong>전문 맞춤 컨설팅 및 장례지도사 동행 서비스</strong>를 무료로 제공받으실 수 있습니다.
               </p>
             </div>
 
@@ -294,7 +294,7 @@ export default function CemeteriesPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {[
               { q: '자연장지(수목장)와 봉안당의 차이는 무엇인가요?', a: '자연장지(수목장)는 화장한 골분을 나무·잔디·바위 주변에 안치하는 친환경 장법입니다. 봉안당은 실내·실외 봉안함에 골분을 모시는 형태로 정기 참배가 용이합니다. 비용은 시설의 위치와 등급에 따라 크게 다릅니다.' },
-              { q: '가효상조를 통해 장지를 이용하면 어떤 혜택이 있나요?', a: '가효상조 고객은 제휴 장지 이용 시 할인 혜택, 우선 예약, 장례지도사 동행 서비스를 무료로 제공받으실 수 있습니다. 전담 장례지도사가 장지 선택부터 안치까지 밀착 지원합니다.' },
+              { q: '가효상조를 통해 장지를 이용하면 어떤 혜택이 있나요?', a: '가효상조 고객은 제휴 장지 이용 시 맞춤 컨설팅, 우선 예약, 장례지도사 동행 서비스를 무료로 제공받으실 수 있습니다. 전담 장례지도사가 장지 선택부터 안치까지 밀착 지원합니다.' },
               { q: '수목장(자연장지) 이용 시 사전에 판정해야 하는 사항은 무엇인가요?', a: '매장(일반 묘지 안치)으로 진행할지, 화장 후 자연장지로 진행할지를 사전에 결정하셔야 합니다. 자연장지는 반드시 화장을 요구하며, 장지별로 모실 수 있는 분골(0.25평, 0.5평 등) 규격이 다르므로 사전 상담이 필수입니다.' },
             ].map((faq, i) => (
               <article key={i} style={{ background: 'white', borderRadius: '12px', padding: '1.75rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0' }}>

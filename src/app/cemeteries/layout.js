@@ -3,7 +3,7 @@ export const metadata = {
   description: '수목장, 자연장지, 봉안당, 평장 묘지까지 전국 장지 정보를 지역별로 무료 검색하세요. 가효상조를 통하면 할인 및 특별 혜택이 제공됩니다.',
   openGraph: {
     title: '전국 자연장지·봉안당·묘지 찾기 | 가효상조',
-    description: '가효상조 고객 전용 할인 혜택이 적용되는 전국 장지 정보를 지역별로 검색하세요.',
+    description: '전국 장지 정보를 지역별로 검색하고, 가효상조의 맞춤 장지 컨설팅을 받아보세요.',
     url: 'https://gahyo.co.kr/cemeteries',
     siteName: '후불제상조 가효상조',
     images: [{ url: 'https://gahyo.co.kr/og-image.png', width: 1200, height: 630 }],

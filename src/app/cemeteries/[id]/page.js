@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${cemetery.name} 안치 정보·이용 요금·오시는 길 | 가효상조`,
-    description: `${cemetery.address}에 위치한 ${cemetery.name}의 안치 정보, 이용 요금, 시설 안내 및 가효상조 고객 전용 할인 혜택을 확인하세요.`,
+    description: `${cemetery.address}에 위치한 ${cemetery.name}의 안치 정보, 이용 요금, 시설 안내 및 가효상조의 전문적인 장지 맞춤 컨설팅을 받아보세요.`,
     keywords: [cemetery.name, '자연장지', '수목장', '봉안당', '장례', '장지', cemetery.address.split(' ')[0]],
     openGraph: {
       title: `${cemetery.name} | 가효상조 장지 안내`,
@@ -80,7 +80,7 @@ export default async function CemeteryDetailPage({ params }) {
           'name': `${cemetery.name} 이용 요금은 얼마인가요?`,
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': cemetery.priceRange ? `${cemetery.name}의 이용 요금은 ${cemetery.priceRange}입니다. 가효상조를 통해 진행하시면 할인 혜택이 적용됩니다.` : `${cemetery.name}의 이용 요금은 안치 형태와 규모에 따라 다릅니다. 가효상조(1551-5718)에 문의하시면 정확한 요금을 안내해 드립니다.`
+            'text': cemetery.priceRange ? `${cemetery.name}의 이용 요금은 ${cemetery.priceRange}입니다. 가효상조 장지 컨설팅을 통해 정확하고 안전하게 안내해 드립니다.` : `${cemetery.name}의 이용 요금은 안치 형태와 규모에 따라 다릅니다. 가효상조(1551-5718)에 문의하시면 정확한 요금을 안내해 드립니다.`
           }
         },
         {
@@ -88,7 +88,7 @@ export default async function CemeteryDetailPage({ params }) {
           'name': `${cemetery.name}에 가효상조 고객 혜택이 있나요?`,
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': `네, 가효상조 고객은 ${cemetery.name} 이용 시 특별 할인 혜택과 장례지도사 동행 서비스를 무료로 받으실 수 있습니다.`
+            'text': `네, 가효상조 고객은 ${cemetery.name} 이용 시 맞춤 장지 컨설팅과 장례지도사 동행 서비스를 무료로 받으실 수 있습니다.`
           }
         }
       ]
@@ -249,12 +249,12 @@ export default async function CemeteryDetailPage({ params }) {
                   {
                     q: `${cemetery.name} 이용 요금은 얼마인가요?`,
                     a: cemetery.priceRange
-                      ? `${cemetery.name}의 이용 요금은 ${cemetery.priceRange}입니다. 가효상조를 통해 진행하시면 할인 혜택이 적용됩니다. 정확한 견적은 1551-5718로 문의해 주세요.`
+                      ? `${cemetery.name}의 이용 요금은 ${cemetery.priceRange}입니다. 가효상조 장지 컨설팅을 통해 정확하고 안전하게 안내해 드립니다. 정확한 견적은 1551-5718로 문의해 주세요.`
                       : `이용 요금은 안치 형태와 규모에 따라 다릅니다. 가효상조(1551-5718)에 문의하시면 상세 요금을 투명하게 안내해 드립니다.`
                   },
                   {
                     q: `${cemetery.name}에 가효상조 고객 혜택이 있나요?`,
-                    a: `네, 가효상조 고객은 ${cemetery.name} 이용 시 장지 할인 혜택과 장례지도사 동행 서비스를 무료로 제공받으실 수 있습니다.`
+                    a: `네, 가효상조 고객은 ${cemetery.name} 이용 시 맞춤 장지 컨설팅과 장례지도사 동행 서비스를 무료로 제공받으실 수 있습니다.`
                   }
                 ].map((faq, i) => (
                   <article key={i} style={{ background: 'var(--gray-bg)', borderRadius: '8px', padding: '1.25rem', borderLeft: '4px solid var(--gold)' }}>

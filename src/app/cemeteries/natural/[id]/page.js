@@ -86,7 +86,7 @@ export default async function NaturalBurialPage({ params }) {
   const faqItems = [
     {
       q: `가효상조를 통하면 ${facility.name} 공시 가격보다 얼마나 저렴한가요?`,
-      a: `가효상조 고객에게는 제휴 장지 이용 시 별도 할인 혜택이 적용됩니다. 할인 금액은 시설 및 구역에 따라 다르며, 정확한 금액은 상담 시 안내해 드립니다. 전화 한 통으로 바로 확인 가능합니다.`
+      a: `가효상조 고객에게는 제휴 장지 이용 시 전문 장례지도사의 1:1 맞춤 컨설팅이 무료로 제공됩니다. 원하시는 조건과 예산에 맞춰 가장 적합한 구역을 찾아드리며, 정확한 비용은 상담 시 투명하게 안내해 드립니다. 전화 한 통으로 바로 확인 가능합니다.`
     },
     {
       q: `어떤 구역을 선택해야 할지 모르겠습니다. 상담이 가능한가요?`,
@@ -321,7 +321,7 @@ export default async function NaturalBurialPage({ params }) {
               예상 비용: {facility.priceRange}
             </p>
             <p style={{ margin: '0 0 1.25rem', fontSize: '0.9rem', color: '#16a34a' }}>
-              * 정확한 이용 비용은 구역과 형태에 따라 다릅니다. 가효상조 고객에게는 별도 할인 혜택이 적용됩니다.
+              * 정확한 이용 비용은 구역과 형태에 따라 다릅니다. 세부적인 맞춤 컨설팅은 가효상조로 문의해 주세요.
             </p>
             <a href="tel:1551-5718" style={{ display: 'block', textAlign: 'center', background: '#166534', color: 'white', textDecoration: 'none', padding: '1rem', borderRadius: '8px', fontWeight: '700', fontSize: '1.1rem' }}>
               전화로 실시간 비용 문의하기 (1551-5718)

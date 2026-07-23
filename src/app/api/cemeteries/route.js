@@ -12,7 +12,7 @@ const ossuariesData = ossuariesRaw.map(o => ({
   address: o.address,
   description: o.intro || '상세 정보는 페이지를 확인하세요.',
   priceRange: o.priceRange || '전화 문의',
-  benefits: ['할인 혜택', '전문 상담', '장례지도사 동행'],
+  benefits: ['맞춤 컨설팅', '전문 상담', '장례지도사 동행'],
   photos: o.photos,
   isOssuary: true
 }));
@@ -26,7 +26,7 @@ const naturalBurialsData = naturalBurialsRaw.map(n => ({
   address: n.address,
   description: n.intro || '상세 정보는 페이지를 확인하세요.',
   priceRange: n.priceRange || '전화 문의',
-  benefits: ['할인 혜택', '방문 상담', '장례지도사 동행'],
+  benefits: ['맞춤 컨설팅', '방문 상담', '장례지도사 동행'],
   photos: n.photos,
   isNatural: true
 }));
@@ -40,7 +40,7 @@ const graveyardsData = graveyardsRaw.map(g => ({
   address: g.address,
   description: g.intro || '상세 정보는 페이지를 확인하세요.',
   priceRange: g.priceRange || '전화 문의',
-  benefits: ['할인 혜택', '방문 상담', '장례지도사 동행'],
+  benefits: ['맞춤 컨설팅', '방문 상담', '장례지도사 동행'],
   photos: g.photos,
   isGraveyard: true
 }));
