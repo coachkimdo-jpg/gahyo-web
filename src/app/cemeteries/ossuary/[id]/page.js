@@ -161,15 +161,15 @@ export default async function OssuaryPage({ params }) {
 
           <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: '800', lineHeight: 1.4, marginBottom: '1.25rem' }}>
             {ossuary.name}에 모시고 싶으신가요?<br />
-            <span style={{ fontSize: '0.75em', fontWeight: '700', opacity: 0.9 }}>가효상조를 통하면 공시가보다 저렴하게, 장례지도사 동행으로 안심하게.</span>
+            <span style={{ fontSize: '0.75em', fontWeight: '700', opacity: 0.9 }}>가효상조의 전문적인 장지 컨설팅, 장례지도사 동행으로 안심하게.</span>
           </h1>
 
           <div style={{ background: 'rgba(255,255,255,0.06)', padding: '1.25rem 1.5rem', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', borderLeft: '4px solid var(--gold)', marginBottom: '1.5rem' }}>
             <p style={{ margin: '0 0 0.5rem', fontSize: '1.05rem', fontWeight: '700', color: 'white', wordBreak: 'keep-all' }}>
-              {ossuary.name}, 가효상조를 통하면 더 저렴하게 모실 수 있습니다.
+              {ossuary.name}, 가효상조와 함께라면 더욱 편안하고 정확하게 모실 수 있습니다.
             </p>
             <p style={{ margin: '0 0 0.5rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.85)' }}>
-              공시 가격 대비 <strong style={{ color: '#fbbf24' }}>평균 10~20% 절약</strong> · 장례지도사 동행 서비스 무료
+              전문 장례지도사의 <strong style={{ color: '#fbbf24' }}>1:1 맞춤 컨설팅</strong> · 장지 동행 서비스 무료 지원
             </p>
             <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255,255,255,0.92)', wordBreak: 'keep-all' }}>
               어떤 구역이 맞는지 모르셔도 됩니다. 전화 한 통으로 안내해 드립니다.
