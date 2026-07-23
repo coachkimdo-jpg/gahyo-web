@@ -290,7 +290,7 @@ export default async function OssuaryPage({ params }) {
               <div style={{ fontWeight: '700', fontSize: '1rem', marginBottom: '0.25rem', color: 'rgba(255,255,255,0.85)' }}>지금 바로 연결하세요. 24시간 무료 상담</div>
               <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--gold)', marginBottom: '0.75rem' }}>1551-5718</div>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.92)', marginBottom: '1.25rem', lineHeight: 1.6, wordBreak: 'keep-all' }}>
-                가효상조 고객 전용 할인 적용<br/>장례지도사 현장 동행 무료
+                가효상조 맞춤 장지 컨설팅 지원<br/>장례지도사 현장 동행 무료
               </p>
               <a href="tel:1551-5718" style={{ display: 'block', background: '#22453A', color: 'white', textDecoration: 'none', padding: '0.9rem', borderRadius: '8px', fontWeight: '800', fontSize: '1rem' }}>
                 지금 바로 전화하기
