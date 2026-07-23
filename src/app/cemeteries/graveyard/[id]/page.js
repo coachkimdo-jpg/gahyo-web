@@ -84,7 +84,7 @@ export default async function GraveyardPage({ params }) {
 
   const faqItems = [
     {
-      q: `가효상조를 통하면 ${graveyard.name} 공시 가격보다 얼마나 저렴한가요?`,
+      q: `가효상조를 통하면 ${graveyard.name} 이용 시 어떤 맞춤 혜택이 있나요?`,
       a: `가효상조 고객에게는 제휴 장지 이용 시 전문 장례지도사의 1:1 맞춤 컨설팅이 무료로 제공됩니다. 원하시는 조건과 예산에 맞춰 가장 적합한 구역을 찾아드리며, 정확한 비용은 상담 시 투명하게 안내해 드립니다. 전화 한 통으로 바로 확인 가능합니다.`
     },
     {
