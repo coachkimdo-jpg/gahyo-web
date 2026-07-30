@@ -7,7 +7,7 @@ import { getSlug } from '@/lib/utils';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
-export const dynamic = 'force-dynamic'; // 항상 최신 데이터를 반영하도록 설정
+export const revalidate = 86400; // 24시간 캐시 — 네이버/구글 크롤러 타임아웃 방지
 
 export default async function sitemap() {
   const baseUrl = 'https://gahyo.co.kr';
