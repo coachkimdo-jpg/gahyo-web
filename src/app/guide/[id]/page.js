@@ -247,7 +247,7 @@ export default async function GuideDetailPage({ params }) {
                           width={numWidth}
                           height={numHeight}
                           priority={priority === 'true'}
-                          unoptimized={src && src.includes('firebasestorage.googleapis.com')}
+                          unoptimized={!!(src && (src.includes('firebasestorage.googleapis.com') || src.includes('cloudinary.com')))}
                           style={{ maxWidth: '100%', height: 'auto', borderRadius: '12px', margin: '2.5rem auto', display: 'block' }}
                         />
                       );

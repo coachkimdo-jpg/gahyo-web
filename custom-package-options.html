@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가효상조 맞춤 상품 옵션 정리</title>
+<style>
+  body { font-family: 'Malgun Gothic', sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #1e293b; background: #f8fafc; }
+  h1 { font-size: 1.6rem; font-weight: 900; color: #002c5f; border-bottom: 3px solid #d4af37; padding-bottom: 12px; margin-bottom: 8px; }
+  .subtitle { color: #64748b; font-size: 0.9rem; margin-bottom: 40px; }
+  h2 { font-size: 1.1rem; font-weight: 800; color: #002c5f; margin: 36px 0 12px; background: #e8f0fb; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #002c5f; }
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 8px; }
+  th { background: #002c5f; color: white; padding: 10px 14px; text-align: left; font-size: 0.85rem; }
+  td { padding: 11px 14px; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) { background: #f8fafc; }
+  .price { font-weight: 700; color: #002c5f; white-space: nowrap; }
+  .price-zero { color: #64748b; }
+  .type-badge { display: inline-block; font-size: 0.72rem; padding: 2px 7px; border-radius: 20px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+  .radio { background: #dbeafe; color: #1d4ed8; }
+  .checkbox { background: #fef3c7; color: #92400e; }
+  .counter { background: #d1fae5; color: #065f46; }
+  .recommended { background: #fbbf24; color: #7c2d12; padding: 2px 8px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; margin-left: 6px; vertical-align: middle; }
+  .base-price-box { background: white; border: 2px solid #d4af37; border-radius: 10px; padding: 16px 20px; margin-bottom: 8px; display: flex; gap: 32px; }
+  .base-item { text-align: center; }
+  .base-item .label { font-size: 0.82rem; color: #64748b; margin-bottom: 4px; }
+  .base-item .amount { font-size: 1.3rem; font-weight: 900; color: #002c5f; }
+  .note-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; color: #78350f; margin-top: 4px; line-height: 1.5; }
+  .info-note { color: #0369a1; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; padding: 6px 10px; font-size: 0.8rem; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<h1>가효상조 맞춤 상품 — 옵션 전체 정리</h1>
+<p class="subtitle">출처: /custom-package 페이지 소스코드 기준 | 총 6단계 구성</p>
+
+<!-- 기본 요금 -->
+<h2>📦 기본 포함 요금 (1단계 빈소 선택에 따라 달라짐)</h2>
+<div class="base-price-box">
+  <div class="base-item">
+    <div class="label">빈소 없이 간소하게 (무빈소) 선택 시</div>
+    <div class="amount">1,200,000원</div>
+  </div>
+  <div style="width:1px;background:#e2e8f0;"></div>
+  <div class="base-item">
+    <div class="label">빈소를 차려 전통대로 선택 시 <span class="recommended">추천</span></div>
+    <div class="amount">1,150,000원</div>
+  </div>
+</div>
+
+<div class="note-box">
+  ✓ 무빈소 기준 기본 포함: 장례지도사 1명(3일), 입관지도사 1명, 스프린터 8인승, 상주용품 3종, 입관용품 16종, 안치실 예약, 화장장 예약, 장지 할인, 유품 정리 할인, 법률 상담 무료<br>
+  ✓ 빈소 기준 기본 포함: 장례지도사 1명(3일), 입관지도사 2명, 빈소용품, 입관용품, 빈소 예약, 모바일 부고 문자, 화장장 예약, 장지 할인, 유품 정리 할인, 법률 상담 무료
+</div>
+
+<!-- 1단계: 빈소 -->
+<h2>1단계: 빈소 선택 <span class="type-badge radio">단일 선택</span></h2>
+<table>
+  <tr><th>옵션명</th><th>설명</th><th>기본 요금 적용</th></tr>
+  <tr>
+    <td>빈소 없이 간소하게 (무빈소)</td>
+    <td>장례식장 빈소를 대여하지 않고 조용히 모십니다</td>
+    <td class="price">1,200,000원</td>
+  </tr>
+  <tr>
+    <td>빈소를 차려 전통대로 <span class="recommended">추천</span></td>
+    <td>조문객을 맞이하고 제례를 지낼 빈소를 마련합니다</td>
+    <td class="price">1,150,000원</td>
+  </tr>
+</table>
+
+<!-- 2단계: 상복 -->
+<h2>2단계: 상복 선택 <span class="type-badge counter">수량 선택</span></h2>
+<table>
+  <tr><th>옵션명</th><th>설명</th><th>단가</th></tr>
+  <tr>
+    <td>남자 상복</td>
+    <td>1벌 기준 (Y셔츠, 넥타이 포함)</td>
+    <td class="price">+50,000원/벌</td>
+  </tr>
+  <tr>
+    <td>여자 상복</td>
+    <td>1벌 기준</td>
+    <td class="price">+20,000원/벌</td>
+  </tr>
+</table>
+
+<!-- 3단계: 차량 -->
+<h2>3단계: 차량 선택 <span class="type-badge checkbox">복수 선택 가능</span></h2>
+<table>
+  <tr><th>옵션명</th><th>설명</th><th>가격</th></tr>
+  <tr>
+    <td>앰블런스</td>
+    <td>
+      자택·요양원·요양병원 등 장례식장이 아닌 곳에서 임종하신 경우 필요. 고인을 안치실까지 이송
+      <div class="info-note">✓ 요양원·요양병원 임종 시 필수</div>
+    </td>
+    <td class="price">+100,000원</td>
+  </tr>
+  <tr>
+    <td>스프린터 (8인승)</td>
+    <td>
+      소규모 가족 이동에 적합
+      <div class="info-note">✓ 소규모 가족 이동에 가장 합리적</div>
+    </td>
+    <td class="price">+300,000원</td>
+  </tr>
+  <tr>
+    <td>리무진</td>
+    <td>
+      최고급 고인 전용 차량 (화장장까지 편도 운행 기준)
+      <div class="info-note">✓ 장의버스 선택 시 리무진 불필요할 수 있음</div>
+    </td>
+    <td class="price">+400,000원</td>
+  </tr>
+  <tr>
+    <td>장의버스 (45인승)</td>
+    <td>
+      유족 및 조문객 이동용 대형 버스. 버스 자체에 고인 이송 공간 포함 → 고인과 유족이 함께 이동 가능
+      <div class="info-note">✓ 버스 선택 시 리무진 별도 추가 불필요</div>
+    </td>
+    <td class="price">+450,000원</td>
+  </tr>
+</table>
+
+<!-- 4단계: 도우미 -->
+<h2>4단계: 접객 도우미 선택 <span class="type-badge counter">수량 선택</span></h2>
+<table>
+  <tr><th>옵션명</th><th>설명</th><th>단가</th></tr>
+  <tr>
+    <td>접객 도우미</td>
+    <td>
+      1명당 총 10시간 지원 (2명 추가 시 총 20시간 지원)
+      <div class="info-note">💡 무빈소의 경우 도우미 불필요. 시간 초과 시 시간당 2만원 추가</div>
+    </td>
+    <td class="price">+120,000원/명</td>
+  </tr>
+</table>
+
+<!-- 5단계: 수의 -->
+<h2>5단계: 수의 선택 <span class="type-badge radio">단일 선택</span></h2>
+<table>
+  <tr><th>옵션명</th><th>설명</th><th>가격</th></tr>
+  <tr>
+    <td>선택 안 함 (개인 준비)</td>
+    <td>사전에 준비하신 경우</td>
+    <td class="price price-zero">0원</td>
+  </tr>
+  <tr>
+    <td>면수의</td>
+    <td>기본 면 100%</td>
+    <td class="price">+100,000원</td>
+  </tr>
+  <tr>
+    <td>친환경 전통한지수의</td>
+    <td>자연 친화적 소재</td>
+    <td class="price">+300,000원</td>
+  </tr>
+  <tr>
+    <td>저마수의</td>
+    <td>고급 모시 재질</td>
+    <td class="price">+400,000원</td>
+  </tr>
+  <tr>
+    <td>대마수의</td>
+    <td>최고급 대마</td>
+    <td class="price">+500,000원</td>
+  </tr>
+  <tr>
+    <td>한복수의</td>
+    <td>전통 예절을 다하는 궁중 한복</td>
+    <td class="price">+600,000원</td>
+  </tr>
+</table>
+
+<!-- 6단계: 납골함 -->
+<h2>6단계: 납골함 선택 <span class="type-badge radio">단일 선택</span></h2>
+<table>
+  <tr><th>옵션명</th><th>설명</th><th>가격</th></tr>
+  <tr>
+    <td>선택 안 함 (개인 준비 등)</td>
+    <td>유골함을 별도 준비하시거나 매장하시는 경우</td>
+    <td class="price price-zero">0원</td>
+  </tr>
+  <tr>
+    <td>오동나무 목함</td>
+    <td>수목장, 자연장에 적합</td>
+    <td class="price">+30,000원</td>
+  </tr>
+  <tr>
+    <td>도자기 기본 유골함</td>
+    <td>습기에 강한 기본 도자기함</td>
+    <td class="price">+150,000원</td>
+  </tr>
+  <tr>
+    <td>종교별 도자기 유골함</td>
+    <td>천주교, 기독교, 불교 맞춤 각인</td>
+    <td class="price">+700,000원</td>
+  </tr>
+</table>
+
+<!-- 최소~최대 견적 요약 -->
+<h2>💰 견적 범위 요약</h2>
+<table>
+  <tr><th>구성</th><th>기본 요금</th><th>옵션 최소</th><th>예시 총액</th></tr>
+  <tr>
+    <td>최소 구성 (무빈소, 옵션 없음)</td>
+    <td>1,200,000원</td>
+    <td>0원</td>
+    <td class="price">1,200,000원</td>
+  </tr>
+  <tr>
+    <td>일반 구성 (빈소+상복2+수의+납골함)</td>
+    <td>1,150,000원</td>
+    <td>남상복 1벌+면수의+목함 = 180,000원</td>
+    <td class="price">약 1,330,000원~</td>
+  </tr>
+  <tr>
+    <td>풀 구성 (빈소+차량+도우미+최고급)</td>
+    <td>1,150,000원</td>
+    <td>리무진+버스+도우미3명+한복수의+종교납골함</td>
+    <td class="price">약 3,600,000원~</td>
+  </tr>
+</table>
+
+<div class="note-box" style="margin-top:24px;">
+  <strong>추가 비용 안내</strong><br>
+  • 일정 연장: 3일장 초과 시 1일당 지도사 비용 20만원 추가 (무빈소 15만원)<br>
+  • 도우미 시간 초과: 시간당 2만원 추가, 22시 이후 교통비 2만원 별도<br>
+  • 장의차량 거리 초과: 기본 거리 초과 시 1km당 2,000원 추가<br>
+  • 출동 후 취소: 위약금 25만원 + 준비 완료 품목 비용<br>
+  • 특수염 (사고사 등): 최대 50만원 추가<br>
+  • 장례식장 시설 이용료, 식대, 화장 수수료는 장례식장에 직접 납부
+</div>
+
+</body>
+</html>

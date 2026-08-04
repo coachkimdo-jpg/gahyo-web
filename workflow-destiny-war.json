@@ -1,0 +1,295 @@
+{
+  "name": "④ 데스티니워 블로그 자동 발행 (PostgreSQL/Neon)",
+  "nodes": [
+    {
+      "id": "sticky-destiny",
+      "name": "설정 가이드",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [200, 60],
+      "parameters": {
+        "content": "## ⚙️ 데스티니워 워크플로 설정\n\n**① 구글 시트 자격증명** → '구글 시트: 키워드 읽기' 노드\n**② OpenAI API 키** → 'GPT-4o 글 생성', 'DALL-E 이미지 생성' 노드\n**③ Neon PostgreSQL 연결 정보** → 'PostgreSQL: 블로그 저장' 노드\n   - Host: ep-xxx.neon.tech\n   - Database: neondb (또는 실제 DB명)\n   - User / Password\n\n📋 구글 시트 헤더 (1행):\nA=메인 키워드 | B=서브키워드 | C=포함할 키워드 | D=서브키워드 수 | E=상태 | F=발행일\n\n✅ PostgreSQL INSERT 후 즉시 사이트에 반영됩니다 (빌드 불필요)",
+        "height": 280,
+        "width": 460,
+        "color": 4
+      }
+    },
+    {
+      "id": "schedule-destiny",
+      "name": "매일 오후 4시 실행",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [700, 340],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 16 * * 1-6"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sheets-read-destiny",
+      "name": "구글 시트: 키워드 읽기",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [920, 340],
+      "parameters": {
+        "operation": "getRows",
+        "documentId": {
+          "__rl": true,
+          "value": "여기에_구글시트_ID_입력",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "임포트_후_자격증명_선택",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "id": "code-filter-destiny",
+      "name": "대기중 키워드 추출",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1140, 340],
+      "parameters": {
+        "jsCode": "const 대기중행 = items.filter(item => item.json['상태'] === '대기중');\n\nif (대기중행.length === 0) {\n  return [{ json: { __발행없음: true } }];\n}\n\nconst row = 대기중행[0].json;\nreturn [{\n  json: {\n    __발행없음: false,\n    메인키워드: row['메인 키워드'] || '',\n    서브키워드: row['서브키워드'] || '',\n    포함키워드: row['포함할 키워드'] || '',\n    서브수: parseInt(row['서브키워드 수']) || 3\n  }\n}];"
+      }
+    },
+    {
+      "id": "if-destiny",
+      "name": "키워드 있는지 확인",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1360, 340],
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "id": "check-keyword-destiny",
+              "leftValue": "={{ $json.__발행없음 }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "noop-destiny",
+      "name": "오늘 발행 없음 (종료)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1360, 520],
+      "parameters": {}
+    },
+    {
+      "id": "code-prep-destiny",
+      "name": "슬러그 생성 및 GPT 요청 준비",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1580, 240],
+      "parameters": {
+        "jsCode": "const d = items[0].json;\nconst keyword = d.메인키워드;\nconst subKeywords = d.서브키워드;\nconst includeKeywords = d.포함키워드;\nconst subCount = d.서브수;\n\nconst today = new Date();\nconst dateStr = today.toISOString().split('T')[0];\nconst dateCompact = dateStr.replace(/-/g, '');\nconst slug = keyword\n  .replace(/\\s+/g, '-')\n  .replace(/[^a-zA-Z0-9가-힣-]/g, '')\n  .substring(0, 40) + '-' + dateCompact;\n\nconst gptBody = {\n  model: 'gpt-4o',\n  max_tokens: 3000,\n  temperature: 0.8,\n  messages: [\n    {\n      role: 'system',\n      content: '당신은 타로·운세·사주 분야 SEO 전문 블로그 작가입니다. 신비롭고 흥미로운 문체로 독자가 공감하고 몰입할 수 있는 콘텐츠를 작성합니다. 데스티니워(destiny-war.com)는 AI 타로 상담 서비스입니다. 출력은 반드시 순수 HTML 형식(Markdown 사용 금지)으로 합니다.'\n    },\n    {\n      role: 'user',\n      content: `아래 조건으로 SEO 최적화 블로그 글을 HTML 형식으로 작성해주세요.\n\n[키워드 조건]\n- 메인 키워드: ${keyword}\n- 서브키워드: ${subKeywords}\n- 반드시 포함할 단어: ${includeKeywords}\n- 서브키워드 각각 ${subCount}회 이상 자연스럽게 포함\n\n[작성 규칙]\n1. 분량: 1,500자 이상\n2. <h2> 소제목 3개 이상, <h3>도 활용\n3. <p>, <ul>, <li> 태그 사용\n4. <body>, <html>, <head> 태그 제외\n5. 첫 번째 <p>에 메인 키워드 포함\n6. 독자의 고민과 감정에 공감하는 문체\n7. 타로 카드, 운명, 자기 성찰과 관련된 내용 자연스럽게 포함\n8. 마지막 소제목에서 AI 타로 상담(데스티니워)을 자연스럽게 소개`\n    }\n  ]\n};\n\nreturn [{\n  json: {\n    keyword, subKeywords, includeKeywords, subCount,\n    slug, dateStr,\n    gptBody\n  }\n}];"
+      }
+    },
+    {
+      "id": "http-gpt-destiny",
+      "name": "GPT-4o: 블로그 글 생성",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1800, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.gptBody) }}",
+        "options": {}
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "임포트_후_OpenAI_자격증명_선택",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "id": "code-parse-destiny",
+      "name": "GPT 응답 파싱 및 DALL-E 요청 준비",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2020, 240],
+      "parameters": {
+        "jsCode": "const gptResult = items[0].json;\nconst prevData = $('슬러그 생성 및 GPT 요청 준비').first().json;\n\nconst htmlContent = gptResult.choices[0].message.content;\n\nconst titleMatch = htmlContent.match(/<h[12][^>]*>([^<]+)<\\/h[12]>/i);\nconst title = titleMatch\n  ? titleMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 완벽 가이드';\n\nconst excerptMatch = htmlContent.match(/<p[^>]*>([\\s\\S]*?)<\\/p>/i);\nconst rawExcerpt = excerptMatch\n  ? excerptMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 관련 타로 가이드입니다.';\nconst excerpt = rawExcerpt.substring(0, 150) + (rawExcerpt.length > 150 ? '...' : '');\n\nconst dalleBody = {\n  model: 'dall-e-3',\n  prompt: `신비롭고 아름다운 타로 카드 장면. 달빛 아래 펼쳐진 타로 카드들, 깊은 우주 별빛 배경, 보라색과 금색 분위기. \"${prevData.keyword}\" 주제와 관련된 신비로운 이미지. 이미지 안에 텍스트나 글자 없음. 디지털 아트 스타일.`,\n  size: '1792x1024',\n  quality: 'standard',\n  n: 1\n};\n\nreturn [{\n  json: {\n    title, excerpt, htmlContent,\n    keyword: prevData.keyword,\n    slug: prevData.slug,\n    dateStr: prevData.dateStr,\n    dalleBody\n  }\n}];"
+      }
+    },
+    {
+      "id": "http-dalle-destiny",
+      "name": "DALL-E 3: 이미지 생성 (ChatGPT API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2240, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/generations",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($('GPT 응답 파싱 및 DALL-E 요청 준비').item.json.dalleBody) }}",
+        "options": {}
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "임포트_후_OpenAI_자격증명_선택",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "id": "code-html-destiny",
+      "name": "최종 HTML 및 DB 값 구성",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2460, 240],
+      "parameters": {
+        "jsCode": "const dalleResult = items[0].json;\nconst parsedData = $('GPT 응답 파싱 및 DALL-E 요청 준비').first().json;\n\nconst imageUrl = dalleResult.data[0].url;\n\n// 이미지를 본문 상단에 추가한 최종 HTML\nconst imageTag = `<img src=\"${imageUrl}\" alt=\"${parsedData.keyword}\" style=\"width:100%;height:auto;border-radius:12px;margin-bottom:24px;\" />`;\nconst finalHtml = imageTag + '\\n' + parsedData.htmlContent;\n\n// PostgreSQL slug는 영문만 허용 (한글 slug를 영문으로 변환)\nconst safeSlug = parsedData.slug\n  .replace(/[가-힣]/g, '')\n  .replace(/-+/g, '-')\n  .replace(/^-|-$/g, '') || 'blog-' + parsedData.dateStr.replace(/-/g, '');\n\nreturn [{\n  json: {\n    slug: safeSlug,\n    title: parsedData.title,\n    excerpt: parsedData.excerpt,\n    contentHtml: finalHtml,\n    keyword: parsedData.keyword,\n    dateStr: parsedData.dateStr\n  }\n}];"
+      }
+    },
+    {
+      "id": "postgres-destiny",
+      "name": "PostgreSQL: 블로그 저장 (Neon DB)",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [2680, 240],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO \"BlogPost\" (slug, title, excerpt, content_html, status, published_at)\nVALUES (\n  '{{ $json.slug }}',\n  '{{ $json.title.replace(/'/g, \"''\") }}',\n  '{{ $json.excerpt.replace(/'/g, \"''\") }}',\n  '{{ $json.contentHtml.replace(/'/g, \"''\") }}',\n  'published',\n  NOW()\n)\nON CONFLICT (slug) DO UPDATE SET\n  title = EXCLUDED.title,\n  excerpt = EXCLUDED.excerpt,\n  content_html = EXCLUDED.content_html,\n  status = 'published',\n  published_at = NOW(),\n  updated_at = NOW()\nRETURNING id, slug, title;",
+        "options": {}
+      },
+      "credentials": {
+        "postgres": {
+          "id": "임포트_후_PostgreSQL_자격증명_선택",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "id": "sheets-update-destiny",
+      "name": "구글 시트: 발행완료 업데이트",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [2900, 240],
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "여기에_구글시트_ID_입력",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "메인 키워드": "={{ $('최종 HTML 및 DB 값 구성').item.json.keyword }}",
+            "상태": "발행완료",
+            "발행일": "={{ $('최종 HTML 및 DB 값 구성').item.json.dateStr }}"
+          },
+          "matchingColumns": ["메인 키워드"],
+          "schema": []
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "임포트_후_자격증명_선택",
+          "name": "Google Sheets"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "매일 오후 4시 실행": {
+      "main": [
+        [{ "node": "구글 시트: 키워드 읽기", "type": "main", "index": 0 }]
+      ]
+    },
+    "구글 시트: 키워드 읽기": {
+      "main": [
+        [{ "node": "대기중 키워드 추출", "type": "main", "index": 0 }]
+      ]
+    },
+    "대기중 키워드 추출": {
+      "main": [
+        [{ "node": "키워드 있는지 확인", "type": "main", "index": 0 }]
+      ]
+    },
+    "키워드 있는지 확인": {
+      "main": [
+        [{ "node": "슬러그 생성 및 GPT 요청 준비", "type": "main", "index": 0 }],
+        [{ "node": "오늘 발행 없음 (종료)", "type": "main", "index": 0 }]
+      ]
+    },
+    "슬러그 생성 및 GPT 요청 준비": {
+      "main": [
+        [{ "node": "GPT-4o: 블로그 글 생성", "type": "main", "index": 0 }]
+      ]
+    },
+    "GPT-4o: 블로그 글 생성": {
+      "main": [
+        [{ "node": "GPT 응답 파싱 및 DALL-E 요청 준비", "type": "main", "index": 0 }]
+      ]
+    },
+    "GPT 응답 파싱 및 DALL-E 요청 준비": {
+      "main": [
+        [{ "node": "DALL-E 3: 이미지 생성 (ChatGPT API)", "type": "main", "index": 0 }]
+      ]
+    },
+    "DALL-E 3: 이미지 생성 (ChatGPT API)": {
+      "main": [
+        [{ "node": "최종 HTML 및 DB 값 구성", "type": "main", "index": 0 }]
+      ]
+    },
+    "최종 HTML 및 DB 값 구성": {
+      "main": [
+        [{ "node": "PostgreSQL: 블로그 저장 (Neon DB)", "type": "main", "index": 0 }]
+      ]
+    },
+    "PostgreSQL: 블로그 저장 (Neon DB)": {
+      "main": [
+        [{ "node": "구글 시트: 발행완료 업데이트", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {}
+}

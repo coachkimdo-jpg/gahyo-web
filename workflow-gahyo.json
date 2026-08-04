@@ -1,0 +1,322 @@
+{
+  "name": "① 가효상조 블로그 자동 발행",
+  "nodes": [
+    {
+      "id": "sticky-gahyo",
+      "name": "설정 가이드",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [200, 60],
+      "parameters": {
+        "content": "## ⚙️ 가효상조 워크플로 설정 순서\n\n**① 구글 시트 자격증명** → '구글 시트: 키워드 읽기' 노드\n**② OpenAI API 키** → 'GPT-4o 글 생성', 'DALL-E 이미지 생성' 노드\n**③ Firebase 프로젝트 ID** → 'Firestore 글 저장' 노드 URL 수정\n**④ Vercel Deploy Hook URL** → 'Vercel 재배포' 노드 URL 수정\n\n📋 구글 시트 헤더 (1행):\nA=메인 키워드 | B=서브키워드 | C=포함할 키워드 | D=서브키워드 수 | E=상태 | F=발행일\n\n✅ 상태 값: '대기중' 또는 '발행완료'",
+        "height": 260,
+        "width": 440,
+        "color": 5
+      }
+    },
+    {
+      "id": "schedule-gahyo",
+      "name": "매일 오전 9시 실행",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [700, 340],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1-6"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sheets-read-gahyo",
+      "name": "구글 시트: 키워드 읽기",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [920, 340],
+      "parameters": {
+        "operation": "getRows",
+        "documentId": {
+          "__rl": true,
+          "value": "여기에_구글시트_ID_입력",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "임포트_후_자격증명_선택",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "id": "code-filter-gahyo",
+      "name": "대기중 키워드 추출",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1140, 340],
+      "parameters": {
+        "jsCode": "// 상태가 '대기중'인 첫 번째 행을 찾습니다\nconst 대기중행 = items.filter(item => item.json['상태'] === '대기중');\n\nif (대기중행.length === 0) {\n  // 오늘 발행할 키워드 없음\n  return [{ json: { __발행없음: true } }];\n}\n\nconst row = 대기중행[0].json;\nreturn [{\n  json: {\n    __발행없음: false,\n    메인키워드: row['메인 키워드'] || '',\n    서브키워드: row['서브키워드'] || '',\n    포함키워드: row['포함할 키워드'] || '',\n    서브수: parseInt(row['서브키워드 수']) || 3\n  }\n}];"
+      }
+    },
+    {
+      "id": "if-gahyo",
+      "name": "키워드 있는지 확인",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1360, 340],
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "id": "check-keyword",
+              "leftValue": "={{ $json.__발행없음 }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "noop-gahyo",
+      "name": "오늘 발행 없음 (종료)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1360, 520],
+      "parameters": {}
+    },
+    {
+      "id": "code-prep-gahyo",
+      "name": "슬러그 생성 및 GPT 요청 준비",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1580, 240],
+      "parameters": {
+        "jsCode": "const d = items[0].json;\nconst keyword = d.메인키워드;\nconst subKeywords = d.서브키워드;\nconst includeKeywords = d.포함키워드;\nconst subCount = d.서브수;\n\n// 슬러그 생성 (영문+날짜)\nconst today = new Date();\nconst dateStr = today.toISOString().split('T')[0];\nconst dateCompact = dateStr.replace(/-/g, '');\nconst slug = keyword\n  .replace(/\\s+/g, '-')\n  .replace(/[^a-zA-Z0-9가-힣-]/g, '')\n  .substring(0, 40) + '-' + dateCompact;\n\n// GPT-4o 요청 본문 구성\nconst gptBody = {\n  model: 'gpt-4o',\n  max_tokens: 3000,\n  temperature: 0.7,\n  messages: [\n    {\n      role: 'system',\n      content: '당신은 장례·상조 분야 SEO 전문 블로그 작가입니다. 가효상조(gahyo.co.kr)의 서비스(후불제, 투명한 가격, 전문 장례지도사)를 자연스럽게 소개하는 전문적이고 따뜻한 글을 작성합니다.'\n    },\n    {\n      role: 'user',\n      content: `아래 조건으로 SEO 최적화 블로그 글을 HTML 형식으로 작성해주세요.\n\n[키워드 조건]\n- 메인 키워드: ${keyword}\n- 서브키워드: ${subKeywords}\n- 반드시 포함할 단어: ${includeKeywords}\n- 서브키워드 각각 ${subCount}회 이상 자연스럽게 포함\n\n[작성 규칙]\n1. 분량: 1,500자 이상\n2. <h2> 소제목 3개 이상, <h3> 소제목도 활용\n3. <p>, <ul>, <li> 태그 사용\n4. <body>, <html>, <head> 태그 제외 — 순수 본문 HTML만 출력\n5. 첫 번째 <p>에 메인 키워드 자연스럽게 포함\n6. 가효상조 서비스 특징을 본문 중간에 1회 자연스럽게 언급\n7. 마지막 소제목은 '마무리' 또는 정리 문단으로 마무리\n8. 제목(<h1> 또는 <h2> 첫 번째) 포함`\n    }\n  ]\n};\n\nreturn [{\n  json: {\n    keyword, subKeywords, includeKeywords, subCount,\n    slug, dateStr,\n    gptBody\n  }\n}];"
+      }
+    },
+    {
+      "id": "http-gpt-gahyo",
+      "name": "GPT-4o: 블로그 글 생성",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1800, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.gptBody) }}",
+        "options": {}
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "임포트_후_OpenAI_자격증명_선택",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "id": "code-parse-gahyo",
+      "name": "GPT 응답 파싱 및 DALL-E 요청 준비",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2020, 240],
+      "parameters": {
+        "jsCode": "const gptResult = items[0].json;\nconst prevData = $('슬러그 생성 및 GPT 요청 준비').first().json;\n\n// GPT가 생성한 HTML 본문\nconst htmlContent = gptResult.choices[0].message.content;\n\n// 제목 추출 (첫 번째 h1 또는 h2)\nconst titleMatch = htmlContent.match(/<h[12][^>]*>([^<]+)<\\/h[12]>/i);\nconst title = titleMatch\n  ? titleMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 완벽 가이드';\n\n// excerpt 추출 (첫 번째 p 태그 텍스트, 최대 150자)\nconst excerptMatch = htmlContent.match(/<p[^>]*>([\\s\\S]*?)<\\/p>/i);\nconst rawExcerpt = excerptMatch\n  ? excerptMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 관련 전문 정보를 안내해드립니다.';\nconst excerpt = rawExcerpt.substring(0, 150) + (rawExcerpt.length > 150 ? '...' : '');\n\n// DALL-E 3 요청 본문 구성\nconst dalleBody = {\n  model: 'dall-e-3',\n  prompt: `평화롭고 전문적인 한국 장례 서비스 장면. 부드럽고 따뜻한 조명, 품위 있는 분위기. \"${prevData.keyword}\" 주제와 관련된 이미지. 국화꽃, 따뜻한 실내 분위기. 이미지 안에 텍스트나 글자 없음. 사진 현실적 스타일.`,\n  size: '1792x1024',\n  quality: 'standard',\n  n: 1\n};\n\nreturn [{\n  json: {\n    title, excerpt,\n    htmlContent,\n    keyword: prevData.keyword,\n    slug: prevData.slug,\n    dateStr: prevData.dateStr,\n    dalleBody\n  }\n}];"
+      }
+    },
+    {
+      "id": "http-dalle-gahyo",
+      "name": "DALL-E 3: 이미지 생성 (ChatGPT API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2240, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/generations",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($('GPT 응답 파싱 및 DALL-E 요청 준비').item.json.dalleBody) }}",
+        "options": {}
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "임포트_후_OpenAI_자격증명_선택",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "id": "code-firestore-gahyo",
+      "name": "Firestore 문서 구성",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2460, 240],
+      "parameters": {
+        "jsCode": "const dalleResult = items[0].json;\nconst parsedData = $('GPT 응답 파싱 및 DALL-E 요청 준비').first().json;\n\nconst imageUrl = dalleResult.data[0].url;\n\n// Firestore REST API용 문서 형식\nconst firestoreDoc = {\n  fields: {\n    title: { stringValue: parsedData.title },\n    slug: { stringValue: parsedData.slug },\n    content: { stringValue: parsedData.htmlContent },\n    excerpt: { stringValue: parsedData.excerpt },\n    imageUrl: { stringValue: imageUrl },\n    publishedAt: { timestampValue: new Date().toISOString() },\n    category: { stringValue: '장례정보' },\n    tags: {\n      arrayValue: {\n        values: [{ stringValue: parsedData.keyword }]\n      }\n    }\n  }\n};\n\nreturn [{\n  json: {\n    firestoreDoc,\n    keyword: parsedData.keyword,\n    slug: parsedData.slug,\n    dateStr: parsedData.dateStr\n  }\n}];"
+      }
+    },
+    {
+      "id": "http-firestore-gahyo",
+      "name": "Firestore: 글 저장",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2680, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "https://firestore.googleapis.com/v1/projects/여기에_FIREBASE_프로젝트ID/databases/(default)/documents/articles",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer 여기에_서비스계정_액세스토큰"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.firestoreDoc) }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "http-vercel-gahyo",
+      "name": "Vercel: 사이트 재배포 트리거",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2900, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "여기에_VERCEL_DEPLOY_HOOK_URL",
+        "options": {}
+      }
+    },
+    {
+      "id": "sheets-update-gahyo",
+      "name": "구글 시트: 발행완료 업데이트",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [3120, 240],
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "여기에_구글시트_ID_입력",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "메인 키워드": "={{ $('Firestore 문서 구성').item.json.keyword }}",
+            "상태": "발행완료",
+            "발행일": "={{ $('Firestore 문서 구성').item.json.dateStr }}"
+          },
+          "matchingColumns": ["메인 키워드"],
+          "schema": []
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "임포트_후_자격증명_선택",
+          "name": "Google Sheets"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "매일 오전 9시 실행": {
+      "main": [
+        [{ "node": "구글 시트: 키워드 읽기", "type": "main", "index": 0 }]
+      ]
+    },
+    "구글 시트: 키워드 읽기": {
+      "main": [
+        [{ "node": "대기중 키워드 추출", "type": "main", "index": 0 }]
+      ]
+    },
+    "대기중 키워드 추출": {
+      "main": [
+        [{ "node": "키워드 있는지 확인", "type": "main", "index": 0 }]
+      ]
+    },
+    "키워드 있는지 확인": {
+      "main": [
+        [{ "node": "슬러그 생성 및 GPT 요청 준비", "type": "main", "index": 0 }],
+        [{ "node": "오늘 발행 없음 (종료)", "type": "main", "index": 0 }]
+      ]
+    },
+    "슬러그 생성 및 GPT 요청 준비": {
+      "main": [
+        [{ "node": "GPT-4o: 블로그 글 생성", "type": "main", "index": 0 }]
+      ]
+    },
+    "GPT-4o: 블로그 글 생성": {
+      "main": [
+        [{ "node": "GPT 응답 파싱 및 DALL-E 요청 준비", "type": "main", "index": 0 }]
+      ]
+    },
+    "GPT 응답 파싱 및 DALL-E 요청 준비": {
+      "main": [
+        [{ "node": "DALL-E 3: 이미지 생성 (ChatGPT API)", "type": "main", "index": 0 }]
+      ]
+    },
+    "DALL-E 3: 이미지 생성 (ChatGPT API)": {
+      "main": [
+        [{ "node": "Firestore 문서 구성", "type": "main", "index": 0 }]
+      ]
+    },
+    "Firestore 문서 구성": {
+      "main": [
+        [{ "node": "Firestore: 글 저장", "type": "main", "index": 0 }]
+      ]
+    },
+    "Firestore: 글 저장": {
+      "main": [
+        [{ "node": "Vercel: 사이트 재배포 트리거", "type": "main", "index": 0 }]
+      ]
+    },
+    "Vercel: 사이트 재배포 트리거": {
+      "main": [
+        [{ "node": "구글 시트: 발행완료 업데이트", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {}
+}
