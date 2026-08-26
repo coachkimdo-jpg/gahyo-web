@@ -26,7 +26,7 @@ const OPTIONS = {
     { id: 'c_f', title: '여자 상복', desc: '1벌 기준', price: 20000, type: 'counter' },
   ],
   vehicles: [
-    { id: 'v_amb', title: '앰블런스', desc: '자택이나 요양원, 요양병원처럼 장례식장이 함께 있지 않은 곳에서 임종하신 경우 필요한 서비스입니다. 고인을 장례식장 안치실까지 편안하게 모실 수 있도록 전용 앰뷸런스를 배차해 드립니다.', price: 100000, type: 'checkbox', hint: '✓ 요양원·요양병원에서 임종하신 경우 꼭 필요한 선택입니다.' },
+    { id: 'v_amb', title: '앰블런스', desc: '자택·요양원 등에서 장례식장 안치실까지 모시는 전용 차량입니다.', price: 100000, type: 'checkbox', hint: '✓ 요양원·요양병원에서 임종하신 경우 꼭 필요한 선택입니다.' },
     { id: 'v_sprinter', title: '스프린터(8인승)', desc: '소규모 가족 이동에 적합', price: 300000, type: 'checkbox', hint: '✓ 소규모 가족 이동에 가장 합리적인 선택입니다.' },
     { id: 'v_limo', title: '리무진', desc: '최고급 고인 전용 차량', price: 400000, type: 'checkbox', hint: '✓ 고인을 최고급으로 정중히 모시는 선택입니다.' },
     { id: 'v_bus', title: '장의버스(45인승)', desc: '유족 및 조문객 이동용 대형 버스', note: '💡 장의버스 자체에 고인 이송 공간이 포함되어 있어, 버스 한 대로 고인과 유족이 함께 정중히 이동하실 수 있습니다. 리무진은 꼭 선택하지 않으셔도 됩니다.', price: 450000, type: 'checkbox', hint: '✓ 고인과 유족이 함께 이동할 수 있는 효율적인 선택입니다. 리무진을 따로 추가하지 않아도 됩니다.' },
@@ -368,9 +368,11 @@ export default function CustomPackagePage() {
             <button 
               onClick={() => setIsConsultModalOpen(true)}
               className="btn-primary" 
-              style={{ textAlign: 'center', padding: '1.25rem', fontSize: '1.2rem', borderRadius: '12px', width: '100%', border: 'none', cursor: 'pointer' }}
+              style={{ textAlign: 'center', padding: '1.25rem 1rem', fontSize: '1.15rem', lineHeight: '1.5', borderRadius: '12px', width: '100%', border: 'none', cursor: 'pointer', wordBreak: 'keep-all' }}
             >
-              이 구성을 장례지도사에게 바로 전달하기 — 10분 내 연락드립니다
+              이 구성을 장례지도사에게 바로 전달하기
+              <br />
+              <span style={{ fontSize: '0.95rem', fontWeight: '600', opacity: 0.9 }}>10분 내 연락드립니다</span>
             </button>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <button onClick={() => setIsFinished(false)} style={{ flex: 1, padding: '1rem', background: 'white', color: 'var(--navy)', border: '1px solid #cbd5e1', borderRadius: '12px', fontWeight: '700', cursor: 'pointer' }}>
@@ -675,7 +677,7 @@ export default function CustomPackagePage() {
                       <div style={{ fontSize: '1.15rem', fontWeight: '800', color: isSelected ? 'var(--navy)' : '#334155' }}>
                         {opt.title}
                       </div>
-                      {opt.desc && <div style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '2px' }}>{opt.desc}</div>}
+                      {opt.desc && <div style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '2px', lineHeight: '1.4', wordBreak: 'keep-all' }}>{opt.desc}</div>}
                       {opt.note && (
                         <div style={{ fontSize: '0.8rem', color: '#0369a1', background: '#f0f9ff', padding: '0.6rem 0.8rem', borderRadius: '6px', marginTop: '0.6rem', lineHeight: '1.4', wordBreak: 'keep-all' }}>
                           {opt.note}

@@ -20,6 +20,18 @@ const CATEGORY_COLORS = {
 const localArticleMap = Object.fromEntries(localArticles.map(a => [a.slug, a]));
 const localArticleById = Object.fromEntries(localArticles.map(a => [String(a.id), a]));
 
+// Firestore Timestamp 또는 객체가 들어올 경우 안전하게 문자열로 변환
+function safeStr(val) {
+  if (!val && val !== 0) return '';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'number') return String(val);
+  // Firebase Timestamp (toDate 메서드 있는 경우)
+  if (typeof val.toDate === 'function') return val.toDate().toISOString().split('T')[0];
+  // {seconds, nanoseconds} 형태의 Timestamp 객체
+  if (typeof val.seconds === 'number') return new Date(val.seconds * 1000).toISOString().split('T')[0];
+  return String(val);
+}
+
 function mergeWithLocal(article) {
   if (!article) return null;
   const local = localArticleMap[article.slug] || localArticleById[String(article.id)];
@@ -168,18 +180,18 @@ export default async function GuideDetailPage({ params }) {
       <header className="page-hero" style={{ padding: '4rem 1.25rem 3rem' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
           <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ ...catStyle, padding: '0.3rem 0.8rem', borderRadius: '999px', fontSize: '0.85rem', fontWeight: '700' }}>{article.category}</span>
-            <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem' }}>⏱ {article.readTime} 읽기</span>
+            <span style={{ ...catStyle, padding: '0.3rem 0.8rem', borderRadius: '999px', fontSize: '0.85rem', fontWeight: '700' }}>{safeStr(article.category)}</span>
+            <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem' }}>⏱ {safeStr(article.readTime)} 읽기</span>
           </div>
           
           <h1 className="page-hero-title" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', marginBottom: '1.5rem', lineHeight: 1.4 }}>
-            {article.title}
+            {safeStr(article.title)}
           </h1>
 
           {/* BLUF 요약 */}
           <div style={{ background: 'rgba(255,255,255,0.1)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.2)', textAlign: 'left', marginBottom: '2rem' }}>
             <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '1.05rem', lineHeight: 1.7, margin: 0 }}>
-              <strong style={{ color: 'var(--gold)' }}>핵심 요약:</strong> {article.summary}
+              <strong style={{ color: 'var(--gold)' }}>핵심 요약:</strong> {safeStr(article.summary)}
             </p>
           </div>
 
@@ -196,7 +208,7 @@ export default async function GuideDetailPage({ params }) {
             <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.2)' }} />
             <div style={{ textAlign: 'left' }}>
               <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}>게시일</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>{article.publishedAt}</div>
+              <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>{safeStr(article.publishedAt)}</div>
             </div>
           </div>
         </div>
@@ -217,43 +229,54 @@ export default async function GuideDetailPage({ params }) {
 
           {article.content && article.content.length > 0 ? (
             typeof article.content === 'string' ? (
-              <div 
+              <div
                 className="article-html-content"
                 style={{ lineHeight: 1.8, fontSize: '1.05rem', color: '#334155' }}
               >
-                {parse(article.content, {
-                  replace: (domNode) => {
-                    if (domNode.name === 'script') {
-                      return <></>; // Prevent duplicate JSON-LD schemas embedded by the API
-                    }
-                    if (domNode.name === 'h1') {
-                      const props = attributesToProps(domNode.attribs);
-                      return (
-                        <h2 {...props} style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--navy)', marginTop: '2rem', marginBottom: '1rem', ...props.style }}>
-                          {domToReact(domNode.children)}
-                        </h2>
-                      );
-                    }
-                    if (domNode.name === 'img') {
-                      const props = attributesToProps(domNode.attribs);
-                      const { src, alt, width, height, 'data-priority': priority } = props;
-                      const numWidth = width ? parseInt(width, 10) : 800;
-                      const numHeight = height ? parseInt(height, 10) : 400;
-
-                      return (
-                        <Image
-                          src={src || 'https://placehold.co/800x400/webp?text=placeholder'}
-                          alt={alt ? `${alt} - 가효상조 장례 가이드 ${article.title}` : `${article.title} - 가효상조 장례 가이드 및 필수 상식`}
-                          width={numWidth}
-                          height={numHeight}
-                          priority={priority === 'true'}
-                          unoptimized={!!(src && (src.includes('firebasestorage.googleapis.com') || src.includes('cloudinary.com')))}
-                          style={{ maxWidth: '100%', height: 'auto', borderRadius: '12px', margin: '2.5rem auto', display: 'block' }}
-                        />
-                      );
-                    }
+                {(() => {
+                  // <!-- IMAGE: ... --> 주석이 남아있는 경우 제거
+                  const cleanContent = article.content.replace(/<!--\s*IMAGE:[^]*?-->/g, '');
+                  try {
+                    return parse(cleanContent, {
+                      replace: (domNode) => {
+                        if (domNode.name === 'script') {
+                          return <></>; // Prevent duplicate JSON-LD schemas embedded by the API
+                        }
+                        if (domNode.name === 'h1') {
+                          const props = attributesToProps(domNode.attribs);
+                          return (
+                            <h2 {...props} style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--navy)', marginTop: '2rem', marginBottom: '1rem', ...props.style }}>
+                              {domToReact(domNode.children)}
+                            </h2>
+                          );
+                        }
+                        if (domNode.name === 'img') {
+                          const props = attributesToProps(domNode.attribs);
+                          const { src, alt, width, height, 'data-priority': priority } = props;
+                          const numWidth = width ? parseInt(width, 10) : 800;
+                          const numHeight = height ? parseInt(height, 10) : 400;
+                          const safeSrc = src && (src.startsWith('https://') || src.startsWith('http://'))
+                            ? src
+                            : 'https://placehold.co/800x400/webp?text=placeholder';
+                          return (
+                            <Image
+                              src={safeSrc}
+                              alt={alt ? `${alt} - 가효상조 장례 가이드 ${article.title}` : `${article.title} - 가효상조 장례 가이드 및 필수 상식`}
+                              width={numWidth}
+                              height={numHeight}
+                              priority={priority === 'true'}
+                              unoptimized={!!(src && (src.includes('firebasestorage.googleapis.com') || src.includes('cloudinary.com')))}
+                              style={{ maxWidth: '100%', height: 'auto', borderRadius: '12px', margin: '2.5rem auto', display: 'block' }}
+                            />
+                          );
+                        }
+                      }
+                    });
+                  } catch (e) {
+                    console.error('HTML parse error:', e);
+                    return <div dangerouslySetInnerHTML={{ __html: cleanContent }} />;
                   }
-                })}
+                })()}
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2rem' }}>

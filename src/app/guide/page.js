@@ -41,6 +41,16 @@ const getThumbnailUrl = (content) => {
   return match ? match[1] : null;
 };
 
+// Firestore Timestamp 또는 객체가 들어올 경우 안전하게 문자열로 변환
+function safeStr(val) {
+  if (!val && val !== 0) return '';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'number') return String(val);
+  if (typeof val.toDate === 'function') return val.toDate().toISOString().split('T')[0];
+  if (typeof val.seconds === 'number') return new Date(val.seconds * 1000).toISOString().split('T')[0];
+  return String(val);
+}
+
 export default async function GuidePage(props) {
   const searchParams = await props.searchParams;
   const selectedCategory = searchParams?.category || null;
@@ -199,12 +209,12 @@ export default async function GuidePage(props) {
               </div>
               <div style={{ padding: '2rem' }}>
                 <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.875rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <span style={{ ...CATEGORY_COLORS[guideArticles[0].category], padding: '0.25rem 0.75rem', borderRadius: '999px', fontSize: '0.8rem', fontWeight: '600' }}>{guideArticles[0].category}</span>
-                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>⏱ {guideArticles[0].readTime} 읽기</span>
-                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>{guideArticles[0].publishedAt}</span>
+                  <span style={{ ...CATEGORY_COLORS[guideArticles[0].category], padding: '0.25rem 0.75rem', borderRadius: '999px', fontSize: '0.8rem', fontWeight: '600' }}>{safeStr(guideArticles[0].category)}</span>
+                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>⏱ {safeStr(guideArticles[0].readTime)} 읽기</span>
+                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>{safeStr(guideArticles[0].publishedAt)}</span>
                 </div>
-                <h2 style={{ fontSize: '1.375rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.75rem', lineHeight: 1.3 }}>{guideArticles[0].title}</h2>
-                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, fontSize: '0.9375rem', marginBottom: '1.5rem' }}>{guideArticles[0].summary}</p>
+                <h2 style={{ fontSize: '1.375rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.75rem', lineHeight: 1.3 }}>{safeStr(guideArticles[0].title)}</h2>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, fontSize: '0.9375rem', marginBottom: '1.5rem' }}>{safeStr(guideArticles[0].summary)}</p>
                 <div className="btn-primary" style={{ display: 'inline-flex' }}>가이드 읽어보기 →</div>
               </div>
             </div>
@@ -226,13 +236,13 @@ export default async function GuidePage(props) {
                   </div>
                   <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.625rem', alignItems: 'center' }}>
-                      <span style={{ ...catStyle, padding: '0.2rem 0.625rem', borderRadius: '999px', fontSize: '0.75rem', fontWeight: '600' }}>{article.category}</span>
-                      <span style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>⏱ {article.readTime}</span>
+                      <span style={{ ...catStyle, padding: '0.2rem 0.625rem', borderRadius: '999px', fontSize: '0.75rem', fontWeight: '600' }}>{safeStr(article.category)}</span>
+                      <span style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>⏱ {safeStr(article.readTime)}</span>
                     </div>
-                    <h3 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1rem', lineHeight: 1.4, marginBottom: '0.5rem' }}>{article.title}</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '1rem', flex: 1 }}>{article.summary}</p>
+                    <h3 style={{ fontWeight: '700', color: 'var(--navy)', fontSize: '1rem', lineHeight: 1.4, marginBottom: '0.5rem' }}>{safeStr(article.title)}</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '1rem', flex: 1 }}>{safeStr(article.summary)}</p>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.75rem', borderTop: '1px solid var(--border-color)' }}>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{article.publishedAt}</span>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{safeStr(article.publishedAt)}</span>
                       <span style={{ color: 'var(--gold)', fontWeight: '600', fontSize: '0.875rem' }}>자세히 보기 →</span>
                     </div>
                   </div>
