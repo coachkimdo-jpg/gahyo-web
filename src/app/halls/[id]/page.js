@@ -470,7 +470,7 @@ export default async function HallDetailPage({ params }) {
               </div>
             </div>
             <p style={{ fontSize: '0.82rem', color: '#94a3b8', marginTop: '0.625rem', lineHeight: 1.6 }}>
-              위 금액은 장례식장 자체 요금이며 선택에 따라 달라집니다. 상조 통합 견적은{' '}
+              <strong style={{ color: '#64748b' }}>위 요금은 2025년 7월 기준</strong>이며, 장례식장 자체 요금으로 선택에 따라 달라질 수 있습니다. 상조 통합 견적은{' '}
               <a href="https://pf.kakao.com/_ntRdX/chat" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--navy)', fontWeight: '600' }}>카카오톡 무료 상담</a>
               {' '}또는{' '}
               <Link href="/custom-package" style={{ color: 'var(--navy)', fontWeight: '600' }}>직접 구성하기</Link>로 확인하세요.
