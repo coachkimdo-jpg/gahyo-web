@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: '경기도 상조 | 가효상조 — 수원·성남·용인·고양 24시간 출동',
+  title: '경기도 상조 | 수원·성남·용인·고양 24시간 출동',
   description: '경기도 전지역 24시간 즉시 출동. 수원·성남·용인·고양·부천·안양 등 전 시·군 출동 가능. 가입비·월납입금 0원, 장례 후 결제.',
   keywords: ['경기도상조', '경기장례', '수원상조', '성남장례', '용인상조', '경기후불제상조'],
   alternates: { canonical: 'https://gahyo.co.kr/local/gyeonggi' },

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: '지역별 상조 서비스 | 가효상조',
+  title: '지역별 상조 서비스',
   description: '서울, 경기, 인천, 부산, 대구 전지역 24시간 즉시 출동. 가입비·월납입금 0원, 장례 종료 후 결제하는 완전 후불제 상조.',
   keywords: ['지역별상조', '전국상조', '서울상조', '경기상조', '인천상조', '부산상조', '대구상조'],
   alternates: { canonical: 'https://gahyo.co.kr/local' },

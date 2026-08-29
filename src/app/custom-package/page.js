@@ -37,10 +37,10 @@ const OPTIONS = {
   shroud: [
     { id: 'sh_none', title: '선택 안 함 (개인 준비)', desc: '사전에 준비하신 경우', price: 0, type: 'radio', hint: '미리 준비하셨군요. 비용 절감에 도움이 됩니다.' },
     { id: 'sh_cotton', title: '면수의', desc: '기본 면 100%', price: 100000, type: 'radio', hint: '✓ 가장 많이 선택되는 수의입니다. 합리적인 결정이에요.' },
-    { id: 'sh_hanji', title: '친환경 전통한지수의', desc: '자연 친화적 소재', price: 300000, type: 'radio', hint: '✓ 자연 친화적이고 정갈한 선택입니다.' },
+    { id: 'sh_hanji', title: '친환경 전통한지수의', desc: '자연 친화적 소재', price: 400000, type: 'radio', hint: '✓ 자연 친화적이고 정갈한 선택입니다.' },
     { id: 'sh_jeoma', title: '저마수의', desc: '고급 모시 재질', price: 400000, type: 'radio', hint: '✓ 고급 모시 재질로 고인을 정중히 모시는 선택입니다.' },
     { id: 'sh_daema', title: '대마수의', desc: '최고급 대마', price: 500000, type: 'radio', hint: '✓ 최고급 수의를 선택하셨습니다. 고인께 최선을 다하시는 마음이 느껴집니다.' },
-    { id: 'sh_hanbok', title: '한복수의', desc: '전통 예절을 다하는 궁중 한복', price: 600000, type: 'radio', hint: '✓ 전통 예를 갖추는 특별한 선택입니다. 고인의 마지막을 고귀하게 모실 수 있습니다.' },
+    { id: 'sh_hanbok', title: '한복수의', desc: '전통 예절을 다하는 궁중 한복', price: 500000, type: 'radio', hint: '✓ 전통 예를 갖추는 특별한 선택입니다. 고인의 마지막을 고귀하게 모실 수 있습니다.' },
   ],
   urn: [
     { id: 'u_none', title: '선택 안 함 (개인 준비 등)', desc: '유골함을 별도 준비하시거나 매장하시는 경우', price: 0, type: 'radio', hint: '별도 준비하신 경우 비용이 절감됩니다.' },
@@ -742,6 +742,41 @@ export default function CustomPackagePage() {
             📞 직접 구성이 어려우시면 전화로 상담하세요 — 1551-5718
           </a>
         </div>
+
+        {/* 크롤러용 정적 전체 항목·가격 안내 — 위 마법사는 한 단계씩만 보여주지만, 아래는 6단계 전체 옵션과 가격을 한 번에 보여준다 */}
+        <section aria-label="전체 구성 항목 및 가격 안내" style={{ marginTop: '3.5rem', paddingTop: '2.5rem', borderTop: '1px solid #e2e8f0' }}>
+          <h2 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.5rem' }}>
+            상조 직접 구성하기 — 전체 항목 및 가격 한눈에 보기
+          </h2>
+          <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.5rem', lineHeight: 1.6, wordBreak: 'keep-all' }}>
+            위 6단계(빈소·상복·차량·도우미·수의·납골함)에서 선택 가능한 모든 옵션과 가격입니다. 필요한 항목만 골라 구성하면 실시간으로 합계가 계산됩니다.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {STEPS.map((step) => (
+              <div key={step.id}>
+                <h3 style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '0.6rem' }}>
+                  {step.label}
+                </h3>
+                <div style={{ border: '1px solid #e2e8f0', borderRadius: '10px', overflow: 'hidden' }}>
+                  {OPTIONS[step.id].map((opt, i) => (
+                    <div key={opt.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', padding: '0.875rem 1rem', borderBottom: i < OPTIONS[step.id].length - 1 ? '1px solid #f1f5f9' : 'none', background: i % 2 === 0 ? '#fff' : '#f8fafc' }}>
+                      <div>
+                        <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#334155' }}>{opt.title}</div>
+                        {opt.desc && <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.15rem' }}>{opt.desc}</div>}
+                      </div>
+                      <div style={{ fontWeight: '800', color: 'var(--navy)', fontSize: '0.9rem', whiteSpace: 'nowrap' }}>
+                        {opt.price > 0 ? `+${opt.price.toLocaleString()}원` : '0원'}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: '0.82rem', color: '#94a3b8', marginTop: '1rem', lineHeight: 1.6 }}>
+            위 요금은 2025년 7월 기준이며, 기본 제공 항목(장례지도사·입관용품 등)을 제외한 추가 선택 옵션 가격입니다. 정확한 총 견적은 위 구성기를 직접 이용하시거나 1551-5718로 문의해 주세요.
+          </p>
+        </section>
 
       </div>
     </div>

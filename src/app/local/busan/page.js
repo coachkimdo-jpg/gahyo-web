@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: '부산 상조 | 가효상조 — 부산 전지역 24시간 즉시 출동',
+  title: '부산 상조 | 부산 전지역 24시간 즉시 출동',
   description: '부산 전지역 24시간 즉시 출동. 해운대·수영·남·동·서구 등 전 구 출동. 가입비·월납입금 0원, 장례 후 결제.',
   keywords: ["부산상조", "부산장례", "부산장례식장", "부산후불제상조"],
   alternates: { canonical: 'https://gahyo.co.kr/local/busan' },

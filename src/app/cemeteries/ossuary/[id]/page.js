@@ -30,11 +30,25 @@ export async function generateMetadata({ params }) {
     if (legacyOssuary) ossuary = legacyOssuary;
     if (!ossuary) return { title: 'Not Found' };
   }
+  const pageTitle = `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`;
+  const pageDescription = `${ossuary.address}에 위치한 ${ossuary.name}. 선불금 없는 100% 후불제 가효상조와 함께 준비하세요. 봉안당(납골당) 안치단별 사용료 ${ossuary.priceRange} 수준 안내.`;
+  const pageUrl = `/cemeteries/ossuary/${getSlug(ossuary.address, ossuary.name)}`;
   return {
-    title: `가효상조 - ${ossuary.name} 100% 후불제 상조 및 투명한 장례 서비스`,
-    description: `${ossuary.address}에 위치한 ${ossuary.name}. 선불금 없는 100% 후불제 가효상조와 함께 준비하세요. 봉안당(납골당) 안치단별 사용료 ${ossuary.priceRange} 수준 안내.`,
+    title: pageTitle,
+    description: pageDescription,
     alternates: {
-      canonical: `/cemeteries/ossuary/${getSlug(ossuary.address, ossuary.name)}`,
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: pageUrl,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
     },
   };
 }
@@ -67,15 +81,23 @@ export default async function OssuaryPage({ params }) {
     notFound();
   }
 
-  // 가격 아이템을 location(구역)별로 그룹핑
-  const groupedPrices = (ossuary.priceItems || []).reduce((acc, item) => {
+  // 가격 아이템을 location(구역)별로 그룹핑 (동일 항목명+가격이 반복 수집된 중복 행은 제거)
+  const seenPriceRows = new Set();
+  const dedupedPriceItems = (ossuary.priceItems || []).filter((item) => {
+    const rowKey = `${item.location || ''}|${item.detail || ''}|${item.price || ''}`;
+    if (seenPriceRows.has(rowKey)) return false;
+    seenPriceRows.add(rowKey);
+    return true;
+  });
+
+  const groupedPrices = dedupedPriceItems.reduce((acc, item) => {
     const key = item.location || '기타';
     if (!acc[key]) acc[key] = [];
     acc[key].push(item);
     return acc;
   }, {});
 
-  const totalPriceRows = ossuary.priceItems?.length || 0;
+  const totalPriceRows = dedupedPriceItems.length;
   const groupEntries = Object.entries(groupedPrices);
   const midPoint = Math.ceil(groupEntries.length / 2);
   const prices = (ossuary.priceItems || []).map(i => i.price).filter(p => typeof p === 'number' && p > 0);
@@ -205,7 +227,7 @@ export default async function OssuaryPage({ params }) {
             { icon: '👔', title: '국가공인 1급 장례지도사', desc: '10년 이상 경력자만 동행합니다' },
             { icon: '⏰', title: '24시간 연중무휴', desc: '새벽이든, 주말이든, 공휴일이든' },
             { icon: '💸', title: '100% 후불제', desc: '장례 후 실사용 금액만 청구합니다' },
-            { icon: '🤝', title: '전국 500개 제휴 장례식장', desc: '어디서나 동일한 품질' },
+            { icon: '🤝', title: '전국 100개 제휴 장례식장', desc: '어디서나 동일한 품질' },
           ].map((badge) => (
             <div key={badge.title} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.5rem 1rem', background: 'white', borderRadius: '8px', border: '1px solid #e2e8f0', minWidth: '200px', flex: '1 1 200px', maxWidth: '260px' }}>
               <span style={{ fontSize: '1.4rem', flexShrink: 0 }}>{badge.icon}</span>
@@ -360,7 +382,7 @@ export default async function OssuaryPage({ params }) {
                       <tbody>
                         {items.map((item, idx) => (
                           <tr key={idx} style={{ borderBottom: idx < items.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
-                            <td style={{ padding: '0.6rem 1rem', color: 'var(--text)' }}>{item.detail || '-'}</td>
+                            <td style={{ padding: '0.6rem 1rem', color: 'var(--text)' }}>{(item.detail && item.detail !== 'null') ? item.detail : '-'}</td>
                             <td style={{ padding: '0.6rem 1rem', textAlign: 'right', color: 'var(--navy)', fontWeight: '600' }}>{item.priceFormatted}</td>
                           </tr>
                         ))}

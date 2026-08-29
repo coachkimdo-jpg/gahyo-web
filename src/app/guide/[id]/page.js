@@ -345,7 +345,7 @@ export default async function GuideDetailPage({ params }) {
             가까운 장례 시설 찾아보기
           </h2>
           <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-            가효상조는 전국 500여 개 장례식장 및 다양한 자연장지(수목장), 봉안당과 제휴하여 거품 없는 100% 후불제 장례 서비스를 제공합니다.
+            가효상조는 전국 100여 개 장례식장 및 다양한 자연장지(수목장), 봉안당과 제휴하여 거품 없는 100% 후불제 장례 서비스를 제공합니다.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link href="/halls" style={{ display: 'inline-block', padding: '0.75rem 1.5rem', background: 'white', border: '1px solid var(--border-color)', borderRadius: '8px', color: 'var(--navy)', fontWeight: '700', textDecoration: 'none', flex: 1, textAlign: 'center' }}>

@@ -1,6 +1,9 @@
 export const metadata = {
-  title: '개인정보처리방침 | 가효상조',
+  title: '개인정보처리방침',
   description: '가효상조 개인정보처리방침 안내',
+  alternates: {
+    canonical: 'https://gahyo.co.kr/privacy',
+  },
 };
 
 export default function PrivacyPage() {

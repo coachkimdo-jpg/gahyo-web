@@ -8,12 +8,12 @@ const FreeConsultSection = dynamic(() => import('@/components/FreeConsultSection
 
 export const metadata = {
   title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
-  description: '가입비·월납입 0원. 장례 종료 후 결제하는 100% 후불제 상조입니다. 24시간 즉시 출동, 전국 200곳 제휴 장례식장. 지금 바로 무료 상담받으세요.',
+  description: '가입비·월납입 0원. 장례 종료 후 결제하는 100% 후불제 상조입니다. 24시간 즉시 출동, 전국 100곳 제휴 장례식장. 지금 바로 무료 상담받으세요.',
   keywords: ['가효상조', '후불제상조', '장례식장', '장례', '상조회사', '장례비용', '24시간상조'],
   alternates: { canonical: 'https://gahyo.co.kr' },
   openGraph: {
     title: '가효상조 | 100% 후불제 상조 및 투명한 장례 서비스',
-    description: '24시간 즉시 출동하는 100% 후불제 가효상조입니다. 무빈소부터 VIP 장례까지 전국 500여 개 제휴 장례식장에서 정성을 다해 모시겠습니다.',
+    description: '24시간 즉시 출동하는 100% 후불제 가효상조입니다. 무빈소부터 VIP 장례까지 전국 100여 개 제휴 장례식장에서 정성을 다해 모시겠습니다.',
     url: 'https://gahyo.co.kr',
     siteName: '가효상조',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: '가효상조 프리미엄 장례 서비스' }],
@@ -50,7 +50,7 @@ const QUICK = [
   { ic: IcPhone, label: '장례 접수', sub: '지금 바로 연결', href: 'tel:1551-5718', accent: true },
   { ic: IcDoc, label: '장례 절차', sub: '단계별 안내', href: '/guide' },
   { ic: IcWon, label: '비용 확인', sub: '투명한 견적', href: '/estimate' },
-  { ic: IcHall, label: '장례식장', sub: '전국 200+ 제휴', href: '/halls' },
+  { ic: IcHall, label: '장례식장', sub: '전국 100+ 제휴', href: '/halls' },
 ];
 
 const PRODUCTS = [
@@ -96,7 +96,7 @@ const REVIEWS = [
 const FAQS = [
   ['후불제 상조란 무엇인가요?', '가입비·월 납입금 없이, 장례 종료 후 실제 이용한 비용만 결제합니다.'],
   ['한밤중에도 출동이 가능한가요?', '24시간 연중무휴로 운영합니다. 임종 직후 1551-5718로 전화하시면 즉시 앰뷸런스를 배차합니다.'],
-  ['장례식장을 미리 정하지 않았어도 되나요?', '전담 장례지도사가 거주지·예산에 맞는 전국 500여 곳 제휴 장례식장을 즉시 섭외해 드립니다.'],
+  ['장례식장을 미리 정하지 않았어도 되나요?', '전담 장례지도사가 거주지·예산에 맞는 전국 100여 곳 제휴 장례식장을 즉시 섭외해 드립니다.'],
 ];
 
 /* ─── 공용 스타일 조각 ─── */
@@ -112,7 +112,7 @@ export default function HomePage() {
     { '@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
       { '@type': 'Question', 'name': '후불제 상조와 선불제 상조의 가장 큰 차이점은 무엇인가요?', 'acceptedAnswer': { '@type': 'Answer', 'text': '가효상조와 같은 후불제 상조는 매월 납입하는 선불금이나 가입비가 전혀 없습니다. 장례가 모두 끝난 발인 날, 실제 사용한 서비스 비용만 결제하므로 경제적이고 투명합니다.' } },
       { '@type': 'Question', 'name': '한밤중에 임종하셨는데 지금 바로 장례식장 이동이 가능한가요?', 'acceptedAnswer': { '@type': 'Answer', 'text': '네, 가능합니다. 가효상조는 24시간 연중무휴로 운영되며, 임종 즉시 1551-5718로 전화 주시면 앰뷸런스를 배차하여 원하시는 장례식장으로 고인을 모십니다.' } },
-      { '@type': 'Question', 'name': '장례식장을 미리 정해두지 않았는데 어떻게 하나요?', 'acceptedAnswer': { '@type': 'Answer', 'text': '당황하지 않으셔도 됩니다. 가효상조의 전담 장례지도사가 유가족의 거주지, 예상 조문객 수, 예산 등을 고려하여 최적의 제휴 장례식장(전국 500여 곳)을 실시간으로 섭외해 드립니다.' } },
+      { '@type': 'Question', 'name': '장례식장을 미리 정해두지 않았는데 어떻게 하나요?', 'acceptedAnswer': { '@type': 'Answer', 'text': '당황하지 않으셔도 됩니다. 가효상조의 전담 장례지도사가 유가족의 거주지, 예상 조문객 수, 예산 등을 고려하여 최적의 제휴 장례식장(전국 100여 곳)을 실시간으로 섭외해 드립니다.' } },
     ] },
   ];
 

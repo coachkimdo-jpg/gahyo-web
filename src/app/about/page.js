@@ -2,7 +2,7 @@ import Link from 'next/link';
 import HallStickyBar from '@/components/HallStickyBar';
 
 export const metadata = {
-  title: '가효상조 소개 | 100% 후불제 상조 - 추가금 없는 확정가',
+  title: '회사 소개 | 100% 후불제 상조 - 추가금 없는 확정가',
   description: '가효상조는 장례 완료 후 결제하는 100% 후불제 상조입니다. 상품 구성 임의 제외, 저질 용품 끼워넣기, 업그레이드 유도를 일절 하지 않습니다.',
   alternates: {
     canonical: 'https://gahyo.co.kr/about',

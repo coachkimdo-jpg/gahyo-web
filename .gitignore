@@ -44,12 +44,9 @@ next-env.d.ts
 .gemini
 
 .vercel
-"ºí·Î±×±Û ¿ÀÅä APIÅ°.txt" 
 
-# °³ÀÎ ÀÛ¾÷ ÆÄÀÏ (»çÀÌÆ® ÄÚµå ¾Æ´Ô, ¹Î°¨Á¤º¸ Æ÷ÇÔ °¡´É)
+# ê°œì¸ ì‘ì—… ë©”ëª¨ (ì‚¬ì´íŠ¸ ì½”ë“œ ì•„ë‹˜, ë¯¼ê°ì •ë³´ í¬í•¨ â€” ì ˆëŒ€ ì»¤ë°‹ ê¸ˆì§€)
 *.xlsx
-ºí·Î±×±Û ¿ÀÅä APIÅ°.txt
-workflow-family-lawcare.json
-workflow-seniorlifehub.json
+ë¸”ë¡œê·¸ê¸€ ì˜¤í†  APIí‚¤.txt
 23gkrsus1*.json
 study_don*.json

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import HallStickyBar from '@/components/HallStickyBar';
 
 export const metadata = {
-  title: '후불제상조상품 비교 및 가격 안내 | 가효상조',
+  title: '후불제상조상품 비교 및 가격 안내',
   description: '투명하고 정직한 가효상조의 4가지 후불제상조상품(무빈소 120, 가효 265, 가효 334, 가효 363)을 비교해 보세요. 전문가가 검증한 합리적인 장례비용입니다.',
   alternates: {
     canonical: 'https://gahyo.co.kr/products',
@@ -83,7 +83,7 @@ const FAQS = [
   },
   {
     q: '가격이 저렴하면 서비스 품질도 낮은 것 아닌가요?',
-    a: '그렇지 않습니다. 가효상조는 전국 500개 제휴 장례식장에서 표준화된 1등급 정품 장례 용품만을 사용하며, 10년 이상 경력의 국가공인 1급 장례지도사가 직접 진행합니다. 저렴한 이유는 불필요한 광고비와 영업 수당을 없앴기 때문입니다.',
+    a: '그렇지 않습니다. 가효상조는 전국 100개 제휴 장례식장에서 표준화된 1등급 정품 장례 용품만을 사용하며, 10년 이상 경력의 국가공인 1급 장례지도사가 직접 진행합니다. 저렴한 이유는 불필요한 광고비와 영업 수당을 없앴기 때문입니다.',
   },
   {
     q: '장례 후 추가 비용이 청구되지 않나요?',
@@ -191,7 +191,7 @@ export default function ProductsPage() {
               { icon: '👔', title: '국가공인 1급 장례지도사', sub: '10년 이상 경력자만 출동합니다' },
               { icon: '⏰', title: '24시간 연중무휴', sub: '새벽이든, 주말이든, 공휴일이든' },
               { icon: '💸', title: '100% 후불제', sub: '장례 후 실사용 금액만 청구합니다' },
-              { icon: '🤝', title: '전국 500개 제휴 장례식장', sub: '어디서나 동일한 품질' },
+              { icon: '🤝', title: '전국 100개 제휴 장례식장', sub: '어디서나 동일한 품질' },
             ].map(item => (
               <div key={item.title} style={{ textAlign: 'center', padding: '1rem' }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{item.icon}</div>

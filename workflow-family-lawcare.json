@@ -1,5 +1,5 @@
 {
-  "name": "② 가족상속세무연구소 블로그 자동 발행 (가효 백링크 포함)",
+  "name": "④ 패밀리로케어 블로그 자동 발행 (가효 백링크 포함)",
   "nodes": [
     {
       "id": "sticky-family",
@@ -8,25 +8,28 @@
       "typeVersion": 1,
       "position": [200, 60],
       "parameters": {
-        "content": "## ⚙️ 가족상속세무연구소 워크플로 설정\n\n**① 구글 시트 자격증명** → '구글 시트: 키워드 읽기' 노드\n**② OpenAI API 키** → 'GPT-4o 글 생성', 'DALL-E 이미지 생성' 노드\n**③ imgBB API 키** → 'imgBB 이미지 영구 저장' 노드 (무료: imgbb.com)\n**④ GitHub Personal Access Token** → 'GitHub: 마크다운 발행' 노드\n**⑤ GitHub 저장소 정보** → owner, repo 입력\n\n📋 구글 시트 헤더 (1행):\nA=메인 키워드 | B=서브키워드 | C=포함할 키워드 | D=서브키워드 수 | E=상태 | F=발행일\n\n✅ Netlify는 GitHub 커밋 시 자동 배포됩니다 (별도 트리거 불필요)",
-        "height": 280,
-        "width": 460,
-        "color": 6
+        "content": "## ⚙️ 패밀리로케어 워크플로 설정\n\n**① 구글 시트 자격증명** → '구글 시트: 키워드 읽기', '구글 시트: 발행완료 업데이트' 노드\n**② OpenAI API 키** → 'GPT-4o: 블로그 글 생성', 'gpt-image-1: 이미지 생성' 노드\n**③ GitHub Personal Access Token** → 'GitHub: 이미지 업로드', 'GitHub: 마크다운 발행' 노드 헤더\n**④ GitHub 저장소 이름** → 두 GitHub 노드의 URL에서 GITHUB_REPO_NAME 교체\n\n📋 구글 시트 헤더 (1행):\nA=메인 키워드 | B=서브키워드 | C=서브키워드 수\nD=상태 | E=발행일 | F=참조키워드 | G=연결링크\n\n💡 상태: '대기중' 입력 → 발행 후 '발행완료' 자동변경\n💡 참조키워드+연결링크: 비워두면 가효상조 백링크 없이 발행\n\nGitHub: ineco812/family-tax-website (main 브랜치)\n✅ Netlify는 GitHub 커밋 감지 시 자동 배포\n\n⚠️ TODO: Astro config.ts의 실제 category enum 값 확인 후\n아래 카테고리 매핑 코드 수정 필요\n(현재 기본값: divorce / inheritance / custody / property / general)\n\nGitHub 저장소: ineco812/family-tax-website ✅",
+        "height": 360,
+        "width": 540,
+        "color": 3
       }
     },
     {
       "id": "schedule-family",
-      "name": "매일 오전 10시 실행",
+      "name": "요일별 자동 실행",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [700, 340],
       "parameters": {
         "rule": {
           "interval": [
-            {
-              "field": "cronExpression",
-              "expression": "0 10 * * 1-6"
-            }
+            { "field": "cronExpression", "expression": "0 0 10 * * 0" },
+            { "field": "cronExpression", "expression": "0 10 10 * * 1" },
+            { "field": "cronExpression", "expression": "0 20 10 * * 2" },
+            { "field": "cronExpression", "expression": "0 29 10 * * 3" },
+            { "field": "cronExpression", "expression": "0 38 10 * * 4" },
+            { "field": "cronExpression", "expression": "0 47 10 * * 5" },
+            { "field": "cronExpression", "expression": "0 52 10 * * 6" }
           ]
         }
       }
@@ -41,13 +44,13 @@
         "operation": "getRows",
         "documentId": {
           "__rl": true,
-          "value": "여기에_구글시트_ID_입력",
+          "value": "1fZzn9lTcQQ6t0oo9AxTglPG9iP2OG-bGVI0eje6kKvk",
           "mode": "id"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
-          "mode": "id"
+          "value": "family-lawcare",
+          "mode": "name"
         },
         "options": {}
       },
@@ -65,7 +68,7 @@
       "typeVersion": 2,
       "position": [1140, 340],
       "parameters": {
-        "jsCode": "const 대기중행 = items.filter(item => item.json['상태'] === '대기중');\n\nif (대기중행.length === 0) {\n  return [{ json: { __발행없음: true } }];\n}\n\nconst row = 대기중행[0].json;\nreturn [{\n  json: {\n    __발행없음: false,\n    메인키워드: row['메인 키워드'] || '',\n    서브키워드: row['서브키워드'] || '',\n    포함키워드: row['포함할 키워드'] || '',\n    서브수: parseInt(row['서브키워드 수']) || 3\n  }\n}];"
+        "jsCode": "const rows = items.map(function(i) { return i.json; });\nconst pending = rows.filter(function(r) { return r['상태'] === '대기중'; });\nif (pending.length === 0) return [{ json: { found: false } }];\nconst row = pending[0];\nreturn [{\n  json: {\n    found: true,\n    메인키워드: row['메인 키워드'] || '',\n    서브키워드: row['서브키워드'] || '',\n    서브수: parseInt(row['서브키워드 수']) || 3,\n    참조키워드: row['참조키워드'] || '',\n    연결링크: row['연결링크'] || ''\n  }\n}];"
       }
     },
     {
@@ -79,8 +82,8 @@
           "conditions": [
             {
               "id": "check-keyword-family",
-              "leftValue": "={{ $json.__발행없음 }}",
-              "rightValue": false,
+              "leftValue": "={{ $json.found }}",
+              "rightValue": true,
               "operator": {
                 "type": "boolean",
                 "operation": "equals"
@@ -96,7 +99,7 @@
       "name": "오늘 발행 없음 (종료)",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
-      "position": [1360, 520],
+      "position": [1580, 480],
       "parameters": {}
     },
     {
@@ -106,7 +109,7 @@
       "typeVersion": 2,
       "position": [1580, 240],
       "parameters": {
-        "jsCode": "const d = items[0].json;\nconst keyword = d.메인키워드;\nconst subKeywords = d.서브키워드;\nconst includeKeywords = d.포함키워드;\nconst subCount = d.서브수;\n\nconst today = new Date();\nconst dateStr = today.toISOString().split('T')[0];\nconst dateCompact = dateStr.replace(/-/g, '');\nconst slug = keyword\n  .replace(/\\s+/g, '-')\n  .replace(/[^a-zA-Z0-9가-힣-]/g, '')\n  .substring(0, 40) + '-' + dateCompact;\n\n// 가효상조 백링크 문장 (자연스럽게 본문 중간에 삽입)\nconst backlink = '상속 절차와 함께 장례를 준비하신다면 <a href=\"https://gahyo.co.kr\" title=\"가효상조 후불제 장례 서비스\">가효상조</a>처럼 후불제 방식으로 운영되는 투명한 상조 서비스를 미리 비교해보시기 바랍니다.';\n\nconst gptBody = {\n  model: 'gpt-4o',\n  max_tokens: 3000,\n  temperature: 0.7,\n  messages: [\n    {\n      role: 'system',\n      content: '당신은 상속세·증여세 분야 SEO 전문 블로그 작가입니다. 복잡한 세무·법률 내용을 일반인도 이해하기 쉽게 설명하는 전문 칼럼을 작성합니다. 출력은 반드시 순수 HTML 형식(Markdown 사용 금지)으로 합니다.'\n    },\n    {\n      role: 'user',\n      content: `아래 조건으로 SEO 최적화 칼럼을 HTML 형식으로 작성해주세요.\n\n[키워드 조건]\n- 메인 키워드: ${keyword}\n- 서브키워드: ${subKeywords}\n- 반드시 포함할 단어: ${includeKeywords}\n- 서브키워드 각각 ${subCount}회 이상 자연스럽게 포함\n\n[작성 규칙]\n1. 분량: 1,500자 이상\n2. <h2> 소제목 3개 이상, <h3>도 활용\n3. <p>, <ul>, <li> 태그 사용\n4. <body>, <html>, <head> 태그 제외\n5. 첫 번째 <p>에 메인 키워드 포함\n6. 본문 두 번째 또는 세 번째 문단 끝에 다음 HTML 문장을 그대로 삽입:\n   ${backlink}\n7. 마지막 소제목은 정리/요약으로 마무리\n8. 전문적이지만 일반인이 이해하기 쉬운 문체`\n    }\n  ]\n};\n\nreturn [{\n  json: {\n    keyword, subKeywords, includeKeywords, subCount,\n    slug, dateStr,\n    gptBody\n  }\n}];"
+        "jsCode": "const d = items[0].json;\nconst keyword = d.메인키워드;\nconst subKeywords = d.서브키워드;\nconst subCount = d.서브수;\nconst refKeyword = d.참조키워드;\nconst refLink = d.연결링크;\n\n// ── 카테고리 자동 분류 (TODO: Astro config.ts 실제 enum 값으로 교체) ──\nvar category;\nif (keyword.indexOf('상속세') !== -1 || keyword.indexOf('상속공제') !== -1 || keyword.indexOf('일괄공제') !== -1 || keyword.indexOf('배우자공제') !== -1 || keyword.indexOf('상속세율') !== -1 || keyword.indexOf('상속세 신고') !== -1) {\n  category = 'inheritance-tax';\n} else if (keyword.indexOf('증여') !== -1 || keyword.indexOf('증여세') !== -1 || keyword.indexOf('증여공제') !== -1 || keyword.indexOf('사전증여') !== -1) {\n  category = 'gift-tax';\n} else if (keyword.indexOf('상속') !== -1 || keyword.indexOf('유산') !== -1 || keyword.indexOf('유언') !== -1 || keyword.indexOf('상속포기') !== -1 || keyword.indexOf('한정승인') !== -1 || keyword.indexOf('법정상속') !== -1) {\n  category = 'inheritance';\n} else if (keyword.indexOf('재산') !== -1 || keyword.indexOf('부동산') !== -1 || keyword.indexOf('아파트') !== -1 || keyword.indexOf('토지') !== -1) {\n  category = 'property';\n} else {\n  category = 'general';\n}\n\nconst author = '가족상속세무연구소 수석 세무사';\n\nconst today = new Date();\nconst dateStr = today.toISOString().split('T')[0];\nconst dateCompact = dateStr.replace(/-/g, '');\nconst slug = keyword\n  .replace(/\\s+/g, '-')\n  .replace(/[^a-zA-Z0-9가-힣-]/g, '')\n  .substring(0, 40) + '-' + dateCompact;\n\nconst systemPrompt = '[역할]\\n'\n  + '너는 상속세나 세무법을 전혀 모르는 평범한 이웃들에게 복잡한 세금 문제를 가장 쉽고 다정하게 풀어주는 \"가족상속세무연구소의 수석 상속전문 세무사\"야.\\n'\n  + '법률 전문가로서의 확실한 공신력과 전문성을 갖추되, 막막한 상황에 놓인 일반 납세자의 눈높이에서 명쾌한 해결책을 제시하는 독창적인 정보성 칼럼을 작성해줘.\\n\\n'\n  + '[5대 글쓰기 원칙 - 가독성 및 오리지널리티 극대화]\\n\\n'\n  + '1. 한국 사람이 일상에서 자연스럽게 쓸 법한 표현 사용\\n'\n  + '- 법률 조문이나 외국 세무 서적을 그대로 번역한 듯한 어색한 문체(예: \"~를 고려에 넣어야 합니다\", \"우리는 ~한 리스크에 직면해 있습니다\")는 절대 쓰지 마라.\\n'\n  + '- 실제 대한민국 세무사가 동네 주민이나 친근한 이웃에게 따뜻하게 조언하듯 매끄럽고 세련된 한국어 관용구와 일상 표현을 사용해줘.\\n\\n'\n  + '2. 권위를 유지하되 부드럽고 유연한 어미 사용 (딱딱한 어투 전면 금지)\\n'\n  + '- \"~하십시오\", \"~입니다\", \"~합니다\", \"~해야 합니다\", \"~됩니다\", \"~하도록 규정되어 있습니다\" 같은 어투는 절대 쓰지 마라.\\n'\n  + '- 대신 \"~해요\", \"~해보세요\", \"~편이 실무상 안전하답니다\", \"~를 권해 드려요\" 등의 부드러운 경어체를 일관되게 사용해줘.\\n\\n'\n  + '3. 능동태 중심의 주체적인 문장 구성\\n'\n  + '- 수동태나 피동형 표현(예: \"세금이 부과당하게 됩니다\", \"재산이 상속되어집니다\")을 전면 금지한다.\\n'\n  + '- 납세자와 세무 행정의 주체가 명확히 살아있는 능동태로 모든 문장을 구성해줘.\\n\\n'\n  + '4. 호흡이 짧고 명확한 문장 배치 (복잡한 장문 금지)\\n'\n  + '- 한 문장에는 오직 하나의 세무 정보나 쟁점(One Sentence, One Issue)만 담아라.\\n'\n  + '- 문장이 길어지면 주저 없이 마침표를 찍고 두세 개의 짧은 문장으로 나누어 서술해줘.\\n\\n'\n  + '5. \"당신\", \"여러분\" 호칭 전면 금지\\n'\n  + '- \"우리 가족\", \"상속인\", \"납세자\", \"평범한 가정\" 등으로 대체하고, 호칭이 생략 가능한 곳에서는 과감히 생략해줘.\\n\\n'\n  + '[콘텐츠 방향]\\n'\n  + '- 고액 자산가의 복잡한 기업 승계나 세무 회피 기술은 제외해라.\\n'\n  + '- 아파트 한 채를 가진 평범한 중산층 가정이 갑작스러운 임종 후 세금 폭탄을 피하기 위해 반드시 알아야 할 기본 공제 혜택처럼 지극히 대중적이고 실용적인 주제를 다뤄줘.\\n'\n  + '- 단순한 세법 요약 나열을 피하고, 실제 일반 가정에서 신고 기한을 놓쳐 가산세를 무는 흔한 실수 사례를 스토리텔링식으로 구성해줘.\\n\\n'\n  + '[출력 형식 규칙]\\n'\n  + '- 출력은 반드시 아래 5개 마커를 순서대로 포함할 것\\n'\n  + '- 마크다운 형식으로 작성 (HTML 태그 금지)\\n'\n  + '- 마커와 실제 내용 사이에 줄바꿈 없이 바로 내용 작성';\n\nvar refLinkInstruction = '';\nif (refKeyword && refLink) {\n  refLinkInstruction = '- 참조 링크도 본문 자연스러운 위치에 마크다운 형식으로 1회 삽입:\\n'\n    + '  [' + refKeyword + '](' + refLink + ')\\n';\n}\n\nconst userPrompt = '아래 조건으로 가족상속세무연구소 칼럼을 작성해줘.\\n\\n'\n  + '[키워드 조건]\\n'\n  + '- 메인 키워드: ' + keyword + '\\n'\n  + '- 서브키워드: ' + subKeywords + '\\n'\n  + '- 서브키워드 각각 ' + subCount + '회 이상 자연스럽게 포함\\n\\n'\n  + '[작성 지침]\\n'\n  + '- H2 소제목 4개 이상, 각 H2 아래 H3 소제목 2개씩\\n'\n  + '- 본문 전체 공백 제외 2,500자 이상\\n'\n  + '- \"~합니다\", \"~입니다\", \"~해야 합니다\", \"~됩니다\", \"~하십시오\" 절대 금지\\n'\n  + '- 실제 평범한 가정의 실수 사례를 스토리텔링 방식으로 1개 이상 포함\\n'\n  + refLinkInstruction\n  + '\\n[출력 형식] 아래 5개 마커를 반드시 포함:\\n'\n  + '##TITLE##여기에 SEO 최적화 제목 (60자 이내)\\n'\n  + '##META##여기에 메타 디스크립션 (120자 이내, 메인키워드 포함)\\n'\n  + '##AISUMMARY##여기에 AI 요약 (2~3문장, 핵심 내용 압축)\\n'\n  + '##TAGS##여기에 태그 (쉼표 구분, 5~7개)\\n'\n  + '##MARKDOWN##여기에 본문 전체 마크다운';\n\nconst gptBody = {\n  model: 'gpt-4o',\n  max_tokens: 8000,\n  temperature: 0.8,\n  messages: [\n    { role: 'system', content: systemPrompt },\n    { role: 'user', content: userPrompt }\n  ]\n};\n\nreturn [{\n  json: {\n    keyword, subKeywords, subCount,\n    category, author,\n    refKeyword, refLink,\n    slug, dateStr,\n    gptBody\n  }\n}];"
       }
     },
     {
@@ -134,17 +137,17 @@
     },
     {
       "id": "code-parse-family",
-      "name": "GPT 응답 파싱 및 DALL-E 요청 준비",
+      "name": "GPT 응답 파싱 및 이미지 요청 준비",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [2020, 240],
       "parameters": {
-        "jsCode": "const gptResult = items[0].json;\nconst prevData = $('슬러그 생성 및 GPT 요청 준비').first().json;\n\nconst htmlContent = gptResult.choices[0].message.content;\n\nconst titleMatch = htmlContent.match(/<h[12][^>]*>([^<]+)<\\/h[12]>/i);\nconst title = titleMatch\n  ? titleMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 완벽 가이드';\n\nconst excerptMatch = htmlContent.match(/<p[^>]*>([\\s\\S]*?)<\\/p>/i);\nconst rawExcerpt = excerptMatch\n  ? excerptMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 관련 전문 칼럼입니다.';\nconst excerpt = rawExcerpt.substring(0, 150) + (rawExcerpt.length > 150 ? '...' : '');\n\n// HTML → Markdown 변환 (간단 변환)\nconst markdownContent = htmlContent\n  .replace(/<h2[^>]*>(.*?)<\\/h2>/gi, '## $1')\n  .replace(/<h3[^>]*>(.*?)<\\/h3>/gi, '### $1')\n  .replace(/<p[^>]*>(.*?)<\\/p>/gis, '$1\\n\\n')\n  .replace(/<ul[^>]*>/gi, '').replace(/<\\/ul>/gi, '')\n  .replace(/<li[^>]*>(.*?)<\\/li>/gi, '- $1')\n  .replace(/<a\\s+href=\"([^\"]+)\"[^>]*>(.*?)<\\/a>/gi, '[$2]($1)')\n  .replace(/<[^>]+>/g, '')\n  .replace(/\\n{3,}/g, '\\n\\n')\n  .trim();\n\nconst dalleBody = {\n  model: 'dall-e-3',\n  prompt: `전문적인 법무·세무 상담 사무실 장면. 깔끔한 한국 인테리어, 서류와 계약서가 놓인 책상. \"${prevData.keyword}\" 주제와 관련된 신뢰감 있는 이미지. 이미지 안에 텍스트나 글자 없음. 사진 현실적 스타일.`,\n  size: '1792x1024',\n  quality: 'standard',\n  n: 1\n};\n\nreturn [{\n  json: {\n    title, excerpt,\n    htmlContent, markdownContent,\n    keyword: prevData.keyword,\n    slug: prevData.slug,\n    dateStr: prevData.dateStr,\n    dalleBody\n  }\n}];"
+        "jsCode": "const gptResult = items[0].json;\nconst prevData = $('슬러그 생성 및 GPT 요청 준비').first().json;\n\nconst raw = gptResult.choices[0].message.content;\n\nfunction extractMarker(text, marker) {\n  var tag = '##' + marker + '##';\n  var start = text.indexOf(tag);\n  if (start === -1) return '';\n  start = start + tag.length;\n  var nextHash = text.indexOf('##', start);\n  var end = nextHash === -1 ? text.length : nextHash;\n  return text.substring(start, end).trim();\n}\n\n// MARKDOWN은 마지막 마커이므로 끝까지 전부 가져옴\nvar mdTag = '##MARKDOWN##';\nvar mdStart = raw.indexOf(mdTag);\nvar markdownContent = mdStart !== -1 ? raw.substring(mdStart + mdTag.length).trim() : raw;\n\nvar title = extractMarker(raw, 'TITLE') || prevData.keyword + ' 가족법 안내';\nvar metaDescription = extractMarker(raw, 'META') || prevData.keyword + ' 관련 법률 정보';\nvar aiSummary = extractMarker(raw, 'AISUMMARY') || '';\nvar tagsRaw = extractMarker(raw, 'TAGS') || prevData.keyword;\n\nvar tags = tagsRaw.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t.length > 0; });\nvar charCount = markdownContent.replace(/\\s/g, '').length;\nvar readingTime = Math.max(5, Math.ceil(charCount / 500));\n\n// 키워드 기반 이미지 설명 생성\nvar kw = prevData.keyword;\nvar imageDesc = '';\n\nif (kw.indexOf('상속세') !== -1 || kw.indexOf('상속세율') !== -1 || kw.indexOf('공제') !== -1 || kw.indexOf('일괄공제') !== -1) {\n  imageDesc = 'A warm and professional Korean tax consultation scene. A kind Korean tax accountant in his 50s sitting across from an elderly Korean couple in their 60s at a bright clean office desk. Tax documents, a calculator, and glasses on the table. Soft natural light, trustworthy and reassuring atmosphere. No text or letters in the image.';\n} else if (kw.indexOf('증여') !== -1 || kw.indexOf('증여세') !== -1 || kw.indexOf('사전증여') !== -1) {\n  imageDesc = 'A warm intergenerational Korean family scene. Elderly Korean parents in their 70s handing important documents to their adult child in their 40s at a bright family home. Warm afternoon light, family photos visible in background, caring and trusting atmosphere. No text or letters in the image.';\n} else if (kw.indexOf('상속') !== -1 || kw.indexOf('유언') !== -1 || kw.indexOf('상속포기') !== -1 || kw.indexOf('한정승인') !== -1) {\n  imageDesc = 'A thoughtful scene of a Korean family carefully reviewing legal documents around a dining room table. Warm indoor lighting, tea cups, a family home setting. Middle-aged Korean adults with a sense of careful deliberation and family unity. No text or letters in the image.';\n} else if (kw.indexOf('아파트') !== -1 || kw.indexOf('부동산') !== -1 || kw.indexOf('재산') !== -1) {\n  imageDesc = 'A professional Korean real estate and tax consultation. A Korean tax accountant reviewing property documents and a floor plan with a Korean couple in their 50s at a modern office. Bright clean space, documents and a laptop visible. Focused and competent atmosphere. No text or letters in the image.';\n} else if (kw.indexOf('신고') !== -1 || kw.indexOf('기한') !== -1 || kw.indexOf('가산세') !== -1) {\n  imageDesc = 'A focused Korean tax accountant in their 40s carefully reviewing important tax documents at a bright office desk. Calendar, calculator, official documents, and a pen visible. Deadline awareness, professional and calm atmosphere. No text or letters in the image.';\n} else {\n  imageDesc = 'A professional and welcoming Korean tax accounting firm office. Clean modern Korean interior, bookshelves with tax law reference books, natural plants, warm lighting, a consultation desk. Trustworthy family tax planning firm atmosphere. No text or letters in the image.';\n}\n\nvar imageBody = {\n  model: 'gpt-image-1',\n  prompt: imageDesc + ' Photorealistic style, high quality.',\n  n: 1,\n  size: '1536x1024',\n  quality: 'medium'\n};\n\nreturn [{\n  json: {\n    title: title,\n    metaDescription: metaDescription,\n    aiSummary: aiSummary,\n    tags: tags,\n    markdownContent: markdownContent,\n    readingTime: readingTime,\n    keyword: prevData.keyword,\n    slug: prevData.slug,\n    dateStr: prevData.dateStr,\n    category: prevData.category,\n    author: prevData.author,\n    imageBody: imageBody\n  }\n}];"
       }
     },
     {
-      "id": "http-dalle-family",
-      "name": "DALL-E 3: 이미지 생성 (ChatGPT API)",
+      "id": "http-image-family",
+      "name": "gpt-image-1: 이미지 생성",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [2240, 240],
@@ -155,7 +158,7 @@
         "nodeCredentialType": "openAiApi",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($('GPT 응답 파싱 및 DALL-E 요청 준비').item.json.dalleBody) }}",
+        "jsonBody": "={{ JSON.stringify($json.imageBody) }}",
         "options": {}
       },
       "credentials": {
@@ -166,64 +169,77 @@
       }
     },
     {
-      "id": "http-imgbb-family",
-      "name": "imgBB: 이미지 영구 저장",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "id": "code-markdown-family",
+      "name": "마크다운 파일 구성",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [2460, 240],
       "parameters": {
-        "method": "POST",
-        "url": "https://api.imgbb.com/1/upload",
-        "sendBody": true,
-        "contentType": "form-urlencoded",
-        "bodyParameters": {
+        "jsCode": "const prevData = $('GPT 응답 파싱 및 이미지 요청 준비').first().json;\nconst imageData = $('gpt-image-1: 이미지 생성').first().json;\n\nconst imageFilename = prevData.slug + '.png';\nconst imagePath = '/images/posts/' + imageFilename;\n\nconst tagsYaml = prevData.tags.map(function(t) {\n  return '\"' + t.replace(/\"/g, \"'\") + '\"';\n}).join(', ');\n\nconst frontmatter = '---\\n'\n  + 'title: \"' + prevData.title.replace(/\"/g, \"'\") + '\"\\n'\n  + 'summary: \"' + prevData.metaDescription.replace(/\"/g, \"'\") + '\"\\n'\n  + 'date: ' + prevData.dateStr + '\\n'\n  + 'author: \"' + prevData.author + '\"\\n'\n  + 'tags: [' + tagsYaml + ']\\n'\n  + 'category: \"' + prevData.category + '\"\\n'\n  + 'aiSummary: \"' + prevData.aiSummary.replace(/\"/g, \"'\").replace(/\\n/g, ' ') + '\"\\n'\n  + 'readingTime: ' + prevData.readingTime + '\\n'\n  + 'ogImage: \"' + imagePath + '\"\\n'\n  + '---\\n\\n';\n\nconst imageMarkdown = '![' + prevData.title + '](' + imagePath + ')\\n\\n';\nconst fullMarkdown = frontmatter + imageMarkdown + prevData.markdownContent;\nconst base64Content = Buffer.from(fullMarkdown, 'utf8').toString('base64');\nconst imageBase64 = imageData.data[0].b64_json;\n\n// GitHub API URL 구성 (TODO: GITHUB_REPO_NAME을 실제 저장소 이름으로 교체)\nconst GITHUB_BASE = 'https://api.github.com/repos/ineco812/family-tax-website/contents/';\nconst gitlabImageUrl = GITHUB_BASE + 'public%2Fimages%2Fposts%2F' + encodeURIComponent(imageFilename);\nconst gitlabFileUrl = GITHUB_BASE + 'src%2Fcontent%2Fposts%2F' + encodeURIComponent(prevData.slug + '.md');\n\nreturn [{\n  json: {\n    title: prevData.title,\n    slug: prevData.slug,\n    filePath: 'src/content/posts/' + prevData.slug + '.md',\n    fullMarkdown: fullMarkdown,\n    base64Content: base64Content,\n    imagePath: imagePath,\n    imageFilename: imageFilename,\n    imageBase64: imageBase64,\n    gitlabImageUrl: gitlabImageUrl,\n    gitlabFileUrl: gitlabFileUrl,\n    keyword: prevData.keyword,\n    dateStr: prevData.dateStr\n  }\n}];"
+      }
+    },
+    {
+      "id": "http-github-image",
+      "name": "GitHub: 이미지 업로드",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2680, 240],
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ $json.gitlabImageUrl }}",
+        "sendHeaders": true,
+        "headerParameters": {
           "parameters": [
             {
-              "name": "key",
-              "value": "여기에_IMGBB_API_KEY_입력"
+              "name": "Authorization",
+              "value": "Bearer YOUR_GITHUB_PAT_HERE"
             },
             {
-              "name": "image",
-              "value": "={{ $json.data[0].url }}"
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
             }
           ]
         },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: '이미지 업로드: ' + $json.imageFilename, content: $json.imageBase64, branch: 'main' }) }}",
         "options": {}
       }
     },
     {
-      "id": "code-markdown-family",
-      "name": "마크다운 파일 내용 생성",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [2680, 240],
-      "parameters": {
-        "jsCode": "const imgbbResult = items[0].json;\nconst parsedData = $('GPT 응답 파싱 및 DALL-E 요청 준비').first().json;\n\nconst imageUrl = imgbbResult.data.display_url;\n\n// 마크다운 frontmatter + 본문\nconst frontmatter = `---\ntitle: \"${parsedData.title.replace(/\"/g, '\\'')}\"\ndate: \"${parsedData.dateStr}\"\ndescription: \"${parsedData.excerpt.replace(/\"/g, '\\'')}\"\nheroImage: \"${imageUrl}\"\ntags: [\"${parsedData.keyword}\"]\nauthor: \"가족상속세무연구소\"\n---\n\n`;\n\nconst fullMarkdown = frontmatter + parsedData.markdownContent;\n\n// GitHub API용 Base64 인코딩\nconst base64Content = Buffer.from(fullMarkdown, 'utf-8').toString('base64');\n\nreturn [{\n  json: {\n    base64Content,\n    slug: parsedData.slug,\n    keyword: parsedData.keyword,\n    dateStr: parsedData.dateStr,\n    title: parsedData.title\n  }\n}];"
-      }
-    },
-    {
-      "id": "github-publish-family",
+      "id": "http-github-md",
       "name": "GitHub: 마크다운 발행",
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [2900, 240],
       "parameters": {
-        "resource": "file",
-        "operation": "create",
-        "owner": "여기에_GitHub_사용자명",
-        "repository": "여기에_저장소_이름",
-        "filePath": "={{ 'src/content/posts/' + $json.slug + '.md' }}",
-        "fileContent": "={{ $json.base64Content }}",
-        "commitMessage": "={{ '블로그 자동 발행: ' + $json.title }}",
-        "additionalParameters": {
-          "branch": "main"
-        }
-      },
-      "credentials": {
-        "githubApi": {
-          "id": "임포트_후_GitHub_자격증명_선택",
-          "name": "GitHub"
-        }
+        "method": "PUT",
+        "url": "={{ $('마크다운 파일 구성').first().json.gitlabFileUrl }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_GITHUB_PAT_HERE"
+            },
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: '블로그 자동 발행: ' + $('마크다운 파일 구성').first().json.title, content: $('마크다운 파일 구성').first().json.base64Content, branch: 'main' }) }}",
+        "options": {}
       }
     },
     {
@@ -236,22 +252,24 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "여기에_구글시트_ID_입력",
+          "value": "1fZzn9lTcQQ6t0oo9AxTglPG9iP2OG-bGVI0eje6kKvk",
           "mode": "id"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
-          "mode": "id"
+          "value": "family-lawcare",
+          "mode": "name"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "메인 키워드": "={{ $('마크다운 파일 내용 생성').item.json.keyword }}",
+            "메인 키워드": "={{ $('마크다운 파일 구성').item.json.keyword }}",
             "상태": "발행완료",
-            "발행일": "={{ $('마크다운 파일 내용 생성').item.json.dateStr }}"
+            "발행일": "={{ $('마크다운 파일 구성').item.json.dateStr }}"
           },
-          "matchingColumns": ["메인 키워드"],
+          "matchingColumns": [
+            "메인 키워드"
+          ],
           "schema": []
         },
         "options": {}
@@ -265,7 +283,7 @@
     }
   ],
   "connections": {
-    "매일 오전 10시 실행": {
+    "요일별 자동 실행": {
       "main": [
         [{ "node": "구글 시트: 키워드 읽기", "type": "main", "index": 0 }]
       ]
@@ -293,25 +311,25 @@
     },
     "GPT-4o: 블로그 글 생성": {
       "main": [
-        [{ "node": "GPT 응답 파싱 및 DALL-E 요청 준비", "type": "main", "index": 0 }]
+        [{ "node": "GPT 응답 파싱 및 이미지 요청 준비", "type": "main", "index": 0 }]
       ]
     },
-    "GPT 응답 파싱 및 DALL-E 요청 준비": {
+    "GPT 응답 파싱 및 이미지 요청 준비": {
       "main": [
-        [{ "node": "DALL-E 3: 이미지 생성 (ChatGPT API)", "type": "main", "index": 0 }]
+        [{ "node": "gpt-image-1: 이미지 생성", "type": "main", "index": 0 }]
       ]
     },
-    "DALL-E 3: 이미지 생성 (ChatGPT API)": {
+    "gpt-image-1: 이미지 생성": {
       "main": [
-        [{ "node": "imgBB: 이미지 영구 저장", "type": "main", "index": 0 }]
+        [{ "node": "마크다운 파일 구성", "type": "main", "index": 0 }]
       ]
     },
-    "imgBB: 이미지 영구 저장": {
+    "마크다운 파일 구성": {
       "main": [
-        [{ "node": "마크다운 파일 내용 생성", "type": "main", "index": 0 }]
+        [{ "node": "GitHub: 이미지 업로드", "type": "main", "index": 0 }]
       ]
     },
-    "마크다운 파일 내용 생성": {
+    "GitHub: 이미지 업로드": {
       "main": [
         [{ "node": "GitHub: 마크다운 발행", "type": "main", "index": 0 }]
       ]

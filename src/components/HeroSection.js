@@ -143,7 +143,7 @@ export default function HeroSection({ today }) {
           }}>
             <HallIcon width="1.5rem" height="1.5rem" style={{ color: 'var(--gold-dark)' }} />
             <div>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: '700', color: 'var(--text-primary)', lineHeight: 1 }}>500+</div>
+              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: '700', color: 'var(--text-primary)', lineHeight: 1 }}>100+</div>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: '600' }}>제휴 장례식장</div>
             </div>
           </div>

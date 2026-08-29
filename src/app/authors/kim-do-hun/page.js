@@ -2,7 +2,7 @@ import Link from 'next/link';
 import HallStickyBar from '@/components/HallStickyBar';
 
 export const metadata = {
-  title: '김도훈 장례지도사 | 국가공인 1급 | 가효상조',
+  title: '김도훈 장례지도사 | 국가공인 1급',
   description: '가효상조 대표 김도훈은 보건복지부 국가공인 장례지도사 1급(자격증 제 서울-2026-00016호)으로, 유가족이 경황없는 순간에도 투명하고 정직한 장례를 받을 수 있도록 가효상조를 설립했습니다.',
   alternates: {
     canonical: 'https://gahyo.co.kr/authors/kim-do-hun',

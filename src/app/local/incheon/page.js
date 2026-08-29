@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: '인천 상조 | 가효상조 — 인천 전지역 24시간 즉시 출동',
+  title: '인천 상조 | 인천 전지역 24시간 즉시 출동',
   description: '인천 전지역 24시간 즉시 출동. 남동구·연수구·부평구·서구 등 전 구 출동. 가입비·월납입금 0원, 장례 후 결제.',
   keywords: ["인천상조", "인천장례", "인천장례식장", "인천후불제상조"],
   alternates: { canonical: 'https://gahyo.co.kr/local/incheon' },

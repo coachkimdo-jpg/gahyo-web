@@ -1,6 +1,9 @@
 export const metadata = {
-  title: '이용약관 | 가효상조',
+  title: '이용약관',
   description: '가효상조 후불제 상조 서비스 이용약관 안내',
+  alternates: {
+    canonical: 'https://gahyo.co.kr/terms',
+  },
 };
 
 export default function TermsPage() {

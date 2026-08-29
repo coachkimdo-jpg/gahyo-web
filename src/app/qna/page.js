@@ -232,6 +232,46 @@ export default function QnaPage() {
           </div>
         )}
 
+        {/* 문의 안내 및 FAQ — 게시판 자체에 대한 정적 안내 콘텐츠 (실제 등록 여부와 무관하게 항상 노출) */}
+        <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px solid #e5e7eb' }}>
+          <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '1rem' }}>문의 방법 안내</h2>
+          <p style={{ color: '#4b5563', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: '1.5rem', wordBreak: 'keep-all' }}>
+            가효상조는 아래 3가지 방법으로 문의를 받고 있습니다. 급하신 경우에는 전화 상담을, 기록을 남기고 싶으신 경우에는 이 게시판을 이용해 주세요.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2.5rem' }}>
+            {[
+              { icon: '📞', title: '전화 상담', desc: '1551-5718로 연중무휴 24시간 즉시 상담 가능합니다.' },
+              { icon: '💬', title: '카카오톡 상담', desc: '카카오 채널로 편한 시간에 텍스트로 문의하실 수 있습니다.' },
+              { icon: '📝', title: '온라인 게시판', desc: '이 페이지에서 문의글을 남기시면 확인 후 답변드립니다.' },
+            ].map((item) => (
+              <div key={item.title} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '1.25rem', textAlign: 'center' }}>
+                <div style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>{item.icon}</div>
+                <div style={{ fontWeight: '700', color: 'var(--navy)', marginBottom: '0.375rem' }}>{item.title}</div>
+                <div style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.6 }}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--navy)', marginBottom: '1.25rem' }}>게시판 이용 안내 (FAQ)</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {[
+              { q: '문의글을 남기면 답변은 얼마나 걸리나요?', a: '평일 기준 영업일 1일 이내에 답변드리는 것을 원칙으로 하며, 급한 사안은 전화(1551-5718)로 문의하시면 더 빠르게 도움받으실 수 있습니다.' },
+              { q: '비공개(비밀글)로 작성하면 어떻게 되나요?', a: '작성 시 설정한 비밀번호를 입력해야만 본인과 답변자만 내용을 열람할 수 있습니다. 연락처나 가족 상황 등 민감한 내용을 남기실 때 이용해 주세요.' },
+              { q: '작성자 이름이 게시판에 그대로 노출되나요?', a: '아니요. 목록에는 이름의 가운데 글자를 가려 표시하며, 이메일·연락처 등 개인정보는 공개 목록에 노출되지 않습니다.' },
+              { q: '전화 상담과 게시판 문의 중 어떤 것이 더 빠른가요?', a: '가장 빠른 응대는 1551-5718 전화 상담이며, 24시간 연중무휴로 운영됩니다. 게시판은 통화가 어려운 시간대에 기록을 남기고 싶으실 때 이용하시면 좋습니다.' },
+            ].map((faq, i) => (
+              <article key={i} style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '1.25rem 1.5rem' }}>
+                <h3 style={{ fontSize: '0.98rem', fontWeight: '800', color: '#1e293b', marginBottom: '0.6rem', display: 'flex', gap: '0.5rem' }}>
+                  <span style={{ color: 'var(--gold-dark)', flexShrink: 0 }}>Q.</span> {faq.q}
+                </h3>
+                <p style={{ color: '#475569', fontSize: '0.9rem', lineHeight: 1.7, paddingLeft: '1.4rem', margin: 0, wordBreak: 'keep-all' }}>
+                  <strong style={{ color: 'var(--gold-dark)', marginRight: '0.3rem' }}>A.</strong>{faq.a}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );

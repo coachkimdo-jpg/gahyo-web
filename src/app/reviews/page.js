@@ -1,7 +1,7 @@
 import HallStickyBar from '@/components/HallStickyBar';
 
 export const metadata = {
-  title: '가효상조 고객 후기 | 실제 이용 후기 모음',
+  title: '고객 후기 | 실제 이용 후기 모음',
   description: '가효상조를 이용한 실제 고객의 장례 후기입니다. 100% 후불제, 추가비용 없는 투명한 장례 서비스에 대한 진솔한 경험을 확인하세요.',
   alternates: {
     canonical: 'https://gahyo.co.kr/reviews',

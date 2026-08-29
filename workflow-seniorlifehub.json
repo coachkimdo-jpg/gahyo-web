@@ -6,11 +6,14 @@
       "name": "설정 가이드",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [200, 60],
+      "position": [
+        200,
+        60
+      ],
       "parameters": {
-        "content": "## ⚙️ 시니어라이프 워크플로 설정\n\n**① 구글 시트 자격증명** → '구글 시트: 키워드 읽기' 노드\n**② OpenAI API 키** → 'GPT-4o 글 생성', 'DALL-E 이미지 생성' 노드\n**③ imgBB API 키** → 'imgBB 이미지 영구 저장' 노드 (무료: imgbb.com)\n**④ GitLab Personal Access Token** (glpat-...) → 'GitLab: 마크다운 발행' 노드\n**⑤ GitLab 저장소 ID 또는 경로** → project_id 입력\n\n📋 구글 시트 헤더 (1행):\nA=메인 키워드 | B=서브키워드 | C=포함할 키워드 | D=서브키워드 수 | E=상태 | F=발행일\n\n✅ Cloudflare Pages는 GitLab 커밋 시 자동 배포됩니다",
-        "height": 280,
-        "width": 460,
+        "content": "## ⚙️ 시니어라이프 워크플로 설정\n\n**① 구글 시트 자격증명** → '구글 시트: 키워드 읽기', '구글 시트: 발행완료 업데이트' 노드\n**② OpenAI API 키** → 'GPT-4o: 블로그 글 생성', 'gpt-image-1: 이미지 생성' 노드\n**③ GitLab Token (glpat-...)** → 'GitLab: 이미지 업로드', 'GitLab: 마크다운 발행' 노드\n\n📋 구글 시트 헤더 (1행):\nA=메인 키워드 | B=서브키워드 | C=서브키워드 수\nD=상태 | E=발행일 | F=참조키워드 | G=연결링크\n\n💡 상태: '대기중' 입력 → 발행 후 '발행완료' 자동변경\n💡 발행일: 워크플로우가 자동 기입\n💡 참조키워드+연결링크: 비워두면 가효상조 백링크만 삽입\n\nGitLab 프로젝트: sneolife128/pbn2-site\n✅ Cloudflare Pages는 GitLab 커밋 시 자동 배포",
+        "height": 300,
+        "width": 520,
         "color": 3
       }
     },
@@ -19,7 +22,10 @@
       "name": "매일 오후 2시 실행",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [700, 340],
+      "position": [
+        700,
+        340
+      ],
       "parameters": {
         "rule": {
           "interval": [
@@ -36,7 +42,10 @@
       "name": "구글 시트: 키워드 읽기",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.4,
-      "position": [920, 340],
+      "position": [
+        920,
+        340
+      ],
       "parameters": {
         "operation": "getRows",
         "documentId": {
@@ -46,8 +55,8 @@
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
-          "mode": "id"
+          "value": "seniorlifehub",
+          "mode": "name"
         },
         "options": {}
       },
@@ -63,9 +72,12 @@
       "name": "대기중 키워드 추출",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1140, 340],
+      "position": [
+        1140,
+        340
+      ],
       "parameters": {
-        "jsCode": "const 대기중행 = items.filter(item => item.json['상태'] === '대기중');\n\nif (대기중행.length === 0) {\n  return [{ json: { __발행없음: true } }];\n}\n\nconst row = 대기중행[0].json;\nreturn [{\n  json: {\n    __발행없음: false,\n    메인키워드: row['메인 키워드'] || '',\n    서브키워드: row['서브키워드'] || '',\n    포함키워드: row['포함할 키워드'] || '',\n    서브수: parseInt(row['서브키워드 수']) || 3\n  }\n}];"
+        "jsCode": "const rows = items.map(function(i) { return i.json; });\nconst pending = rows.filter(function(r) { return r['상태'] === '대기중'; });\nif (pending.length === 0) return [{ json: { found: false } }];\nconst row = pending[0];\nreturn [{\n  json: {\n    found: true,\n    메인키워드: row['메인 키워드'] || '',\n    서브키워드: row['서브키워드'] || '',\n    서브수: parseInt(row['서브키워드 수']) || 3,\n    참조키워드: row['참조키워드'] || '',\n    연결링크: row['연결링크'] || ''\n  }\n}];"
       }
     },
     {
@@ -73,14 +85,17 @@
       "name": "키워드 있는지 확인",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [1360, 340],
+      "position": [
+        1360,
+        340
+      ],
       "parameters": {
         "conditions": {
           "conditions": [
             {
-              "id": "check-keyword-senior",
-              "leftValue": "={{ $json.__발행없음 }}",
-              "rightValue": false,
+              "id": "check-keyword",
+              "leftValue": "={{ $json.found }}",
+              "rightValue": true,
               "operator": {
                 "type": "boolean",
                 "operation": "equals"
@@ -96,7 +111,10 @@
       "name": "오늘 발행 없음 (종료)",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
-      "position": [1360, 520],
+      "position": [
+        1580,
+        480
+      ],
       "parameters": {}
     },
     {
@@ -104,9 +122,12 @@
       "name": "슬러그 생성 및 GPT 요청 준비",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1580, 240],
+      "position": [
+        1580,
+        240
+      ],
       "parameters": {
-        "jsCode": "const d = items[0].json;\nconst keyword = d.메인키워드;\nconst subKeywords = d.서브키워드;\nconst includeKeywords = d.포함키워드;\nconst subCount = d.서브수;\n\nconst today = new Date();\nconst dateStr = today.toISOString().split('T')[0];\nconst dateCompact = dateStr.replace(/-/g, '');\nconst slug = keyword\n  .replace(/\\s+/g, '-')\n  .replace(/[^a-zA-Z0-9가-힣-]/g, '')\n  .substring(0, 40) + '-' + dateCompact;\n\n// 가효상조 백링크 문장\nconst backlink = '웰다잉(Well-Dying)을 미리 준비하는 시니어라면 <a href=\"https://gahyo.co.kr\" title=\"가효상조 장례 서비스\">가효상조</a>의 맞춤 장례 상품을 지금부터 비교해보는 것이 좋습니다.';\n\nconst gptBody = {\n  model: 'gpt-4o',\n  max_tokens: 3000,\n  temperature: 0.7,\n  messages: [\n    {\n      role: 'system',\n      content: '당신은 50~70대 시니어 건강·웰빙·노후 준비 분야 SEO 전문 매거진 작가입니다. 따뜻하고 신뢰감 있는 문체로 시니어와 그 가족이 공감할 수 있는 전문 콘텐츠를 작성합니다. 출력은 반드시 순수 HTML 형식(Markdown 사용 금지)으로 합니다.'\n    },\n    {\n      role: 'user',\n      content: `아래 조건으로 SEO 최적화 매거진 글을 HTML 형식으로 작성해주세요.\n\n[키워드 조건]\n- 메인 키워드: ${keyword}\n- 서브키워드: ${subKeywords}\n- 반드시 포함할 단어: ${includeKeywords}\n- 서브키워드 각각 ${subCount}회 이상 자연스럽게 포함\n\n[작성 규칙]\n1. 분량: 1,500자 이상\n2. <h2> 소제목 3개 이상, <h3>도 활용\n3. <p>, <ul>, <li> 태그 사용\n4. <body>, <html>, <head> 태그 제외\n5. 첫 번째 <p>에 메인 키워드 포함\n6. 본문 중간(두 번째 또는 세 번째 섹션)에 다음 HTML 문장을 그대로 삽입:\n   ${backlink}\n7. 50~70대 시니어 독자를 대상으로 쉽고 따뜻한 문체\n8. 마지막 소제목은 '마무리' 또는 실천 가이드로 마무리`\n    }\n  ]\n};\n\nreturn [{\n  json: {\n    keyword, subKeywords, includeKeywords, subCount,\n    slug, dateStr,\n    gptBody\n  }\n}];"
+        "jsCode": "const d = items[0].json;\nconst keyword = d.메인키워드;\nconst subKeywords = d.서브키워드;\nconst subCount = d.서브수;\nconst refKeyword = d.참조키워드;\nconst refLink = d.연결링크;\n\nvar category;\nif (keyword.indexOf('요양') !== -1 || keyword.indexOf('돌봄') !== -1 || keyword.indexOf('건강') !== -1 || keyword.indexOf('질환') !== -1 || keyword.indexOf('치료') !== -1 || keyword.indexOf('병원') !== -1 || keyword.indexOf('의료') !== -1 || keyword.indexOf('운동') !== -1 || keyword.indexOf('영양') !== -1 || keyword.indexOf('복지') !== -1 || keyword.indexOf('등급') !== -1) {\n  category = 'health';\n} else if (keyword.indexOf('연금') !== -1 || keyword.indexOf('상속') !== -1 || keyword.indexOf('증여') !== -1 || keyword.indexOf('보험') !== -1 || keyword.indexOf('투자') !== -1 || keyword.indexOf('절세') !== -1 || keyword.indexOf('세금') !== -1 || keyword.indexOf('재테크') !== -1 || keyword.indexOf('재산') !== -1) {\n  category = 'wealth';\n} else if (keyword.indexOf('장례') !== -1 || keyword.indexOf('상조') !== -1 || keyword.indexOf('납골') !== -1 || keyword.indexOf('봉안') !== -1 || keyword.indexOf('추모') !== -1 || keyword.indexOf('묘지') !== -1) {\n  category = 'funeral';\n} else {\n  category = 'wellbeing';\n}\nconst author = '시니어라이프 편집팀';\n\nconst today = new Date();\nconst dateStr = today.toISOString().split('T')[0];\nconst dateCompact = dateStr.replace(/-/g, '');\nconst slug = keyword\n  .replace(/\\s+/g, '-')\n  .replace(/[^a-zA-Z0-9가-힣-]/g, '')\n  .substring(0, 40) + '-' + dateCompact;\n\nconst systemPrompt = '[역할]\\n'\n  + '너는 50~70대 시니어 분들의 건강하고 풍요로운 노후 생활을 돕는 \"따뜻하고 전문적인 시니어 라이프 케어 전문 에디터\"야.\\n'\n  + '독자의 연령대를 고려하여, 마음을 편안하게 해주는 다정함과 깊이 있는 전문성을 동시에 갖춘 독창적인 정보성 칼럼을 작성해줘.\\n\\n'\n  + '[글쓰기 원칙 - 5대 인간 중심 서술 원칙]\\n\\n'\n  + '1. 한국인에게 가장 자연스러운 일상적 표현 사용\\n'\n  + '- 번역기나 사전에서 직역한 듯한 어색한 어투(예: \"~를 염두에 두어야 합니다\", \"우리는 ~에 직면해 있습니다\")를 철저히 배제해줘.\\n'\n  + '- 실제 이웃의 지혜로운 동년배가 차를 마시며 조곤조곤 경험을 나누어 주듯 자연스러운 한국어 구어체와 관용구를 활용해줘.\\n\\n'\n  + '2. 따뜻하고 부드러운 어미 사용 (딱딱한 어투 금지)\\n'\n  + '- \"~하십시오\", \"~입니다\" 같은 사무적이고 군대식의 딱딱한 종결 어미는 절대 쓰지 마라.\\n'\n  + '- 대신, 시니어 독자분들이 존중받는 느낌을 받도록 \"~해요\", \"~해보세요\", \"~편이지요\", \"~인 경우가 많답니다\"와 같이 다정하고 품격 있는 경어체를 사용해줘.\\n\\n'\n  + '3. 능동태 중심의 주체적 문장 작성\\n'\n  + '- 수동태 표현(예: \"~가 치러집니다\", \"해결되어집니다\", \"당하게 됩니다\") 대신, 행위의 주체가 명확히 살아있는 능동태(예: \"장례를 치러요\", \"슬픔을 해결해요\", \"어려움을 겪어요\")로 모든 문장을 구성해줘.\\n\\n'\n  + '4. 호흡이 짧고 가독성 높은 문장 배치\\n'\n  + '- 한 문장에는 오직 하나의 생각(One Sentence, One Idea)만 담고, 문장이 조금이라도 길어지면 주저 없이 마침표를 찍어 두세 개의 짧은 문장으로 나누어줘.\\n\\n'\n  + '5. \"당신\", \"여러분\" 호칭 전면 금지 및 자연스러운 생략\\n'\n  + '- 글을 읽는 독자를 지칭할 때 \"당신\", \"여러분\"이라는 호칭은 일절 사용하지 마라.\\n'\n  + '- 호칭이 꼭 필요할 때는 \"우리\", \"부모님\", \"시니어 분들\", \"상주님\" 등으로 대체하고, 주어나 호칭을 생략할 수 있는 곳에서는 과감히 생략해줘.\\n\\n'\n  + '[출력 형식 규칙]\\n'\n  + '- 출력은 반드시 아래 5개 마커를 순서대로 포함할 것\\n'\n  + '- 마크다운 형식으로 작성 (HTML 태그 금지)\\n'\n  + '- 마커와 실제 내용 사이에 줄바꿈 없이 바로 내용 작성';\n\nvar refLinkInstruction = '';\nif (refKeyword && refLink) {\n  refLinkInstruction = '- 참조 링크도 본문 자연스러운 위치에 마크다운 형식으로 1회 삽입:\\n'\n    + '  [' + refKeyword + '](' + refLink + ')\\n';\n}\n\nconst userPrompt = '아래 조건으로 시니어 라이프 매거진 칼럼을 작성해줘.\\n\\n'\n  + '[키워드 조건]\\n'\n  + '- 메인 키워드: ' + keyword + '\\n'\n  + '- 서브키워드: ' + subKeywords + '\\n'\n  + '- 서브키워드 각각 ' + subCount + '회 이상 자연스럽게 포함\\n\\n'\n  + '[작성 지침]\\n'\n  + '- 상투적인 순서(1일 차, 2일 차 등)를 탈피하여, 독자가 가장 먼저 알고 대비해야 하는 \\'실질적인 마음가짐과 현실적 대처법\\' 위주로 서술\\n'\n  + '- H2 소제목 3개 이상, H3도 자유롭게 활용\\n'\n  +   + refLinkInstruction\n  + '- 공백 제외 1,500자 이상\\n\\n'\n  + '[출력 형식] 아래 5개 마커를 반드시 포함:\\n'\n  + '##TITLE##여기에 SEO 최적화 제목 (60자 이내)\\n'\n  + '##META##여기에 메타 디스크립션 (120자 이내, 메인키워드 포함)\\n'\n  + '##AISUMMARY##여기에 AI 요약 (2~3문장, 핵심 내용 압축)\\n'\n  + '##TAGS##여기에 태그 (쉼표 구분, 5~7개)\\n'\n  + '##MARKDOWN##여기에 본문 전체 마크다운';\n\nconst gptBody = {\n  model: 'gpt-4o',\n  max_tokens: 8000,\n  temperature: 1.0,\n  messages: [\n    { role: 'system', content: systemPrompt },\n    { role: 'user', content: userPrompt }\n  ]\n};\n\nreturn [{\n  json: {\n    keyword, subKeywords, subCount,\n    category, author,\n    refKeyword, refLink,\n    slug, dateStr,\n    gptBody\n  }\n}];"
       }
     },
     {
@@ -114,7 +135,10 @@
       "name": "GPT-4o: 블로그 글 생성",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1800, 240],
+      "position": [
+        1800,
+        240
+      ],
       "parameters": {
         "method": "POST",
         "url": "https://api.openai.com/v1/chat/completions",
@@ -134,20 +158,26 @@
     },
     {
       "id": "code-parse-senior",
-      "name": "GPT 응답 파싱 및 DALL-E 요청 준비",
+      "name": "GPT 응답 파싱 및 이미지 요청 준비",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [2020, 240],
+      "position": [
+        2020,
+        240
+      ],
       "parameters": {
-        "jsCode": "const gptResult = items[0].json;\nconst prevData = $('슬러그 생성 및 GPT 요청 준비').first().json;\n\nconst htmlContent = gptResult.choices[0].message.content;\n\nconst titleMatch = htmlContent.match(/<h[12][^>]*>([^<]+)<\\/h[12]>/i);\nconst title = titleMatch\n  ? titleMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 시니어 가이드';\n\nconst excerptMatch = htmlContent.match(/<p[^>]*>([\\s\\S]*?)<\\/p>/i);\nconst rawExcerpt = excerptMatch\n  ? excerptMatch[1].replace(/<[^>]+>/g, '').trim()\n  : prevData.keyword + ' 관련 시니어 전문 정보입니다.';\nconst excerpt = rawExcerpt.substring(0, 150) + (rawExcerpt.length > 150 ? '...' : '');\n\n// HTML → Markdown 변환\nconst markdownContent = htmlContent\n  .replace(/<h2[^>]*>(.*?)<\\/h2>/gi, '## $1')\n  .replace(/<h3[^>]*>(.*?)<\\/h3>/gi, '### $1')\n  .replace(/<p[^>]*>(.*?)<\\/p>/gis, '$1\\n\\n')\n  .replace(/<ul[^>]*>/gi, '').replace(/<\\/ul>/gi, '')\n  .replace(/<li[^>]*>(.*?)<\\/li>/gi, '- $1')\n  .replace(/<a\\s+href=\"([^\"]+)\"[^>]*>(.*?)<\\/a>/gi, '[$2]($1)')\n  .replace(/<[^>]+>/g, '')\n  .replace(/\\n{3,}/g, '\\n\\n')\n  .trim();\n\nconst dalleBody = {\n  model: 'dall-e-3',\n  prompt: `건강하고 활기찬 한국 시니어 노부부의 일상 장면. 따뜻하고 밝은 자연광, 희망적인 분위기. \"${prevData.keyword}\" 주제와 관련된 이미지. 공원 산책 또는 밝은 실내. 이미지 안에 텍스트나 글자 없음. 사진 현실적 스타일.`,\n  size: '1792x1024',\n  quality: 'standard',\n  n: 1\n};\n\nreturn [{\n  json: {\n    title, excerpt,\n    htmlContent, markdownContent,\n    keyword: prevData.keyword,\n    slug: prevData.slug,\n    dateStr: prevData.dateStr,\n    dalleBody\n  }\n}];"
+        "jsCode": "const gptResult = items[0].json;\nconst prevData = $('슬러그 생성 및 GPT 요청 준비').first().json;\n\nconst raw = gptResult.choices[0].message.content;\n\nfunction extractMarker(text, marker) {\n  var tag = '##' + marker + '##';\n  var start = text.indexOf(tag);\n  if (start === -1) return '';\n  start = start + tag.length;\n  var nextHash = text.indexOf('##', start);\n  var end = nextHash === -1 ? text.length : nextHash;\n  return text.substring(start, end).trim();\n}\n\nvar title = extractMarker(raw, 'TITLE') || prevData.keyword + ' 시니어 가이드';\nvar metaDescription = extractMarker(raw, 'META') || prevData.keyword + ' 관련 시니어 전문 정보';\nvar aiSummary = extractMarker(raw, 'AISUMMARY') || '';\nvar tagsRaw = extractMarker(raw, 'TAGS') || prevData.keyword;\nvar markdownContent = extractMarker(raw, 'MARKDOWN') || raw;\n\nvar tags = tagsRaw.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t.length > 0; });\nvar charCount = markdownContent.replace(/\\s/g, '').length;\nvar readingTime = Math.max(5, Math.ceil(charCount / 500));\n\nvar kw = prevData.keyword;\nvar imageDesc = '';\n\nif (kw.indexOf('상조') !== -1 || kw.indexOf('장례') !== -1 || kw.indexOf('계약') !== -1) {\n  imageDesc = 'A warm and professional consultation scene between a kind Korean funeral service advisor and an elderly Korean couple in their 60s, sitting at a bright clean office table. Soft natural light, calm and trustworthy atmosphere.';\n} else if (kw.indexOf('노후') !== -1 || kw.indexOf('은퇴') !== -1 || kw.indexOf('준비') !== -1) {\n  imageDesc = 'A healthy and happy Korean senior couple in their 60s-70s enjoying a peaceful afternoon walk in a sunlit park. Warm golden hour light, green trees, comfortable lifestyle.';\n} else if (kw.indexOf('요양') !== -1 || kw.indexOf('돌봄') !== -1 || kw.indexOf('복지') !== -1) {\n  imageDesc = 'A caring scene of a professional Korean caregiver gently assisting a graceful elderly Korean woman indoors. Bright clean home environment, warm and compassionate atmosphere.';\n} else if (kw.indexOf('납골') !== -1 || kw.indexOf('봉안') !== -1 || kw.indexOf('추모') !== -1) {\n  imageDesc = 'A serene and peaceful memorial garden with soft sunlight filtering through trees. Stone memorial plaques surrounded by flowers, calm and respectful atmosphere, no people.';\n} else if (kw.indexOf('유언') !== -1 || kw.indexOf('상속') !== -1 || kw.indexOf('증여') !== -1) {\n  imageDesc = 'An elderly Korean man in his 70s thoughtfully reviewing documents at a wooden desk by a window. Warm afternoon light, family photos in background, peaceful and dignified setting.';\n} else if (kw.indexOf('건강') !== -1 || kw.indexOf('운동') !== -1 || kw.indexOf('영양') !== -1) {\n  imageDesc = 'A vibrant Korean senior couple in their 60s doing light morning exercises outdoors. Fresh morning light, park setting with trees, energetic and healthy lifestyle.';\n} else if (kw.indexOf('여행') !== -1 || kw.indexOf('취미') !== -1 || kw.indexOf('문화') !== -1) {\n  imageDesc = 'A cheerful Korean senior couple in their 60s enjoying a cultural outing or leisure activity together. Bright colorful joyful atmosphere, active senior lifestyle.';\n} else {\n  imageDesc = 'A warm and content Korean senior couple in their 60s-70s sharing a peaceful moment at home over tea. Cozy interior, natural light, family warmth and comfort.';\n}\n\nvar imageBody = {\n  model: 'gpt-image-1',\n  prompt: imageDesc + ' No text or letters in the image. Photorealistic style, high quality.',\n  n: 1,\n  size: '1536x1024',\n  quality: 'medium'\n};\n\nreturn [{\n  json: {\n    title: title,\n    metaDescription: metaDescription,\n    aiSummary: aiSummary,\n    tags: tags,\n    markdownContent: markdownContent,\n    readingTime: readingTime,\n    keyword: prevData.keyword,\n    slug: prevData.slug,\n    dateStr: prevData.dateStr,\n    category: prevData.category,\n    author: prevData.author,\n    imageBody: imageBody\n  }\n}];"
       }
     },
     {
-      "id": "http-dalle-senior",
-      "name": "DALL-E 3: 이미지 생성 (ChatGPT API)",
+      "id": "http-image-senior",
+      "name": "gpt-image-1: 이미지 생성",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2240, 240],
+      "position": [
+        2240,
+        240
+      ],
       "parameters": {
         "method": "POST",
         "url": "https://api.openai.com/v1/images/generations",
@@ -155,7 +185,7 @@
         "nodeCredentialType": "openAiApi",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($('GPT 응답 파싱 및 DALL-E 요청 준비').item.json.dalleBody) }}",
+        "jsonBody": "={{ JSON.stringify($json.imageBody) }}",
         "options": {}
       },
       "credentials": {
@@ -166,50 +196,30 @@
       }
     },
     {
-      "id": "http-imgbb-senior",
-      "name": "imgBB: 이미지 영구 저장",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [2460, 240],
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.imgbb.com/1/upload",
-        "sendBody": true,
-        "contentType": "form-urlencoded",
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "key",
-              "value": "여기에_IMGBB_API_KEY_입력"
-            },
-            {
-              "name": "image",
-              "value": "={{ $json.data[0].url }}"
-            }
-          ]
-        },
-        "options": {}
-      }
-    },
-    {
       "id": "code-markdown-senior",
-      "name": "마크다운 파일 내용 생성",
+      "name": "마크다운 파일 구성",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [2680, 240],
+      "position": [
+        2460,
+        240
+      ],
       "parameters": {
-        "jsCode": "const imgbbResult = items[0].json;\nconst parsedData = $('GPT 응답 파싱 및 DALL-E 요청 준비').first().json;\n\nconst imageUrl = imgbbResult.data.display_url;\n\n// Astro 마크다운 frontmatter + 본문\nconst frontmatter = `---\ntitle: \"${parsedData.title.replace(/\"/g, '\\'')}\"\npubDate: ${parsedData.dateStr}\ndescription: \"${parsedData.excerpt.replace(/\"/g, '\\'')}\"\nheroImage: \"${imageUrl}\"\ncategory: \"health\"\ntags: [\"${parsedData.keyword}\"]\nauthor: \"시니어라이프 편집팀\"\n---\n\n`;\n\nconst fullMarkdown = frontmatter + parsedData.markdownContent;\n\n// GitLab API용 Base64 인코딩\nconst base64Content = Buffer.from(fullMarkdown, 'utf-8').toString('base64');\n\nreturn [{\n  json: {\n    base64Content,\n    slug: parsedData.slug,\n    keyword: parsedData.keyword,\n    dateStr: parsedData.dateStr,\n    title: parsedData.title\n  }\n}];"
+        "jsCode": "const prevData = $('GPT 응답 파싱 및 이미지 요청 준비').first().json;\nconst imageData = $('gpt-image-1: 이미지 생성').first().json;\n\nconst imageFilename = prevData.slug + '.png';\nconst imagePath = '/images/' + imageFilename;\n\nconst tagsYaml = prevData.tags.map(function(t) {\n  return '\"' + t.replace(/\"/g, \"'\") + '\"';\n}).join(', ');\n\nconst frontmatter = '---\\n'\n  + 'title: \"' + prevData.title.replace(/\"/g, \"'\") + '\"\\n'\n  + 'description: \"' + prevData.metaDescription.replace(/\"/g, \"'\") + '\"\\n'\n  + 'publishedDate: \"' + prevData.dateStr + '\"\\n'\n  + 'author: \"' + prevData.author + '\"\\n'\n  + 'tags: [' + tagsYaml + ']\\n'\n  + 'category: \"' + prevData.category + '\"\\n'\n  + 'aiSummary: \"' + prevData.aiSummary.replace(/\"/g, \"'\").replace(/\\n/g, ' ') + '\"\\n'\n  + 'readingTime: ' + prevData.readingTime + '\\n'\n  + 'image: \"' + imagePath + '\"\\n'\n  + '---\\n\\n';\n\nconst fullMarkdown = frontmatter + prevData.markdownContent;\nconst base64Content = Buffer.from(fullMarkdown, 'utf8').toString('base64');\n\nconst imageBase64 = imageData.data[0].b64_json;\n\nconst encodedImagePath = 'public%2Fimages%2F' + imageFilename;\nconst encodedFilePath = 'src%2Fcontent%2Fposts%2F' + prevData.slug + '.md';\n\nreturn [{\n  json: {\n    title: prevData.title,\n    slug: prevData.slug,\n    filePath: 'src/content/posts/' + prevData.slug + '.md',\n    fullMarkdown: fullMarkdown,\n    base64Content: base64Content,\n    imagePath: imagePath,\n    imageFilename: imageFilename,\n    imageBase64: imageBase64,\n    encodedImagePath: encodedImagePath,\n    encodedFilePath: encodedFilePath,\n    keyword: prevData.keyword,\n    dateStr: prevData.dateStr\n  }\n}];"
       }
     },
     {
-      "id": "http-gitlab-senior",
-      "name": "GitLab: 마크다운 발행",
+      "id": "http-gitlab-image",
+      "name": "GitLab: 이미지 업로드",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2900, 240],
+      "position": [
+        2680,
+        240
+      ],
       "parameters": {
         "method": "POST",
-        "url": "https://gitlab.com/api/v4/projects/여기에_GITLAB_PROJECT_ID/repository/files/src%2Fcontent%2Fposts%2F{{ $json.slug }}.md",
+        "url": "https://gitlab.com/api/v4/projects/sneolife128%2Fpbn2-site/repository/files/={{ $json.encodedImagePath }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -225,7 +235,38 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ branch: 'main', content: $json.base64Content, commit_message: '블로그 자동 발행: ' + $json.title, encoding: 'base64' }) }}",
+        "jsonBody": "={{ JSON.stringify({ branch: 'master', content: $json.imageBase64, commit_message: '이미지 업로드: ' + $json.imageFilename, encoding: 'base64' }) }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "http-gitlab-md",
+      "name": "GitLab: 마크다운 발행",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2900,
+        240
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "=https://gitlab.com/api/v4/projects/sneolife128%2Fpbn2-site/repository/files/" + $('마크다운 파일 구성').first().json.encodedFilePath,
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "PRIVATE-TOKEN",
+              "value": "여기에_GITLAB_TOKEN_입력 (glpat-로 시작)"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ branch: 'master', content: $('마크다운 파일 구성').first().json.base64Content, commit_message: '블로그 자동 발행: ' + $('마크다운 파일 구성').first().json.title, encoding: 'base64' }) }}",
         "options": {}
       }
     },
@@ -234,7 +275,10 @@
       "name": "구글 시트: 발행완료 업데이트",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.4,
-      "position": [3120, 240],
+      "position": [
+        3120,
+        240
+      ],
       "parameters": {
         "operation": "update",
         "documentId": {
@@ -244,17 +288,19 @@
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
-          "mode": "id"
+          "value": "seniorlifehub",
+          "mode": "name"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "메인 키워드": "={{ $('마크다운 파일 내용 생성').item.json.keyword }}",
+            "메인 키워드": "={{ $('마크다운 파일 구성').item.json.keyword }}",
             "상태": "발행완료",
-            "발행일": "={{ $('마크다운 파일 내용 생성').item.json.dateStr }}"
+            "발행일": "={{ $('마크다운 파일 구성').item.json.dateStr }}"
           },
-          "matchingColumns": ["메인 키워드"],
+          "matchingColumns": [
+            "메인 키워드"
+          ],
           "schema": []
         },
         "options": {}
@@ -270,58 +316,130 @@
   "connections": {
     "매일 오후 2시 실행": {
       "main": [
-        [{ "node": "구글 시트: 키워드 읽기", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "구글 시트: 키워드 읽기",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "구글 시트: 키워드 읽기": {
       "main": [
-        [{ "node": "대기중 키워드 추출", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "대기중 키워드 추출",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "대기중 키워드 추출": {
       "main": [
-        [{ "node": "키워드 있는지 확인", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "키워드 있는지 확인",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "키워드 있는지 확인": {
       "main": [
-        [{ "node": "슬러그 생성 및 GPT 요청 준비", "type": "main", "index": 0 }],
-        [{ "node": "오늘 발행 없음 (종료)", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "슬러그 생성 및 GPT 요청 준비",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "오늘 발행 없음 (종료)",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "슬러그 생성 및 GPT 요청 준비": {
       "main": [
-        [{ "node": "GPT-4o: 블로그 글 생성", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "GPT-4o: 블로그 글 생성",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "GPT-4o: 블로그 글 생성": {
       "main": [
-        [{ "node": "GPT 응답 파싱 및 DALL-E 요청 준비", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "GPT 응답 파싱 및 이미지 요청 준비",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
-    "GPT 응답 파싱 및 DALL-E 요청 준비": {
+    "GPT 응답 파싱 및 이미지 요청 준비": {
       "main": [
-        [{ "node": "DALL-E 3: 이미지 생성 (ChatGPT API)", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "gpt-image-1: 이미지 생성",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
-    "DALL-E 3: 이미지 생성 (ChatGPT API)": {
+    "gpt-image-1: 이미지 생성": {
       "main": [
-        [{ "node": "imgBB: 이미지 영구 저장", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "마크다운 파일 구성",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
-    "imgBB: 이미지 영구 저장": {
+    "마크다운 파일 구성": {
       "main": [
-        [{ "node": "마크다운 파일 내용 생성", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "GitLab: 이미지 업로드",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
-    "마크다운 파일 내용 생성": {
+    "GitLab: 이미지 업로드": {
       "main": [
-        [{ "node": "GitLab: 마크다운 발행", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "GitLab: 마크다운 발행",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "GitLab: 마크다운 발행": {
       "main": [
-        [{ "node": "구글 시트: 발행완료 업데이트", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "구글 시트: 발행완료 업데이트",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },

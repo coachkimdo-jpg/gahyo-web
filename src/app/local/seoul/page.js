@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: '서울 상조 | 가효상조 — 서울 전지역 24시간 즉시 출동',
+  title: '서울 상조 | 서울 전지역 24시간 즉시 출동',
   description: '서울 전지역 24시간 즉시 출동. 가입비·월납입금 0원, 장례 후 결제. 강남·강북·마포·송파 등 전 구 출동 가능. 국가공인 장례지도사 1:1 전담.',
   keywords: ['서울상조', '서울장례', '서울장례식장', '서울후불제상조', '24시간상조서울'],
   alternates: { canonical: 'https://gahyo.co.kr/local/seoul' },

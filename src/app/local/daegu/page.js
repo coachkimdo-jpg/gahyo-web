@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: '대구 상조 | 가효상조 — 대구 전지역 24시간 즉시 출동',
+  title: '대구 상조 | 대구 전지역 24시간 즉시 출동',
   description: '대구 전지역 24시간 즉시 출동. 중·동·서·남·북·수성·달서구 전 구 출동. 가입비·월납입금 0원, 장례 후 결제.',
   keywords: ["대구상조", "대구장례", "대구장례식장", "대구후불제상조"],
   alternates: { canonical: 'https://gahyo.co.kr/local/daegu' },

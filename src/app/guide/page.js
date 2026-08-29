@@ -7,7 +7,7 @@ import localArticles from '@/lib/articles.json';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: '장례 가이드 및 정보 | 임종부터 장지까지 완벽 안내 — 가효상조',
+  title: '장례 가이드 및 정보 | 임종부터 장지까지 완벽 안내',
   description: '임종 후 처리사항, 부고 보내는 법, 장례 비용 안내, 행정 절차 등 유가족에게 꼭 필요한 실질적인 장례 정보를 전문가의 검수를 거쳐 제공합니다.',
   alternates: {
     canonical: 'https://gahyo.co.kr/guide',
@@ -80,6 +80,19 @@ export default async function GuidePage(props) {
       }
       return article;
     });
+  }
+
+  // 자동 발행 워크플로우가 동일 글을 중복 등록한 경우를 대비해 slug 기준으로 중복 제거 (같은 slug면 id가 더 큰, 즉 최신 문서만 유지)
+  {
+    const bySlug = new Map();
+    for (const a of guideArticles) {
+      const key = a.slug || a.id;
+      const existing = bySlug.get(key);
+      if (!existing || (Number(a.id) || 0) > (Number(existing.id) || 0)) {
+        bySlug.set(key, a);
+      }
+    }
+    guideArticles = Array.from(bySlug.values()).sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
   }
 
   if (selectedCategory) {

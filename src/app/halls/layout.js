@@ -16,7 +16,7 @@ const jsonLd = {
           name: '가까운 장례식장을 어떻게 찾을 수 있나요?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '가효상조 장례식장 찾기 페이지에서 시/도, 구/군을 선택하거나 이름으로 검색하시면 전국 500여 개 제휴 장례식장 정보를 확인하실 수 있습니다.',
+            text: '가효상조 장례식장 찾기 페이지에서 시/도, 구/군을 선택하거나 이름으로 검색하시면 전국 100여 개 제휴 장례식장 정보를 확인하실 수 있습니다.',
           },
         },
         {
@@ -44,13 +44,13 @@ export const metadata = {
   title: {
     absolute: '전국 장례식장 찾기 | 가효상조',
   },
-  description: '전국 500여 개 제휴 장례식장 정보, 빈소 현황, 주차 및 이용 요금을 한눈에 확인하세요. 지역별 검색으로 가까운 장례식장을 무료로 찾아보세요.',
+  description: '전국 100여 개 제휴 장례식장 정보, 빈소 현황, 주차 및 이용 요금을 한눈에 확인하세요. 지역별 검색으로 가까운 장례식장을 무료로 찾아보세요.',
   alternates: {
     canonical: 'https://gahyo.co.kr/halls',
   },
   openGraph: {
     title: '전국 장례식장 찾기 | 가효상조',
-    description: '전국 500여 개 제휴 장례식장 정보를 지역별로 검색하세요. 24시간 무료 상담 1551-5718.',
+    description: '전국 100여 개 제휴 장례식장 정보를 지역별로 검색하세요. 24시간 무료 상담 1551-5718.',
     url: 'https://gahyo.co.kr/halls',
     siteName: '후불제상조 가효상조',
     images: [{ url: 'https://gahyo.co.kr/og-image.png', width: 1200, height: 630, alt: '전국 장례식장 찾기 - 가효상조' }],
@@ -60,7 +60,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '전국 장례식장 찾기 | 가효상조',
-    description: '전국 500여 개 제휴 장례식장 정보를 지역별로 검색하세요.',
+    description: '전국 100여 개 제휴 장례식장 정보를 지역별로 검색하세요.',
     images: ['https://gahyo.co.kr/og-image.png'],
   },
 };
@@ -92,7 +92,7 @@ export default function HallsLayout({ children }) {
             지역별 장례식장 안내
           </h2>
           <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '2rem' }}>
-            가효상조는 전국 500여 개 장례식장과 제휴하고 있습니다. 거주 지역에서 가까운 장례식장을 빠르게 연결해 드립니다. 위 검색창에서 시·도와 구·군을 선택하거나, 아래 지역을 참고하여 24시간 상담(1551-5718)을 이용하세요.
+            가효상조는 전국 100여 개 장례식장과 제휴하고 있습니다. 거주 지역에서 가까운 장례식장을 빠르게 연결해 드립니다. 위 검색창에서 시·도와 구·군을 선택하거나, 아래 지역을 참고하여 24시간 상담(1551-5718)을 이용하세요.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
             {REGION_SEO.map(({ region, desc }) => (
