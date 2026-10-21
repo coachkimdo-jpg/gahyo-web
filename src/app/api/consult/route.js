@@ -11,13 +11,18 @@ export async function POST(request) {
 
     // SMTP Configuration from Environment Variables
     // The user needs to set SMTP_USER and SMTP_PASS in .env.local
+    // 환경변수에 따옴표/공백/줄바꿈이 섞여 들어가도 로그인되도록 정리
+    const clean = (v) => (v || '').trim().replace(/^["']|["']$/g, '').trim();
+    const smtpUser = clean(process.env.SMTP_USER);
+    const smtpPass = clean(process.env.SMTP_PASS);
+
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.naver.com',
-      port: process.env.SMTP_PORT || 465,
+      host: clean(process.env.SMTP_HOST) || 'smtp.naver.com',
+      port: Number(clean(process.env.SMTP_PORT)) || 465,
       secure: true,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: smtpUser,
+        pass: smtpPass,
       },
     });
 
@@ -72,7 +77,7 @@ export async function POST(request) {
 
     // Send Mail
     await transporter.sendMail({
-      from: `"가효 맞춤견적" <${process.env.SMTP_USER}>`, // sender address
+      from: `"가효 맞춤견적" <${smtpUser}>`, // sender address
       to: 'gahyofuneral@naver.com', // list of receivers
       subject: `[가효] ${name}님의 맞춤 견적 상담 신청이 접수되었습니다.`, // Subject line
       html: htmlContent, // html body
@@ -81,7 +86,14 @@ export async function POST(request) {
     return NextResponse.json({ message: '상담 신청이 성공적으로 전송되었습니다.' });
 
   } catch (error) {
-    console.error('Error sending consult email:', error);
+    // Vercel 로그에서 원인 확인용 (EAUTH=인증 실패, ECONNECTION/ETIMEDOUT=연결 차단 등)
+    console.error('Error sending consult email:', {
+      code: error?.code,
+      command: error?.command,
+      responseCode: error?.responseCode,
+      response: error?.response,
+      message: error?.message,
+    });
     return NextResponse.json({ error: '상담 신청 전송 중 오류가 발생했습니다.' }, { status: 500 });
   }
 }

@@ -12,13 +12,18 @@ export async function POST(request) {
       return NextResponse.json({ error: '이용약관에 동의해 주세요.' }, { status: 400 });
     }
 
+    // 환경변수에 따옴표/공백/줄바꿈이 섞여 들어가도 로그인되도록 정리
+    const clean = (v) => (v || '').trim().replace(/^["']|["']$/g, '').trim();
+    const smtpUser = clean(process.env.SMTP_USER);
+    const smtpPass = clean(process.env.SMTP_PASS);
+
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.naver.com',
-      port: Number(process.env.SMTP_PORT) || 465,
+      host: clean(process.env.SMTP_HOST) || 'smtp.naver.com',
+      port: Number(clean(process.env.SMTP_PORT)) || 465,
       secure: true,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: smtpUser,
+        pass: smtpPass,
       },
     });
 
@@ -60,7 +65,7 @@ export async function POST(request) {
     `;
 
     await transporter.sendMail({
-      from: `"가효상조 상담신청" <${process.env.SMTP_USER}>`,
+      from: `"가효상조 상담신청" <${smtpUser}>`,
       to: 'gahyofuneral@naver.com',
       subject: `[가효상조] ${name}님 무료 상담 신청`,
       html: htmlContent,
